@@ -18,6 +18,9 @@ export const metadata: Metadata = {
     locale: "en_MY",
     siteName: "RefinanceHomeLoanMY",
   },
+  verification: {
+    google: "hiucUvRoGjgciw2b04tBl30F0cAbNPnPYcpFiQsVg2A",
+  },
 };
 
 export default function RootLayout({

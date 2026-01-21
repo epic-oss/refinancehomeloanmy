@@ -1,8 +1,15 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import LeadForm from "@/components/LeadForm";
 import FAQ from "@/components/FAQ";
+
+const currentYear = new Date().getFullYear();
+
+// Note: Metadata must be in a separate layout.tsx or use generateMetadata for server components
+// For client components, we set document title directly
+const pageTitle = `Home Loan Refinancing Calculator Malaysia ${currentYear} - Calculate Your Savings`;
+const pageDescription = `Calculate how much you can save by refinancing your home loan in Malaysia. Compare rates from Maybank, CIMB, Public Bank & more. Free calculator tool.`;
 
 const calculatorFaqs = [
   {
@@ -27,6 +34,21 @@ const calculatorFaqs = [
   },
 ];
 
+const bankRates = [
+  { bank: "Maybank", rate: "3.65%", bestFor: "Existing customers" },
+  { bank: "CIMB", rate: "3.70%", bestFor: "High loan amounts" },
+  { bank: "Public Bank", rate: "3.68%", bestFor: "Salaried employees" },
+  { bank: "RHB", rate: "3.75%", bestFor: "Flexible terms" },
+  { bank: "Hong Leong", rate: "3.72%", bestFor: "First-time refinancers" },
+];
+
+const refinancingCosts = [
+  { title: "Legal Fees", amount: "RM2,000-5,000", icon: "scale" },
+  { title: "Valuation Fees", amount: "RM300-1,000", icon: "home" },
+  { title: "Stamp Duty", amount: "0.5% (may be exempted)", icon: "file" },
+  { title: "MRTA/MLTA", amount: "Optional", icon: "shield" },
+];
+
 export default function CalculatorPage() {
   const [currentLoanAmount, setCurrentLoanAmount] = useState("");
   const [currentRate, setCurrentRate] = useState("");
@@ -36,10 +58,15 @@ export default function CalculatorPage() {
     currentMonthly: number;
     newMonthly: number;
     monthlySavings: number;
+    yearlySavings: number;
     totalSavings: number;
     breakEvenMonths: number;
   } | null>(null);
   const [showForm, setShowForm] = useState(false);
+
+  useEffect(() => {
+    document.title = pageTitle;
+  }, []);
 
   const calculateSavings = () => {
     const principal = parseFloat(currentLoanAmount.replace(/,/g, ""));
@@ -60,7 +87,6 @@ export default function CalculatorPage() {
       return;
     }
 
-    // Monthly payment calculation: M = P * [r(1+r)^n] / [(1+r)^n-1]
     const monthlyCurrentRate = currentRateNum / 100 / 12;
     const monthlyNewRate = newRateNum / 100 / 12;
     const totalMonths = years * 12;
@@ -74,9 +100,9 @@ export default function CalculatorPage() {
       (Math.pow(1 + monthlyNewRate, totalMonths) - 1);
 
     const monthlySavings = currentMonthly - newMonthly;
+    const yearlySavings = monthlySavings * 12;
     const totalSavings = monthlySavings * totalMonths;
 
-    // Estimated refinancing cost
     const estimatedCost = 5000;
     const breakEvenMonths = Math.ceil(estimatedCost / monthlySavings);
 
@@ -84,6 +110,7 @@ export default function CalculatorPage() {
       currentMonthly: Math.round(currentMonthly),
       newMonthly: Math.round(newMonthly),
       monthlySavings: Math.round(monthlySavings),
+      yearlySavings: Math.round(yearlySavings),
       totalSavings: Math.round(totalSavings - estimatedCost),
       breakEvenMonths: breakEvenMonths > 0 ? breakEvenMonths : 0,
     });
@@ -96,7 +123,7 @@ export default function CalculatorPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Home Loan Refinancing Calculator
+              Home Loan Refinancing Calculator Malaysia {currentYear}
             </h1>
             <p className="text-xl text-gray-300">
               Calculate your potential savings by refinancing your home loan. See how much you could save monthly and over your loan tenure.
@@ -112,7 +139,6 @@ export default function CalculatorPage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-8">Calculate Your Savings</h2>
 
             <div className="grid md:grid-cols-2 gap-6">
-              {/* Current Loan Amount */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Outstanding Loan Amount (RM)
@@ -129,7 +155,6 @@ export default function CalculatorPage() {
                 />
               </div>
 
-              {/* Current Rate */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Current Interest Rate (%)
@@ -144,7 +169,6 @@ export default function CalculatorPage() {
                 />
               </div>
 
-              {/* Remaining Years */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   Remaining Loan Tenure (Years)
@@ -160,7 +184,6 @@ export default function CalculatorPage() {
                 />
               </div>
 
-              {/* New Rate */}
               <div>
                 <label className="block text-sm font-medium text-gray-700 mb-2">
                   New Interest Rate (%)
@@ -188,52 +211,46 @@ export default function CalculatorPage() {
 
             {/* Results */}
             {result && (
-              <div className="mt-8 p-6 bg-gradient-to-r from-primary-50 to-secondary-50 rounded-xl">
-                <h3 className="text-lg font-semibold text-gray-900 mb-6">
-                  Your Potential Savings
-                </h3>
+              <div className="mt-8">
+                <div className="bg-gradient-to-r from-secondary-500 to-secondary-600 rounded-xl p-6 text-white text-center mb-6">
+                  <p className="text-sm uppercase tracking-wide mb-2">Your Monthly Savings</p>
+                  <p className="text-5xl font-bold">RM {result.monthlySavings.toLocaleString()}</p>
+                </div>
 
-                <div className="grid md:grid-cols-2 gap-6">
-                  <div className="bg-white rounded-lg p-4">
-                    <p className="text-sm text-gray-600 mb-1">Current Monthly Payment</p>
-                    <p className="text-2xl font-bold text-gray-900">
-                      RM {result.currentMonthly.toLocaleString()}
-                    </p>
+                <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-6">
+                  <div className="bg-gray-50 rounded-lg p-4 text-center">
+                    <p className="text-xs text-gray-500 mb-1">Current Monthly</p>
+                    <p className="text-lg font-bold text-gray-900">RM {result.currentMonthly.toLocaleString()}</p>
                   </div>
-
-                  <div className="bg-white rounded-lg p-4">
-                    <p className="text-sm text-gray-600 mb-1">New Monthly Payment</p>
-                    <p className="text-2xl font-bold text-secondary-600">
-                      RM {result.newMonthly.toLocaleString()}
-                    </p>
+                  <div className="bg-gray-50 rounded-lg p-4 text-center">
+                    <p className="text-xs text-gray-500 mb-1">New Monthly</p>
+                    <p className="text-lg font-bold text-secondary-600">RM {result.newMonthly.toLocaleString()}</p>
                   </div>
-
-                  <div className="bg-secondary-100 rounded-lg p-4">
-                    <p className="text-sm text-secondary-700 mb-1">Monthly Savings</p>
-                    <p className="text-3xl font-bold text-secondary-700">
-                      RM {result.monthlySavings.toLocaleString()}
-                    </p>
+                  <div className="bg-gray-50 rounded-lg p-4 text-center">
+                    <p className="text-xs text-gray-500 mb-1">Yearly Savings</p>
+                    <p className="text-lg font-bold text-secondary-600">RM {result.yearlySavings.toLocaleString()}</p>
                   </div>
-
-                  <div className="bg-secondary-100 rounded-lg p-4">
-                    <p className="text-sm text-secondary-700 mb-1">Total Savings (Net)</p>
-                    <p className="text-3xl font-bold text-secondary-700">
-                      RM {result.totalSavings.toLocaleString()}
-                    </p>
+                  <div className="bg-gray-50 rounded-lg p-4 text-center">
+                    <p className="text-xs text-gray-500 mb-1">Total Savings</p>
+                    <p className="text-lg font-bold text-secondary-600">RM {result.totalSavings.toLocaleString()}</p>
                   </div>
                 </div>
 
-                {result.breakEvenMonths > 0 && (
-                  <p className="text-sm text-gray-600 mt-4">
-                    Break-even point: <span className="font-semibold">{result.breakEvenMonths} months</span> (after covering estimated refinancing costs of ~RM5,000)
-                  </p>
-                )}
+                <div className="bg-primary-50 rounded-lg p-4 flex items-center justify-between mb-6">
+                  <div className="flex items-center space-x-3">
+                    <svg className="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8v4l3 3m6-3a9 9 0 11-18 0 9 9 0 0118 0z" />
+                    </svg>
+                    <span className="text-gray-700">Break-even Period</span>
+                  </div>
+                  <span className="font-bold text-primary-800">{result.breakEvenMonths} months</span>
+                </div>
 
                 <button
                   onClick={() => setShowForm(true)}
-                  className="btn-primary mt-6 w-full"
+                  className="btn-primary w-full py-4 text-lg"
                 >
-                  Get Personalized Quotes from Banks
+                  Get Your Personalized Rate
                 </button>
               </div>
             )}
@@ -263,45 +280,146 @@ export default function CalculatorPage() {
         </div>
       )}
 
-      {/* SEO Content */}
-      <section className="py-16 bg-white">
+      {/* Section 1: When to Refinance */}
+      <section className="py-12 bg-white">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="prose prose-lg max-w-none">
-            <h2>Understanding Home Loan Refinancing in Malaysia</h2>
-            <p>
-              Home loan refinancing allows you to replace your existing mortgage with a new loan, typically at a better interest rate. With Malaysia&apos;s competitive banking landscape, refinancing can lead to significant savings over your loan tenure.
-            </p>
+          <div className="bg-white rounded-2xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">When Should You Consider Refinancing?</h2>
+            <div className="space-y-4">
+              {[
+                { title: "Interest rates have dropped", desc: "Current rates are 0.5% or more lower than your existing rate" },
+                { title: "Lock-in period has ended", desc: "Most loans have 3-5 year lock-in. Refinancing before may incur penalties" },
+                { title: "Significant loan balance", desc: "Larger outstanding loans mean bigger savings from rate reduction" },
+                { title: "More than 10 years remaining", desc: "Longer tenure = more time to benefit from lower rates" },
+                { title: "Financial situation improved", desc: "Better income or credit score may qualify you for better rates" },
+              ].map((item, index) => (
+                <div key={index} className="flex items-start space-x-3">
+                  <div className="flex-shrink-0 w-6 h-6 bg-secondary-100 rounded-full flex items-center justify-center mt-0.5">
+                    <svg className="w-4 h-4 text-secondary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                  </div>
+                  <div>
+                    <p className="font-semibold text-gray-900">{item.title}</p>
+                    <p className="text-sm text-gray-600">{item.desc}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+          </div>
+        </div>
+      </section>
 
-            <h3>When Should You Consider Refinancing?</h3>
-            <ul>
-              <li><strong>Interest rates have dropped:</strong> If current rates are 0.5% or more lower than your existing rate, refinancing is worth considering.</li>
-              <li><strong>Lock-in period has ended:</strong> Most home loans have a 3-5 year lock-in period. Refinancing before this ends may incur penalties.</li>
-              <li><strong>You have significant loan balance:</strong> The larger your outstanding loan, the more you can save from a rate reduction.</li>
-              <li><strong>You have more than 10 years remaining:</strong> Longer tenure means more time to benefit from lower rates.</li>
-              <li><strong>Your financial situation has improved:</strong> Better income or credit score may qualify you for better rates.</li>
-            </ul>
+      {/* Section 2: Bank Rates Table */}
+      <section className="py-12 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-2xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Current Home Loan Rates in Malaysia ({currentYear})</h2>
+            <div className="overflow-x-auto">
+              <table className="w-full">
+                <thead>
+                  <tr className="border-b border-gray-200">
+                    <th className="text-left py-3 px-4 font-semibold text-gray-900">Bank</th>
+                    <th className="text-left py-3 px-4 font-semibold text-gray-900">Rate From</th>
+                    <th className="text-left py-3 px-4 font-semibold text-gray-900">Best For</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {bankRates.map((bank, index) => (
+                    <tr key={index} className="border-b border-gray-100 hover:bg-gray-50">
+                      <td className="py-3 px-4 font-medium text-gray-900">{bank.bank}</td>
+                      <td className="py-3 px-4 text-secondary-600 font-semibold">{bank.rate}</td>
+                      <td className="py-3 px-4 text-gray-600">{bank.bestFor}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <p className="text-xs text-gray-500 mt-4">* Rates are indicative and subject to change. Final rate depends on your profile.</p>
+          </div>
+        </div>
+      </section>
 
-            <h3>Current Home Loan Rates in Malaysia (2024)</h3>
-            <p>
-              As of 2024, home loan rates in Malaysia typically range from 3.65% to 4.5% depending on the bank and your profile. The best rates are usually available for:
-            </p>
-            <ul>
-              <li>Loan amounts above RM500,000</li>
-              <li>Properties in prime locations</li>
-              <li>Borrowers with excellent credit scores</li>
-              <li>Government servants and certain professional categories</li>
-            </ul>
+      {/* Section 3: Refinancing Costs */}
+      <section className="py-12 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6 text-center">Refinancing Costs to Consider</h2>
+          <div className="grid grid-cols-2 md:grid-cols-4 gap-4">
+            {refinancingCosts.map((cost, index) => (
+              <div key={index} className="bg-gray-50 rounded-xl p-5 text-center">
+                <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center mx-auto mb-3">
+                  {cost.icon === "scale" && (
+                    <svg className="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 6l3 1m0 0l-3 9a5.002 5.002 0 006.001 0M6 7l3 9M6 7l6-2m6 2l3-1m-3 1l-3 9a5.002 5.002 0 006.001 0M18 7l3 9m-3-9l-6-2m0-2v2m0 16V5m0 16H9m3 0h3" />
+                    </svg>
+                  )}
+                  {cost.icon === "home" && (
+                    <svg className="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 12l2-2m0 0l7-7 7 7M5 10v10a1 1 0 001 1h3m10-11l2 2m-2-2v10a1 1 0 01-1 1h-3m-6 0a1 1 0 001-1v-4a1 1 0 011-1h2a1 1 0 011 1v4a1 1 0 001 1m-6 0h6" />
+                    </svg>
+                  )}
+                  {cost.icon === "file" && (
+                    <svg className="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12h6m-6 4h6m2 5H7a2 2 0 01-2-2V5a2 2 0 012-2h5.586a1 1 0 01.707.293l5.414 5.414a1 1 0 01.293.707V19a2 2 0 01-2 2z" />
+                    </svg>
+                  )}
+                  {cost.icon === "shield" && (
+                    <svg className="w-6 h-6 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z" />
+                    </svg>
+                  )}
+                </div>
+                <p className="font-semibold text-gray-900 text-sm">{cost.title}</p>
+                <p className="text-secondary-600 font-bold mt-1">{cost.amount}</p>
+              </div>
+            ))}
+          </div>
+          <p className="text-center text-sm text-gray-600 mt-6">
+            Many banks offer packages that cover or reimburse these costs!
+          </p>
+        </div>
+      </section>
 
-            <h3>Refinancing Costs to Consider</h3>
-            <ul>
-              <li><strong>Legal fees:</strong> RM2,000-5,000 depending on loan amount</li>
-              <li><strong>Valuation fees:</strong> RM300-1,000</li>
-              <li><strong>Stamp duty:</strong> 0.5% of loan amount (may be exempted)</li>
-              <li><strong>MRTA/MLTA:</strong> Optional but often required by banks</li>
-            </ul>
-            <p>
-              Many banks offer packages that cover or reimburse these costs, making refinancing even more attractive.
-            </p>
+      {/* Section 4: Who Gets Best Rates */}
+      <section className="py-12 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-2xl shadow-lg p-8">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Who Gets the Best Rates?</h2>
+            <div className="grid md:grid-cols-2 gap-4">
+              {[
+                { icon: "cash", text: "Loan amounts above RM500,000" },
+                { icon: "location", text: "Properties in prime locations" },
+                { icon: "star", text: "Excellent credit scores" },
+                { icon: "badge", text: "Government servants & professionals" },
+              ].map((item, index) => (
+                <div key={index} className="flex items-center space-x-3 bg-primary-50 rounded-lg p-4">
+                  <div className="w-10 h-10 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    {item.icon === "cash" && (
+                      <svg className="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                    )}
+                    {item.icon === "location" && (
+                      <svg className="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
+                      </svg>
+                    )}
+                    {item.icon === "star" && (
+                      <svg className="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M11.049 2.927c.3-.921 1.603-.921 1.902 0l1.519 4.674a1 1 0 00.95.69h4.915c.969 0 1.371 1.24.588 1.81l-3.976 2.888a1 1 0 00-.363 1.118l1.518 4.674c.3.922-.755 1.688-1.538 1.118l-3.976-2.888a1 1 0 00-1.176 0l-3.976 2.888c-.783.57-1.838-.197-1.538-1.118l1.518-4.674a1 1 0 00-.363-1.118l-3.976-2.888c-.784-.57-.38-1.81.588-1.81h4.914a1 1 0 00.951-.69l1.519-4.674z" />
+                      </svg>
+                    )}
+                    {item.icon === "badge" && (
+                      <svg className="w-5 h-5 text-primary-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4M7.835 4.697a3.42 3.42 0 001.946-.806 3.42 3.42 0 014.438 0 3.42 3.42 0 001.946.806 3.42 3.42 0 013.138 3.138 3.42 3.42 0 00.806 1.946 3.42 3.42 0 010 4.438 3.42 3.42 0 00-.806 1.946 3.42 3.42 0 01-3.138 3.138 3.42 3.42 0 00-1.946.806 3.42 3.42 0 01-4.438 0 3.42 3.42 0 00-1.946-.806 3.42 3.42 0 01-3.138-3.138 3.42 3.42 0 00-.806-1.946 3.42 3.42 0 010-4.438 3.42 3.42 0 00.806-1.946 3.42 3.42 0 013.138-3.138z" />
+                      </svg>
+                    )}
+                  </div>
+                  <span className="font-medium text-gray-900">{item.text}</span>
+                </div>
+              ))}
+            </div>
           </div>
         </div>
       </section>

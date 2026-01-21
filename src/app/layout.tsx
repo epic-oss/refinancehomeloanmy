@@ -7,13 +7,15 @@ import GoogleAnalytics from "@/components/GoogleAnalytics";
 
 const inter = Inter({ subsets: ["latin"] });
 
+const currentYear = new Date().getFullYear();
+
 export const metadata: Metadata = {
-  title: "Refinance Home Loan Malaysia 2026 - Compare Rates & Save",
-  description: "Compare refinance home loan rates from Malaysia's top banks. Calculate your savings and get free quotes. Save RM500+/month on your mortgage.",
+  title: `Refinance Home Loan Malaysia ${currentYear} - Compare Rates & Save`,
+  description: `Compare refinance home loan rates from Malaysia's top banks in ${currentYear}. Calculate your savings and get free quotes. Save RM500+/month on your mortgage.`,
   keywords: "refinance home loan Malaysia, home loan refinancing, mortgage refinance, housing loan, Maybank home loan, CIMB home loan, Public Bank mortgage",
   openGraph: {
-    title: "Refinance Home Loan Malaysia 2026 - Compare Rates & Save",
-    description: "Compare refinance home loan rates from Malaysia's top banks. Calculate your savings and get free quotes. Save RM500+/month on your mortgage.",
+    title: `Refinance Home Loan Malaysia ${currentYear} - Compare Rates & Save`,
+    description: `Compare refinance home loan rates from Malaysia's top banks in ${currentYear}. Calculate your savings and get free quotes. Save RM500+/month on your mortgage.`,
     type: "website",
     locale: "en_MY",
     siteName: "RefinanceHomeLoanMY",

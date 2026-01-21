@@ -1,0 +1,315 @@
+// lib/constants.ts
+// Central configuration file for all data that needs periodic updates
+// UPDATE QUARTERLY: Bank rates, lastUpdated date
+// UPDATE ANNUALLY: Costs, eligibility criteria
+
+export const SITE_CONFIG = {
+  siteName: "RefinanceHomeLoanMY",
+  siteUrl: "https://refinancehomeloanmy.com",
+  currentYear: new Date().getFullYear(),
+  lastUpdated: "Januari 2026",
+  lastUpdatedEn: "January 2026",
+
+  // Contact
+  contact: {
+    whatsapp: "", // Add later
+    email: "hello@refinancehomeloanmy.com",
+  },
+
+  // Bank Rates - UPDATE THIS SECTION QUARTERLY
+  // Last verified: January 2026
+  bankRates: {
+    maybank: {
+      name: "Maybank",
+      nameFull: "Maybank Malaysia Berhad",
+      rateBLR: "5.81%",
+      rateFrom: "3.65%",
+      rateTo: "4.35%",
+      spreadFrom: "-2.16%",
+      spreadTo: "-1.46%",
+      minLoan: 100000,
+      maxLoan: 10000000,
+      maxTenure: 35,
+      maxLTV: 90,
+      lockIn: 3,
+      processingFee: "0%",
+      earlySettlement: "2-3%",
+      features: ["MaxiHome", "Cash back", "Flexible"],
+      bestFor: "Existing customers",
+      url: "https://www.maybank2u.com.my",
+      isIslamic: false,
+    },
+    cimb: {
+      name: "CIMB",
+      nameFull: "CIMB Bank Berhad",
+      rateBLR: "5.86%",
+      rateFrom: "3.70%",
+      rateTo: "4.40%",
+      spreadFrom: "-2.16%",
+      spreadTo: "-1.46%",
+      minLoan: 100000,
+      maxLoan: 10000000,
+      maxTenure: 35,
+      maxLTV: 90,
+      lockIn: 3,
+      processingFee: "0%",
+      earlySettlement: "2-3%",
+      features: ["FlexiHome", "Cash out", "Islamic option"],
+      bestFor: "High loan amounts",
+      url: "https://www.cimb.com.my",
+      isIslamic: false,
+    },
+    publicBank: {
+      name: "Public Bank",
+      nameFull: "Public Bank Berhad",
+      rateBLR: "5.72%",
+      rateFrom: "3.68%",
+      rateTo: "4.25%",
+      spreadFrom: "-2.04%",
+      spreadTo: "-1.47%",
+      minLoan: 150000,
+      maxLoan: 10000000,
+      maxTenure: 35,
+      maxLTV: 90,
+      lockIn: 3,
+      processingFee: "0%",
+      earlySettlement: "2-3%",
+      features: ["Competitive rates", "Fast approval"],
+      bestFor: "Salaried employees",
+      url: "https://www.publicbank.com.my",
+      isIslamic: false,
+    },
+    rhb: {
+      name: "RHB",
+      nameFull: "RHB Bank Berhad",
+      rateBLR: "5.81%",
+      rateFrom: "3.75%",
+      rateTo: "4.45%",
+      spreadFrom: "-2.06%",
+      spreadTo: "-1.36%",
+      minLoan: 100000,
+      maxLoan: 10000000,
+      maxTenure: 35,
+      maxLTV: 90,
+      lockIn: 3,
+      processingFee: "0%",
+      earlySettlement: "2-3%",
+      features: ["My1 Home Loan", "Flexible repayment"],
+      bestFor: "Flexible terms",
+      url: "https://www.rhb.com.my",
+      isIslamic: false,
+    },
+    hongLeong: {
+      name: "Hong Leong",
+      nameFull: "Hong Leong Bank Berhad",
+      rateBLR: "5.64%",
+      rateFrom: "3.72%",
+      rateTo: "4.30%",
+      spreadFrom: "-1.92%",
+      spreadTo: "-1.34%",
+      minLoan: 100000,
+      maxLoan: 10000000,
+      maxTenure: 35,
+      maxLTV: 90,
+      lockIn: 3,
+      processingFee: "0%",
+      earlySettlement: "2-3%",
+      features: ["HomeSmart", "Step-up facility"],
+      bestFor: "First-time refinancers",
+      url: "https://www.hlb.com.my",
+      isIslamic: false,
+    },
+    ambank: {
+      name: "AmBank",
+      nameFull: "AmBank (M) Berhad",
+      rateBLR: "5.70%",
+      rateFrom: "3.80%",
+      rateTo: "4.50%",
+      spreadFrom: "-1.90%",
+      spreadTo: "-1.20%",
+      minLoan: 100000,
+      maxLoan: 10000000,
+      maxTenure: 35,
+      maxLTV: 90,
+      lockIn: 3,
+      processingFee: "0%",
+      earlySettlement: "2-3%",
+      features: ["HomeLink", "Cashback options"],
+      bestFor: "Cashback seekers",
+      url: "https://www.ambank.com.my",
+      isIslamic: false,
+    },
+    bankIslam: {
+      name: "Bank Islam",
+      nameFull: "Bank Islam Malaysia Berhad",
+      rateBLR: "5.80%",
+      rateFrom: "3.85%",
+      rateTo: "4.55%",
+      spreadFrom: "-1.95%",
+      spreadTo: "-1.25%",
+      minLoan: 100000,
+      maxLoan: 5000000,
+      maxTenure: 35,
+      maxLTV: 90,
+      lockIn: 3,
+      processingFee: "0%",
+      earlySettlement: "2%",
+      features: ["Baiti Home Financing", "Shariah compliant"],
+      bestFor: "Islamic financing",
+      isIslamic: true,
+      url: "https://www.bankislam.com.my",
+    },
+    bsn: {
+      name: "BSN",
+      nameFull: "Bank Simpanan Nasional",
+      rateBLR: "5.75%",
+      rateFrom: "3.90%",
+      rateTo: "4.60%",
+      spreadFrom: "-1.85%",
+      spreadTo: "-1.15%",
+      minLoan: 50000,
+      maxLoan: 5000000,
+      maxTenure: 35,
+      maxLTV: 90,
+      lockIn: 3,
+      processingFee: "0%",
+      earlySettlement: "2%",
+      features: ["Lower minimum loan", "Government employees"],
+      bestFor: "Government servants",
+      url: "https://www.bsn.com.my",
+      isIslamic: false,
+    },
+    ocbc: {
+      name: "OCBC",
+      nameFull: "OCBC Bank (Malaysia) Berhad",
+      rateBLR: "5.73%",
+      rateFrom: "3.78%",
+      rateTo: "4.40%",
+      spreadFrom: "-1.95%",
+      spreadTo: "-1.33%",
+      minLoan: 100000,
+      maxLoan: 10000000,
+      maxTenure: 35,
+      maxLTV: 90,
+      lockIn: 3,
+      processingFee: "0%",
+      earlySettlement: "2-3%",
+      features: ["EasyHome", "Flexible"],
+      bestFor: "High-income earners",
+      url: "https://www.ocbc.com.my",
+      isIslamic: false,
+    },
+    allianceBank: {
+      name: "Alliance Bank",
+      nameFull: "Alliance Bank Malaysia Berhad",
+      rateBLR: "5.80%",
+      rateFrom: "3.82%",
+      rateTo: "4.45%",
+      spreadFrom: "-1.98%",
+      spreadTo: "-1.35%",
+      minLoan: 100000,
+      maxLoan: 10000000,
+      maxTenure: 35,
+      maxLTV: 90,
+      lockIn: 3,
+      processingFee: "0%",
+      earlySettlement: "2-3%",
+      features: ["HomeFirst", "Quick processing"],
+      bestFor: "Quick approvals",
+      url: "https://www.alliancebank.com.my",
+      isIslamic: false,
+    },
+  },
+
+  // Refinancing Costs - UPDATE ANNUALLY
+  costs: {
+    legalFeesMin: 2000,
+    legalFeesMax: 5000,
+    legalFeesText: "RM2,000 - RM5,000",
+    valuationFeesMin: 300,
+    valuationFeesMax: 1000,
+    valuationFeesText: "RM300 - RM1,000",
+    stampDutyRate: 0.5,
+    stampDutyText: "0.5%",
+    stampDutyNote: "May be exempted for first-time buyers or under RM500k",
+    mrtaText: "Optional but often required",
+    disbursementFee: "RM200 - RM500",
+  },
+
+  // Eligibility Criteria - UPDATE IF REGULATIONS CHANGE
+  eligibility: {
+    minAge: 21,
+    maxAge: 65,
+    minIncome: 3000,
+    maxDSR: 70,
+    minEmploymentMonths: 6,
+    minBusinessYears: 2,
+    maxLTV: 90,
+    maxTenure: 35,
+  },
+
+  // LPPSA Info - UPDATE IF LPPSA CHANGES
+  lppsa: {
+    rateFrom: "4.00%",
+    maxLoan: "Based on remaining service",
+    eligibility: "Government servants only",
+    lockIn: 0,
+  },
+
+  // Required Documents List
+  documents: {
+    employed: [
+      "Salinan MyKad (depan & belakang)",
+      "Slip gaji 3 bulan terkini",
+      "Penyata bank 6 bulan terkini",
+      "Borang EA / Penyata cukai",
+      "Penyata KWSP",
+      "Surat pengesahan majikan",
+      "Geran rumah / Sales & Purchase Agreement",
+    ],
+    selfEmployed: [
+      "Salinan MyKad (depan & belakang)",
+      "Penyata bank 6 bulan terkini (peribadi & syarikat)",
+      "Borang B / Penyata cukai 2 tahun",
+      "Sijil pendaftaran perniagaan (SSM)",
+      "Profil syarikat",
+      "Penyata untung rugi",
+      "Geran rumah / Sales & Purchase Agreement",
+    ],
+  },
+};
+
+// Type definitions
+export type BankKey = keyof typeof SITE_CONFIG.bankRates;
+export type BankInfo = (typeof SITE_CONFIG.bankRates)[BankKey];
+
+// Helper functions
+export const formatCurrency = (amount: number): string => {
+  return new Intl.NumberFormat("ms-MY", {
+    style: "currency",
+    currency: "MYR",
+    minimumFractionDigits: 0,
+    maximumFractionDigits: 0,
+  }).format(amount);
+};
+
+export const getBanksSortedByRate = (): BankInfo[] => {
+  return Object.values(SITE_CONFIG.bankRates).sort(
+    (a, b) => parseFloat(a.rateFrom) - parseFloat(b.rateFrom)
+  );
+};
+
+export const getLowestRate = (): BankInfo => {
+  const sorted = getBanksSortedByRate();
+  return sorted[0];
+};
+
+export const getIslamicBanks = (): BankInfo[] => {
+  return Object.values(SITE_CONFIG.bankRates).filter((bank) => bank.isIslamic);
+};
+
+export const getBankByName = (name: string): BankInfo | undefined => {
+  return Object.values(SITE_CONFIG.bankRates).find(
+    (bank) => bank.name.toLowerCase() === name.toLowerCase()
+  );
+};

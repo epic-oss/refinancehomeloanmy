@@ -1,5 +1,6 @@
 import Link from "next/link";
 import Image from "next/image";
+import { SITE_CONFIG } from "@/lib/constants";
 
 export default function Footer() {
   const currentYear = new Date().getFullYear();
@@ -78,6 +79,9 @@ export default function Footer() {
           <div className="flex flex-col md:flex-row justify-between items-center">
             <p className="text-sm text-gray-400 mb-4 md:mb-0">
               © {currentYear} RefinanceHomeLoanMY. All rights reserved.
+            </p>
+            <p className="text-sm text-gray-500">
+              Rates updated: {SITE_CONFIG.lastUpdatedEn}
             </p>
           </div>
           <p className="text-xs text-gray-500 mt-4 text-center md:text-left">

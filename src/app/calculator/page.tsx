@@ -3,13 +3,13 @@
 import { useState, useEffect } from "react";
 import LeadForm from "@/components/LeadForm";
 import FAQ from "@/components/FAQ";
+import { SITE_CONFIG, getBanksSortedByRate } from "@/lib/constants";
 
-const currentYear = new Date().getFullYear();
+const { currentYear, costs } = SITE_CONFIG;
 
 // Note: Metadata must be in a separate layout.tsx or use generateMetadata for server components
 // For client components, we set document title directly
 const pageTitle = `Home Loan Refinancing Calculator Malaysia ${currentYear} - Calculate Your Savings`;
-const pageDescription = `Calculate how much you can save by refinancing your home loan in Malaysia. Compare rates from Maybank, CIMB, Public Bank & more. Free calculator tool.`;
 
 const calculatorFaqs = [
   {
@@ -24,8 +24,7 @@ const calculatorFaqs = [
   },
   {
     question: "Are there any hidden costs in refinancing?",
-    answer:
-      "Refinancing costs include legal fees (RM2,000-5,000), valuation fees (RM300-1,000), and stamp duty (may be exempted for certain loans). Many banks offer packages that cover or reimburse these costs. Our calculator shows net savings after estimated costs.",
+    answer: `Refinancing costs include legal fees (${costs.legalFeesText}), valuation fees (${costs.valuationFeesText}), and stamp duty (may be exempted for certain loans). Many banks offer packages that cover or reimburse these costs. Our calculator shows net savings after estimated costs.`,
   },
   {
     question: "What's the minimum savings that makes refinancing worthwhile?",
@@ -34,18 +33,17 @@ const calculatorFaqs = [
   },
 ];
 
-const bankRates = [
-  { bank: "Maybank", rate: "3.65%", bestFor: "Existing customers" },
-  { bank: "CIMB", rate: "3.70%", bestFor: "High loan amounts" },
-  { bank: "Public Bank", rate: "3.68%", bestFor: "Salaried employees" },
-  { bank: "RHB", rate: "3.75%", bestFor: "Flexible terms" },
-  { bank: "Hong Leong", rate: "3.72%", bestFor: "First-time refinancers" },
-];
+// Get bank rates from constants (sorted by lowest rate)
+const bankRates = getBanksSortedByRate().slice(0, 5).map((bank) => ({
+  bank: bank.name,
+  rate: bank.rateFrom,
+  bestFor: bank.bestFor,
+}));
 
 const refinancingCosts = [
-  { title: "Legal Fees", amount: "RM2,000-5,000", icon: "scale" },
-  { title: "Valuation Fees", amount: "RM300-1,000", icon: "home" },
-  { title: "Stamp Duty", amount: "0.5% (may be exempted)", icon: "file" },
+  { title: "Legal Fees", amount: costs.legalFeesText, icon: "scale" },
+  { title: "Valuation Fees", amount: costs.valuationFeesText, icon: "home" },
+  { title: "Stamp Duty", amount: `${costs.stampDutyText} (may be exempted)`, icon: "file" },
   { title: "MRTA/MLTA", amount: "Optional", icon: "shield" },
 ];
 

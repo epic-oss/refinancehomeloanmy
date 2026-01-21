@@ -2,15 +2,53 @@
 
 import Link from "next/link";
 import Image from "next/image";
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
+
+const guidesData = {
+  ms: {
+    label: "Bahasa Malaysia",
+    items: [
+      { name: "Bank Terbaik Refinance", href: "/bank-terbaik-refinance-rumah", active: true },
+      { name: "Kelebihan & Keburukan", href: "/kelebihan-keburukan-refinance-rumah", active: true },
+      { name: "Contoh Kiraan", href: "/contoh-kiraan-refinance-rumah", active: true },
+      { name: "Dokumen Diperlukan", href: "/dokumen-refinance-rumah", active: true },
+      { name: "Bila Boleh Refinance", href: "/berapa-tahun-boleh-refinance-rumah", active: true },
+    ],
+  },
+  en: {
+    label: "English",
+    comingSoon: true,
+    items: [
+      { name: "Best Refinance Banks", href: "/en/best-refinance-banks", active: false },
+      { name: "Pros & Cons", href: "/en/pros-cons-refinance", active: false },
+      { name: "Documents Required", href: "/en/documents-required", active: false },
+    ],
+  },
+  zh: {
+    label: "中文",
+    comingSoon: true,
+    items: [
+      { name: "再融资指南", href: "/zh/refinance-guide", active: false },
+    ],
+  },
+};
 
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
+  const [guidesOpen, setGuidesOpen] = useState(false);
+  const [mobileGuidesOpen, setMobileGuidesOpen] = useState(false);
+  const dropdownRef = useRef<HTMLDivElement>(null);
 
-  const navigation = [
-    { name: "Home", href: "/" },
-    { name: "Calculator", href: "/calculator" },
-  ];
+  // Close dropdown when clicking outside
+  useEffect(() => {
+    function handleClickOutside(event: MouseEvent) {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
+        setGuidesOpen(false);
+      }
+    }
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => document.removeEventListener("mousedown", handleClickOutside);
+  }, []);
 
   return (
     <header className="bg-white shadow-sm sticky top-0 z-50">
@@ -33,15 +71,128 @@ export default function Header() {
 
           {/* Desktop Navigation */}
           <div className="hidden md:flex items-center space-x-8">
-            {navigation.map((item) => (
-              <Link
-                key={item.name}
-                href={item.href}
-                className="text-gray-700 hover:text-primary-800 font-medium transition-colors"
+            <Link
+              href="/"
+              className="text-gray-700 hover:text-primary-800 font-medium transition-colors"
+            >
+              Home
+            </Link>
+            <Link
+              href="/calculator"
+              className="text-gray-700 hover:text-primary-800 font-medium transition-colors"
+            >
+              Calculator
+            </Link>
+
+            {/* Guides Dropdown */}
+            <div className="relative" ref={dropdownRef}>
+              <button
+                onClick={() => setGuidesOpen(!guidesOpen)}
+                onMouseEnter={() => setGuidesOpen(true)}
+                className="flex items-center gap-1 text-gray-700 hover:text-primary-800 font-medium transition-colors"
               >
-                {item.name}
-              </Link>
-            ))}
+                Guides
+                <svg
+                  className={`w-4 h-4 transition-transform ${guidesOpen ? "rotate-180" : ""}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+
+              {/* Dropdown Menu */}
+              {guidesOpen && (
+                <div
+                  className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[600px] bg-white rounded-xl shadow-xl border border-gray-200 p-6"
+                  onMouseLeave={() => setGuidesOpen(false)}
+                >
+                  <div className="grid grid-cols-3 gap-6">
+                    {/* Bahasa Malaysia */}
+                    <div>
+                      <h3 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                        <span className="text-lg">🇲🇾</span>
+                        {guidesData.ms.label}
+                      </h3>
+                      <ul className="space-y-2">
+                        {guidesData.ms.items.map((item) => (
+                          <li key={item.href}>
+                            <Link
+                              href={item.href}
+                              className="text-sm text-gray-600 hover:text-primary-600 hover:bg-primary-50 block py-1.5 px-2 rounded transition-colors"
+                              onClick={() => setGuidesOpen(false)}
+                            >
+                              {item.name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* English */}
+                    <div>
+                      <h3 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                        <span className="text-lg">🇬🇧</span>
+                        {guidesData.en.label}
+                        <span className="text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full">
+                          Coming Soon
+                        </span>
+                      </h3>
+                      <ul className="space-y-2">
+                        {guidesData.en.items.map((item) => (
+                          <li key={item.href}>
+                            <span className="text-sm text-gray-400 block py-1.5 px-2 cursor-not-allowed">
+                              {item.name}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Chinese */}
+                    <div>
+                      <h3 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                        <span className="text-lg">🇨🇳</span>
+                        {guidesData.zh.label}
+                        <span className="text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full">
+                          Coming Soon
+                        </span>
+                      </h3>
+                      <ul className="space-y-2">
+                        {guidesData.zh.items.map((item) => (
+                          <li key={item.href}>
+                            <span className="text-sm text-gray-400 block py-1.5 px-2 cursor-not-allowed">
+                              {item.name}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+
+                  {/* Bottom CTA */}
+                  <div className="mt-6 pt-4 border-t border-gray-100">
+                    <Link
+                      href="/#quote-form"
+                      className="flex items-center justify-center gap-2 text-sm font-medium text-primary-600 hover:text-primary-700"
+                      onClick={() => setGuidesOpen(false)}
+                    >
+                      <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 12l2 2 4-4m6 2a9 9 0 11-18 0 9 9 0 0118 0z" />
+                      </svg>
+                      Get Your Free Refinance Quote Today
+                    </Link>
+                  </div>
+                </div>
+              )}
+            </div>
+
             <Link
               href="/#quote-form"
               className="btn-primary text-sm py-2 px-4"
@@ -93,20 +244,113 @@ export default function Header() {
         {/* Mobile Navigation */}
         {mobileMenuOpen && (
           <div className="md:hidden py-4 border-t">
-            <div className="flex flex-col space-y-4">
-              {navigation.map((item) => (
-                <Link
-                  key={item.name}
-                  href={item.href}
-                  className="text-gray-700 hover:text-primary-800 font-medium"
-                  onClick={() => setMobileMenuOpen(false)}
+            <div className="flex flex-col space-y-2">
+              <Link
+                href="/"
+                className="text-gray-700 hover:text-primary-800 font-medium py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Home
+              </Link>
+              <Link
+                href="/calculator"
+                className="text-gray-700 hover:text-primary-800 font-medium py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Calculator
+              </Link>
+
+              {/* Mobile Guides Accordion */}
+              <div className="border-t border-b border-gray-100 py-2">
+                <button
+                  onClick={() => setMobileGuidesOpen(!mobileGuidesOpen)}
+                  className="flex items-center justify-between w-full text-gray-700 hover:text-primary-800 font-medium py-2"
                 >
-                  {item.name}
-                </Link>
-              ))}
+                  <span>Guides</span>
+                  <svg
+                    className={`w-4 h-4 transition-transform ${mobileGuidesOpen ? "rotate-180" : ""}`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+
+                {mobileGuidesOpen && (
+                  <div className="pl-4 space-y-4 mt-2">
+                    {/* Bahasa Malaysia */}
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-800 flex items-center gap-2 mb-2">
+                        <span>🇲🇾</span> {guidesData.ms.label}
+                      </h4>
+                      <ul className="space-y-1 pl-2">
+                        {guidesData.ms.items.map((item) => (
+                          <li key={item.href}>
+                            <Link
+                              href={item.href}
+                              className="text-sm text-gray-600 hover:text-primary-600 block py-1.5"
+                              onClick={() => {
+                                setMobileMenuOpen(false);
+                                setMobileGuidesOpen(false);
+                              }}
+                            >
+                              {item.name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* English */}
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-800 flex items-center gap-2 mb-2">
+                        <span>🇬🇧</span> {guidesData.en.label}
+                        <span className="text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full">
+                          Coming Soon
+                        </span>
+                      </h4>
+                      <ul className="space-y-1 pl-2">
+                        {guidesData.en.items.map((item) => (
+                          <li key={item.href}>
+                            <span className="text-sm text-gray-400 block py-1.5">
+                              {item.name}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Chinese */}
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-800 flex items-center gap-2 mb-2">
+                        <span>🇨🇳</span> {guidesData.zh.label}
+                        <span className="text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full">
+                          Coming Soon
+                        </span>
+                      </h4>
+                      <ul className="space-y-1 pl-2">
+                        {guidesData.zh.items.map((item) => (
+                          <li key={item.href}>
+                            <span className="text-sm text-gray-400 block py-1.5">
+                              {item.name}
+                            </span>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+                  </div>
+                )}
+              </div>
+
               <Link
                 href="/#quote-form"
-                className="btn-primary text-center text-sm py-2"
+                className="btn-primary text-center text-sm py-2 mt-2"
                 onClick={() => setMobileMenuOpen(false)}
               >
                 Get Free Quote

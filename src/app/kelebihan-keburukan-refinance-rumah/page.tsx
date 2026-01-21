@@ -6,6 +6,8 @@ import { SITE_CONFIG, getLowestRate } from "@/lib/constants";
 import { CostsTable } from "@/components/content/CostsTable";
 import { LastUpdated } from "@/components/content/LastUpdated";
 import LeadForm from "@/components/LeadForm";
+import MidPageCTA from "@/components/MidPageCTA";
+import BackToTop from "@/components/BackToTop";
 
 const { currentYear, costs } = SITE_CONFIG;
 const lowestRateBank = getLowestRate();
@@ -361,6 +363,9 @@ export default function KelebihanKeburukanRefinanceRumah() {
             </div>
           </section>
 
+          {/* Mid Page CTA */}
+          <MidPageCTA onOpenForm={() => setShowForm(true)} />
+
           {/* Bila TIDAK Berbaloi */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
@@ -635,6 +640,8 @@ export default function KelebihanKeburukanRefinanceRumah() {
           }),
         }}
       />
+
+      <BackToTop />
     </>
   );
 }

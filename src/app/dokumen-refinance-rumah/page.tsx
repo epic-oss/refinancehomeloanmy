@@ -7,6 +7,8 @@ import { DocumentsList } from "@/components/content/DocumentsList";
 import { EligibilityCard } from "@/components/content/EligibilityCard";
 import { LastUpdated } from "@/components/content/LastUpdated";
 import LeadForm from "@/components/LeadForm";
+import MidPageCTA from "@/components/MidPageCTA";
+import BackToTop from "@/components/BackToTop";
 
 const { currentYear, documents } = SITE_CONFIG;
 
@@ -423,6 +425,9 @@ export default function DokumenRefinanceRumah() {
             </div>
           </section>
 
+          {/* Mid Page CTA */}
+          <MidPageCTA onOpenForm={() => setShowForm(true)} />
+
           {/* Tips */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
@@ -635,6 +640,8 @@ export default function DokumenRefinanceRumah() {
           }),
         }}
       />
+
+      <BackToTop />
     </>
   );
 }

@@ -7,6 +7,8 @@ import { BankRatesTable } from "@/components/content/BankRatesTable";
 import { CostsTable } from "@/components/content/CostsTable";
 import { LastUpdated } from "@/components/content/LastUpdated";
 import LeadForm from "@/components/LeadForm";
+import MidPageCTA from "@/components/MidPageCTA";
+import BackToTop from "@/components/BackToTop";
 
 const { currentYear, costs } = SITE_CONFIG;
 const topBanks = getBanksSortedByRate().slice(0, 5);
@@ -381,6 +383,9 @@ export default function ContohKiraanRefinanceRumah() {
               </div>
             </div>
           </section>
+
+          {/* Mid Page CTA */}
+          <MidPageCTA onOpenForm={() => setShowForm(true)} />
 
           {/* Example 3: Cash Out */}
           <section className="mb-12">
@@ -806,6 +811,8 @@ export default function ContohKiraanRefinanceRumah() {
           }),
         }}
       />
+
+      <BackToTop />
     </>
   );
 }

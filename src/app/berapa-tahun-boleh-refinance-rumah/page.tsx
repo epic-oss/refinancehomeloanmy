@@ -7,6 +7,8 @@ import { BankRatesTable } from "@/components/content/BankRatesTable";
 import { EligibilityCard } from "@/components/content/EligibilityCard";
 import { LastUpdated } from "@/components/content/LastUpdated";
 import LeadForm from "@/components/LeadForm";
+import MidPageCTA from "@/components/MidPageCTA";
+import BackToTop from "@/components/BackToTop";
 
 const { currentYear, eligibility } = SITE_CONFIG;
 const banks = getBanksSortedByRate();
@@ -245,6 +247,9 @@ export default function BerapaTahunBolehRefinanceRumah() {
               ))}
             </div>
           </section>
+
+          {/* Mid Page CTA */}
+          <MidPageCTA onOpenForm={() => setShowForm(true)} />
 
           {/* Eligibility */}
           <section className="mb-12">
@@ -574,6 +579,8 @@ export default function BerapaTahunBolehRefinanceRumah() {
           }),
         }}
       />
+
+      <BackToTop />
     </>
   );
 }

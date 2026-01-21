@@ -9,6 +9,8 @@ import { EligibilityCard } from "@/components/content/EligibilityCard";
 import { DocumentsList } from "@/components/content/DocumentsList";
 import { LastUpdated } from "@/components/content/LastUpdated";
 import LeadForm from "@/components/LeadForm";
+import MidPageCTA from "@/components/MidPageCTA";
+import BackToTop from "@/components/BackToTop";
 
 const { currentYear, lastUpdated } = SITE_CONFIG;
 
@@ -244,6 +246,9 @@ export default function BankTerbaikRefinanceRumah() {
               ))}
             </div>
           </section>
+
+          {/* Mid Page CTA */}
+          <MidPageCTA onOpenForm={() => setShowForm(true)} />
 
           {/* Costs Table */}
           <section className="mb-12">
@@ -536,6 +541,8 @@ export default function BankTerbaikRefinanceRumah() {
           }),
         }}
       />
+
+      <BackToTop />
     </>
   );
 }

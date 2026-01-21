@@ -8,6 +8,7 @@ const banks = [
   { name: "RHB", logo: "/bank-logos/rhb.png" },
   { name: "Hong Leong", logo: "/bank-logos/hong-leong.png" },
   { name: "AmBank", logo: "/bank-logos/ambank.png" },
+  { name: "Affin Bank", logo: "/bank-logos/affin.png" },
   { name: "OCBC", logo: "/bank-logos/ocbc.png" },
   { name: "UOB", logo: "/bank-logos/uob.png" },
   { name: "HSBC", logo: "/bank-logos/hsbc.png" },

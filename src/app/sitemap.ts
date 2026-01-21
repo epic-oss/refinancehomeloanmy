@@ -108,6 +108,13 @@ export default function sitemap() {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    // Cash out refinance
+    {
+      url: `${baseUrl}/cash-out-refinance-malaysia`,
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
     // Bank-specific pages
     {
       url: `${baseUrl}/maybank-refinance-home-loan`,

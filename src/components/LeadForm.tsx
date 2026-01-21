@@ -67,14 +67,14 @@ export default function LeadForm({
         outstanding_loan: formData.outstanding_loan,
         current_bank: formData.current_bank,
         source_url: typeof window !== "undefined" ? window.location.href : "",
-        source: source,
+        source: "refinancehomeloanmy",
+        calculator_type: "refinance_home_loan",
         lead_type: "home_loan_refinance",
         site: "refinancehomeloanmy.com",
       };
 
-      // TODO: Replace with your Make.com webhook URL
       const response = await fetch(
-        "https://hook.us2.make.com/YOUR_WEBHOOK_URL_HERE",
+        "https://hook.us2.make.com/x41kcriuri5w5s8fkrfi6884hu05yhpe",
         {
           method: "POST",
           headers: {

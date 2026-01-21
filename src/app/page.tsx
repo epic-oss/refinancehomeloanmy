@@ -17,7 +17,7 @@ export default function Home() {
           <div className="grid lg:grid-cols-2 gap-12 items-center">
             <div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                Refinance Your Home Loan &{" "}
+                Refinance Home Loan Malaysia -{" "}
                 <span className="text-secondary-400">Save RM500+/Month</span>
               </h1>
               <p className="text-xl text-gray-300 mt-6">

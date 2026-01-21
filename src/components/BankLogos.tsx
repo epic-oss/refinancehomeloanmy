@@ -1,10 +1,15 @@
+import Image from "next/image";
+
 const banks = [
-  { name: "Maybank", color: "#FFC72C" },
-  { name: "CIMB", color: "#EC1C24" },
-  { name: "Public Bank", color: "#003087" },
-  { name: "RHB", color: "#0066B3" },
-  { name: "Hong Leong", color: "#003366" },
-  { name: "AmBank", color: "#00A651" },
+  { name: "Maybank", logo: "/bank-logos/maybank.png" },
+  { name: "CIMB", logo: "/bank-logos/cimb.png" },
+  { name: "Public Bank", logo: "/bank-logos/public-bank.png" },
+  { name: "RHB", logo: "/bank-logos/rhb.png" },
+  { name: "Hong Leong", logo: "/bank-logos/hong-leong.png" },
+  { name: "AmBank", logo: "/bank-logos/ambank.png" },
+  { name: "Bank Islam", logo: "/bank-logos/bank-islam.png" },
+  { name: "HSBC", logo: "/bank-logos/hsbc.png" },
+  { name: "Standard Chartered", logo: "/bank-logos/standard-chartered.png" },
 ];
 
 export default function BankLogos() {
@@ -12,20 +17,20 @@ export default function BankLogos() {
     <section className="py-12 bg-white">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <p className="text-center text-gray-500 mb-8">Compare rates from Malaysia&apos;s leading banks</p>
-        <div className="grid grid-cols-3 md:grid-cols-6 gap-6 items-center">
+        <div className="flex flex-wrap justify-center gap-6 md:gap-8">
           {banks.map((bank) => (
             <div
               key={bank.name}
-              className="flex items-center justify-center p-4 bg-gray-50 rounded-lg hover:shadow-md transition-shadow"
+              className="flex items-center justify-center w-[120px] h-[50px] bg-gray-50 rounded-lg hover:shadow-md hover:scale-105 transition-all duration-200 p-2"
             >
-              <div className="text-center">
-                <div
-                  className="w-12 h-12 rounded-full mx-auto mb-2 flex items-center justify-center text-white font-bold text-lg"
-                  style={{ backgroundColor: bank.color }}
-                >
-                  {bank.name.charAt(0)}
-                </div>
-                <span className="text-sm font-medium text-gray-700">{bank.name}</span>
+              <div className="relative w-full h-full">
+                <Image
+                  src={bank.logo}
+                  alt={`${bank.name} logo`}
+                  fill
+                  className="object-contain"
+                  sizes="120px"
+                />
               </div>
             </div>
           ))}

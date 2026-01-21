@@ -17,11 +17,12 @@ const guidesData = {
   },
   en: {
     label: "English",
-    comingSoon: true,
     items: [
-      { name: "Best Refinance Banks", href: "/en/best-refinance-banks", active: false },
-      { name: "Pros & Cons", href: "/en/pros-cons-refinance", active: false },
-      { name: "Documents Required", href: "/en/documents-required", active: false },
+      { name: "Best Refinance Banks", href: "/en/best-refinance-banks", active: true },
+      { name: "Pros & Cons", href: "/en/pros-cons-refinancing", active: true },
+      { name: "Calculation Examples", href: "/en/refinance-calculation-examples", active: true },
+      { name: "Documents Required", href: "/en/documents-required", active: true },
+      { name: "When to Refinance", href: "/en/when-to-refinance", active: true },
     ],
   },
   zh: {
@@ -140,16 +141,17 @@ export default function Header() {
                       <h3 className="text-sm font-semibold text-gray-900 mb-3 flex items-center gap-2">
                         <span className="text-lg">🇬🇧</span>
                         {guidesData.en.label}
-                        <span className="text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full">
-                          Coming Soon
-                        </span>
                       </h3>
                       <ul className="space-y-2">
                         {guidesData.en.items.map((item) => (
                           <li key={item.href}>
-                            <span className="text-sm text-gray-400 block py-1.5 px-2 cursor-not-allowed">
+                            <Link
+                              href={item.href}
+                              className="text-sm text-gray-600 hover:text-primary-600 hover:bg-primary-50 block py-1.5 px-2 rounded transition-colors"
+                              onClick={() => setGuidesOpen(false)}
+                            >
                               {item.name}
-                            </span>
+                            </Link>
                           </li>
                         ))}
                       </ul>
@@ -311,16 +313,20 @@ export default function Header() {
                     <div>
                       <h4 className="text-sm font-semibold text-gray-800 flex items-center gap-2 mb-2">
                         <span>🇬🇧</span> {guidesData.en.label}
-                        <span className="text-xs bg-gray-100 text-gray-500 px-2 py-0.5 rounded-full">
-                          Coming Soon
-                        </span>
                       </h4>
                       <ul className="space-y-1 pl-2">
                         {guidesData.en.items.map((item) => (
                           <li key={item.href}>
-                            <span className="text-sm text-gray-400 block py-1.5">
+                            <Link
+                              href={item.href}
+                              className="text-sm text-gray-600 hover:text-primary-600 block py-1.5"
+                              onClick={() => {
+                                setMobileMenuOpen(false);
+                                setMobileGuidesOpen(false);
+                              }}
+                            >
                               {item.name}
-                            </span>
+                            </Link>
                           </li>
                         ))}
                       </ul>

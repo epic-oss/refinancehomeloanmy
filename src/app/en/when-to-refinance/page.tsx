@@ -23,75 +23,121 @@ const lockInPeriods = banks.slice(0, 8).map((bank) => ({
 
 const faqs = [
   {
-    question: "Berapa tahun minimum untuk refinance rumah?",
+    question: "How many years before I can refinance my home loan?",
     answer:
-      "Tiada tahun minimum untuk refinance rumah. Anda boleh refinance bila-bila masa selepas pembelian. Namun, jika masih dalam tempoh lock-in (biasanya 3-5 tahun), anda perlu bayar penalti 2-3% dari baki pinjaman.",
+      "There is no minimum waiting period to refinance your home loan. You can refinance anytime after purchase. However, if you're still within the lock-in period (typically 3-5 years), you'll need to pay an early settlement penalty of 2-3% of the outstanding loan amount.",
   },
   {
-    question: "Bolehkah refinance sebelum 3 tahun?",
+    question: "Can I refinance during the lock-in period?",
     answer:
-      "Ya, boleh. Tetapi anda perlu membayar penalti lock-in yang boleh mencecah ribuan ringgit. Contoh: Baki RM300,000 × 3% penalti = RM9,000. Pastikan penjimatan dari kadar baru melebihi penalti sebelum refinance awal.",
+      "Yes, you can refinance during the lock-in period, but you'll pay a penalty of 2-3% on your outstanding balance. For example, a RM400,000 loan with 3% penalty = RM12,000. Calculate whether your savings will exceed this penalty before deciding.",
   },
   {
-    question: "Berapa penalti jika refinance sebelum lock-in tamat?",
+    question: "How much is the early settlement penalty?",
     answer:
-      "Penalti berbeza mengikut bank, biasanya 2-3% dari baki pinjaman. Sesetengah bank mengurangkan penalti setiap tahun. Contoh: Tahun 1 = 3%, Tahun 2 = 2%, Tahun 3 = 1%. Semak perjanjian pinjaman anda untuk kadar tepat.",
+      "Early settlement penalties vary by bank, typically 2-3% of the outstanding loan amount. Some banks reduce the penalty each year. For example: Year 1 = 3%, Year 2 = 2%, Year 3 = 1%. Check your loan agreement for exact terms.",
   },
   {
-    question: "Bila waktu terbaik untuk refinance rumah?",
+    question: "What's the minimum loan amount for refinancing?",
     answer:
-      "Waktu terbaik adalah: (1) Selepas tempoh lock-in tamat, (2) Apabila kadar pasaran 0.5%+ lebih rendah dari kadar anda, (3) Baki pinjaman masih besar (RM100k+), (4) Tempoh pinjaman masih panjang (10+ tahun), (5) Profil kewangan anda telah bertambah baik.",
+      "Most banks require a minimum loan amount of RM100,000 for refinancing. Some banks have higher minimums (RM150,000-200,000) for promotional rates. The higher your loan amount, the more you'll benefit from rate reductions.",
   },
   {
-    question: "Bolehkah refinance rumah yang masih dalam pembinaan?",
+    question: "Can I refinance with the same bank?",
     answer:
-      "Tidak. Rumah mesti sudah siap dan geran hakmilik sudah dikeluarkan sebelum boleh refinance. Untuk rumah dalam pembinaan, anda masih terikat dengan pinjaman pemaju sehingga projek siap.",
+      "Yes, this is called internal refinancing or loan restructuring. While it involves less paperwork, you may get better rates from competing banks. Always compare offers from multiple banks before deciding.",
   },
   {
-    question: "Berapa kerap boleh refinance rumah?",
+    question: "How long does the refinancing process take?",
     answer:
-      "Tiada had berapa kerap anda boleh refinance. Namun, setiap refinance melibatkan kos dan tempoh lock-in baru. Adalah bijak untuk refinance hanya apabila penjimatan benar-benar berbaloi berbanding kos yang terlibat.",
+      "The typical refinancing process takes 1-3 months from application to disbursement. This includes loan application review (1-2 weeks), property valuation (1-2 weeks), loan approval (2-4 weeks), and legal documentation (2-4 weeks).",
   },
   {
-    question: "Adakah umur mempengaruhi kelayakan refinance?",
-    answer: `Ya. Kebanyakan bank memerlukan umur minimum ${eligibility.minAge} tahun dan maksimum ${eligibility.maxAge} tahun pada akhir tempoh pinjaman. Contoh: Jika anda 55 tahun, tempoh maksimum mungkin hanya 10 tahun (untuk habis sebelum umur 65).`,
+    question: "Is refinancing worth the hassle?",
+    answer:
+      "Refinancing is typically worth it if: (1) you can save 0.5% or more on interest rate, (2) your lock-in period has ended, (3) you have more than 10 years remaining, and (4) you plan to keep the property for at least 2-3 years to recoup refinancing costs.",
   },
 ];
 
 const bestTimes = [
   {
-    title: "Selepas Tempoh Lock-in Tamat",
+    title: "After Lock-in Period Ends",
     description:
-      "Ini adalah waktu paling ideal kerana anda tidak perlu membayar sebarang penalti.",
+      "This is the ideal time as you won't pay any early settlement penalty. Most lock-ins are 3-5 years.",
     icon: "🔓",
   },
   {
-    title: "Kadar Pasaran Menurun",
+    title: "When Market Rates Drop",
     description:
-      "Apabila BLR/BR menurun atau bank menawarkan kadar promosi yang lebih rendah dari kadar anda.",
+      "When BNM reduces OPR or banks offer promotional rates lower than your current rate by 0.5% or more.",
     icon: "📉",
   },
   {
-    title: "Profil Kewangan Bertambah Baik",
+    title: "When Your Financial Profile Improves",
     description:
-      "Kenaikan gaji, skor kredit meningkat, atau hutang lain berkurang boleh melayakkan anda untuk kadar lebih baik.",
+      "Salary increase, better credit score, or reduced debts can qualify you for better rates.",
     icon: "📈",
   },
   {
-    title: "Perlukan Cash Out",
+    title: "When You Need Cash",
     description:
-      "Jika nilai rumah meningkat dan anda perlukan wang untuk keperluan penting seperti pengubahsuaian atau pendidikan.",
+      "If property value has increased and you need funds for renovation, education, or investment at low mortgage rates.",
     icon: "💰",
   },
   {
-    title: "Menukar Jenis Pinjaman",
+    title: "When You Want to Change Loan Type",
     description:
-      "Tukar dari konvensional ke Islamik, atau dari kadar tetap ke terapung (atau sebaliknya).",
+      "Switch from conventional to Islamic, or from variable to fixed rate (or vice versa).",
     icon: "🔄",
   },
 ];
 
-export default function BerapaTahunBolehRefinanceRumah() {
+const refinancingSteps = [
+  {
+    step: 1,
+    title: "Check Your Current Lock-in Status",
+    description:
+      "Review your loan agreement to confirm if lock-in period has ended. Calculate any penalties if applicable.",
+  },
+  {
+    step: 2,
+    title: "Compare Bank Rates",
+    description:
+      "Use our comparison table to find the best rates. Consider factors beyond just interest rate.",
+  },
+  {
+    step: 3,
+    title: "Calculate Your Savings",
+    description:
+      "Use our calculator to see if savings justify the refinancing costs.",
+  },
+  {
+    step: 4,
+    title: "Gather Documents",
+    description:
+      "Prepare IC, payslips, bank statements, EPF statement, and property documents.",
+  },
+  {
+    step: 5,
+    title: "Submit Application",
+    description:
+      "Apply to your chosen bank(s). You can apply to multiple banks simultaneously.",
+  },
+  {
+    step: 6,
+    title: "Property Valuation",
+    description:
+      "Bank arranges property valuation by approved valuer. Costs RM300-500.",
+  },
+  {
+    step: 7,
+    title: "Sign Documents & Disburse",
+    description:
+      "After approval, sign legal documents. New bank settles your old loan and disbursement occurs.",
+  },
+];
+
+export default function WhenToRefinance() {
   const [showForm, setShowForm] = useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
@@ -101,36 +147,51 @@ export default function BerapaTahunBolehRefinanceRumah() {
       <section className="bg-gradient-to-br from-primary-800 to-primary-900 text-white py-12 md:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            Berapa Tahun Boleh Refinance Rumah Malaysia?
+            When Should You Refinance Your Home Loan in Malaysia?
           </h1>
           <p className="text-lg text-gray-300">
-            Panduan lengkap tentang tempoh, syarat, dan waktu terbaik untuk
-            refinance pinjaman perumahan anda.
+            Complete guide on timing, lock-in periods, and the best time to
+            refinance your mortgage.
           </p>
-          <LastUpdated lang="ms" variant="hero" />
+          <LastUpdated lang="en" variant="hero" />
           <button
             onClick={() => setShowForm(true)}
             className="mt-6 inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-full transition-all hover:scale-105"
           >
-            Dapatkan Sebut Harga Percuma
+            Get Free Quote
             <ArrowRight className="w-5 h-5" />
           </button>
         </div>
       </section>
+
+      {/* Language Switch */}
+      <div className="bg-gray-100 py-2">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-sm text-gray-600">
+            Also available in:{" "}
+            <Link
+              href="/berapa-tahun-boleh-refinance-rumah"
+              className="text-primary-600 hover:underline font-medium"
+            >
+              Bahasa Malaysia
+            </Link>
+          </p>
+        </div>
+      </div>
 
       {/* Quick Answer - Featured Snippet */}
       <section className="py-8 bg-secondary-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="bg-white rounded-xl p-6 shadow-lg border-l-4 border-secondary-500">
             <h2 className="text-lg font-bold text-gray-900 mb-3">
-              Jawapan Ringkas:
+              Quick Answer:
             </h2>
             <p className="text-gray-700">
-              <strong>Anda boleh refinance rumah bila-bila masa</strong>, tetapi
-              disyorkan untuk menunggu sehingga{" "}
-              <strong>tempoh lock-in tamat (biasanya 3-5 tahun)</strong> untuk
-              mengelakkan penalti 2-3% dari baki pinjaman. Selepas lock-in
-              tamat, anda bebas refinance tanpa sebarang penalti.
+              <strong>You can refinance your home loan at any time</strong>, but
+              it&apos;s recommended to wait until your{" "}
+              <strong>lock-in period ends (typically 3-5 years)</strong> to avoid
+              paying 2-3% early settlement penalty. After lock-in ends, you&apos;re
+              free to refinance without any penalty.
             </p>
           </div>
         </div>
@@ -142,22 +203,22 @@ export default function BerapaTahunBolehRefinanceRumah() {
           {/* Intro */}
           <section className="mb-12">
             <p className="text-lg text-gray-700 mb-4">
-              Ramai pemilik rumah tertanya-tanya bilakah masa yang sesuai untuk
-              refinance pinjaman perumahan mereka. Jawapannya bergantung kepada
-              beberapa faktor termasuk tempoh lock-in, kadar faedah semasa, dan
-              situasi kewangan anda.
+              Many Malaysian homeowners wonder when is the right time to
+              refinance their home loan. The answer depends on several factors
+              including your lock-in period, current interest rates, and your
+              financial situation.
             </p>
             <p className="text-lg text-gray-700">
-              Dalam panduan ini, kami jelaskan secara terperinci tentang tempoh
-              minimum, penalti lock-in, dan waktu terbaik untuk refinance rumah
-              di Malaysia.
+              In this comprehensive guide, we explain the minimum waiting period,
+              lock-in penalties, and the best timing to refinance your home in
+              Malaysia.
             </p>
           </section>
 
           {/* Lock-in Periods by Bank */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Tempoh Lock-in Mengikut Bank
+              Lock-in Periods by Bank
             </h2>
 
             <div className="overflow-x-auto">
@@ -166,10 +227,10 @@ export default function BerapaTahunBolehRefinanceRumah() {
                   <tr className="bg-primary-50">
                     <th className="text-left p-4 font-semibold border">Bank</th>
                     <th className="text-left p-4 font-semibold border">
-                      Tempoh Lock-in
+                      Lock-in Period
                     </th>
                     <th className="text-left p-4 font-semibold border">
-                      Penalti Awal
+                      Early Settlement Penalty
                     </th>
                   </tr>
                 </thead>
@@ -180,7 +241,7 @@ export default function BerapaTahunBolehRefinanceRumah() {
                       className={index % 2 === 0 ? "bg-white" : "bg-gray-50"}
                     >
                       <td className="p-4 border font-medium">{item.bank}</td>
-                      <td className="p-4 border">{item.lockIn} tahun</td>
+                      <td className="p-4 border">{item.lockIn} years</td>
                       <td className="p-4 border text-red-600">{item.penalty}</td>
                     </tr>
                   ))}
@@ -189,48 +250,47 @@ export default function BerapaTahunBolehRefinanceRumah() {
             </div>
 
             <p className="text-sm text-gray-500 mt-4">
-              * Tempoh lock-in dan penalti mungkin berbeza mengikut pakej
-              pinjaman. Semak perjanjian pinjaman anda untuk maklumat tepat.
+              * Lock-in periods and penalties may vary by loan package. Check your
+              loan agreement for exact terms.
             </p>
           </section>
 
           {/* Penalty Calculation */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Penalti Jika Refinance Sebelum Lock-in Tamat
+              Understanding Early Settlement Penalties
             </h2>
 
             <div className="bg-red-50 rounded-xl p-6 border border-red-200 mb-6">
               <h3 className="font-semibold text-red-800 mb-4">
-                Formula Pengiraan Penalti:
+                Penalty Calculation Formula:
               </h3>
               <div className="bg-white rounded-lg p-4 text-center mb-4">
                 <p className="font-mono text-lg text-red-700">
-                  Penalti = Baki Pinjaman × Kadar Penalti (%)
+                  Penalty = Outstanding Loan × Penalty Rate (%)
                 </p>
               </div>
               <div className="space-y-3">
                 <div className="flex justify-between items-center p-3 bg-white rounded">
-                  <span>Baki RM200,000 × 3%</span>
+                  <span>RM200,000 balance × 3% penalty</span>
                   <span className="font-bold text-red-600">= RM6,000</span>
                 </div>
                 <div className="flex justify-between items-center p-3 bg-white rounded">
-                  <span>Baki RM300,000 × 3%</span>
-                  <span className="font-bold text-red-600">= RM9,000</span>
+                  <span>RM400,000 balance × 3% penalty</span>
+                  <span className="font-bold text-red-600">= RM12,000</span>
                 </div>
                 <div className="flex justify-between items-center p-3 bg-white rounded">
-                  <span>Baki RM500,000 × 3%</span>
-                  <span className="font-bold text-red-600">= RM15,000</span>
+                  <span>RM600,000 balance × 3% penalty</span>
+                  <span className="font-bold text-red-600">= RM18,000</span>
                 </div>
               </div>
             </div>
 
             <div className="bg-yellow-50 rounded-lg p-4 border border-yellow-200">
               <p className="text-sm text-yellow-800">
-                <strong>💡 Tip:</strong> Sesetengah bank mengurangkan kadar
-                penalti setiap tahun. Contoh: Tahun 1 = 3%, Tahun 2 = 2%, Tahun
-                3 = 1%. Semak dengan bank anda tentang struktur penalti yang
-                tepat.
+                <strong>Tip:</strong> Some banks reduce penalty rates each year.
+                Example: Year 1 = 3%, Year 2 = 2%, Year 3 = 1%. Check your loan
+                agreement for the exact penalty structure.
               </p>
             </div>
           </section>
@@ -238,7 +298,7 @@ export default function BerapaTahunBolehRefinanceRumah() {
           {/* Best Time to Refinance */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Bila Waktu Terbaik Untuk Refinance?
+              5 Signs It&apos;s Time to Refinance
             </h2>
 
             <div className="space-y-4">
@@ -263,26 +323,26 @@ export default function BerapaTahunBolehRefinanceRumah() {
           {/* Eligibility */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Syarat Kelayakan Refinance
+              Eligibility Requirements for Refinancing
             </h2>
             <p className="text-gray-700 mb-4">
-              Selain masa yang sesuai, pastikan anda memenuhi syarat kelayakan
-              asas berikut:
+              Besides the right timing, ensure you meet the basic eligibility
+              requirements:
             </p>
-            <EligibilityCard lang="ms" />
+            <EligibilityCard lang="en" />
           </section>
 
-          {/* Refinance Ongoing Loan */}
+          {/* Refinancing an Ongoing Loan */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Refinance Rumah Belum Habis Bayar
+              Refinancing a Loan That&apos;s Still Outstanding
             </h2>
 
             <div className="prose prose-lg max-w-none">
-              <p>
-                Ya, anda boleh refinance rumah yang masih ada baki pinjaman.
-                Sebenarnya, inilah situasi yang paling biasa untuk refinancing.
-                Proses yang berlaku:
+              <p className="text-gray-700 mb-4">
+                Yes, you can refinance your home loan even if it&apos;s still
+                outstanding. In fact, this is the most common refinancing
+                scenario. Here&apos;s how it works:
               </p>
             </div>
 
@@ -290,19 +350,19 @@ export default function BerapaTahunBolehRefinanceRumah() {
               {[
                 {
                   step: 1,
-                  text: "Bank baru akan menilai hartanah dan profil kewangan anda",
+                  text: "New bank evaluates your property and financial profile",
                 },
                 {
                   step: 2,
-                  text: "Setelah diluluskan, bank baru akan melangsaikan baki pinjaman bank lama",
+                  text: "Once approved, new bank directly settles your existing loan with old bank",
                 },
                 {
                   step: 3,
-                  text: "Anda akan mula membuat bayaran kepada bank baru dengan kadar yang lebih rendah",
+                  text: "You start making payments to new bank at the lower rate",
                 },
                 {
                   step: 4,
-                  text: "Jika ada cash out, baki akan dikreditkan ke akaun anda",
+                  text: "If there's cash out, the balance is credited to your account",
                 },
               ].map((item) => (
                 <div
@@ -318,32 +378,31 @@ export default function BerapaTahunBolehRefinanceRumah() {
             </div>
           </section>
 
-          {/* Refinance Paid Off Home */}
+          {/* Refinancing a Paid Off Home */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Refinance Rumah Sudah Habis Bayar
+              Refinancing a Fully Paid Property (Cash Out)
             </h2>
 
             <div className="bg-primary-50 rounded-xl p-6">
               <p className="text-gray-700 mb-4">
-                Jika rumah anda sudah habis bayar, anda masih boleh &quot;refinance&quot;
-                untuk mendapatkan wang tunai. Ini dipanggil{" "}
-                <strong>Cash Out Refinancing</strong>.
+                If your home is fully paid, you can still refinance to access
+                cash. This is called <strong>Cash Out Refinancing</strong>.
               </p>
 
               <div className="bg-white rounded-lg p-4">
                 <h4 className="font-semibold text-gray-900 mb-3">
-                  Contoh Senario:
+                  Example Scenario:
                 </h4>
                 <ul className="space-y-2 text-sm text-gray-600">
-                  <li>• Nilai rumah semasa: RM600,000</li>
-                  <li>• Baki pinjaman: RM0 (sudah habis bayar)</li>
-                  <li>• Margin pinjaman (90% LTV): RM540,000</li>
-                  <li>• Cash out yang boleh diperolehi: Sehingga RM540,000</li>
+                  <li>• Current property value: RM700,000</li>
+                  <li>• Outstanding loan: RM0 (fully paid)</li>
+                  <li>• Maximum LTV (90%): RM630,000</li>
+                  <li>• Cash out available: Up to RM630,000</li>
                 </ul>
                 <p className="text-sm text-gray-500 mt-3">
-                  Wang ini boleh digunakan untuk pelaburan, pengubahsuaian,
-                  pendidikan anak, atau modal perniagaan.
+                  This cash can be used for investments, renovations, education,
+                  or business capital.
                 </p>
               </div>
             </div>
@@ -352,55 +411,19 @@ export default function BerapaTahunBolehRefinanceRumah() {
           {/* Bank Rates */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">
-              Kadar Refinance Semasa
+              Current Refinancing Rates
             </h2>
-            <BankRatesTable limit={5} lang="ms" />
+            <BankRatesTable limit={5} lang="en" />
           </section>
 
           {/* Steps to Refinance */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Langkah-langkah Untuk Refinance
+              Step-by-Step Refinancing Process
             </h2>
 
             <div className="space-y-4">
-              {[
-                {
-                  step: 1,
-                  title: "Semak Tempoh Lock-in Semasa",
-                  desc: "Semak perjanjian pinjaman untuk memastikan tempoh lock-in telah tamat atau kira penalti jika belum.",
-                },
-                {
-                  step: 2,
-                  title: "Bandingkan Kadar Bank",
-                  desc: "Gunakan jadual perbandingan kami untuk melihat kadar terkini dari semua bank utama.",
-                },
-                {
-                  step: 3,
-                  title: "Kira Penjimatan",
-                  desc: "Gunakan kalkulator untuk melihat sama ada penjimatan berbaloi dengan kos refinancing.",
-                },
-                {
-                  step: 4,
-                  title: "Sediakan Dokumen",
-                  desc: "Kumpul semua dokumen yang diperlukan termasuk slip gaji, penyata bank, dan dokumen hartanah.",
-                },
-                {
-                  step: 5,
-                  title: "Hantar Permohonan",
-                  desc: "Hantar permohonan ke bank pilihan anda atau gunakan perkhidmatan kami untuk memohon di beberapa bank serentak.",
-                },
-                {
-                  step: 6,
-                  title: "Penilaian Hartanah",
-                  desc: "Bank akan menghantar penilai untuk menilai hartanah anda.",
-                },
-                {
-                  step: 7,
-                  title: "Tandatangan & Disbursement",
-                  desc: "Setelah diluluskan, tandatangan dokumen dan tunggu pengeluaran wang.",
-                },
-              ].map((item) => (
+              {refinancingSteps.map((item) => (
                 <div
                   key={item.step}
                   className="flex gap-4 bg-gray-50 rounded-lg p-4"
@@ -410,7 +433,7 @@ export default function BerapaTahunBolehRefinanceRumah() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-gray-900">{item.title}</h3>
-                    <p className="text-sm text-gray-600">{item.desc}</p>
+                    <p className="text-sm text-gray-600">{item.description}</p>
                   </div>
                 </div>
               ))}
@@ -420,7 +443,7 @@ export default function BerapaTahunBolehRefinanceRumah() {
           {/* FAQ */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Soalan Lazim
+              Frequently Asked Questions
             </h2>
 
             <div className="space-y-4">
@@ -467,7 +490,7 @@ export default function BerapaTahunBolehRefinanceRumah() {
           {/* Internal Links */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Panduan Berkaitan
+              Related Guides
             </h2>
             <div className="grid md:grid-cols-2 gap-4">
               <Link
@@ -475,43 +498,43 @@ export default function BerapaTahunBolehRefinanceRumah() {
                 className="block p-4 bg-primary-50 rounded-lg hover:bg-primary-100 transition-colors"
               >
                 <h3 className="font-semibold text-primary-900">
-                  Kalkulator Refinance
+                  Refinancing Calculator
                 </h3>
                 <p className="text-sm text-primary-700">
-                  Kira penjimatan anda dengan kadar terkini
+                  Calculate your potential savings
                 </p>
               </Link>
               <Link
-                href="/dokumen-refinance-rumah"
+                href="/en/documents-required"
                 className="block p-4 bg-primary-50 rounded-lg hover:bg-primary-100 transition-colors"
               >
                 <h3 className="font-semibold text-primary-900">
-                  Senarai Dokumen Refinance
+                  Documents Required
                 </h3>
                 <p className="text-sm text-primary-700">
-                  Dokumen yang diperlukan untuk permohonan
+                  Complete checklist for your application
                 </p>
               </Link>
               <Link
-                href="/bank-terbaik-refinance-rumah"
+                href="/en/best-refinance-banks"
                 className="block p-4 bg-primary-50 rounded-lg hover:bg-primary-100 transition-colors"
               >
                 <h3 className="font-semibold text-primary-900">
-                  Bank Terbaik Untuk Refinance
+                  Best Banks for Refinancing
                 </h3>
                 <p className="text-sm text-primary-700">
-                  Bandingkan kadar dari 10+ bank
+                  Compare rates from 10+ banks
                 </p>
               </Link>
               <Link
-                href="/kelebihan-keburukan-refinance-rumah"
+                href="/en/pros-cons-refinancing"
                 className="block p-4 bg-primary-50 rounded-lg hover:bg-primary-100 transition-colors"
               >
                 <h3 className="font-semibold text-primary-900">
-                  Kelebihan & Keburukan
+                  Pros & Cons of Refinancing
                 </h3>
                 <p className="text-sm text-primary-700">
-                  Ketahui pro dan kontra refinancing
+                  Understand the benefits and risks
                 </p>
               </Link>
             </div>
@@ -523,17 +546,17 @@ export default function BerapaTahunBolehRefinanceRumah() {
       <section className="py-16 bg-primary-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">
-            Sedia Untuk Refinance?
+            Ready to Refinance?
           </h2>
           <p className="text-xl text-gray-300 mb-8">
-            Dapatkan sebut harga percuma dan biarkan pakar kami membantu anda
-            memilih waktu dan bank terbaik.
+            Get a free quote and let our specialists help you find the best
+            timing and rates for your situation.
           </p>
           <button
             onClick={() => setShowForm(true)}
             className="btn-primary inline-block text-lg px-8 py-4"
           >
-            Dapatkan Sebut Harga Percuma
+            Get Free Quote Now
           </button>
         </div>
       </section>
@@ -544,7 +567,7 @@ export default function BerapaTahunBolehRefinanceRumah() {
           <div className="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6">
               <div className="flex justify-between items-center mb-4">
-                <h3 className="text-xl font-bold">Dapatkan Sebut Harga</h3>
+                <h3 className="text-xl font-bold">Get Your Free Quote</h3>
                 <button
                   onClick={() => setShowForm(false)}
                   className="text-gray-500 hover:text-gray-700"
@@ -564,7 +587,7 @@ export default function BerapaTahunBolehRefinanceRumah() {
                   </svg>
                 </button>
               </div>
-              <LeadForm variant="modal" source="berapa-tahun-refinance" />
+              <LeadForm variant="modal" source="en-when-refinance" lang="en" />
             </div>
           </div>
         </div>
@@ -596,9 +619,9 @@ export default function BerapaTahunBolehRefinanceRumah() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Article",
-            headline: `Berapa Tahun Boleh Refinance Rumah Malaysia ${currentYear}`,
-            description: `Ketahui bila masa terbaik untuk refinance rumah di Malaysia. Panduan lengkap tentang tempoh lock-in dan penalti ${currentYear}.`,
-            datePublished: "2026-01-10",
+            headline: `When to Refinance Your Home Loan in Malaysia ${currentYear}`,
+            description: `Learn the best time to refinance your home loan in Malaysia. Understand lock-in periods, penalties, and signs it's time to refinance ${currentYear}.`,
+            datePublished: "2026-01-18",
             dateModified: "2026-01-21",
             author: {
               "@type": "Organization",
@@ -614,7 +637,11 @@ export default function BerapaTahunBolehRefinanceRumah() {
       />
 
       <BackToTop />
-      <StickyMobileCTA onCtaClick={() => setShowForm(true)} />
+      <StickyMobileCTA
+        onCtaClick={() => setShowForm(true)}
+        text="Save RM500+/month"
+        buttonText="Get Free Quote"
+      />
     </>
   );
 }

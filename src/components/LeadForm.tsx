@@ -5,7 +5,27 @@ import { useState } from "react";
 interface LeadFormProps {
   variant?: "hero" | "modal" | "inline";
   source?: string;
+  lang?: "ms" | "en";
 }
+
+const content = {
+  ms: {
+    formTitle: "Dapatkan Sebut Harga Percuma",
+    buttonText: "Dapatkan Sebut Harga Percuma",
+    submitting: "Menghantar...",
+    successTitle: "Terima Kasih!",
+    successMessage: "Kami telah menerima permintaan anda. Pakar refinancing kami akan menghubungi anda dalam masa 24 jam dengan pilihan penjimatan yang sesuai.",
+    disclaimer: "Dengan menghantar, anda bersetuju untuk dihubungi oleh rakan refinancing kami. Maklumat anda selamat dan tidak akan dikongsi.",
+  },
+  en: {
+    formTitle: "Get Your Free Refinancing Quote",
+    buttonText: "Get Free Quote",
+    submitting: "Submitting...",
+    successTitle: "Thank You!",
+    successMessage: "We've received your request. Our refinancing specialist will contact you within 24 hours with personalized savings options.",
+    disclaimer: "By submitting, you agree to be contacted by our refinancing partners. Your information is secure and will not be shared.",
+  },
+};
 
 const banks = [
   "Maybank",
@@ -28,7 +48,9 @@ const banks = [
 export default function LeadForm({
   variant = "hero",
   source = "homepage",
+  lang = "en",
 }: LeadFormProps) {
+  const t = content[lang];
   const [formData, setFormData] = useState({
     name: "",
     WhatsApp: "",
@@ -115,9 +137,9 @@ export default function LeadForm({
             />
           </svg>
         </div>
-        <h3 className="text-xl font-bold text-gray-900 mb-2">Thank You!</h3>
+        <h3 className="text-xl font-bold text-gray-900 mb-2">{t.successTitle}</h3>
         <p className="text-gray-600">
-          We&apos;ve received your request. Our refinancing specialist will contact you within 24 hours with personalized savings options.
+          {t.successMessage}
         </p>
       </div>
     );
@@ -133,7 +155,7 @@ export default function LeadForm({
     >
       {variant === "hero" && (
         <h3 className="text-xl font-bold text-gray-900 mb-6 text-center">
-          Get Your Free Refinancing Quote
+          {t.formTitle}
         </h3>
       )}
 
@@ -189,13 +211,13 @@ export default function LeadForm({
           </label>
           <select
             id="current_bank"
-            className={inputClasses}
+            className={`${inputClasses} text-gray-900 bg-white`}
             value={formData.CurrentBank}
             onChange={(e) => setFormData({ ...formData, CurrentBank: e.target.value })}
           >
-            <option value="">Select your current bank</option>
+            <option value="" className="text-gray-900">Select your current bank</option>
             {banks.map((bank) => (
-              <option key={bank} value={bank}>
+              <option key={bank} value={bank} className="text-gray-900">
                 {bank}
               </option>
             ))}
@@ -232,17 +254,16 @@ export default function LeadForm({
                   d="M4 12a8 8 0 018-8V0C5.373 0 0 5.373 0 12h4zm2 5.291A7.962 7.962 0 014 12H0c0 3.042 1.135 5.824 3 7.938l3-2.647z"
                 />
               </svg>
-              Submitting...
+              {t.submitting}
             </span>
           ) : (
-            "Check My Savings"
+            t.buttonText
           )}
         </button>
       </div>
 
       <p className="text-xs text-gray-500 mt-4 text-center">
-        By submitting, you agree to be contacted by our refinancing partners.
-        Your information is secure and will not be shared.
+        {t.disclaimer}
       </p>
     </form>
   );

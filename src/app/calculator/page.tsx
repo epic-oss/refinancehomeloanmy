@@ -4,6 +4,7 @@ import { useState, useEffect } from "react";
 import LeadForm from "@/components/LeadForm";
 import FAQ from "@/components/FAQ";
 import BackToTop from "@/components/BackToTop";
+import { StickyMobileCTA } from "@/components/StickyMobileCTA";
 import { SITE_CONFIG, getBanksSortedByRate } from "@/lib/constants";
 
 const { currentYear, costs } = SITE_CONFIG;
@@ -445,6 +446,7 @@ export default function CalculatorPage() {
       </section>
 
       <BackToTop />
+      <StickyMobileCTA onCtaClick={() => setShowForm(true)} />
     </>
   );
 }

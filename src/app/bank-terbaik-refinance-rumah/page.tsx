@@ -11,6 +11,8 @@ import { LastUpdated } from "@/components/content/LastUpdated";
 import LeadForm from "@/components/LeadForm";
 import MidPageCTA from "@/components/MidPageCTA";
 import BackToTop from "@/components/BackToTop";
+import { StickyMobileCTA } from "@/components/StickyMobileCTA";
+import { ArrowRight } from "lucide-react";
 
 const { currentYear, lastUpdated } = SITE_CONFIG;
 
@@ -69,6 +71,13 @@ export default function BankTerbaikRefinanceRumah() {
             perumahan anda.
           </p>
           <LastUpdated lang="ms" variant="hero" />
+          <button
+            onClick={() => setShowForm(true)}
+            className="mt-6 inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-full transition-all hover:scale-105"
+          >
+            Dapatkan Sebut Harga Percuma
+            <ArrowRight className="w-5 h-5" />
+          </button>
         </div>
       </section>
 
@@ -527,7 +536,7 @@ export default function BankTerbaikRefinanceRumah() {
             "@type": "Article",
             headline: `Bank Terbaik Untuk Refinance Rumah Malaysia ${currentYear}`,
             description: `Bandingkan kadar refinance rumah dari 10+ bank di Malaysia. Ketahui bank mana yang menawarkan kadar terendah untuk refinance ${currentYear}.`,
-            datePublished: "2026-01-21",
+            datePublished: "2025-11-15",
             dateModified: "2026-01-21",
             author: {
               "@type": "Organization",
@@ -543,6 +552,7 @@ export default function BankTerbaikRefinanceRumah() {
       />
 
       <BackToTop />
+      <StickyMobileCTA onCtaClick={() => setShowForm(true)} />
     </>
   );
 }

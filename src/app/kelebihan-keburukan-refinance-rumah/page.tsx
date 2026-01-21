@@ -8,6 +8,8 @@ import { LastUpdated } from "@/components/content/LastUpdated";
 import LeadForm from "@/components/LeadForm";
 import MidPageCTA from "@/components/MidPageCTA";
 import BackToTop from "@/components/BackToTop";
+import { StickyMobileCTA } from "@/components/StickyMobileCTA";
+import { ArrowRight } from "lucide-react";
 
 const { currentYear, costs } = SITE_CONFIG;
 const lowestRateBank = getLowestRate();
@@ -206,6 +208,13 @@ export default function KelebihanKeburukanRefinanceRumah() {
             bijak.
           </p>
           <LastUpdated lang="ms" variant="hero" />
+          <button
+            onClick={() => setShowForm(true)}
+            className="mt-6 inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-full transition-all hover:scale-105"
+          >
+            Dapatkan Sebut Harga Percuma
+            <ArrowRight className="w-5 h-5" />
+          </button>
         </div>
       </section>
 
@@ -641,7 +650,32 @@ export default function KelebihanKeburukanRefinanceRumah() {
         }}
       />
 
+      {/* Article Schema */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: `Kelebihan dan Keburukan Refinance Rumah Malaysia ${currentYear}`,
+            description: `Ketahui 7 kelebihan dan 5 keburukan refinance rumah di Malaysia. Panduan lengkap untuk membuat keputusan refinance yang bijak ${currentYear}.`,
+            datePublished: "2025-11-20",
+            dateModified: "2026-01-21",
+            author: {
+              "@type": "Organization",
+              name: "RefinanceHomeLoanMY",
+            },
+            publisher: {
+              "@type": "Organization",
+              name: "RefinanceHomeLoanMY",
+              url: "https://refinancehomeloanmy.com",
+            },
+          }),
+        }}
+      />
+
       <BackToTop />
+      <StickyMobileCTA onCtaClick={() => setShowForm(true)} />
     </>
   );
 }

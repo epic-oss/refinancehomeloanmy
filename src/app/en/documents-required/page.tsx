@@ -3,7 +3,6 @@
 import { useState } from "react";
 import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/constants";
-import { DocumentsList } from "@/components/content/DocumentsList";
 import { EligibilityCard } from "@/components/content/EligibilityCard";
 import { LastUpdated } from "@/components/content/LastUpdated";
 import LeadForm from "@/components/LeadForm";
@@ -16,159 +15,160 @@ const { currentYear, documents } = SITE_CONFIG;
 
 const propertyDocuments = [
   {
-    name: "Geran Hakmilik / Individual Title",
+    name: "Property Title / Grant (Geran)",
     description:
-      "Dokumen yang membuktikan pemilikan hartanah anda. Jika geran masih dengan bank, minta salinan certified.",
-    tip: "Pastikan nama dalam geran sama dengan nama dalam MyKad.",
+      "Document proving property ownership. If the title is still with the bank, request a certified copy.",
+    tip: "Ensure the name on the title matches your IC exactly.",
   },
   {
     name: "Sales & Purchase Agreement (S&P)",
     description:
-      "Perjanjian jual beli asal hartanah. Diperlukan untuk pengesahan pemilikan dan sejarah transaksi.",
-    tip: "Simpan salinan asal di tempat selamat. Sediakan salinan untuk permohonan.",
+      "Original purchase agreement for the property. Required for ownership verification and transaction history.",
+    tip: "Keep the original in a safe place. Prepare copies for the application.",
   },
   {
-    name: "Penyata Pinjaman Semasa",
+    name: "Current Loan Statement",
     description:
-      "Penyata terkini yang menunjukkan baki pinjaman, kadar faedah, dan bayaran bulanan semasa.",
-    tip: "Minta penyata terkini dari bank semasa, tidak lebih dari 1 bulan.",
+      "Recent statement showing your outstanding loan balance, interest rate, and current monthly payment.",
+    tip: "Request a statement from your current bank, dated within the last month.",
   },
   {
-    name: "Resit Cukai Tanah (Quit Rent)",
+    name: "Quit Rent Receipt (Cukai Tanah)",
     description:
-      "Bukti pembayaran cukai tanah terkini kepada pejabat tanah.",
-    tip: "Pastikan tiada tunggakan. Bayar dahulu jika ada.",
+      "Proof of recent land tax payment to the land office.",
+    tip: "Ensure there are no arrears. Pay any outstanding amounts first.",
   },
   {
-    name: "Resit Cukai Taksiran (Assessment)",
-    description: "Bukti pembayaran cukai pintu terkini kepada majlis tempatan.",
-    tip: "Sesetengah bank memerlukan resit untuk 2 tahun terakhir.",
+    name: "Assessment/Cukai Taksiran Receipt",
+    description:
+      "Proof of recent local council assessment tax payment.",
+    tip: "Some banks require receipts for the last 2 years.",
   },
 ];
 
 const additionalDocuments = [
   {
-    name: "Penyata Komisen / Bonus",
-    description: "Jika pendapatan termasuk komisen atau bonus tetap.",
-    required: "Pekerja dengan pendapatan berubah-ubah",
+    name: "Commission/Bonus Statements",
+    description: "If your income includes regular commission or bonuses.",
+    required: "Employees with variable income",
   },
   {
-    name: "Bukti Pendapatan Sewa",
-    description: "Perjanjian sewa dan penyata bank yang menunjukkan deposit.",
-    required: "Tuan rumah dengan pendapatan sewa",
+    name: "Rental Income Proof",
+    description: "Tenancy agreement and bank statements showing deposits.",
+    required: "Property owners with rental income",
   },
   {
-    name: "Penyata Dividen / Pelaburan",
-    description: "Bukti pendapatan dari pelaburan atau dividen saham.",
-    required: "Pelabur",
+    name: "Dividend/Investment Statements",
+    description: "Proof of income from investments or share dividends.",
+    required: "Investors",
   },
   {
-    name: "Surat Pengesahan Pekerjaan Pasangan",
-    description: "Jika memohon bersama pasangan (joint application).",
-    required: "Permohonan bersama",
+    name: "Spouse's Employment Letter",
+    description: "If applying jointly with spouse (joint application).",
+    required: "Joint applications",
   },
   {
-    name: "Penyata ASB / Tabung Haji",
-    description: "Bukti simpanan dan kedudukan kewangan yang kukuh.",
-    required: "Untuk memperkuat permohonan",
+    name: "ASB/Tabung Haji Statement",
+    description: "Proof of savings to strengthen your application.",
+    required: "To strengthen application",
   },
 ];
 
 const tips = [
   {
-    title: "Sediakan Salinan & Asal",
+    title: "Prepare Originals & Copies",
     description:
-      "Bawa dokumen asal untuk pengesahan dan sediakan sekurang-kurangnya 2 set salinan.",
+      "Bring original documents for verification and prepare at least 2 sets of copies.",
   },
   {
-    title: "Pastikan Dokumen Terkini",
+    title: "Ensure Documents Are Current",
     description:
-      "Slip gaji dan penyata bank mesti terkini (tidak lebih dari 3 bulan). Dokumen lama akan ditolak.",
+      "Payslips and bank statements must be recent (within 3 months). Outdated documents will be rejected.",
   },
   {
-    title: "Semak Nama Konsisten",
+    title: "Check Name Consistency",
     description:
-      "Pastikan nama dalam semua dokumen sama dengan nama dalam MyKad. Sebarang perbezaan perlu dokumen sokongan.",
+      "Ensure names across all documents match your IC exactly. Any differences require supporting documents.",
   },
   {
-    title: "Scan Berkualiti Tinggi",
+    title: "High-Quality Scans",
     description:
-      "Jika menghantar secara dalam talian, pastikan scan jelas dan boleh dibaca. Resolusi minimum 300 DPI.",
+      "If submitting online, ensure scans are clear and readable. Minimum 300 DPI resolution.",
   },
   {
-    title: "Tandatangan Semua Halaman",
+    title: "Sign All Pages",
     description:
-      "Sesetengah bank memerlukan tandatangan pada setiap halaman dokumen penting.",
+      "Some banks require signatures on every page of important documents.",
   },
   {
-    title: "Sediakan Lebih Awal",
+    title: "Start Early",
     description:
-      "Mula mengumpul dokumen 2-4 minggu sebelum memohon. Sesetengah dokumen mengambil masa untuk diperoleh.",
+      "Begin collecting documents 2-4 weeks before applying. Some documents take time to obtain.",
   },
 ];
 
 const mistakes = [
   {
-    mistake: "Penyata bank tidak lengkap",
+    mistake: "Incomplete bank statements",
     solution:
-      "Pastikan semua halaman disertakan termasuk halaman pertama yang menunjukkan nama dan nombor akaun.",
+      "Include ALL pages, including the first page showing name and account number.",
   },
   {
-    mistake: "Slip gaji tanpa cop syarikat",
+    mistake: "Payslips without company stamp",
     solution:
-      "Minta HR untuk cop dan tandatangan slip gaji. Slip tanpa pengesahan mungkin ditolak.",
+      "Request HR to stamp and sign the payslips. Unstamped payslips may be rejected.",
   },
   {
-    mistake: "Dokumen tamat tempoh",
+    mistake: "Expired documents",
     solution:
-      "Semak tarikh dokumen. Penyata bank dan slip gaji mesti dalam tempoh 3 bulan terkini.",
+      "Check document dates. Bank statements and payslips must be within 3 months.",
   },
   {
-    mistake: "Nama tidak konsisten",
+    mistake: "Inconsistent names",
     solution:
-      "Jika nama berbeza (contoh: dengan/tanpa bin/binti), sediakan statutory declaration atau dokumen sokongan.",
+      "If names differ (e.g., with/without bin/binti), prepare a statutory declaration.",
   },
   {
-    mistake: "Tiada bukti alamat semasa",
+    mistake: "No proof of current address",
     solution:
-      "Sediakan bil utiliti atau penyata bank terkini yang menunjukkan alamat semasa anda.",
+      "Prepare recent utility bill or bank statement showing your current address.",
   },
   {
-    mistake: "Dokumen hartanah tidak lengkap",
+    mistake: "Incomplete property documents",
     solution:
-      "Pastikan semua halaman S&P dan geran disertakan, bukan hanya halaman pertama.",
+      "Include ALL pages of S&P agreement and title, not just the first page.",
   },
 ];
 
 const faqs = [
   {
-    question: "Berapa lama dokumen perlu disiapkan sebelum permohonan?",
+    question: "How long before applying should I prepare documents?",
     answer:
-      "Kami cadangkan mula menyediakan dokumen 2-4 minggu sebelum membuat permohonan. Ini memberi masa untuk mendapatkan dokumen yang mungkin mengambil masa seperti penyata KWSP atau surat pengesahan majikan.",
+      "We recommend starting 2-4 weeks before your application. This gives time to obtain documents that may take longer, such as EPF statements or employer confirmation letters.",
   },
   {
-    question: "Bolehkah hantar dokumen secara dalam talian?",
+    question: "Can I submit documents online?",
     answer:
-      "Ya, kebanyakan bank kini menerima dokumen secara dalam talian melalui emel atau portal mereka. Pastikan scan berkualiti tinggi (300 DPI minimum) dan fail dalam format PDF atau JPEG.",
+      "Yes, most banks now accept online submissions via email or their portals. Ensure scans are high quality (300 DPI minimum) and files are in PDF or JPEG format.",
   },
   {
-    question: "Apa berlaku jika dokumen tidak lengkap?",
+    question: "What happens if my documents are incomplete?",
     answer:
-      "Permohonan dengan dokumen tidak lengkap akan ditangguhkan atau ditolak. Bank akan meminta dokumen tambahan yang boleh melambatkan proses sehingga beberapa minggu.",
+      "Applications with incomplete documents will be delayed or rejected. The bank will request additional documents, which can delay the process by several weeks.",
   },
   {
-    question: "Adakah dokumen pasangan diperlukan?",
+    question: "Are spouse's documents required?",
     answer:
-      "Jika memohon bersama (joint application), dokumen kewangan pasangan juga diperlukan. Untuk permohonan individu, dokumen pasangan tidak diperlukan kecuali mereka adalah penjamin.",
+      "For joint applications, your spouse's financial documents are required. For individual applications, spouse's documents are not needed unless they are a guarantor.",
   },
   {
-    question: "Bagaimana jika saya bekerja sendiri kurang dari 2 tahun?",
+    question: "What if I'm self-employed for less than 2 years?",
     answer:
-      "Kebanyakan bank memerlukan minimum 2 tahun rekod perniagaan. Jika kurang, anda mungkin perlu penjamin atau menunggu sehingga tempoh tersebut dicapai. Sesetengah bank lebih fleksibel - dapatkan nasihat dari pakar kami.",
+      "Most banks require a minimum 2-year business track record. If less, you may need a guarantor or wait until the requirement is met. Some banks are more flexible—consult our specialists.",
   },
 ];
 
-export default function DokumenRefinanceRumah() {
+export default function DocumentsRequired() {
   const [showForm, setShowForm] = useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
@@ -178,22 +178,37 @@ export default function DokumenRefinanceRumah() {
       <section className="bg-gradient-to-br from-primary-800 to-primary-900 text-white py-12 md:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            Senarai Dokumen Refinance Rumah Malaysia {currentYear}
+            Documents Required for Home Loan Refinancing Malaysia {currentYear}
           </h1>
           <p className="text-lg text-gray-300">
-            Panduan lengkap dokumen yang diperlukan untuk memastikan permohonan
-            refinance anda berjaya.
+            Complete checklist of documents needed for a successful refinancing
+            application.
           </p>
-          <LastUpdated lang="ms" variant="hero" />
+          <LastUpdated lang="en" variant="hero" />
           <button
             onClick={() => setShowForm(true)}
             className="mt-6 inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-full transition-all hover:scale-105"
           >
-            Dapatkan Sebut Harga Percuma
+            Get Free Quote
             <ArrowRight className="w-5 h-5" />
           </button>
         </div>
       </section>
+
+      {/* Language Switch */}
+      <div className="bg-gray-100 py-2">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <p className="text-sm text-gray-600">
+            Also available in:{" "}
+            <Link
+              href="/dokumen-refinance-rumah"
+              className="text-primary-600 hover:underline font-medium"
+            >
+              Bahasa Malaysia
+            </Link>
+          </p>
+        </div>
+      </div>
 
       {/* Main Content */}
       <article className="py-12 bg-white">
@@ -201,22 +216,21 @@ export default function DokumenRefinanceRumah() {
           {/* Intro */}
           <section className="mb-12">
             <p className="text-lg text-gray-700 mb-4">
-              Menyediakan dokumen yang lengkap dan tepat adalah kunci kepada
-              permohonan refinance yang lancar dan cepat diluluskan. Dokumen
-              yang tidak lengkap adalah antara punca utama kelewatan atau
-              penolakan permohonan.
+              Having complete and accurate documentation is crucial for a smooth
+              and successful refinancing application. Incomplete documents are
+              one of the main reasons for application delays or rejections.
             </p>
             <p className="text-lg text-gray-700">
-              Dalam panduan ini, kami senaraikan semua dokumen yang diperlukan
-              untuk refinance rumah di Malaysia, dengan tips untuk mempercepatkan
-              proses permohonan anda.
+              In this guide, we provide a comprehensive list of all documents
+              required for home loan refinancing in Malaysia, along with tips to
+              expedite your application process.
             </p>
           </section>
 
           {/* Documents for Employed */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Dokumen Untuk Pekerja Bergaji
+              Documents for Salaried Employees
             </h2>
             <div className="bg-primary-50 rounded-xl p-6 mb-6">
               <ul className="space-y-4">
@@ -236,33 +250,25 @@ export default function DokumenRefinanceRumah() {
             <div className="space-y-4">
               <div className="border border-gray-200 rounded-lg p-4">
                 <h4 className="font-semibold text-gray-900 mb-2">
-                  📋 Slip Gaji - Tips Penting
+                  Payslips - Important Tips
                 </h4>
                 <ul className="text-sm text-gray-600 space-y-1 list-disc list-inside">
-                  <li>Slip gaji 3 bulan berturut-turut (bulan terkini)</li>
-                  <li>
-                    Mesti ada cop syarikat dan tandatangan HR/pengurus
-                  </li>
-                  <li>
-                    Nama, jawatan, dan gaji pokok mesti jelas tertera
-                  </li>
-                  <li>Jika gaji tidak tetap, sertakan juga slip 6 bulan</li>
+                  <li>3 consecutive months of payslips (most recent)</li>
+                  <li>Must have company letterhead and HR/manager signature</li>
+                  <li>Name, position, and basic salary must be clearly shown</li>
+                  <li>If salary varies, include 6 months of payslips</li>
                 </ul>
               </div>
 
               <div className="border border-gray-200 rounded-lg p-4">
                 <h4 className="font-semibold text-gray-900 mb-2">
-                  🏦 Penyata Bank - Tips Penting
+                  Bank Statements - Important Tips
                 </h4>
                 <ul className="text-sm text-gray-600 space-y-1 list-disc list-inside">
-                  <li>Penyata 6 bulan berturut-turut dari akaun gaji</li>
-                  <li>
-                    Semua halaman mesti disertakan termasuk halaman pertama
-                  </li>
-                  <li>
-                    Kredit gaji mesti konsisten setiap bulan
-                  </li>
-                  <li>Elakkan pengeluaran besar yang mencurigakan</li>
+                  <li>6 consecutive months from salary account</li>
+                  <li>All pages must be included, including first page</li>
+                  <li>Salary credits should be consistent each month</li>
+                  <li>Avoid large suspicious withdrawals</li>
                 </ul>
               </div>
             </div>
@@ -271,7 +277,7 @@ export default function DokumenRefinanceRumah() {
           {/* Documents for Self-Employed */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Dokumen Untuk Bekerja Sendiri
+              Documents for Self-Employed Applicants
             </h2>
             <div className="bg-orange-50 rounded-xl p-6 mb-6">
               <ul className="space-y-4">
@@ -290,20 +296,20 @@ export default function DokumenRefinanceRumah() {
 
             <div className="bg-yellow-50 border border-yellow-200 rounded-lg p-4">
               <h4 className="font-semibold text-yellow-800 mb-2">
-                ⚠️ Nota Penting Untuk Usahawan
+                Important Notes for Business Owners
               </h4>
               <ul className="text-sm text-yellow-700 space-y-1 list-disc list-inside">
                 <li>
-                  Minimum 2 tahun rekod perniagaan diperlukan oleh kebanyakan bank
+                  Minimum 2 years of business track record required by most banks
                 </li>
                 <li>
-                  Penyata bank peribadi DAN akaun syarikat kedua-duanya diperlukan
+                  Both personal AND business bank statements are required
                 </li>
                 <li>
-                  Borang B / Cukai Pendapatan 2 tahun terkini mesti disertakan
+                  2 years of income tax returns (Form B / Borang B) must be included
                 </li>
                 <li>
-                  Jika syarikat Sdn Bhd, sertakan juga Form 24 & 49
+                  For Sdn Bhd companies, also include Form 24 & Form 49
                 </li>
               </ul>
             </div>
@@ -312,7 +318,7 @@ export default function DokumenRefinanceRumah() {
           {/* Property Documents */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Dokumen Hartanah
+              Property Documents
             </h2>
 
             <div className="space-y-4">
@@ -343,7 +349,7 @@ export default function DokumenRefinanceRumah() {
                         {doc.description}
                       </p>
                       <p className="text-sm text-secondary-600 mt-2">
-                        <strong>💡 Tip:</strong> {doc.tip}
+                        <strong>Tip:</strong> {doc.tip}
                       </p>
                     </div>
                   </div>
@@ -355,7 +361,7 @@ export default function DokumenRefinanceRumah() {
           {/* Additional Documents */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Dokumen Tambahan (Jika Ada)
+              Additional Documents (If Applicable)
             </h2>
 
             <div className="overflow-x-auto">
@@ -363,13 +369,13 @@ export default function DokumenRefinanceRumah() {
                 <thead>
                   <tr className="bg-gray-50">
                     <th className="text-left p-3 font-semibold border">
-                      Dokumen
+                      Document
                     </th>
                     <th className="text-left p-3 font-semibold border">
-                      Keterangan
+                      Description
                     </th>
                     <th className="text-left p-3 font-semibold border">
-                      Diperlukan Untuk
+                      Required For
                     </th>
                   </tr>
                 </thead>
@@ -394,12 +400,12 @@ export default function DokumenRefinanceRumah() {
           {/* Checklist */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              ✅ Checklist Dokumen (Boleh Print)
+              Document Checklist (Printable)
             </h2>
 
             <div className="bg-gray-50 rounded-xl p-6 border-2 border-dashed border-gray-300">
               <h3 className="font-semibold text-gray-900 mb-4">
-                Pekerja Bergaji:
+                Salaried Employees:
               </h3>
               <div className="grid md:grid-cols-2 gap-2 mb-6">
                 {documents.employed.map((doc, index) => (
@@ -414,7 +420,7 @@ export default function DokumenRefinanceRumah() {
               </div>
 
               <h3 className="font-semibold text-gray-900 mb-4">
-                Dokumen Hartanah:
+                Property Documents:
               </h3>
               <div className="grid md:grid-cols-2 gap-2 mb-6">
                 {propertyDocuments.map((doc, index) => (
@@ -429,7 +435,7 @@ export default function DokumenRefinanceRumah() {
               </div>
 
               <p className="text-xs text-gray-500 text-center">
-                💡 Print halaman ini dan tandakan dokumen yang telah disediakan
+                Print this page and tick off documents as you prepare them
               </p>
             </div>
           </section>
@@ -440,7 +446,7 @@ export default function DokumenRefinanceRumah() {
           {/* Tips */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Tips Menyediakan Dokumen
+              Tips for Preparing Your Documents
             </h2>
 
             <div className="grid md:grid-cols-2 gap-4">
@@ -461,7 +467,7 @@ export default function DokumenRefinanceRumah() {
           {/* Common Mistakes */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Kesilapan Biasa Dalam Permohonan
+              Common Application Mistakes to Avoid
             </h2>
 
             <div className="space-y-4">
@@ -472,13 +478,13 @@ export default function DokumenRefinanceRumah() {
                 >
                   <div className="bg-red-50 px-4 py-2 border-b border-red-200">
                     <h4 className="font-semibold text-red-800">
-                      ❌ {item.mistake}
+                      {item.mistake}
                     </h4>
                   </div>
                   <div className="p-4">
                     <p className="text-sm text-gray-700">
-                      <span className="text-secondary-600 font-medium">
-                        ✅ Penyelesaian:
+                      <span className="text-green-600 font-medium">
+                        Solution:
                       </span>{" "}
                       {item.solution}
                     </p>
@@ -491,19 +497,19 @@ export default function DokumenRefinanceRumah() {
           {/* Eligibility */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">
-              Syarat Kelayakan Refinance
+              Eligibility Requirements
             </h2>
             <p className="text-gray-700 mb-4">
-              Selain dokumen lengkap, pastikan anda juga memenuhi syarat
-              kelayakan asas:
+              Besides complete documents, ensure you meet the basic eligibility
+              requirements:
             </p>
-            <EligibilityCard lang="ms" />
+            <EligibilityCard lang="en" />
           </section>
 
           {/* FAQ */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Soalan Lazim
+              Frequently Asked Questions
             </h2>
 
             <div className="space-y-4">
@@ -550,29 +556,29 @@ export default function DokumenRefinanceRumah() {
           {/* Internal Links */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Panduan Berkaitan
+              Related Guides
             </h2>
             <div className="grid md:grid-cols-2 gap-4">
               <Link
-                href="/bank-terbaik-refinance-rumah"
+                href="/en/best-refinance-banks"
                 className="block p-4 bg-primary-50 rounded-lg hover:bg-primary-100 transition-colors"
               >
                 <h3 className="font-semibold text-primary-900">
-                  Bank Terbaik Untuk Refinance
+                  Best Banks for Refinancing
                 </h3>
                 <p className="text-sm text-primary-700">
-                  Bandingkan kadar dari 10+ bank utama
+                  Compare rates from 10+ Malaysian banks
                 </p>
               </Link>
               <Link
-                href="/berapa-tahun-boleh-refinance-rumah"
+                href="/en/when-to-refinance"
                 className="block p-4 bg-primary-50 rounded-lg hover:bg-primary-100 transition-colors"
               >
                 <h3 className="font-semibold text-primary-900">
-                  Bila Boleh Refinance?
+                  When to Refinance
                 </h3>
                 <p className="text-sm text-primary-700">
-                  Ketahui tempoh dan syarat refinancing
+                  Find the best timing for refinancing
                 </p>
               </Link>
             </div>
@@ -584,17 +590,17 @@ export default function DokumenRefinanceRumah() {
       <section className="py-16 bg-primary-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">
-            Perlukan Bantuan Dengan Dokumen?
+            Need Help With Your Documents?
           </h2>
           <p className="text-xl text-gray-300 mb-8">
-            Pakar kami akan membimbing anda menyediakan dokumen yang lengkap
-            untuk kelulusan pantas.
+            Our specialists will guide you through the document preparation
+            process for a faster approval.
           </p>
           <button
             onClick={() => setShowForm(true)}
             className="btn-primary inline-block text-lg px-8 py-4"
           >
-            Dapatkan Konsultasi Percuma
+            Get Free Consultation
           </button>
         </div>
       </section>
@@ -605,7 +611,7 @@ export default function DokumenRefinanceRumah() {
           <div className="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto">
             <div className="p-6">
               <div className="flex justify-between items-center mb-4">
-                <h3 className="text-xl font-bold">Dapatkan Bantuan</h3>
+                <h3 className="text-xl font-bold">Get Help</h3>
                 <button
                   onClick={() => setShowForm(false)}
                   className="text-gray-500 hover:text-gray-700"
@@ -625,7 +631,7 @@ export default function DokumenRefinanceRumah() {
                   </svg>
                 </button>
               </div>
-              <LeadForm variant="modal" source="dokumen-refinance" />
+              <LeadForm variant="modal" source="en-documents" lang="en" />
             </div>
           </div>
         </div>
@@ -657,9 +663,9 @@ export default function DokumenRefinanceRumah() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Article",
-            headline: `Dokumen Refinance Rumah Malaysia ${currentYear} - Senarai Lengkap`,
-            description: `Senarai lengkap dokumen yang diperlukan untuk refinance rumah di Malaysia. Checklist untuk pekerja bergaji dan bekerja sendiri ${currentYear}.`,
-            datePublished: "2025-12-12",
+            headline: `Documents Required for Home Loan Refinancing Malaysia ${currentYear}`,
+            description: `Complete checklist of documents needed for home loan refinancing in Malaysia. Requirements for salaried employees and self-employed ${currentYear}.`,
+            datePublished: "2026-01-12",
             dateModified: "2026-01-21",
             author: {
               "@type": "Organization",
@@ -675,7 +681,11 @@ export default function DokumenRefinanceRumah() {
       />
 
       <BackToTop />
-      <StickyMobileCTA onCtaClick={() => setShowForm(true)} />
+      <StickyMobileCTA
+        onCtaClick={() => setShowForm(true)}
+        text="Save RM500+/month"
+        buttonText="Get Free Quote"
+      />
     </>
   );
 }

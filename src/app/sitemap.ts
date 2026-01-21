@@ -15,6 +15,7 @@ export default function sitemap() {
       changeFrequency: 'weekly',
       priority: 0.9,
     },
+    // Bahasa Malaysia pages
     {
       url: `${baseUrl}/bank-terbaik-refinance-rumah`,
       lastModified,
@@ -41,6 +42,37 @@ export default function sitemap() {
     },
     {
       url: `${baseUrl}/berapa-tahun-boleh-refinance-rumah`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    // English pages
+    {
+      url: `${baseUrl}/en/best-refinance-banks`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/en/pros-cons-refinancing`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/en/refinance-calculation-examples`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/en/documents-required`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/en/when-to-refinance`,
       lastModified,
       changeFrequency: 'monthly',
       priority: 0.8,

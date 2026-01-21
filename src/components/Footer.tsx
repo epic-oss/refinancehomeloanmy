@@ -11,6 +11,13 @@ export default function Footer() {
       { name: "How Refinancing Works", href: "/#how-it-works" },
       { name: "FAQ", href: "/#faq" },
     ],
+    panduan: [
+      { name: "Bank Terbaik Refinance", href: "/bank-terbaik-refinance-rumah" },
+      { name: "Kelebihan & Keburukan", href: "/kelebihan-keburukan-refinance-rumah" },
+      { name: "Contoh Kiraan", href: "/contoh-kiraan-refinance-rumah" },
+      { name: "Dokumen Diperlukan", href: "/dokumen-refinance-rumah" },
+      { name: "Bila Boleh Refinance", href: "/berapa-tahun-boleh-refinance-rumah" },
+    ],
     company: [
       { name: "About Us", href: "#" },
       { name: "Contact", href: "#" },
@@ -22,7 +29,7 @@ export default function Footer() {
   return (
     <footer className="bg-gray-900 text-gray-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-2 md:grid-cols-3 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-4 gap-8">
           {/* About */}
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center space-x-2 mb-4">
@@ -45,6 +52,23 @@ export default function Footer() {
             <h3 className="text-white font-semibold mb-4">Resources</h3>
             <ul className="space-y-2">
               {footerLinks.resources.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    className="hover:text-white transition-colors text-sm"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
+          </div>
+
+          {/* Panduan */}
+          <div>
+            <h3 className="text-white font-semibold mb-4">Panduan</h3>
+            <ul className="space-y-2">
+              {footerLinks.panduan.map((link) => (
                 <li key={link.name}>
                   <Link
                     href={link.href}

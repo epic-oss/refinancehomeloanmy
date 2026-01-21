@@ -36,6 +36,17 @@ const guidesData = {
       { name: "最佳银行", href: "/cn/zuijia-refinance-yinhang", active: true },
     ],
   },
+  banks: {
+    label: "Banks",
+    items: [
+      { name: "Maybank", href: "/maybank-refinance-home-loan", active: true },
+      { name: "CIMB", href: "/cimb-refinance-home-loan", active: true },
+      { name: "Public Bank", href: "/public-bank-refinance-home-loan", active: true },
+      { name: "RHB", href: "/rhb-refinance-home-loan", active: true },
+      { name: "Hong Leong", href: "/hong-leong-refinance-home-loan", active: true },
+      { name: "AmBank", href: "/ambank-refinance-home-loan", active: true },
+    ],
+  },
 };
 
 export default function Header() {
@@ -88,6 +99,12 @@ export default function Header() {
             >
               Calculator
             </Link>
+            <Link
+              href="/cash-out-refinance-malaysia"
+              className="text-primary-600 hover:text-primary-800 font-semibold transition-colors"
+            >
+              Cash Out
+            </Link>
 
             {/* Guides Dropdown */}
             <div className="relative" ref={dropdownRef}>
@@ -115,10 +132,10 @@ export default function Header() {
               {/* Dropdown Menu */}
               {guidesOpen && (
                 <div
-                  className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[600px] bg-white rounded-xl shadow-xl border border-gray-200 p-6"
+                  className="absolute top-full left-1/2 -translate-x-1/2 mt-2 w-[750px] bg-white rounded-xl shadow-xl border border-gray-200 p-6"
                   onMouseLeave={() => setGuidesOpen(false)}
                 >
-                  <div className="grid grid-cols-3 gap-6">
+                  <div className="grid grid-cols-4 gap-6">
                     {/* Bahasa Malaysia */}
                     <div>
                       <h3 className="text-sm font-semibold text-gray-900 mb-3">
@@ -166,6 +183,26 @@ export default function Header() {
                       </h3>
                       <ul className="space-y-2">
                         {guidesData.zh.items.map((item) => (
+                          <li key={item.href}>
+                            <Link
+                              href={item.href}
+                              className="text-sm text-gray-600 hover:text-primary-600 hover:bg-primary-50 block py-1.5 px-2 rounded transition-colors"
+                              onClick={() => setGuidesOpen(false)}
+                            >
+                              {item.name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Banks */}
+                    <div>
+                      <h3 className="text-sm font-semibold text-gray-900 mb-3">
+                        {guidesData.banks.label}
+                      </h3>
+                      <ul className="space-y-2">
+                        {guidesData.banks.items.map((item) => (
                           <li key={item.href}>
                             <Link
                               href={item.href}
@@ -263,6 +300,13 @@ export default function Header() {
               >
                 Calculator
               </Link>
+              <Link
+                href="/cash-out-refinance-malaysia"
+                className="text-primary-600 hover:text-primary-800 font-semibold py-2"
+                onClick={() => setMobileMenuOpen(false)}
+              >
+                Cash Out
+              </Link>
 
               {/* Mobile Guides Accordion */}
               <div className="border-t border-b border-gray-100 py-2">
@@ -341,6 +385,29 @@ export default function Header() {
                       </h4>
                       <ul className="space-y-1 pl-2">
                         {guidesData.zh.items.map((item) => (
+                          <li key={item.href}>
+                            <Link
+                              href={item.href}
+                              className="text-sm text-gray-600 hover:text-primary-600 block py-1.5"
+                              onClick={() => {
+                                setMobileMenuOpen(false);
+                                setMobileGuidesOpen(false);
+                              }}
+                            >
+                              {item.name}
+                            </Link>
+                          </li>
+                        ))}
+                      </ul>
+                    </div>
+
+                    {/* Banks */}
+                    <div>
+                      <h4 className="text-sm font-semibold text-gray-800 mb-2">
+                        {guidesData.banks.label}
+                      </h4>
+                      <ul className="space-y-1 pl-2">
+                        {guidesData.banks.items.map((item) => (
                           <li key={item.href}>
                             <Link
                               href={item.href}

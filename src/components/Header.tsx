@@ -4,6 +4,17 @@ import Link from "next/link";
 import Image from "next/image";
 import { useState, useRef, useEffect } from "react";
 
+const debtConsolidationData = {
+  items: [
+    { name: "Debt Consolidation Guide", href: "/debt-consolidation-malaysia" },
+    { name: "Compare Options", href: "/debt-consolidation-options" },
+    { name: "Personal Loan Option", href: "/personal-loan-debt-consolidation" },
+    { name: "Find Lenders", href: "/debt-consolidation-lenders-malaysia" },
+    { name: "Calculator", href: "/debt-consolidation-calculator" },
+    { name: "Penyatuan Hutang (BM)", href: "/penyatuan-hutang-malaysia" },
+  ],
+};
+
 const guidesData = {
   ms: {
     label: "Bahasa Malaysia",
@@ -52,14 +63,20 @@ const guidesData = {
 export default function Header() {
   const [mobileMenuOpen, setMobileMenuOpen] = useState(false);
   const [guidesOpen, setGuidesOpen] = useState(false);
+  const [debtOpen, setDebtOpen] = useState(false);
   const [mobileGuidesOpen, setMobileGuidesOpen] = useState(false);
+  const [mobileDebtOpen, setMobileDebtOpen] = useState(false);
   const dropdownRef = useRef<HTMLDivElement>(null);
+  const debtDropdownRef = useRef<HTMLDivElement>(null);
 
   // Close dropdown when clicking outside
   useEffect(() => {
     function handleClickOutside(event: MouseEvent) {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target as Node)) {
         setGuidesOpen(false);
+      }
+      if (debtDropdownRef.current && !debtDropdownRef.current.contains(event.target as Node)) {
+        setDebtOpen(false);
       }
     }
     document.addEventListener("mousedown", handleClickOutside);
@@ -105,12 +122,52 @@ export default function Header() {
             >
               Cash Out
             </Link>
-            <Link
-              href="/debt-consolidation-malaysia"
-              className="text-green-600 hover:text-green-700 font-semibold transition-colors"
-            >
-              Debt Consolidation
-            </Link>
+
+            {/* Debt Consolidation Dropdown */}
+            <div className="relative" ref={debtDropdownRef}>
+              <button
+                onClick={() => setDebtOpen(!debtOpen)}
+                onMouseEnter={() => setDebtOpen(true)}
+                className="flex items-center gap-1 text-green-600 hover:text-green-700 font-semibold transition-colors"
+              >
+                Debt Consolidation
+                <svg
+                  className={`w-4 h-4 transition-transform ${debtOpen ? "rotate-180" : ""}`}
+                  fill="none"
+                  stroke="currentColor"
+                  viewBox="0 0 24 24"
+                >
+                  <path
+                    strokeLinecap="round"
+                    strokeLinejoin="round"
+                    strokeWidth={2}
+                    d="M19 9l-7 7-7-7"
+                  />
+                </svg>
+              </button>
+
+              {/* Debt Dropdown Menu */}
+              {debtOpen && (
+                <div
+                  className="absolute top-full left-0 mt-2 w-64 bg-white rounded-xl shadow-xl border border-gray-200 p-4"
+                  onMouseLeave={() => setDebtOpen(false)}
+                >
+                  <ul className="space-y-1">
+                    {debtConsolidationData.items.map((item) => (
+                      <li key={item.href}>
+                        <Link
+                          href={item.href}
+                          className="text-sm text-gray-600 hover:text-green-600 hover:bg-green-50 block py-2 px-3 rounded transition-colors"
+                          onClick={() => setDebtOpen(false)}
+                        >
+                          {item.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              )}
+            </div>
 
             {/* Guides Dropdown */}
             <div className="relative" ref={dropdownRef}>
@@ -313,13 +370,48 @@ export default function Header() {
               >
                 Cash Out
               </Link>
-              <Link
-                href="/debt-consolidation-malaysia"
-                className="text-green-600 hover:text-green-700 font-semibold py-2"
-                onClick={() => setMobileMenuOpen(false)}
-              >
-                Debt Consolidation
-              </Link>
+
+              {/* Mobile Debt Consolidation Accordion */}
+              <div className="border-t border-gray-100 py-2">
+                <button
+                  onClick={() => setMobileDebtOpen(!mobileDebtOpen)}
+                  className="flex items-center justify-between w-full text-green-600 hover:text-green-700 font-semibold py-2"
+                >
+                  <span>Debt Consolidation</span>
+                  <svg
+                    className={`w-4 h-4 transition-transform ${mobileDebtOpen ? "rotate-180" : ""}`}
+                    fill="none"
+                    stroke="currentColor"
+                    viewBox="0 0 24 24"
+                  >
+                    <path
+                      strokeLinecap="round"
+                      strokeLinejoin="round"
+                      strokeWidth={2}
+                      d="M19 9l-7 7-7-7"
+                    />
+                  </svg>
+                </button>
+
+                {mobileDebtOpen && (
+                  <ul className="pl-4 space-y-1 mt-2">
+                    {debtConsolidationData.items.map((item) => (
+                      <li key={item.href}>
+                        <Link
+                          href={item.href}
+                          className="text-sm text-gray-600 hover:text-green-600 block py-1.5"
+                          onClick={() => {
+                            setMobileMenuOpen(false);
+                            setMobileDebtOpen(false);
+                          }}
+                        >
+                          {item.name}
+                        </Link>
+                      </li>
+                    ))}
+                  </ul>
+                )}
+              </div>
 
               {/* Mobile Guides Accordion */}
               <div className="border-t border-b border-gray-100 py-2">

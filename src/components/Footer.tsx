@@ -6,12 +6,18 @@ export default function Footer() {
   const currentYear = new Date().getFullYear();
 
   const footerLinks = {
+    debtConsolidation: [
+      { name: "Debt Consolidation Guide", href: "/debt-consolidation-malaysia" },
+      { name: "Compare Options", href: "/debt-consolidation-options" },
+      { name: "Personal Loan Option", href: "/personal-loan-debt-consolidation" },
+      { name: "Find Lenders", href: "/debt-consolidation-lenders-malaysia" },
+      { name: "Penyatuan Hutang (BM)", href: "/penyatuan-hutang-malaysia" },
+      { name: "Calculator", href: "/debt-consolidation-calculator" },
+    ],
     resources: [
       { name: "Cash Out Refinance", href: "/cash-out-refinance-malaysia" },
-      { name: "Debt Consolidation", href: "/debt-consolidation-malaysia" },
       { name: "Refinance Calculator", href: "/calculator" },
       { name: "Cash Out Calculator", href: "/cash-out-calculator" },
-      { name: "Debt Consolidation Calculator", href: "/debt-consolidation-calculator" },
     ],
     banks: [
       { name: "Maybank Refinance", href: "/maybank-refinance-home-loan" },
@@ -40,7 +46,7 @@ export default function Footer() {
   return (
     <footer className="bg-gray-900 text-gray-300">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-2 md:grid-cols-5 gap-8">
+        <div className="grid grid-cols-2 md:grid-cols-6 gap-8">
           {/* About */}
           <div className="col-span-2 md:col-span-1">
             <div className="flex items-center space-x-2 mb-4">
@@ -56,6 +62,23 @@ export default function Footer() {
             <p className="text-sm text-gray-400">
               Helping Malaysians save money on their home loans through smart refinancing solutions.
             </p>
+          </div>
+
+          {/* Debt Consolidation */}
+          <div>
+            <h3 className="text-white font-semibold mb-4">Debt Consolidation</h3>
+            <ul className="space-y-2">
+              {footerLinks.debtConsolidation.map((link) => (
+                <li key={link.name}>
+                  <Link
+                    href={link.href}
+                    className="hover:text-white transition-colors text-sm"
+                  >
+                    {link.name}
+                  </Link>
+                </li>
+              ))}
+            </ul>
           </div>
 
           {/* Resources */}

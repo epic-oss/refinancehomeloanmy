@@ -134,6 +134,30 @@ export default function sitemap() {
       changeFrequency: 'weekly',
       priority: 0.9,
     },
+    {
+      url: `${baseUrl}/debt-consolidation-options`,
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/personal-loan-debt-consolidation`,
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/debt-consolidation-lenders-malaysia`,
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.85,
+    },
+    {
+      url: `${baseUrl}/penyatuan-hutang-malaysia`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
     // Bank-specific pages
     {
       url: `${baseUrl}/maybank-refinance-home-loan`,

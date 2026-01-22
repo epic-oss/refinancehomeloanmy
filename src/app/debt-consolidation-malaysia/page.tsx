@@ -286,6 +286,16 @@ export default function DebtConsolidationPage() {
                 to get new credit for years. Only consider this if you truly cannot manage your debts otherwise.
               </p>
             </div>
+
+            <div className="mt-4 text-center">
+              <Link
+                href="/debt-consolidation-options"
+                className="inline-flex items-center gap-2 text-green-600 hover:text-green-700 font-semibold"
+              >
+                Compare all 5 debt consolidation options in detail
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
           </section>
 
           {/* Why Cash-Out is Best */}
@@ -568,6 +578,13 @@ export default function DebtConsolidationPage() {
               Related Guides
             </h2>
             <div className="grid md:grid-cols-2 gap-4">
+              <Link
+                href="/debt-consolidation-options"
+                className="block p-4 bg-emerald-50 rounded-lg hover:bg-emerald-100 transition-colors"
+              >
+                <h3 className="font-semibold text-emerald-900">Compare All Debt Consolidation Options</h3>
+                <p className="text-sm text-emerald-700">Cash-out vs personal loan vs balance transfer vs AKPK</p>
+              </Link>
               <Link
                 href="/cash-out-refinance-malaysia"
                 className="block p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors"

@@ -36,11 +36,12 @@ export default function Footer() {
       { name: "When to Refinance", href: "/en/when-to-refinance" },
     ],
     panduan: [
+      { name: "Cara Refinance Rumah", href: "/cara-refinance-rumah" },
+      { name: "Cara Cash Out Rumah", href: "/cara-cash-out-rumah" },
+      { name: "Penyatuan Hutang", href: "/penyatuan-hutang-malaysia" },
       { name: "Bank Terbaik Refinance", href: "/bank-terbaik-refinance-rumah" },
       { name: "Kelebihan & Keburukan", href: "/kelebihan-keburukan-refinance-rumah" },
-      { name: "Contoh Kiraan", href: "/contoh-kiraan-refinance-rumah" },
       { name: "Dokumen Diperlukan", href: "/dokumen-refinance-rumah" },
-      { name: "Bila Boleh Refinance", href: "/berapa-tahun-boleh-refinance-rumah" },
     ],
   };
 

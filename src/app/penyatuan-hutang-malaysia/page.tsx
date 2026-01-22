@@ -483,25 +483,25 @@ export default function PenyatuanHutangPage() {
             </h2>
             <div className="grid md:grid-cols-2 gap-4">
               <Link
-                href="/debt-consolidation-malaysia"
+                href="/cara-cash-out-rumah"
                 className="block p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors"
               >
-                <h3 className="font-semibold text-green-900">Debt Consolidation Guide (English)</h3>
-                <p className="text-sm text-green-700">Panduan lengkap dalam Bahasa Inggeris</p>
+                <h3 className="font-semibold text-green-900">Cara Cash Out Rumah</h3>
+                <p className="text-sm text-green-700">Panduan lengkap dapatkan tunai dari ekuiti</p>
               </Link>
               <Link
-                href="/cash-out-refinance-malaysia"
+                href="/cara-refinance-rumah"
                 className="block p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
               >
-                <h3 className="font-semibold text-blue-900">Cash Out Refinance</h3>
-                <p className="text-sm text-blue-700">Cara akses ekuiti rumah anda</p>
+                <h3 className="font-semibold text-blue-900">Cara Refinance Rumah</h3>
+                <p className="text-sm text-blue-700">Panduan lengkap A-Z refinance rumah</p>
               </Link>
               <Link
-                href="/kelebihan-keburukan-refinance-rumah"
+                href="/debt-consolidation-malaysia"
                 className="block p-4 bg-purple-50 rounded-lg hover:bg-purple-100 transition-colors"
               >
-                <h3 className="font-semibold text-purple-900">Kelebihan & Keburukan Refinance</h3>
-                <p className="text-sm text-purple-700">Apa yang perlu anda tahu</p>
+                <h3 className="font-semibold text-purple-900">Debt Consolidation Guide (English)</h3>
+                <p className="text-sm text-purple-700">Panduan lengkap dalam Bahasa Inggeris</p>
               </Link>
               <Link
                 href="/bank-terbaik-refinance-rumah"

@@ -28,11 +28,12 @@ const guidesData = {
   ms: {
     label: "Bahasa Malaysia",
     items: [
+      { name: "Cara Refinance Rumah", href: "/cara-refinance-rumah", active: true },
+      { name: "Cara Cash Out Rumah", href: "/cara-cash-out-rumah", active: true },
+      { name: "Penyatuan Hutang", href: "/penyatuan-hutang-malaysia", active: true },
       { name: "Bank Terbaik Refinance", href: "/bank-terbaik-refinance-rumah", active: true },
       { name: "Kelebihan & Keburukan", href: "/kelebihan-keburukan-refinance-rumah", active: true },
-      { name: "Contoh Kiraan", href: "/contoh-kiraan-refinance-rumah", active: true },
       { name: "Dokumen Diperlukan", href: "/dokumen-refinance-rumah", active: true },
-      { name: "Bila Boleh Refinance", href: "/berapa-tahun-boleh-refinance-rumah", active: true },
     ],
   },
   en: {

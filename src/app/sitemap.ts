@@ -41,6 +41,18 @@ export default function sitemap() {
     },
     // Bahasa Malaysia pages
     {
+      url: `${baseUrl}/cara-refinance-rumah`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
+      url: `${baseUrl}/cara-cash-out-rumah`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
+    {
       url: `${baseUrl}/bank-terbaik-refinance-rumah`,
       lastModified,
       changeFrequency: 'monthly',

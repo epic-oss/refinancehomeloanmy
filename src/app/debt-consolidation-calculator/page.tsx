@@ -4,7 +4,7 @@ import { useState } from "react";
 import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/constants";
 import DebtConsolidationCalculator, { DebtConsolidationCalculatorValues } from "@/components/DebtConsolidationCalculator";
-import DebtConsolidationLeadForm from "@/components/DebtConsolidationLeadForm";
+import DebtConsolidationLeadForm, { DebtConsolidationLeadFormInitialValues } from "@/components/DebtConsolidationLeadForm";
 import BackToTop from "@/components/BackToTop";
 import { StickyMobileCTA } from "@/components/StickyMobileCTA";
 import {
@@ -76,15 +76,22 @@ const debtTypes = [
 export default function DebtConsolidationCalculatorPage() {
   const [showForm, setShowForm] = useState(false);
   const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
-  const [formInitialDebt, setFormInitialDebt] = useState<string | undefined>(undefined);
+  const [formInitialValues, setFormInitialValues] = useState<DebtConsolidationLeadFormInitialValues | undefined>(undefined);
 
   const handleCalculatorQuote = (values: DebtConsolidationCalculatorValues) => {
-    setFormInitialDebt(values.totalDebt);
+    setFormInitialValues({
+      totalDebt: values.totalDebt,
+      currentRate: values.currentRate,
+      monthlyPayment: values.monthlyPayment,
+      monthlySavings: values.monthlySavings,
+      yearlySavings: values.yearlySavings,
+      tenYearSavings: values.tenYearSavings,
+    });
     setShowForm(true);
   };
 
   const handleRegularQuote = () => {
-    setFormInitialDebt(undefined);
+    setFormInitialValues(undefined);
     setShowForm(true);
   };
 
@@ -336,7 +343,7 @@ export default function DebtConsolidationCalculatorPage() {
               <DebtConsolidationLeadForm
                 variant="modal"
                 source="debt-consolidation-calculator"
-                initialValues={formInitialDebt ? { totalDebt: formInitialDebt } : undefined}
+                initialValues={formInitialValues}
               />
             </div>
           </div>

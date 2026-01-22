@@ -5,6 +5,11 @@ import { formatNumberWithCommas, stripCommas } from "@/lib/utils";
 
 export interface DebtConsolidationLeadFormInitialValues {
   totalDebt?: string;
+  currentRate?: number;
+  monthlyPayment?: string;
+  monthlySavings?: number;
+  yearlySavings?: number;
+  tenYearSavings?: number;
 }
 
 interface DebtConsolidationLeadFormProps {
@@ -53,6 +58,16 @@ export default function DebtConsolidationLeadForm({
     CurrentBank: "",
     DebtTypes: [] as string[],
   });
+
+  // Store calculator values for webhook
+  const [calculatorValues] = useState({
+    currentRate: initialValues?.currentRate,
+    monthlyPayment: initialValues?.monthlyPayment,
+    monthlySavings: initialValues?.monthlySavings,
+    yearlySavings: initialValues?.yearlySavings,
+    tenYearSavings: initialValues?.tenYearSavings,
+  });
+
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState("");
@@ -93,6 +108,12 @@ export default function DebtConsolidationLeadForm({
       // Calculate potential cash out (90% LTV - outstanding)
       const maxCashOut = Math.max(0, propertyValue * 0.9 - outstanding);
 
+      // Convert debt type values to labels for readable output
+      const selectedDebtLabels = formData.DebtTypes.map(value => {
+        const debtType = debtTypes.find(d => d.value === value);
+        return debtType ? debtType.label : value;
+      });
+
       const payload = {
         name: formData.name,
         phone: formData.WhatsApp.replace(/\s|-/g, ""),
@@ -104,7 +125,12 @@ export default function DebtConsolidationLeadForm({
         current_bank: formData.CurrentBank,
         total_debt: stripCommas(formData.TotalDebt),
         max_cash_out: maxCashOut.toString(),
-        purpose: formData.DebtTypes.join(", ") || "",
+        purpose: "Debt Consolidation",
+        debt_types: selectedDebtLabels.join(", ") || "",
+        // Calculator values (if from calculator)
+        interest_rate: calculatorValues.currentRate?.toString() || "",
+        monthly_savings: calculatorValues.monthlySavings?.toString() || "",
+        yearly_savings: calculatorValues.yearlySavings?.toString() || "",
       };
 
       const response = await fetch(

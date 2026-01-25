@@ -15,6 +15,7 @@ export default function Footer() {
       { name: "Calculator", href: "/debt-consolidation-calculator" },
     ],
     resources: [
+      { name: "All Guides", href: "/guides" },
       { name: "Cash Out Refinance", href: "/cash-out-refinance-malaysia" },
       { name: "Refinance Calculator", href: "/calculator" },
       { name: "Cash Out Calculator", href: "/cash-out-calculator" },

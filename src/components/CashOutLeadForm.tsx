@@ -108,6 +108,8 @@ export default function CashOutLeadForm({
         loan_amount: cashOutNeeded ? stripCommas(formData.CashOutNeeded) : "",
       };
 
+      console.log("Submitting payload:", JSON.stringify(payload, null, 2));
+
       const response = await fetch(
         "https://hook.us2.make.com/nfivujhdjjwc7kd97ian2e9cus4acm80",
         {
@@ -119,12 +121,17 @@ export default function CashOutLeadForm({
         }
       );
 
+      console.log("Response status:", response.status);
+
       if (response.ok) {
         setIsSubmitted(true);
       } else {
+        const errorText = await response.text();
+        console.error("Webhook error:", errorText);
         throw new Error("Failed to submit");
       }
-    } catch {
+    } catch (err) {
+      console.error("Submission error:", err);
       // For now, show success even if webhook fails (remove this in production)
       setIsSubmitted(true);
     } finally {

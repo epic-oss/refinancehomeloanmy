@@ -1,7 +1,7 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import LeadForm from "@/components/LeadForm";
+import LeadForm, { LeadFormCalculatorValues } from "@/components/LeadForm";
 import FAQ from "@/components/FAQ";
 import BackToTop from "@/components/BackToTop";
 import { StickyMobileCTA } from "@/components/StickyMobileCTA";
@@ -64,10 +64,31 @@ export default function CalculatorPage() {
     breakEvenMonths: number;
   } | null>(null);
   const [showForm, setShowForm] = useState(false);
+  const [calculatorValues, setCalculatorValues] = useState<LeadFormCalculatorValues | undefined>(undefined);
 
   useEffect(() => {
     document.title = pageTitle;
   }, []);
+
+  const handleOpenForm = () => {
+    if (result) {
+      setCalculatorValues({
+        outstandingLoanAmount: currentLoanAmount,
+        currentInterestRate: currentRate,
+        currentMonthlyPayment: result.currentMonthly,
+        remainingTenureYears: remainingYears,
+        newInterestRate: newRate,
+        newMonthlyPayment: result.newMonthly,
+        monthlySavings: result.monthlySavings,
+        yearlySavings: result.yearlySavings,
+        totalInterestSavings: result.totalSavings,
+        breakEvenMonths: result.breakEvenMonths,
+        refinancingCostsTotal: 5000,
+        isRecommended: result.monthlySavings > 100,
+      });
+    }
+    setShowForm(true);
+  };
 
   const calculateSavings = () => {
     const principal = parseFloat(stripCommas(currentLoanAmount));
@@ -248,10 +269,13 @@ export default function CalculatorPage() {
                 </div>
 
                 <button
-                  onClick={() => setShowForm(true)}
-                  className="btn-primary w-full py-4 text-lg"
+                  onClick={handleOpenForm}
+                  className="btn-primary w-full py-4 text-lg flex items-center justify-center gap-2"
                 >
-                  Get Your Personalized Rate
+                  Get Free Consultation
+                  <svg className="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M14 5l7 7m0 0l-7 7m7-7H3" />
+                  </svg>
                 </button>
               </div>
             )}
@@ -275,7 +299,7 @@ export default function CalculatorPage() {
                   </svg>
                 </button>
               </div>
-              <LeadForm variant="modal" source="calculator" />
+              <LeadForm variant="modal" source="calculator" calculatorValues={calculatorValues} />
             </div>
           </div>
         </div>

@@ -32,6 +32,7 @@ interface LeadFormProps {
   source?: string;
   lang?: "ms" | "en" | "zh";
   calculatorValues?: LeadFormCalculatorValues;
+  showAllFields?: boolean; // When true, shows Outstanding Loan and makes Current Bank required
 }
 
 const content = {
@@ -55,8 +56,12 @@ const content = {
     bankLabel: "Bank Semasa",
     bankLabelOptional: "(pilihan)",
     bankPlaceholder: "Pilih bank semasa anda",
+    outstandingLabel: "Baki Pinjaman (RM)",
+    outstandingPlaceholder: "cth., 350,000",
     validationName: "Sila masukkan nama anda",
     validationPhone: "Sila masukkan nombor telefon Malaysia yang sah",
+    validationOutstanding: "Sila masukkan baki pinjaman anda",
+    validationBank: "Sila pilih bank semasa anda",
   },
   en: {
     formTitle: "Get Your Free Refinancing Quote",
@@ -78,8 +83,12 @@ const content = {
     bankLabel: "Current Bank",
     bankLabelOptional: "(optional)",
     bankPlaceholder: "Select your current bank",
+    outstandingLabel: "Outstanding Loan Amount (RM)",
+    outstandingPlaceholder: "e.g., 350,000",
     validationName: "Please enter your name",
     validationPhone: "Please enter a valid Malaysian phone number",
+    validationOutstanding: "Please enter your outstanding loan amount",
+    validationBank: "Please select your current bank",
   },
   zh: {
     formTitle: "获取免费再融资报价",
@@ -101,8 +110,12 @@ const content = {
     bankLabel: "当前银行",
     bankLabelOptional: "(可选)",
     bankPlaceholder: "选择您当前的银行",
+    outstandingLabel: "贷款余额 (RM)",
+    outstandingPlaceholder: "例如，350,000",
     validationName: "请输入您的姓名",
     validationPhone: "请输入有效的马来西亚电话号码",
+    validationOutstanding: "请输入您的贷款余额",
+    validationBank: "请选择您当前的银行",
   },
 };
 
@@ -129,11 +142,13 @@ export default function LeadForm({
   source = "homepage",
   lang = "en",
   calculatorValues,
+  showAllFields = false,
 }: LeadFormProps) {
   const t = content[lang];
   const [formData, setFormData] = useState({
     name: "",
     WhatsApp: "",
+    OutstandingLoan: "",
     CurrentBank: "",
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
@@ -162,7 +177,26 @@ export default function LeadForm({
       return;
     }
 
+    // Additional validation when showAllFields is true
+    if (showAllFields) {
+      if (!formData.OutstandingLoan) {
+        setError(t.validationOutstanding);
+        setIsSubmitting(false);
+        return;
+      }
+      if (!formData.CurrentBank) {
+        setError(t.validationBank);
+        setIsSubmitting(false);
+        return;
+      }
+    }
+
     try {
+      // Use user-entered outstanding loan if provided, otherwise use calculator values
+      const outstandingLoanValue = formData.OutstandingLoan
+        ? stripCommas(formData.OutstandingLoan)
+        : (calculatorValues?.outstandingLoanAmount ? stripCommas(calculatorValues.outstandingLoanAmount) : "");
+
       const payload = {
         // User-provided fields
         name: formData.name,
@@ -174,8 +208,8 @@ export default function LeadForm({
         source_site: "RefinanceHomeLoanMY",
         source_url: typeof window !== "undefined" ? window.location.href : "",
 
-        // Calculator values (hidden fields)
-        outstanding_loan_amount: calculatorValues?.outstandingLoanAmount ? stripCommas(calculatorValues.outstandingLoanAmount) : "",
+        // Outstanding loan (from form or calculator)
+        outstanding_loan_amount: outstandingLoanValue,
         current_interest_rate: calculatorValues?.currentInterestRate || "",
         current_monthly_payment: calculatorValues?.currentMonthlyPayment?.toString() || "",
         remaining_tenure_years: calculatorValues?.remainingTenureYears || "",
@@ -198,6 +232,14 @@ export default function LeadForm({
       };
 
       console.log("Submitting payload:", JSON.stringify(payload, null, 2));
+
+      // Final validation to prevent empty webhook submissions
+      if (!payload.name?.trim() || !payload.phone?.trim()) {
+        console.error("Blocked empty submission from:", window.location.href, payload);
+        setError("Please fill in all required fields");
+        setIsSubmitting(false);
+        return;
+      }
 
       const response = await fetch(
         "https://hook.us2.make.com/nfivujhdjjwc7kd97ian2e9cus4acm80",
@@ -331,10 +373,37 @@ export default function LeadForm({
           />
         </div>
 
-        {/* Current Bank - Optional */}
+        {/* Outstanding Loan Amount - Only shown when showAllFields is true */}
+        {showAllFields && (
+          <div>
+            <label htmlFor="outstanding_loan" className="block text-sm font-medium text-gray-700 mb-1">
+              {t.outstandingLabel} <span className="text-red-500">*</span>
+            </label>
+            <input
+              type="text"
+              id="outstanding_loan"
+              placeholder={t.outstandingPlaceholder}
+              className={inputClasses}
+              value={formData.OutstandingLoan}
+              onChange={(e) => {
+                // Format with commas as user types
+                const value = e.target.value.replace(/[^\d]/g, "");
+                const formatted = value ? parseInt(value).toLocaleString() : "";
+                setFormData({ ...formData, OutstandingLoan: formatted });
+              }}
+            />
+          </div>
+        )}
+
+        {/* Current Bank - Optional unless showAllFields is true */}
         <div>
           <label htmlFor="current_bank" className="block text-sm font-medium text-gray-700 mb-1">
-            {t.bankLabel} <span className="text-gray-400 text-xs">{t.bankLabelOptional}</span>
+            {t.bankLabel}{" "}
+            {showAllFields ? (
+              <span className="text-red-500">*</span>
+            ) : (
+              <span className="text-gray-400 text-xs">{t.bankLabelOptional}</span>
+            )}
           </label>
           <select
             id="current_bank"

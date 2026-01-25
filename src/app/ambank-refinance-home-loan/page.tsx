@@ -21,7 +21,7 @@ const competitors = allBanks.filter(b =>
 
 const faqs = [
   {
-    question: "What is AmBank's refinance rate in 2025?",
+    question: "What is AmBank's refinance rate in 2026?",
     answer: `AmBank's refinance rates start from ${bank.rateFrom} p.a. for qualified applicants. Rates vary based on credit profile, loan amount, and property type. Their Base Rate is currently ${bank.rateBLR}.`,
   },
   {
@@ -65,7 +65,7 @@ export default function AmBankRefinancePage() {
             )}
           </div>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            AmBank Refinance Home Loan {currentYear} - Rates, Review & Calculator
+            AmBank Refinance Home Loan Malaysia {currentYear}
           </h1>
           <p className="text-lg text-orange-100 mb-2">
             Complete guide to AmBank home loan refinancing with current rates, honest review, and comparison with other banks.

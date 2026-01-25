@@ -124,7 +124,7 @@ export default function DebtConsolidationOptionsPage() {
             <span className="text-sm">Compare All Options</span>
           </div>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            Debt Consolidation Options Malaysia {currentYear} - Compare All Your Choices
+            Debt Consolidation Options in Malaysia {currentYear}
           </h1>
           <p className="text-lg text-green-100 mb-6">
             Struggling with multiple debts? Here are all your options to consolidate and simplify.

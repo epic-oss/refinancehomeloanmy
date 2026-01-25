@@ -27,12 +27,12 @@ const faqs = [
   {
     question: "How much can I save by refinancing my home loan?",
     answer:
-      "Savings depend on your current rate vs new rate, loan amount, and remaining tenure. Typically, with a 0.5-1% rate reduction on a RM400,000 loan, you can save RM150-400 monthly, translating to RM45,000-120,000 over a 25-year tenure. Use our calculator to see your exact potential savings.",
+      "Savings depend on your current rate vs new rate, loan amount, and remaining tenure. Reducing your rate by 0.5% on a RM500,000 loan can save approximately RM200-250 per month, or RM60,000+ over the remaining loan tenure. Use our calculator to see your exact potential savings.",
   },
   {
     question: "What is the minimum loan amount for refinancing?",
     answer:
-      "Most banks require a minimum loan amount of RM100,000 for refinancing. Some banks may have higher minimums of RM150,000-200,000 for preferential rates. The loan amount also affects your eligibility for promotional rates.",
+      "Most banks require a minimum loan amount of RM100,000-150,000 for refinancing to be worthwhile after considering processing costs. Some banks may have higher minimums of RM150,000-200,000 for preferential rates.",
   },
   {
     question: "How long does the refinancing process take?",
@@ -42,7 +42,7 @@ const faqs = [
   {
     question: "Can I refinance with the same bank?",
     answer:
-      "Yes, you can refinance with your existing bank. This is called internal refinancing or loan restructuring. While it may involve less paperwork, you might get better rates from competing banks. Always compare offers from multiple banks before deciding.",
+      "Yes, you can refinance with your existing bank. This is called internal refinancing or loan restructuring. While it may involve less paperwork, you might get better rates from competing banks. In fact, switching banks often gets you better rates as they compete for your business.",
   },
   {
     question: "What is the lock-in period for refinancing?",
@@ -53,6 +53,31 @@ const faqs = [
     question: "Is refinancing worth it in 2026?",
     answer:
       "Refinancing is worth it if: (1) your current rate is 0.5% or more higher than available rates, (2) you have more than 10 years remaining on your loan, (3) your lock-in period has ended, and (4) you have a good credit score. Calculate the break-even point by dividing refinancing costs by monthly savings.",
+  },
+  {
+    question: "Which bank is easiest to get refinancing approved?",
+    answer:
+      "CIMB and Hong Leong are generally more flexible with approval criteria, especially for self-employed individuals or those with higher DSR. However, approval depends on your specific financial profile. Hong Leong accepts DSR up to 75% while most banks cap at 65-70%.",
+  },
+  {
+    question: "Can I refinance if I have less than 5 years on my current loan?",
+    answer:
+      "Yes, but it may not be cost-effective due to lock-in penalties and legal fees. Use our Refinance Calculator to check if savings outweigh costs. Generally, refinancing is more beneficial when you have 10+ years remaining on your loan.",
+  },
+  {
+    question: "Do I need to use the same bank for refinancing?",
+    answer:
+      "No, you can refinance with any bank. In fact, switching banks often gets you better rates as they compete for your business with attractive promotional offers and cashback incentives.",
+  },
+  {
+    question: "What documents do I need for refinancing?",
+    answer:
+      "You'll need IC, salary slips (3 months), bank statements (6 months), EPF statement, EA/BE form, current loan statement, and property documents (S&P agreement, title deed). Self-employed applicants need business registration and 2 years of tax returns.",
+  },
+  {
+    question: "Can I get cash out when refinancing?",
+    answer:
+      "Yes, most banks offer cash-out refinancing where you can withdraw up to 80-90% of your property's current market value minus your existing loan. This is useful for renovations, investments, or debt consolidation. Maybank is particularly flexible with cash-out policies.",
   },
 ];
 
@@ -105,6 +130,7 @@ const bankHighlights = [
   {
     rank: 1,
     name: "Maybank",
+    slug: "maybank",
     rate: topBanks[0]?.rateFrom || "3.65%",
     pros: [
       "Lowest base rate in the market",
@@ -123,6 +149,7 @@ const bankHighlights = [
   {
     rank: 2,
     name: "Public Bank",
+    slug: "public-bank",
     rate: topBanks[1]?.rateFrom || "3.70%",
     pros: [
       "Competitive rates for all property types",
@@ -141,6 +168,7 @@ const bankHighlights = [
   {
     rank: 3,
     name: "CIMB",
+    slug: "cimb",
     rate: topBanks[2]?.rateFrom || "3.75%",
     pros: [
       "Quick online application process",
@@ -156,6 +184,60 @@ const bankHighlights = [
     ],
     bestFor: "Tech-savvy borrowers who prefer digital banking",
   },
+  {
+    rank: 4,
+    name: "Hong Leong",
+    slug: "hong-leong",
+    rate: "3.98%",
+    pros: [
+      "Higher DSR ceiling than most banks (up to 75%)",
+      "Competitive rates for existing customers",
+      "Good flexi-loan options with redraw facility",
+      "Flexible for borrowers with higher debt commitments",
+    ],
+    cons: [
+      "Longer lock-in period (3 years)",
+      "Stricter property valuation requirements",
+      "Slower processing than competitors",
+    ],
+    bestFor: "Borrowers with higher DSR who need flexibility",
+  },
+  {
+    rank: 5,
+    name: "RHB",
+    slug: "rhb",
+    rate: "3.95%",
+    pros: [
+      "Faster processing time (2-3 weeks average)",
+      "Competitive cashback promotions",
+      "Good for salaried employees",
+      "My1 Home Loan offers payment flexibility",
+    ],
+    cons: [
+      "Less flexible for self-employed",
+      "Standard DSR limits (up to 70%)",
+      "Fewer flexi options than competitors",
+    ],
+    bestFor: "Those who need fast approval and processing",
+  },
+  {
+    rank: 6,
+    name: "AmBank",
+    slug: "ambank",
+    rate: "3.95%",
+    pros: [
+      "Frequent promotional rates and cashback offers",
+      "Accepts wider income sources",
+      "Good for those seeking upfront rebates",
+      "HomeLink product with flexible features",
+    ],
+    cons: [
+      "Lower maximum margin (up to 85%)",
+      "Variable promotion availability",
+      "Stricter property requirements",
+    ],
+    bestFor: "Those seeking promotional rates and cashback offers",
+  },
 ];
 
 export default function BestRefinanceBanks() {
@@ -168,11 +250,11 @@ export default function BestRefinanceBanks() {
       <section className="bg-gradient-to-br from-primary-800 to-primary-900 text-white py-12 md:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            Best Banks for Home Loan Refinancing Malaysia {currentYear}
+            6 Best Banks for Refinancing Home Loan Malaysia {currentYear}
           </h1>
           <p className="text-lg text-gray-300">
-            Compare refinancing rates from 10+ Malaysian banks and find the best
-            deal to save RM500+/month on your home loan.
+            Compare the 6 best banks for home loan refinancing in Malaysia.
+            Find the best rates, pros, cons & which bank is right for you.
           </p>
           <LastUpdated lang="en" variant="hero" />
           <button
@@ -355,14 +437,14 @@ export default function BestRefinanceBanks() {
             </div>
           </section>
 
-          {/* Top 3 Banks */}
+          {/* Top 6 Banks */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Top 3 Banks for Refinancing {currentYear}
+              Top 6 Banks for Refinancing {currentYear}
             </h2>
             <p className="text-gray-700 mb-6">
               Based on our analysis of rates, terms, and customer feedback, here
-              are the top 3 banks for home loan refinancing this year:
+              are the top 6 banks for home loan refinancing this year:
             </p>
 
             <div className="space-y-6">
@@ -441,17 +523,149 @@ export default function BestRefinanceBanks() {
                         </ul>
                       </div>
                     </div>
-                    <div className="mt-4 pt-4 border-t border-gray-200">
+                    <div className="mt-4 pt-4 border-t border-gray-200 flex items-center justify-between">
                       <p className="text-sm">
                         <span className="font-semibold text-primary-600">
                           Best for:
                         </span>{" "}
                         <span className="text-gray-600">{bank.bestFor}</span>
                       </p>
+                      <Link
+                        href={`/${bank.slug}-refinance-home-loan`}
+                        className="text-sm text-primary-600 hover:underline font-medium flex items-center gap-1"
+                      >
+                        Compare {bank.name} rates
+                        <ArrowRight className="w-4 h-4" />
+                      </Link>
                     </div>
                   </div>
                 </div>
               ))}
+            </div>
+          </section>
+
+          {/* How We Ranked Section */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              How We Ranked These Banks
+            </h2>
+            <p className="text-gray-700 mb-6">
+              Our ranking methodology considers 5 key factors to give you an objective comparison:
+            </p>
+            <div className="space-y-4">
+              <div className="bg-gray-50 rounded-lg p-4">
+                <div className="flex items-start gap-3">
+                  <span className="bg-primary-600 text-white text-sm font-bold px-2 py-1 rounded">30%</span>
+                  <div>
+                    <h3 className="font-semibold text-gray-900">Interest Rates</h3>
+                    <p className="text-sm text-gray-600">Base rate + spread, comparing effective rates across similar loan amounts and tenures.</p>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-gray-50 rounded-lg p-4">
+                <div className="flex items-start gap-3">
+                  <span className="bg-primary-600 text-white text-sm font-bold px-2 py-1 rounded">25%</span>
+                  <div>
+                    <h3 className="font-semibold text-gray-900">Approval Flexibility</h3>
+                    <p className="text-sm text-gray-600"><Link href="/dsr-calculator" className="text-primary-600 hover:underline">DSR</Link> limits, income requirements, acceptance of various employment types, and track record with refinancing applications.</p>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-gray-50 rounded-lg p-4">
+                <div className="flex items-start gap-3">
+                  <span className="bg-primary-600 text-white text-sm font-bold px-2 py-1 rounded">20%</span>
+                  <div>
+                    <h3 className="font-semibold text-gray-900">Loan Features</h3>
+                    <p className="text-sm text-gray-600">Lock-in period, penalty structures, flexi-loan options, and additional features like redraw facilities.</p>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-gray-50 rounded-lg p-4">
+                <div className="flex items-start gap-3">
+                  <span className="bg-primary-600 text-white text-sm font-bold px-2 py-1 rounded">15%</span>
+                  <div>
+                    <h3 className="font-semibold text-gray-900">Processing Speed</h3>
+                    <p className="text-sm text-gray-600">Average time from application to disbursement based on customer feedback and industry data.</p>
+                  </div>
+                </div>
+              </div>
+              <div className="bg-gray-50 rounded-lg p-4">
+                <div className="flex items-start gap-3">
+                  <span className="bg-primary-600 text-white text-sm font-bold px-2 py-1 rounded">10%</span>
+                  <div>
+                    <h3 className="font-semibold text-gray-900">Customer Experience</h3>
+                    <p className="text-sm text-gray-600">Ease of application, <Link href="/en/documents-required" className="text-primary-600 hover:underline">documentation requirements</Link>, and post-approval support.</p>
+                  </div>
+                </div>
+              </div>
+            </div>
+            <p className="text-sm text-gray-500 mt-4 italic">
+              *Last updated: January 2026. Rates and policies may change without notice.
+            </p>
+          </section>
+
+          {/* Best Bank By Situation */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              Best Bank for Your Situation
+            </h2>
+            <p className="text-gray-700 mb-6">
+              Different banks excel in different areas. Use this quick reference to find the best bank for your specific needs:
+            </p>
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse bg-white rounded-lg overflow-hidden shadow-sm">
+                <thead>
+                  <tr className="bg-primary-600 text-white">
+                    <th className="text-left p-4 font-semibold">Your Situation</th>
+                    <th className="text-left p-4 font-semibold">Best Bank</th>
+                    <th className="text-left p-4 font-semibold">Why</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b hover:bg-gray-50">
+                    <td className="p-4 font-medium">Lowest interest rate</td>
+                    <td className="p-4">
+                      <Link href="/public-bank-refinance-home-loan" className="text-primary-600 hover:underline font-medium">Public Bank</Link>
+                    </td>
+                    <td className="p-4 text-sm text-gray-600">Consistently competitive rates, often 0.1-0.2% lower</td>
+                  </tr>
+                  <tr className="border-b hover:bg-gray-50 bg-gray-50">
+                    <td className="p-4 font-medium"><Link href="/cash-out-refinance-malaysia" className="text-primary-600 hover:underline">Cash-out refinancing</Link></td>
+                    <td className="p-4">
+                      <Link href="/maybank-refinance-home-loan" className="text-primary-600 hover:underline font-medium">Maybank</Link>
+                    </td>
+                    <td className="p-4 text-sm text-gray-600">Higher margin (up to 90%), flexible cash-out policies</td>
+                  </tr>
+                  <tr className="border-b hover:bg-gray-50">
+                    <td className="p-4 font-medium">Self-employed</td>
+                    <td className="p-4">
+                      <Link href="/cimb-refinance-home-loan" className="text-primary-600 hover:underline font-medium">CIMB</Link>
+                    </td>
+                    <td className="p-4 text-sm text-gray-600">More flexible income assessment, accepts business owners</td>
+                  </tr>
+                  <tr className="border-b hover:bg-gray-50 bg-gray-50">
+                    <td className="p-4 font-medium">High <Link href="/dsr-calculator" className="text-primary-600 hover:underline">DSR</Link> (60-70%)</td>
+                    <td className="p-4">
+                      <Link href="/hong-leong-refinance-home-loan" className="text-primary-600 hover:underline font-medium">Hong Leong</Link>
+                    </td>
+                    <td className="p-4 text-sm text-gray-600">Higher DSR ceiling (up to 75%), case-by-case flexibility</td>
+                  </tr>
+                  <tr className="border-b hover:bg-gray-50">
+                    <td className="p-4 font-medium">Fast approval needed</td>
+                    <td className="p-4">
+                      <Link href="/rhb-refinance-home-loan" className="text-primary-600 hover:underline font-medium">RHB</Link>
+                    </td>
+                    <td className="p-4 text-sm text-gray-600">Known for faster processing, ~2-3 weeks average</td>
+                  </tr>
+                  <tr className="hover:bg-gray-50 bg-gray-50">
+                    <td className="p-4 font-medium">Cashback promotions</td>
+                    <td className="p-4">
+                      <Link href="/ambank-refinance-home-loan" className="text-primary-600 hover:underline font-medium">AmBank</Link>
+                    </td>
+                    <td className="p-4 text-sm text-gray-600">Frequent promotional offers and upfront cash rebates</td>
+                  </tr>
+                </tbody>
+              </table>
             </div>
           </section>
 
@@ -540,6 +754,38 @@ export default function BestRefinanceBanks() {
                 View detailed document requirements →
               </Link>
             </p>
+          </section>
+
+          {/* Common Mistakes to Avoid */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              Common Refinancing Mistakes to Avoid
+            </h2>
+            <p className="text-gray-700 mb-6">
+              Avoid these common pitfalls that can cost you money or delay your refinancing:
+            </p>
+            <div className="space-y-4">
+              <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg">
+                <h3 className="font-semibold text-red-800 mb-1">1. Only comparing interest rates</h3>
+                <p className="text-sm text-gray-700">A lower rate with higher fees might cost more overall. Calculate the total cost of refinancing including legal fees, valuation, and stamp duty. Use our <Link href="/calculator" className="text-primary-600 hover:underline">calculator</Link> to see the full picture.</p>
+              </div>
+              <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg">
+                <h3 className="font-semibold text-red-800 mb-1">2. Ignoring lock-in penalties</h3>
+                <p className="text-sm text-gray-700">If you might sell or refinance again within 3-5 years, lock-in penalties (2-3% of outstanding balance) can eat into your savings. Factor this into your decision.</p>
+              </div>
+              <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg">
+                <h3 className="font-semibold text-red-800 mb-1">3. Not checking your DSR first</h3>
+                <p className="text-sm text-gray-700">Use our <Link href="/dsr-calculator" className="text-primary-600 hover:underline">DSR Calculator</Link> before applying to avoid rejected applications. A rejection can affect your credit score and future applications.</p>
+              </div>
+              <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg">
+                <h3 className="font-semibold text-red-800 mb-1">4. Forgetting legal fees</h3>
+                <p className="text-sm text-gray-700">Budget RM3,000-8,000 for legal and valuation fees. Some banks offer packages that subsidize these costs, so always ask about current promotions.</p>
+              </div>
+              <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg">
+                <h3 className="font-semibold text-red-800 mb-1">5. Applying to too many banks</h3>
+                <p className="text-sm text-gray-700">Multiple applications can affect your credit score. Apply to 2-3 banks maximum, or use our free service to compare offers without multiple credit checks.</p>
+              </div>
+            </div>
           </section>
 
           {/* FAQ */}
@@ -722,9 +968,9 @@ export default function BestRefinanceBanks() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Article",
-            headline: `Best Banks for Home Loan Refinancing Malaysia ${currentYear}`,
+            headline: `6 Best Banks for Refinancing Home Loan Malaysia ${currentYear}`,
             description:
-              "Compare refinancing rates from 10+ Malaysian banks. Find the best home loan refinancing rates and save RM500+/month.",
+              "Compare the 6 best banks for home loan refinancing in Malaysia. Maybank, CIMB, Public Bank, RHB, Hong Leong & AmBank - rates, pros, cons & which is best for you.",
             datePublished: "2025-12-01",
             dateModified: "2026-01-21",
             author: {

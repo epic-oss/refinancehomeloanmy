@@ -1,11 +1,11 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Debt Consolidation Options Malaysia 2026 - Compare All Your Choices",
-  description: "Compare all debt consolidation options in Malaysia. See pros, cons, interest rates and find the best way to consolidate your credit card debt, personal loans and other debts.",
+  title: "Debt Consolidation Options Malaysia 2026 | Compare All Methods",
+  description: "Compare debt consolidation options in Malaysia: refinancing, personal loans, balance transfer & more. Find the best way to combine your debts and save on interest.",
   openGraph: {
-    title: "Debt Consolidation Options Malaysia 2026 - Compare All Your Choices",
-    description: "Compare 5 debt consolidation options: Cash-out refinance, personal loans, balance transfer, AKPK, and debt settlement. Find your best fit.",
+    title: "Debt Consolidation Options Malaysia 2026 | Compare All Methods",
+    description: "Compare debt consolidation options in Malaysia: refinancing, personal loans, balance transfer & more. Find the best way to combine your debts and save on interest.",
     type: "website",
   },
 };

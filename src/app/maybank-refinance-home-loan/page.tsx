@@ -21,7 +21,7 @@ const competitors = allBanks.filter(b =>
 
 const faqs = [
   {
-    question: "What is the lowest Maybank refinance rate in 2025?",
+    question: "What is the lowest Maybank refinance rate in 2026?",
     answer: `Maybank's refinance rates start from ${bank.rateFrom} p.a. for qualified borrowers. The actual rate you receive depends on your credit profile, loan amount, and property type. Rates are typically expressed as BLR minus a spread (currently BLR ${bank.rateBLR}).`,
   },
   {
@@ -65,7 +65,7 @@ export default function MaybankRefinancePage() {
             )}
           </div>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            Maybank Refinance Home Loan {currentYear} - Rates, Review & Calculator
+            Maybank Refinance Home Loan Malaysia {currentYear}
           </h1>
           <p className="text-lg text-yellow-100 mb-2">
             Complete guide to Maybank home loan refinancing with current rates, honest review, and comparison with other banks.

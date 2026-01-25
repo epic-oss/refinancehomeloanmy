@@ -21,7 +21,7 @@ const competitors = allBanks.filter(b =>
 
 const faqs = [
   {
-    question: "What is RHB's refinance rate in 2025?",
+    question: "What is RHB's refinance rate in 2026?",
     answer: `RHB's refinance rates start from ${bank.rateFrom} p.a. Rates vary based on your profile, loan amount, and property. RHB uses a Base Rate system with current BR at ${bank.rateBLR}.`,
   },
   {
@@ -65,7 +65,7 @@ export default function RHBRefinancePage() {
             )}
           </div>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            RHB Refinance Home Loan {currentYear} - Rates, Review & Calculator
+            RHB Refinance Home Loan Malaysia {currentYear}
           </h1>
           <p className="text-lg text-purple-100 mb-2">
             Complete guide to RHB home loan refinancing with current rates, honest review, and comparison with other banks.

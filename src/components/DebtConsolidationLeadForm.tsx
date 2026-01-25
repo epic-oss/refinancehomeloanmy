@@ -135,6 +135,14 @@ export default function DebtConsolidationLeadForm({
 
       console.log("Submitting payload:", JSON.stringify(payload, null, 2));
 
+      // Final validation to prevent empty webhook submissions
+      if (!payload.name?.trim() || !payload.phone?.trim()) {
+        console.error("Blocked empty submission from:", window.location.href, payload);
+        setError("Please fill in all required fields");
+        setIsSubmitting(false);
+        return;
+      }
+
       const response = await fetch(
         "https://hook.us2.make.com/nfivujhdjjwc7kd97ian2e9cus4acm80",
         {

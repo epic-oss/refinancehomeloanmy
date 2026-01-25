@@ -1,17 +1,12 @@
 import type { Metadata } from "next";
 
-const currentYear = new Date().getFullYear();
-
 export const metadata: Metadata = {
-  title: `Contoh Kiraan Refinance Rumah Malaysia ${currentYear} - Panduan Lengkap | RefinanceHomeLoanMY`,
-  description: `Lihat contoh kiraan refinance rumah yang lengkap. Ketahui berapa anda boleh jimat dengan refinancing ${currentYear}.`,
-  keywords:
-    "contoh refinance rumah, kiraan refinance rumah, contoh kiraan refinance, kalkulator refinance rumah",
+  title: "Contoh Kiraan Refinance Rumah 2026 | Kira Penjimatan Sebenar",
+  description: "Lihat contoh kiraan refinance rumah dengan angka sebenar. Bandingkan bayaran bulanan sebelum & selepas, kira penjimatan, dan faham bila refinance berbaloi.",
   openGraph: {
-    title: `Contoh Kiraan Refinance Rumah Malaysia ${currentYear}`,
-    description: `Lihat contoh kiraan refinance rumah yang lengkap. Ketahui berapa anda boleh jimat.`,
+    title: "Contoh Kiraan Refinance Rumah 2026 | Kira Penjimatan Sebenar",
+    description: "Lihat contoh kiraan refinance rumah dengan angka sebenar. Bandingkan bayaran bulanan sebelum & selepas, kira penjimatan, dan faham bila refinance berbaloi.",
     type: "article",
-    locale: "ms_MY",
   },
 };
 

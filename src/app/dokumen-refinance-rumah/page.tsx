@@ -178,7 +178,7 @@ export default function DokumenRefinanceRumah() {
       <section className="bg-gradient-to-br from-primary-800 to-primary-900 text-white py-12 md:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            Senarai Dokumen Refinance Rumah Malaysia {currentYear}
+            Dokumen Refinance Rumah Malaysia {currentYear} - Senarai Lengkap
           </h1>
           <p className="text-lg text-gray-300">
             Panduan lengkap dokumen yang diperlukan untuk memastikan permohonan

@@ -34,15 +34,15 @@ export default function FloatingCTA({ hideOnPages = [] }: FloatingCTAProps) {
 
   return (
     <>
-      {/* Floating Button */}
+      {/* Floating Button - Pill Shape */}
       <button
         onClick={() => setShowForm(true)}
         className={`
           fixed bottom-4 right-4 md:bottom-5 md:right-5
-          w-16 h-16 md:w-14 md:h-14
+          px-5 py-3
           bg-green-500 hover:bg-green-600 active:scale-95
           rounded-full shadow-lg hover:shadow-xl
-          flex items-center justify-center
+          flex items-center justify-center gap-2
           transition-all duration-200 ease-out
           hover:scale-105
           z-40
@@ -54,7 +54,8 @@ export default function FloatingCTA({ hideOnPages = [] }: FloatingCTAProps) {
         }}
         aria-label="Get Free Quote"
       >
-        <Calculator className="w-7 h-7 md:w-6 md:h-6 text-white" />
+        <Calculator className="w-5 h-5 text-white" />
+        <span className="text-white font-semibold text-sm whitespace-nowrap">Free Quote</span>
 
         {/* Pulse animation ring */}
         <span className="absolute inset-0 rounded-full bg-green-400 animate-ping opacity-20" />
@@ -71,7 +72,7 @@ export default function FloatingCTA({ hideOnPages = [] }: FloatingCTAProps) {
               >
                 <X className="w-6 h-6" />
               </button>
-              <LeadForm variant="modal" source="floating-cta" />
+              <LeadForm variant="modal" source="floating-cta" showAllFields={true} />
             </div>
           </div>
         </div>

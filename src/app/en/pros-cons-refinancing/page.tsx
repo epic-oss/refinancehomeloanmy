@@ -385,7 +385,7 @@ export default function ProsConsRefinancing() {
       <section className="bg-gradient-to-br from-primary-800 to-primary-900 text-white py-12 md:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            Pros & Cons of Refinancing Your Home Loan Malaysia {currentYear}
+            Pros and Cons of Refinancing Your Home Loan ({currentYear} Guide)
           </h1>
           <p className="text-lg text-gray-300">
             Make an informed decision with our comprehensive guide to the

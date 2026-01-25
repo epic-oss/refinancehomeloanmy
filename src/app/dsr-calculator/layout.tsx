@@ -1,11 +1,11 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "DSR Calculator Malaysia 2026 - Check Your Refinancing Eligibility",
-  description: "Free DSR calculator for Malaysia. Check if your Debt Service Ratio qualifies you for home loan refinancing. Banks typically require DSR below 70%.",
+  title: "DSR Calculator Malaysia 2026 | Check Loan Eligibility Free",
+  description: "Calculate your Debt Service Ratio instantly. See if you qualify for refinancing with Malaysian banks. Free DSR calculator with bank-specific requirements.",
   openGraph: {
-    title: "DSR Calculator Malaysia 2026 - Check Your Refinancing Eligibility",
-    description: "Check your Debt Service Ratio (DSR) in 30 seconds. Find out if you qualify for home loan refinancing in Malaysia.",
+    title: "DSR Calculator Malaysia 2026 | Check Loan Eligibility Free",
+    description: "Calculate your Debt Service Ratio instantly. See if you qualify for refinancing with Malaysian banks. Free DSR calculator with bank-specific requirements.",
     type: "website",
   },
 };

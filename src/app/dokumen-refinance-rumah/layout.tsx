@@ -1,15 +1,13 @@
 import type { Metadata } from "next";
 
-const currentYear = new Date().getFullYear();
-
 export const metadata: Metadata = {
-  title: `Senarai Dokumen Refinance Rumah Malaysia ${currentYear} - Panduan Lengkap | RefinanceHomeLoanMY`,
-  description: `Senarai lengkap dokumen yang diperlukan untuk refinance rumah di Malaysia. Pastikan permohonan anda berjaya ${currentYear}.`,
+  title: "Dokumen Refinance Rumah 2026 | Senarai Lengkap & Checklist",
+  description: "Senarai lengkap dokumen untuk refinance rumah di Malaysia. Checklist IC, slip gaji, penyata bank, geran rumah & dokumen wajib lain. Jimat masa, sedia semua sekali.",
   keywords:
     "dokumen untuk refinance rumah, dokumen refinance rumah, senarai dokumen refinance, syarat dokumen refinance",
   openGraph: {
-    title: `Senarai Dokumen Refinance Rumah Malaysia ${currentYear}`,
-    description: `Senarai lengkap dokumen yang diperlukan untuk refinance rumah di Malaysia.`,
+    title: "Dokumen Refinance Rumah 2026 | Senarai Lengkap & Checklist",
+    description: "Senarai lengkap dokumen untuk refinance rumah di Malaysia. Checklist IC, slip gaji, penyata bank, geran rumah & dokumen wajib lain.",
     type: "article",
     locale: "ms_MY",
   },

@@ -64,7 +64,7 @@ export default function BankTerbaikRefinanceRumah() {
       <section className="bg-gradient-to-br from-primary-800 to-primary-900 text-white py-12 md:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            Bank Terbaik Untuk Refinance Rumah Malaysia {currentYear}
+            Bank Terbaik untuk Refinance Rumah di Malaysia {currentYear}
           </h1>
           <p className="text-lg text-gray-300">
             Panduan lengkap untuk memilih bank terbaik bagi refinance pinjaman

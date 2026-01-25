@@ -21,7 +21,7 @@ const competitors = allBanks.filter(b =>
 
 const faqs = [
   {
-    question: "What is Public Bank's lowest refinance rate in 2025?",
+    question: "What is Public Bank's lowest refinance rate in 2026?",
     answer: `Public Bank's refinance rates start from ${bank.rateFrom} p.a. for qualified applicants. This makes them one of the most competitive banks for refinancing. Rates depend on your credit profile, loan amount, and employment type.`,
   },
   {
@@ -65,7 +65,7 @@ export default function PublicBankRefinancePage() {
             )}
           </div>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            Public Bank Refinance Home Loan {currentYear} - Rates, Review & Calculator
+            Public Bank Refinance Home Loan Malaysia {currentYear}
           </h1>
           <p className="text-lg text-blue-100 mb-2">
             Complete guide to Public Bank home loan refinancing with current rates, honest review, and comparison with other banks.
@@ -272,6 +272,49 @@ export default function PublicBankRefinancePage() {
                   <li>- Commission-based income</li>
                   <li>- Properties in rural areas</li>
                   <li>- High existing debt commitments</li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
+          {/* Documents Required Section */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              Documents Required for Public Bank Refinance
+            </h2>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="bg-gray-50 rounded-lg p-5">
+                <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <FileText className="w-5 h-5 text-blue-600" />
+                  For Salaried Employees
+                </h3>
+                <ul className="space-y-2 text-gray-700 text-sm">
+                  <li>- MyKad (front & back)</li>
+                  <li>- Latest 3 months salary slips</li>
+                  <li>- Latest 6 months bank statements</li>
+                  <li>- EA Form / Tax return (Form BE)</li>
+                  <li>- EPF statement</li>
+                  <li>- Employment confirmation letter</li>
+                  <li>- Property title / S&P agreement</li>
+                  <li>- Current loan redemption statement</li>
+                </ul>
+              </div>
+
+              <div className="bg-gray-50 rounded-lg p-5">
+                <h3 className="font-semibold text-gray-900 mb-3 flex items-center gap-2">
+                  <FileText className="w-5 h-5 text-blue-600" />
+                  For Self-Employed
+                </h3>
+                <ul className="space-y-2 text-gray-700 text-sm">
+                  <li>- MyKad (front & back)</li>
+                  <li>- Latest 6 months bank statements (personal & business)</li>
+                  <li>- Form B / Tax returns (2 years)</li>
+                  <li>- SSM business registration</li>
+                  <li>- Company profile / Business license</li>
+                  <li>- Financial statements (2 years)</li>
+                  <li>- Property title / S&P agreement</li>
+                  <li>- Current loan redemption statement</li>
                 </ul>
               </div>
             </div>

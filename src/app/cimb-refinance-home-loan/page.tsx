@@ -21,7 +21,7 @@ const competitors = allBanks.filter(b =>
 
 const faqs = [
   {
-    question: "What is CIMB's lowest refinance rate in 2025?",
+    question: "What is CIMB's lowest refinance rate in 2026?",
     answer: `CIMB's refinance rates start from ${bank.rateFrom} p.a. for well-qualified borrowers. Your actual rate depends on credit profile, loan-to-value ratio, and income stability. CIMB uses a Base Rate (BR) system, currently at ${bank.rateBLR}.`,
   },
   {
@@ -65,7 +65,7 @@ export default function CIMBRefinancePage() {
             )}
           </div>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            CIMB Refinance Home Loan {currentYear} - Rates, Review & Calculator
+            CIMB Refinance Home Loan Malaysia {currentYear}
           </h1>
           <p className="text-lg text-red-100 mb-2">
             Complete guide to CIMB home loan refinancing with current rates, honest review, and comparison with other banks.

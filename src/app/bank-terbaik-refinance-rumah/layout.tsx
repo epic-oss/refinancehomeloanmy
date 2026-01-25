@@ -1,17 +1,12 @@
 import type { Metadata } from "next";
 
-const currentYear = new Date().getFullYear();
-
 export const metadata: Metadata = {
-  title: `Bank Terbaik Untuk Refinance Rumah Malaysia ${currentYear} | RefinanceHomeLoanMY`,
-  description: `Bandingkan kadar refinance rumah dari 10+ bank di Malaysia. Ketahui bank mana yang menawarkan kadar terendah untuk refinance ${currentYear}.`,
-  keywords:
-    "bank terbaik untuk refinance rumah, bank untuk refinance rumah, bank terbaik refinance 2026, refinance rumah malaysia",
+  title: "Bank Terbaik Refinance Rumah 2026 | Perbandingan 6 Bank Utama",
+  description: "Perbandingan bank terbaik untuk refinance rumah di Malaysia. Kadar faedah, cashback, tempoh lock-in & review jujur dari Maybank, CIMB, Public Bank, RHB & lain-lain.",
   openGraph: {
-    title: `Bank Terbaik Untuk Refinance Rumah Malaysia ${currentYear}`,
-    description: `Bandingkan kadar refinance rumah dari 10+ bank di Malaysia. Ketahui bank mana yang menawarkan kadar terendah.`,
+    title: "Bank Terbaik Refinance Rumah 2026 | Perbandingan 6 Bank Utama",
+    description: "Perbandingan bank terbaik untuk refinance rumah di Malaysia. Kadar faedah, cashback, tempoh lock-in & review jujur dari Maybank, CIMB, Public Bank, RHB & lain-lain.",
     type: "article",
-    locale: "ms_MY",
   },
 };
 

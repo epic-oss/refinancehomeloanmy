@@ -8,7 +8,6 @@ import { EligibilityCard } from "@/components/content/EligibilityCard";
 import { LastUpdated } from "@/components/content/LastUpdated";
 import LeadForm from "@/components/LeadForm";
 import MidPageCTA from "@/components/MidPageCTA";
-import BackToTop from "@/components/BackToTop";
 import { StickyMobileCTA } from "@/components/StickyMobileCTA";
 import { ArrowRight } from "lucide-react";
 
@@ -674,7 +673,6 @@ export default function DokumenRefinanceRumah() {
         }}
       />
 
-      <BackToTop />
       <StickyMobileCTA onCtaClick={() => setShowForm(true)} />
     </>
   );

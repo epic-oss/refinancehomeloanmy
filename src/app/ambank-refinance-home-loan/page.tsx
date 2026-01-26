@@ -6,7 +6,6 @@ import Image from "next/image";
 import { SITE_CONFIG, getBanksSortedByRate } from "@/lib/constants";
 import LeadForm from "@/components/LeadForm";
 import MidPageCTA from "@/components/MidPageCTA";
-import BackToTop from "@/components/BackToTop";
 import { StickyMobileCTA } from "@/components/StickyMobileCTA";
 import { ArrowRight, Check, X, Clock, FileText, AlertTriangle } from "lucide-react";
 
@@ -666,7 +665,6 @@ export default function AmBankRefinancePage() {
         }}
       />
 
-      <BackToTop />
       <StickyMobileCTA
         onCtaClick={() => setShowForm(true)}
         text="Compare AmBank rates"

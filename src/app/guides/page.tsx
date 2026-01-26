@@ -2,7 +2,6 @@
 
 import Link from "next/link";
 import { useState } from "react";
-import BackToTop from "@/components/BackToTop";
 import LeadForm from "@/components/LeadForm";
 import { ArrowRight, Search, BookOpen, Calculator, Building2, Landmark, Globe, X } from "lucide-react";
 
@@ -500,7 +499,6 @@ export default function GuidesPage() {
           </div>
         </div>
       )}
-      <BackToTop />
     </>
   );
 }

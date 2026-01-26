@@ -5,9 +5,7 @@ import Link from "next/link";
 import { SITE_CONFIG, getBanksSortedByRate } from "@/lib/constants";
 import LeadForm from "@/components/LeadForm";
 import MidPageCTA from "@/components/MidPageCTA";
-import BackToTop from "@/components/BackToTop";
 import { StickyMobileCTA } from "@/components/StickyMobileCTA";
-import SocialProof from "@/components/SocialProof";
 import {
   ArrowRight,
   Check,
@@ -264,9 +262,6 @@ export default function CaraRefinanceRumahPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
       />
-
-      {/* Social Proof */}
-      <SocialProof />
 
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary-800 via-primary-900 to-primary-800 text-white py-16 md:py-24">
@@ -711,7 +706,6 @@ export default function CaraRefinanceRumahPage() {
         </div>
       )}
 
-      <BackToTop />
       <StickyMobileCTA
         onCtaClick={() => setShowForm(true)}
         text="Semak kelayakan refinance"

@@ -4,7 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/constants";
 import LeadForm from "@/components/LeadForm";
-import BackToTop from "@/components/BackToTop";
 import { StickyMobileCTA } from "@/components/StickyMobileCTA";
 import {
   ArrowRight,
@@ -608,7 +607,6 @@ export default function HomeLoanRejectedPage() {
         }}
       />
 
-      <BackToTop />
       <StickyMobileCTA
         onCtaClick={() => setShowForm(true)}
         text="Rejected? We can help"

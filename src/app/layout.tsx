@@ -4,6 +4,8 @@ import "./globals.css";
 import Header from "@/components/Header";
 import Footer from "@/components/Footer";
 import FloatingCTA from "@/components/FloatingCTA";
+import SocialProof from "@/components/SocialProof";
+import BackToTop from "@/components/BackToTop";
 import GoogleAnalytics from "@/components/GoogleAnalytics";
 import { SpeedInsights } from "@vercel/speed-insights/next";
 
@@ -42,6 +44,8 @@ export default function RootLayout({
         <Header />
         <main className="min-h-screen">{children}</main>
         <Footer />
+        <SocialProof />
+        <BackToTop />
         <FloatingCTA hideOnPages={["/calculator", "/cash-out-calculator", "/debt-consolidation-calculator", "/dsr-calculator"]} />
         <SpeedInsights />
       </body>

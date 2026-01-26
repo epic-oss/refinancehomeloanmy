@@ -6,7 +6,6 @@ import { SITE_CONFIG } from "@/lib/constants";
 import DebtConsolidationLeadForm, { DebtConsolidationLeadFormInitialValues } from "@/components/DebtConsolidationLeadForm";
 import DebtConsolidationCalculator, { DebtConsolidationCalculatorValues } from "@/components/DebtConsolidationCalculator";
 import MidPageCTA from "@/components/MidPageCTA";
-import BackToTop from "@/components/BackToTop";
 import { StickyMobileCTA } from "@/components/StickyMobileCTA";
 import {
   ArrowRight,
@@ -705,7 +704,6 @@ export default function DebtConsolidationPage() {
         }}
       />
 
-      <BackToTop />
       <StickyMobileCTA
         onCtaClick={() => setShowForm(true)}
         text="Consolidate your debts today"

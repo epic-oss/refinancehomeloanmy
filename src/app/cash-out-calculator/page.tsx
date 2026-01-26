@@ -5,7 +5,6 @@ import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/constants";
 import CashOutCalculatorWidget, { CashOutCalculatorValues } from "@/components/CashOutCalculatorWidget";
 import CashOutLeadForm, { CashOutLeadFormInitialValues } from "@/components/CashOutLeadForm";
-import BackToTop from "@/components/BackToTop";
 import { StickyMobileCTA } from "@/components/StickyMobileCTA";
 import {
   ArrowRight,
@@ -495,7 +494,6 @@ export default function CashOutCalculatorPage() {
         }}
       />
 
-      <BackToTop />
       <StickyMobileCTA
         onCtaClick={handleRegularQuote}
         text="Calculate your cash out"

@@ -4,7 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/constants";
 import LeadForm from "@/components/LeadForm";
-import BackToTop from "@/components/BackToTop";
 import { StickyMobileCTA } from "@/components/StickyMobileCTA";
 import { formatNumberWithCommas, stripCommas } from "@/lib/utils";
 import {
@@ -823,7 +822,6 @@ export default function DSRCalculatorPage() {
         }}
       />
 
-      <BackToTop />
       <StickyMobileCTA
         onCtaClick={() => setShowForm(true)}
         text="Check your DSR eligibility"

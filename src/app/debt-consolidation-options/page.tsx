@@ -4,7 +4,6 @@ import { useState } from "react";
 import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/constants";
 import DebtConsolidationLeadForm from "@/components/DebtConsolidationLeadForm";
-import BackToTop from "@/components/BackToTop";
 import { StickyMobileCTA } from "@/components/StickyMobileCTA";
 import {
   ArrowRight,
@@ -858,7 +857,6 @@ export default function DebtConsolidationOptionsPage() {
         }}
       />
 
-      <BackToTop />
       <StickyMobileCTA
         onCtaClick={handleOpenForm}
         text="Compare your options"

@@ -5,7 +5,6 @@ import Link from "next/link";
 import { SITE_CONFIG } from "@/lib/constants";
 import DebtConsolidationCalculator, { DebtConsolidationCalculatorValues } from "@/components/DebtConsolidationCalculator";
 import DebtConsolidationLeadForm, { DebtConsolidationLeadFormInitialValues } from "@/components/DebtConsolidationLeadForm";
-import BackToTop from "@/components/BackToTop";
 import { StickyMobileCTA } from "@/components/StickyMobileCTA";
 import {
   ArrowRight,
@@ -388,7 +387,6 @@ export default function DebtConsolidationCalculatorPage() {
         }}
       />
 
-      <BackToTop />
       <StickyMobileCTA
         onCtaClick={handleRegularQuote}
         text="Calculate your savings"

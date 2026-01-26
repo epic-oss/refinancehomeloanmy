@@ -3,7 +3,6 @@
 import { useState, useEffect } from "react";
 import LeadForm, { LeadFormCalculatorValues } from "@/components/LeadForm";
 import FAQ from "@/components/FAQ";
-import BackToTop from "@/components/BackToTop";
 import { StickyMobileCTA } from "@/components/StickyMobileCTA";
 import { SITE_CONFIG, getBanksSortedByRate } from "@/lib/constants";
 import { formatNumberWithCommas, stripCommas } from "@/lib/utils";
@@ -470,7 +469,6 @@ export default function CalculatorPage() {
         </div>
       </section>
 
-      <BackToTop />
       <StickyMobileCTA onCtaClick={() => setShowForm(true)} />
     </>
   );

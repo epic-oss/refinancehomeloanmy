@@ -46,7 +46,7 @@ export default function RootLayout({
         <Footer />
         <SocialProof />
         <BackToTop />
-        <FloatingCTA hideOnPages={["/calculator", "/cash-out-calculator", "/debt-consolidation-calculator", "/dsr-calculator"]} />
+        <FloatingCTA />
         <SpeedInsights />
       </body>
     </html>

@@ -41,39 +41,17 @@ export default function SocialProof() {
 
   return (
     <div
-      className={`hidden md:block fixed bottom-6 left-4 z-40 transition-all duration-500 ${
+      className={`fixed bottom-24 right-4 z-40 transition-all duration-500 ${
         isVisible ? "opacity-100 translate-y-0" : "opacity-0 translate-y-4"
       }`}
     >
-      <div className="bg-white rounded-lg shadow-lg p-4 max-w-xs border border-gray-100">
-        <div className="flex items-start space-x-3">
-          <div className="flex-shrink-0">
-            <div className="w-10 h-10 bg-secondary-100 rounded-full flex items-center justify-center">
-              <svg
-                className="w-5 h-5 text-secondary-600"
-                fill="none"
-                stroke="currentColor"
-                viewBox="0 0 24 24"
-              >
-                <path
-                  strokeLinecap="round"
-                  strokeLinejoin="round"
-                  strokeWidth={2}
-                  d="M5 13l4 4L19 7"
-                />
-              </svg>
-            </div>
-          </div>
-          <div className="flex-1 min-w-0">
-            <p className="text-sm font-medium text-gray-900">
-              {current.name} from {current.location}
-            </p>
-            <p className="text-sm text-gray-600">
-              just refinanced - <span className="text-secondary-600 font-semibold">saves RM{current.savings}/month</span>
-            </p>
-            <p className="text-xs text-gray-400 mt-1">A few moments ago</p>
-          </div>
-        </div>
+      <div className="bg-white rounded-lg shadow-lg px-3 py-2 border border-gray-100 text-right">
+        <p className="text-xs text-gray-600">
+          <span className="font-medium text-gray-900">{current.name}</span> from {current.location}
+        </p>
+        <p className="text-xs">
+          saves <span className="text-secondary-600 font-semibold">RM{current.savings}/mo</span>
+        </p>
       </div>
     </div>
   );

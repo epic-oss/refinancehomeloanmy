@@ -10,7 +10,6 @@ import { DocumentsList } from "@/components/content/DocumentsList";
 import { LastUpdated } from "@/components/content/LastUpdated";
 import LeadForm from "@/components/LeadForm";
 import MidPageCTA from "@/components/MidPageCTA";
-import BackToTop from "@/components/BackToTop";
 import { StickyMobileCTA } from "@/components/StickyMobileCTA";
 import { ArrowRight } from "lucide-react";
 
@@ -986,7 +985,6 @@ export default function BestRefinanceBanks() {
         }}
       />
 
-      <BackToTop />
       <StickyMobileCTA
         onCtaClick={() => setShowForm(true)}
         text="Save RM500+/month"

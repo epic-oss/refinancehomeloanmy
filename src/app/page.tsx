@@ -3,14 +3,11 @@ import TrustBadges from "@/components/TrustBadges";
 import BankLogos from "@/components/BankLogos";
 import HowItWorks from "@/components/HowItWorks";
 import FAQ from "@/components/FAQ";
-import SocialProof from "@/components/SocialProof";
 import Link from "next/link";
 
 export default function Home() {
   return (
     <>
-      <SocialProof />
-
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-primary-800 via-primary-900 to-primary-800 text-white py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">

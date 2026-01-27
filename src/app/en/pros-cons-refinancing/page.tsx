@@ -7,7 +7,6 @@ import { CostsTable } from "@/components/content/CostsTable";
 import { LastUpdated } from "@/components/content/LastUpdated";
 import LeadForm from "@/components/LeadForm";
 import MidPageCTA from "@/components/MidPageCTA";
-import BackToTop from "@/components/BackToTop";
 import { StickyMobileCTA } from "@/components/StickyMobileCTA";
 import { ArrowRight } from "lucide-react";
 
@@ -878,7 +877,6 @@ export default function ProsConsRefinancing() {
         }}
       />
 
-      <BackToTop />
       <StickyMobileCTA
         onCtaClick={() => setShowForm(true)}
         text="Save RM500+/month"

@@ -9,7 +9,6 @@ import { CostsTable } from "@/components/content/CostsTable";
 import { LastUpdated } from "@/components/content/LastUpdated";
 import LeadForm from "@/components/LeadForm";
 import MidPageCTA from "@/components/MidPageCTA";
-import BackToTop from "@/components/BackToTop";
 import { StickyMobileCTA } from "@/components/StickyMobileCTA";
 import { ArrowRight } from "lucide-react";
 
@@ -483,7 +482,6 @@ export default function ShenmeShiRefinance() {
         }}
       />
 
-      <BackToTop />
       <StickyMobileCTA
         onCtaClick={() => setShowForm(true)}
         text="每月节省RM500+"

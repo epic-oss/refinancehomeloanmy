@@ -828,7 +828,7 @@ export default function ProsConsRefinancing() {
                   </svg>
                 </button>
               </div>
-              <LeadForm variant="modal" source="en-pros-cons" lang="en" />
+              <LeadForm variant="modal" source="en-pros-cons" lang="en" showAllFields={true} />
             </div>
           </div>
         </div>

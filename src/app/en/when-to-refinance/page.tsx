@@ -586,7 +586,7 @@ export default function WhenToRefinance() {
                   </svg>
                 </button>
               </div>
-              <LeadForm variant="modal" source="en-when-refinance" lang="en" />
+              <LeadForm variant="modal" source="en-when-refinance" lang="en" showAllFields={true} />
             </div>
           </div>
         </div>

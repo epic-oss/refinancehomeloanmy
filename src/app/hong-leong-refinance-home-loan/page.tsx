@@ -615,7 +615,7 @@ export default function HongLeongRefinancePage() {
                   <X className="w-6 h-6" />
                 </button>
               </div>
-              <LeadForm variant="modal" source="hong-leong-refinance" lang="en" />
+              <LeadForm variant="modal" source="hong-leong-refinance" lang="en" showAllFields={true} />
             </div>
           </div>
         </div>

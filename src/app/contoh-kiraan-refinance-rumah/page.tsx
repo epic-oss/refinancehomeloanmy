@@ -795,7 +795,7 @@ export default function ContohKiraanRefinanceRumah() {
                   </svg>
                 </button>
               </div>
-              <LeadForm variant="modal" source="contoh-kiraan" />
+              <LeadForm variant="modal" source="contoh-kiraan" showAllFields={true} />
             </div>
           </div>
         </div>

@@ -616,7 +616,7 @@ export default function CIMBRefinancePage() {
                   <X className="w-6 h-6" />
                 </button>
               </div>
-              <LeadForm variant="modal" source="cimb-refinance" lang="en" />
+              <LeadForm variant="modal" source="cimb-refinance" lang="en" showAllFields={true} />
             </div>
           </div>
         </div>

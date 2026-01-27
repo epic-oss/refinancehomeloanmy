@@ -624,7 +624,7 @@ export default function DokumenRefinanceRumah() {
                   </svg>
                 </button>
               </div>
-              <LeadForm variant="modal" source="dokumen-refinance" />
+              <LeadForm variant="modal" source="dokumen-refinance" showAllFields={true} />
             </div>
           </div>
         </div>

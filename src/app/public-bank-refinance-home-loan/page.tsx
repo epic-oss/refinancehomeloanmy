@@ -659,7 +659,7 @@ export default function PublicBankRefinancePage() {
                   <X className="w-6 h-6" />
                 </button>
               </div>
-              <LeadForm variant="modal" source="public-bank-refinance" lang="en" />
+              <LeadForm variant="modal" source="public-bank-refinance" lang="en" showAllFields={true} />
             </div>
           </div>
         </div>

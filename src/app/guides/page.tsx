@@ -494,7 +494,7 @@ export default function GuidesPage() {
               >
                 <X className="w-6 h-6" />
               </button>
-              <LeadForm variant="modal" source="guides-page" />
+              <LeadForm variant="modal" source="guides-page" showAllFields={true} />
             </div>
           </div>
         </div>

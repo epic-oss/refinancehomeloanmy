@@ -624,7 +624,7 @@ export default function KelebihanKeburukanRefinanceRumah() {
                   </svg>
                 </button>
               </div>
-              <LeadForm variant="modal" source="kelebihan-keburukan" />
+              <LeadForm variant="modal" source="kelebihan-keburukan" showAllFields={true} />
             </div>
           </div>
         </div>

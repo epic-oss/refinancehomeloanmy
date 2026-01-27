@@ -501,7 +501,7 @@ export default function BankTerbaikRefinanceRumah() {
                   </svg>
                 </button>
               </div>
-              <LeadForm variant="modal" source="bank-terbaik-refinance" />
+              <LeadForm variant="modal" source="bank-terbaik-refinance" showAllFields={true} />
             </div>
           </div>
         </div>

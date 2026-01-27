@@ -773,7 +773,7 @@ export default function DSRCalculatorPage() {
               >
                 <X className="w-6 h-6" />
               </button>
-              <LeadForm variant="modal" source="dsr-calculator" />
+              <LeadForm variant="modal" source="dsr-calculator" showAllFields={true} />
             </div>
           </div>
         </div>

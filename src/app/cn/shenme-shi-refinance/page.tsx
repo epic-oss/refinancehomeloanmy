@@ -433,7 +433,7 @@ export default function ShenmeShiRefinance() {
                   </svg>
                 </button>
               </div>
-              <LeadForm variant="modal" source="cn-shenme-shi-refinance" lang="zh" />
+              <LeadForm variant="modal" source="cn-shenme-shi-refinance" lang="zh" showAllFields={true} />
             </div>
           </div>
         </div>

@@ -935,7 +935,7 @@ export default function BestRefinanceBanks() {
                   </svg>
                 </button>
               </div>
-              <LeadForm variant="modal" source="en-best-banks" lang="en" />
+              <LeadForm variant="modal" source="en-best-banks" lang="en" showAllFields={true} />
             </div>
           </div>
         </div>

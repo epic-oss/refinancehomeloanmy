@@ -298,7 +298,7 @@ export default function CalculatorPage() {
                   </svg>
                 </button>
               </div>
-              <LeadForm variant="modal" source="calculator" calculatorValues={calculatorValues} />
+              <LeadForm variant="modal" source="calculator" calculatorValues={calculatorValues} showAllFields={true} />
             </div>
           </div>
         </div>

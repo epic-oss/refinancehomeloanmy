@@ -482,7 +482,7 @@ export default function RefinanceHaochuHuaichu() {
                   </svg>
                 </button>
               </div>
-              <LeadForm variant="modal" source="cn-refinance-haochu-huaichu" lang="zh" />
+              <LeadForm variant="modal" source="cn-refinance-haochu-huaichu" lang="zh" showAllFields={true} />
             </div>
           </div>
         </div>

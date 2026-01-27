@@ -618,7 +618,7 @@ export default function MaybankRefinancePage() {
                   <X className="w-6 h-6" />
                 </button>
               </div>
-              <LeadForm variant="modal" source="maybank-refinance" lang="en" />
+              <LeadForm variant="modal" source="maybank-refinance" lang="en" showAllFields={true} />
             </div>
           </div>
         </div>

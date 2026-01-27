@@ -504,7 +504,7 @@ export default function RefinanceXuyaoZiliao() {
                   </svg>
                 </button>
               </div>
-              <LeadForm variant="modal" source="cn-refinance-xuyao-ziliao" lang="zh" />
+              <LeadForm variant="modal" source="cn-refinance-xuyao-ziliao" lang="zh" showAllFields={true} />
             </div>
           </div>
         </div>

@@ -520,7 +520,7 @@ export default function ZuijiaRefinanceYinhang() {
                   </svg>
                 </button>
               </div>
-              <LeadForm variant="modal" source="cn-zuijia-refinance-yinhang" lang="zh" />
+              <LeadForm variant="modal" source="cn-zuijia-refinance-yinhang" lang="zh" showAllFields={true} />
             </div>
           </div>
         </div>

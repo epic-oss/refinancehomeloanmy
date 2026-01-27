@@ -779,7 +779,7 @@ export default function RefinanceCalculationExamples() {
                   </svg>
                 </button>
               </div>
-              <LeadForm variant="modal" source="en-calculations" lang="en" />
+              <LeadForm variant="modal" source="en-calculations" lang="en" showAllFields={true} />
             </div>
           </div>
         </div>

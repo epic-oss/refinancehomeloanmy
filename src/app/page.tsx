@@ -27,7 +27,7 @@ export default function Home() {
             </div>
 
             <div id="quote-form">
-              <LeadForm variant="hero" source="homepage-hero" />
+              <LeadForm variant="hero" source="homepage-hero" showAllFields={true} />
             </div>
           </div>
         </div>

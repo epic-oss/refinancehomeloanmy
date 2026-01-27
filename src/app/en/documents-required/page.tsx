@@ -630,7 +630,7 @@ export default function DocumentsRequired() {
                   </svg>
                 </button>
               </div>
-              <LeadForm variant="modal" source="en-documents" lang="en" />
+              <LeadForm variant="modal" source="en-documents" lang="en" showAllFields={true} />
             </div>
           </div>
         </div>

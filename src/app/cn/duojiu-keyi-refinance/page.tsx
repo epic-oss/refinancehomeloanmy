@@ -536,7 +536,7 @@ export default function DuojiuKeyiRefinance() {
                   </svg>
                 </button>
               </div>
-              <LeadForm variant="modal" source="cn-duojiu-keyi-refinance" lang="zh" />
+              <LeadForm variant="modal" source="cn-duojiu-keyi-refinance" lang="zh" showAllFields={true} />
             </div>
           </div>
         </div>

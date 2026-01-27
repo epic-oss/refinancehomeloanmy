@@ -307,7 +307,7 @@ export default function CaraRefinanceRumahPage() {
 
             {/* Right Column - Lead Form */}
             <div id="quote-form">
-              <LeadForm variant="hero" source="cara-refinance-rumah-hero" lang="ms" />
+              <LeadForm variant="hero" source="cara-refinance-rumah-hero" lang="ms" showAllFields={true} />
             </div>
           </div>
         </div>
@@ -700,7 +700,7 @@ export default function CaraRefinanceRumahPage() {
               <X className="w-6 h-6" />
             </button>
             <div className="p-6">
-              <LeadForm variant="modal" source="cara-refinance-rumah-modal" lang="ms" />
+              <LeadForm variant="modal" source="cara-refinance-rumah-modal" lang="ms" showAllFields={true} />
             </div>
           </div>
         </div>

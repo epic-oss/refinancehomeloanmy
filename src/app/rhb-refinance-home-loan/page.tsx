@@ -615,7 +615,7 @@ export default function RHBRefinancePage() {
                   <X className="w-6 h-6" />
                 </button>
               </div>
-              <LeadForm variant="modal" source="rhb-refinance" lang="en" />
+              <LeadForm variant="modal" source="rhb-refinance" lang="en" showAllFields={true} />
             </div>
           </div>
         </div>

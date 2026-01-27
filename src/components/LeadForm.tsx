@@ -32,7 +32,7 @@ interface LeadFormProps {
   source?: string;
   lang?: "ms" | "en" | "zh";
   calculatorValues?: LeadFormCalculatorValues;
-  showAllFields?: boolean; // When true, shows Outstanding Loan and makes Current Bank required
+  showAllFields?: boolean; // When true, shows Outstanding Loan as required field
 }
 
 const content = {
@@ -177,18 +177,11 @@ export default function LeadForm({
       return;
     }
 
-    // Additional validation when showAllFields is true
-    if (showAllFields) {
-      if (!formData.OutstandingLoan) {
-        setError(t.validationOutstanding);
-        setIsSubmitting(false);
-        return;
-      }
-      if (!formData.CurrentBank) {
-        setError(t.validationBank);
-        setIsSubmitting(false);
-        return;
-      }
+    // Outstanding Loan validation when showAllFields is true
+    if (showAllFields && !formData.OutstandingLoan) {
+      setError(t.validationOutstanding);
+      setIsSubmitting(false);
+      return;
     }
 
     try {
@@ -395,15 +388,11 @@ export default function LeadForm({
           </div>
         )}
 
-        {/* Current Bank - Optional unless showAllFields is true */}
+        {/* Current Bank - Always Optional */}
         <div>
           <label htmlFor="current_bank" className="block text-sm font-medium text-gray-700 mb-1">
             {t.bankLabel}{" "}
-            {showAllFields ? (
-              <span className="text-red-500">*</span>
-            ) : (
-              <span className="text-gray-400 text-xs">{t.bankLabelOptional}</span>
-            )}
+            <span className="text-gray-400 text-xs">{t.bankLabelOptional}</span>
           </label>
           <select
             id="current_bank"

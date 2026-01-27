@@ -563,7 +563,7 @@ export default function BerapaTahunBolehRefinanceRumah() {
                   </svg>
                 </button>
               </div>
-              <LeadForm variant="modal" source="berapa-tahun-refinance" />
+              <LeadForm variant="modal" source="berapa-tahun-refinance" showAllFields={true} />
             </div>
           </div>
         </div>

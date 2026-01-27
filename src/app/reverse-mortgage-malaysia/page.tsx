@@ -200,7 +200,7 @@ export default function ReverseMortgagePage() {
                     Skim Saraan Bercagar (SSB)
                   </h3>
                   <p className="text-gray-600">
-                    Malaysia's Official Reverse Mortgage Scheme
+                    Malaysia&apos;s Official Reverse Mortgage Scheme
                   </p>
                 </div>
               </div>
@@ -546,7 +546,7 @@ export default function ReverseMortgagePage() {
                   </li>
                   <li className="flex items-start gap-2">
                     <ArrowRight className="w-4 h-4 mt-1 flex-shrink-0" />
-                    <span>Don't want to make monthly loan payments</span>
+                    <span>Don&apos;t want to make monthly loan payments</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <ArrowRight className="w-4 h-4 mt-1 flex-shrink-0" />
@@ -600,7 +600,7 @@ export default function ReverseMortgagePage() {
               Cash-Out Refinancing: The Flexible Alternative
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              If you don't qualify for SSB or prefer a lump sum payment,
+              If you don&apos;t qualify for SSB or prefer a lump sum payment,
               cash-out refinancing is available at all major Malaysian banks.
             </p>
           </div>
@@ -682,7 +682,7 @@ export default function ReverseMortgagePage() {
             Banks That Offer Cash-Out Refinancing
           </h2>
           <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
-            If SSB doesn't fit your needs, these banks offer cash-out
+            If SSB doesn&apos;t fit your needs, these banks offer cash-out
             refinancing nationwide
           </p>
 

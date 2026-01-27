@@ -81,7 +81,7 @@ const cons = [
   },
   {
     title: "No Ownership During Rental",
-    description: "You don't own the property until conversion - Maybank does",
+    description: "You don\u0027t own the property until conversion - Maybank does",
   },
   {
     title: "Non-Refundable Option Fee",
@@ -112,7 +112,7 @@ const comparisonData = [
 const goodFor = [
   "First-time buyers without savings for downpayment",
   "Young professionals just starting their career",
-  "Those who want to \"try before you buy\"",
+  "Those who want to try before you buy",
   "People with variable or unstable income",
   "Those who may relocate in near future",
 ];
@@ -139,11 +139,11 @@ const applicationSteps = [
 const faqs = [
   {
     question: "What is Maybank HouzKEY?",
-    answer: "Maybank HouzKEY is a rent-to-own home ownership scheme by Maybank Islamic. Instead of taking a traditional home loan, Maybank purchases the property and rents it to you for up to 5 years. After the rental period, you have the option to convert to full ownership. It's designed for those who can't afford the 10% downpayment required for traditional loans.",
+    answer: "Maybank HouzKEY is a rent-to-own home ownership scheme by Maybank Islamic. Instead of taking a traditional home loan, Maybank purchases the property and rents it to you for up to 5 years. After the rental period, you have the option to convert to full ownership. It is designed for those who cannot afford the 10% downpayment required for traditional loans.",
   },
   {
     question: "Who is eligible for HouzKEY Maybank?",
-    answer: "To be eligible for HouzKEY, you must be: a Malaysian citizen, aged 18-70 years old, earning minimum RM3,000 per month, a first or second home buyer, and have a good credit record (CCRIS/CTOS). Additionally, the property must be from HouzKEY's list of partner developers.",
+    answer: "To be eligible for HouzKEY, you must be: a Malaysian citizen, aged 18-70 years old, earning minimum RM3,000 per month, a first or second home buyer, and have a good credit record (CCRIS/CTOS). Additionally, the property must be from HouzKEY partner developers list.",
   },
   {
     question: "What is the interest rate for HouzKEY?",
@@ -163,7 +163,7 @@ const faqs = [
   },
   {
     question: "Is HouzKEY Syariah compliant?",
-    answer: "Yes, HouzKEY is fully Syariah compliant. It's operated by Maybank Islamic using the Ijarah Muntahiyah Bi Tamlik (IMBT) concept, which is a lease ending with ownership transfer. This makes it suitable for customers who prefer Islamic financing products.",
+    answer: "Yes, HouzKEY is fully Syariah compliant. It is operated by Maybank Islamic using the Ijarah Muntahiyah Bi Tamlik (IMBT) concept, which is a lease ending with ownership transfer. This makes it suitable for customers who prefer Islamic financing products.",
   },
   {
     question: "What properties are available under HouzKEY?",
@@ -171,11 +171,11 @@ const faqs = [
   },
   {
     question: "How much salary to buy a 300k house?",
-    answer: "For a RM300,000 property under HouzKEY, you'd need approximately RM3,000-4,000 monthly income to qualify for the rental payments (around RM1,500/month). For a traditional loan with 10% downpayment, you'd need similar income plus RM30,000 saved. Use our eligibility calculator for accurate estimates.",
+    answer: "For a RM300,000 property under HouzKEY, you would need approximately RM3,000-4,000 monthly income to qualify for the rental payments (around RM1,500/month). For a traditional loan with 10% downpayment, you would need similar income plus RM30,000 saved. Use our eligibility calculator for accurate estimates.",
   },
   {
     question: "Is rent-to-own cheaper than buying?",
-    answer: "Generally, no. Rent-to-own (HouzKEY) typically costs more in total compared to a traditional home loan because you're paying for the flexibility of zero downpayment and exit options. However, it's more affordable initially since you don't need the 10% downpayment, making homeownership accessible to those without savings.",
+    answer: "Generally, no. Rent-to-own (HouzKEY) typically costs more in total compared to a traditional home loan because you are paying for the flexibility of zero downpayment and exit options. However, it is more affordable initially since you do not need the 10% downpayment, making homeownership accessible to those without savings.",
   },
   {
     question: "Can I refinance after HouzKEY?",
@@ -183,7 +183,7 @@ const faqs = [
   },
   {
     question: "What is the option fee for HouzKEY?",
-    answer: "The HouzKEY option fee is approximately 5% of the property price, paid upfront. For a RM500,000 property, that's RM25,000. If you complete the purchase, this amount is credited toward your purchase price. If you exit early, this fee is non-refundable. It's essentially your commitment deposit.",
+    answer: "The HouzKEY option fee is approximately 5% of the property price, paid upfront. For a RM500,000 property, that is RM25,000. If you complete the purchase, this amount is credited toward your purchase price. If you exit early, this fee is non-refundable. It is essentially your commitment deposit.",
   },
 ];
 

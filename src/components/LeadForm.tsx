@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { stripCommas } from "@/lib/utils";
 
 // Calculator values that can be passed from calculator page
@@ -150,10 +150,17 @@ export default function LeadForm({
     WhatsApp: "",
     OutstandingLoan: "",
     CurrentBank: "",
+    website: "", // Honeypot field - should remain empty
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
   const [error, setError] = useState("");
+
+  // Bot protection: track when form was loaded
+  const formLoadTime = useRef(Date.now());
+  useEffect(() => {
+    formLoadTime.current = Date.now();
+  }, []);
 
   const hasCalculatorValues = calculatorValues && calculatorValues.monthlySavings && calculatorValues.monthlySavings > 0;
 
@@ -161,6 +168,23 @@ export default function LeadForm({
     e.preventDefault();
     setIsSubmitting(true);
     setError("");
+
+    // Bot protection: honeypot check (bots fill hidden fields)
+    if (formData.website) {
+      console.log("Bot detected: honeypot filled");
+      setIsSubmitting(false);
+      setIsSubmitted(true); // Silently "succeed" to not alert bots
+      return;
+    }
+
+    // Bot protection: timing check (humans take > 3 seconds to fill form)
+    const timeSpent = Date.now() - formLoadTime.current;
+    if (timeSpent < 3000) {
+      console.log("Bot detected: form submitted too fast", timeSpent, "ms");
+      setIsSubmitting(false);
+      setIsSubmitted(true); // Silently "succeed" to not alert bots
+      return;
+    }
 
     // Validation - only name and phone required
     if (!formData.name) {
@@ -336,6 +360,20 @@ export default function LeadForm({
       )}
 
       <div className="space-y-4">
+        {/* Honeypot field - hidden from users, catches bots */}
+        <div style={{ position: "absolute", left: "-9999px" }} aria-hidden="true">
+          <label htmlFor="website">Website</label>
+          <input
+            type="text"
+            id="website"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            value={formData.website}
+            onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+          />
+        </div>
+
         {/* Full Name - Required */}
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">

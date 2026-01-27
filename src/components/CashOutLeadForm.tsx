@@ -1,6 +1,6 @@
 "use client";
 
-import { useState } from "react";
+import { useState, useRef, useEffect } from "react";
 import { formatNumberWithCommas, stripCommas } from "@/lib/utils";
 
 export interface CashOutLeadFormInitialValues {
@@ -59,7 +59,14 @@ export default function CashOutLeadForm({
     CashOutNeeded: initialValues?.cashOutNeeded || "",
     CurrentBank: "",
     Purpose: "",
+    website: "", // Honeypot field - should remain empty
   });
+
+  // Bot protection: track when form was loaded
+  const formLoadTime = useRef(Date.now());
+  useEffect(() => {
+    formLoadTime.current = Date.now();
+  }, []);
 
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [isSubmitted, setIsSubmitted] = useState(false);
@@ -69,6 +76,23 @@ export default function CashOutLeadForm({
     e.preventDefault();
     setIsSubmitting(true);
     setError("");
+
+    // Bot protection: honeypot check (bots fill hidden fields)
+    if (formData.website) {
+      console.log("Bot detected: honeypot filled");
+      setIsSubmitting(false);
+      setIsSubmitted(true); // Silently "succeed" to not alert bots
+      return;
+    }
+
+    // Bot protection: timing check (humans take > 3 seconds to fill form)
+    const timeSpent = Date.now() - formLoadTime.current;
+    if (timeSpent < 3000) {
+      console.log("Bot detected: form submitted too fast", timeSpent, "ms");
+      setIsSubmitting(false);
+      setIsSubmitted(true); // Silently "succeed" to not alert bots
+      return;
+    }
 
     // Validation
     if (!formData.name || !formData.WhatsApp || !formData.PropertyValue || !formData.Outstanding || !formData.CurrentBank) {
@@ -189,6 +213,20 @@ export default function CashOutLeadForm({
       </p>
 
       <div className="space-y-4">
+        {/* Honeypot field - hidden from users, catches bots */}
+        <div style={{ position: "absolute", left: "-9999px" }} aria-hidden="true">
+          <label htmlFor="website">Website</label>
+          <input
+            type="text"
+            id="website"
+            name="website"
+            tabIndex={-1}
+            autoComplete="off"
+            value={formData.website}
+            onChange={(e) => setFormData({ ...formData, website: e.target.value })}
+          />
+        </div>
+
         <div>
           <label htmlFor="name" className="block text-sm font-medium text-gray-700 mb-1">
             Full Name <span className="text-red-500">*</span>

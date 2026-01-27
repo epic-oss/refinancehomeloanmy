@@ -18,51 +18,64 @@ import {
   Shield,
   TrendingUp,
   HelpCircle,
-  AlertTriangle,
+  MapPin,
+  Calendar,
+  Banknote,
+  Info,
 } from "lucide-react";
 
 const currentYear = new Date().getFullYear();
 
 const faqs = [
   {
-    question: "Is reverse mortgage legal in Malaysia?",
+    question: "Is reverse mortgage available in Malaysia?",
     answer:
-      "Yes, reverse mortgages are legal in Malaysia, but they are not widely offered by banks. CAGAMAS Berhad previously offered a similar scheme called 'Skim Saraan Bercagar' but it has been discontinued. Most Malaysian banks prefer offering cash-out refinancing as an alternative.",
+      "Yes, reverse mortgage is available in Malaysia through Skim Saraan Bercagar (SSB) offered by Cagamas Berhad, the National Mortgage Corporation. SSB allows homeowners aged 55 and above with fully-paid homes to receive monthly tax-free income without selling their property. An Islamic version (SSB-i) is also available.",
   },
   {
-    question: "What happened to Skim Saraan Bercagar?",
+    question: "What is Skim Saraan Bercagar (SSB)?",
     answer:
-      "Skim Saraan Bercagar was launched by CAGAMAS Berhad to help senior citizens unlock their home equity. However, the scheme faced challenges including low uptake, Syariah compliance concerns, and operational difficulties. It has since been discontinued, leaving cash-out refinancing as the main alternative.",
+      "Skim Saraan Bercagar (SSB) is Malaysia's reverse mortgage scheme operated by Cagamas Berhad. It allows senior citizens (55+) who own fully-paid residential properties in selected areas (Klang Valley, Johor Bahru, Penang Island) to receive monthly income payments. The loan is only repaid when the borrower passes away, sells the property, or moves out permanently.",
   },
   {
-    question: "Can retirees qualify for refinancing in Malaysia?",
+    question: "What is the biggest problem with reverse mortgage?",
     answer:
-      "Yes, retirees can qualify for refinancing in Malaysia. Banks accept various forms of income including pension (government or private), EPF withdrawals, rental income, fixed deposit interest, and dividend income. Some banks offer refinancing to applicants up to age 70.",
+      "The main concerns with reverse mortgage include: (1) Accumulated interest reduces equity over time, leaving less for heirs; (2) Limited availability - SSB only covers Klang Valley, JB, and Penang; (3) Property must be fully paid with no existing loan; (4) Monthly payouts may be lower than expected depending on age and property value; (5) If you need a large lump sum, SSB only provides monthly payments.",
   },
   {
-    question: "What income do banks accept for retired applicants?",
+    question: "How much can a 70 year old borrow on a reverse mortgage?",
     answer:
-      "Malaysian banks accept: government pension, private pension schemes, EPF monthly withdrawals, rental income from investment properties, fixed deposit interest income, dividend income from investments, and business income if still working part-time.",
+      "The monthly payout from SSB depends on your age and property value. Generally, older applicants receive higher monthly payments since the expected payout period is shorter. For a 70-year-old with a property valued at RM500,000, monthly payouts could range from RM1,500-RM2,500. Contact Cagamas directly for an accurate calculation based on your specific situation.",
   },
   {
-    question: "Is cash-out refinance Syariah compliant?",
+    question: "Which bank is best for reverse mortgage in Malaysia?",
     answer:
-      "Yes, Islamic banks in Malaysia offer Syariah-compliant cash-out refinancing products. These are structured using Islamic financing principles like Musharakah Mutanaqisah (diminishing partnership) or Commodity Murabahah, making them suitable for Muslim homeowners.",
+      "Reverse mortgage (SSB) in Malaysia is only available through Cagamas Berhad, not regular banks. However, RHB Bank is a settlement partner for SSB. If you're looking for alternatives to unlock home equity, major banks like Maybank, CIMB, Public Bank, and Hong Leong offer cash-out refinancing which provides lump sum payments.",
   },
   {
-    question: "How long does cash-out refinancing take?",
+    question: "How to apply for SSB Cagamas?",
     answer:
-      "Cash-out refinancing typically takes 2-4 weeks for approval and another 4-8 weeks for disbursement after signing. The total process usually takes 6-12 weeks from application to receiving your cash. Having complete documents ready can speed up the process.",
+      "To apply for Skim Saraan Bercagar: (1) Contact Cagamas directly or visit their website; (2) Ensure you meet eligibility - aged 55+, own fully-paid residential property in eligible areas; (3) Submit required documents including IC, property title, and proof of ownership; (4) Property valuation will be conducted; (5) If approved, you'll receive monthly payments. The process typically takes 4-8 weeks.",
   },
   {
-    question: "Can I cash out if my house is fully paid?",
+    question: "What are the SSB eligibility requirements?",
     answer:
-      "Absolutely! If your house is fully paid, you actually have maximum equity available for cash-out. You can potentially access up to 80-90% of your property value through refinancing. This is one of the best scenarios for cash-out refinancing.",
+      "SSB requirements include: (1) Malaysian citizen aged 55 years or above; (2) Own a fully-paid residential property (no outstanding mortgage); (3) Property located in Klang Valley, Johor Bahru, or Penang Island; (4) Property must be in good condition with valid title; (5) Minimum property value requirements apply; (6) Must be the sole owner or joint owner with spouse.",
   },
   {
-    question: "What are the risks of cash-out refinancing?",
+    question: "Is SSB Syariah compliant?",
     answer:
-      "The main risks include: monthly repayment obligations (unlike reverse mortgage), potential foreclosure if you can't make payments, longer loan tenure means more total interest paid, and your home is used as collateral. However, with proper planning and affordable repayments, these risks are manageable.",
+      "Yes, Cagamas offers SSB-i, the Islamic/Syariah-compliant version of Skim Saraan Bercagar. SSB-i is structured according to Islamic financing principles and has been approved by Syariah advisors. Muslim homeowners can choose SSB-i to receive monthly income while ensuring compliance with Islamic finance requirements.",
+  },
+  {
+    question: "Can retirees get cash-out refinancing instead?",
+    answer:
+      "Yes, retirees can qualify for cash-out refinancing if they have verifiable income (pension, EPF withdrawals, rental income). Unlike SSB, cash-out refinancing provides a lump sum, works on properties with existing loans, and is available nationwide. It's a good alternative for those under 55, outside SSB coverage areas, or who prefer lump sum over monthly payments.",
+  },
+  {
+    question: "What happens to my property after SSB reverse mortgage?",
+    answer:
+      "With SSB, you continue to own and live in your property. The loan is only settled when: (1) You pass away - heirs can repay the loan to keep the property or sell it; (2) You sell the property voluntarily; (3) You permanently move out. Any remaining equity after loan settlement goes to you or your heirs.",
   },
 ];
 
@@ -85,9 +98,10 @@ export default function ReverseMortgagePage() {
               <span className="text-secondary-400">What You Need to Know</span>
             </h1>
             <p className="text-xl text-gray-300 mb-8 max-w-3xl">
-              Want to unlock your home equity in retirement? Learn about reverse
-              mortgage options in Malaysia and discover alternatives that might
-              work better for you.
+              Yes, reverse mortgage is available in Malaysia through{" "}
+              <strong className="text-white">Skim Saraan Bercagar (SSB)</strong>{" "}
+              by Cagamas. Learn how it works, eligibility requirements, and
+              compare with cash-out refinancing to find the best option for you.
             </p>
             <button
               onClick={() => setShowForm(true)}
@@ -108,14 +122,16 @@ export default function ReverseMortgagePage() {
               What is a Reverse Mortgage?
             </h2>
             <p className="text-lg text-gray-600 mb-8">
-              A reverse mortgage is a type of loan that allows homeowners
-              (typically aged 60+) to convert part of their home equity into
-              cash without having to sell their home or make monthly payments.
+              A reverse mortgage is a type of loan that allows senior homeowners
+              to convert their home equity into cash without selling their
+              property or making monthly payments. The loan is repaid when the
+              homeowner sells the property, moves out permanently, or passes
+              away.
             </p>
 
             <div className="bg-gray-50 rounded-2xl p-6 md:p-8 mb-8">
               <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                How It Works (In Other Countries)
+                How Reverse Mortgage Works
               </h3>
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="text-center">
@@ -126,18 +142,20 @@ export default function ReverseMortgagePage() {
                     1. Own Your Home
                   </h4>
                   <p className="text-sm text-gray-600">
-                    Homeowner (60+) with a fully or mostly paid-off home
+                    Senior homeowner (55+) with a fully paid residential
+                    property
                   </p>
                 </div>
                 <div className="text-center">
                   <div className="w-16 h-16 bg-secondary-100 rounded-full flex items-center justify-center mx-auto mb-4">
-                    <DollarSign className="w-8 h-8 text-secondary-600" />
+                    <Banknote className="w-8 h-8 text-secondary-600" />
                   </div>
                   <h4 className="font-semibold text-gray-900 mb-2">
-                    2. Receive Cash
+                    2. Receive Monthly Income
                   </h4>
                   <p className="text-sm text-gray-600">
-                    Get lump sum or monthly payments based on home equity
+                    Get tax-free monthly payments based on property value and
+                    age
                   </p>
                 </div>
                 <div className="text-center">
@@ -148,114 +166,423 @@ export default function ReverseMortgagePage() {
                     3. Repay Later
                   </h4>
                   <p className="text-sm text-gray-600">
-                    Loan repaid when you sell, move out, or pass away
+                    No monthly repayments - loan settled when you sell, move, or
+                    pass away
                   </p>
                 </div>
               </div>
-            </div>
-
-            <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
-              <p className="text-blue-800">
-                <strong>Countries with Reverse Mortgages:</strong> Reverse
-                mortgages are popular in the United States (Home Equity
-                Conversion Mortgage), Australia, United Kingdom, and Canada
-                where they're regulated and widely available through major
-                banks.
-              </p>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Is It Available in Malaysia */}
-      <section className="py-16 bg-gray-50">
+      {/* Is It Available in Malaysia - YES */}
+      <section className="py-16 bg-green-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-4xl mx-auto">
             <div className="flex items-start gap-4 mb-6">
-              <AlertTriangle className="w-10 h-10 text-amber-500 flex-shrink-0 mt-1" />
+              <CheckCircle className="w-10 h-10 text-green-600 flex-shrink-0 mt-1" />
               <div>
                 <h2 className="text-3xl font-bold text-gray-900 mb-2">
                   Is Reverse Mortgage Available in Malaysia?
                 </h2>
-                <p className="text-lg text-amber-700 font-medium">
-                  Very Limited / Not Widely Available
+                <p className="text-lg text-green-700 font-medium">
+                  Yes! Through Skim Saraan Bercagar (SSB) by Cagamas Berhad
                 </p>
               </div>
             </div>
 
-            <div className="prose prose-lg max-w-none text-gray-600 mb-8">
-              <p>
-                Unlike in Western countries, true reverse mortgages are{" "}
-                <strong>not widely available</strong> in Malaysia. Here's what
-                you need to know:
-              </p>
+            <div className="bg-white rounded-2xl p-6 md:p-8 shadow-sm mb-8">
+              <div className="flex items-center gap-3 mb-4">
+                <Building2 className="w-8 h-8 text-primary-600" />
+                <div>
+                  <h3 className="text-xl font-bold text-gray-900">
+                    Skim Saraan Bercagar (SSB)
+                  </h3>
+                  <p className="text-gray-600">
+                    Malaysia's Official Reverse Mortgage Scheme
+                  </p>
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6">
+                <div>
+                  <h4 className="font-semibold text-gray-900 mb-3">
+                    Key Features:
+                  </h4>
+                  <ul className="space-y-2">
+                    <li className="flex items-start gap-2 text-gray-600">
+                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                      <span>
+                        Operated by <strong>Cagamas Berhad</strong> (National
+                        Mortgage Corporation)
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2 text-gray-600">
+                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                      <span>
+                        For homeowners aged <strong>55 years and above</strong>
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2 text-gray-600">
+                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                      <span>
+                        Provides <strong>monthly tax-free income</strong>
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2 text-gray-600">
+                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                      <span>
+                        <strong>No repayment</strong> until you sell/pass away
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2 text-gray-600">
+                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                      <span>
+                        <strong>SSB-i</strong> (Islamic version) available
+                      </span>
+                    </li>
+                  </ul>
+                </div>
+                <div>
+                  <h4 className="font-semibold text-gray-900 mb-3">
+                    Eligibility Requirements:
+                  </h4>
+                  <ul className="space-y-2">
+                    <li className="flex items-start gap-2 text-gray-600">
+                      <Calendar className="w-5 h-5 text-primary-500 flex-shrink-0 mt-0.5" />
+                      <span>Malaysian citizen, 55 years or older</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-gray-600">
+                      <Home className="w-5 h-5 text-primary-500 flex-shrink-0 mt-0.5" />
+                      <span>
+                        Fully-paid residential property (no mortgage)
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2 text-gray-600">
+                      <MapPin className="w-5 h-5 text-primary-500 flex-shrink-0 mt-0.5" />
+                      <span>
+                        Property in: Klang Valley, Johor Bahru, or Penang Island
+                      </span>
+                    </li>
+                    <li className="flex items-start gap-2 text-gray-600">
+                      <FileText className="w-5 h-5 text-primary-500 flex-shrink-0 mt-0.5" />
+                      <span>Valid property title and good condition</span>
+                    </li>
+                    <li className="flex items-start gap-2 text-gray-600">
+                      <Users className="w-5 h-5 text-primary-500 flex-shrink-0 mt-0.5" />
+                      <span>Sole owner or joint owner with spouse</span>
+                    </li>
+                  </ul>
+                </div>
+              </div>
             </div>
 
-            <div className="space-y-4 mb-8">
-              <div className="bg-white rounded-xl p-6 border border-gray-200">
-                <h3 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
-                  <XCircle className="w-5 h-5 text-red-500" />
-                  Skim Saraan Bercagar - Discontinued
-                </h3>
-                <p className="text-gray-600">
-                  CAGAMAS Berhad (the national mortgage corporation) previously
-                  offered "Skim Saraan Bercagar" - a reverse mortgage-like
-                  scheme for senior citizens. However, this program has been{" "}
-                  <strong>discontinued</strong> due to low uptake and
-                  operational challenges.
-                </p>
+            <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
+              <div className="flex items-start gap-3">
+                <Info className="w-5 h-5 text-blue-600 flex-shrink-0 mt-0.5" />
+                <div>
+                  <p className="text-blue-800 font-medium">
+                    RHB Bank Partnership
+                  </p>
+                  <p className="text-blue-700 text-sm">
+                    RHB Bank is a settlement partner for SSB, facilitating the
+                    monthly payment disbursements to eligible homeowners.
+                  </p>
+                </div>
               </div>
+            </div>
+          </div>
+        </div>
+      </section>
 
-              <div className="bg-white rounded-xl p-6 border border-gray-200">
-                <h3 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
-                  <XCircle className="w-5 h-5 text-red-500" />
-                  Major Banks Don't Offer It
-                </h3>
-                <p className="text-gray-600">
-                  Maybank, CIMB, Public Bank, RHB, and other major Malaysian
-                  banks do <strong>not offer</strong> true reverse mortgage
-                  products. They prefer traditional refinancing options
-                  instead.
-                </p>
-              </div>
+      {/* SSB How It Works */}
+      <section className="py-16 bg-white">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
+              How Skim Saraan Bercagar (SSB) Works
+            </h2>
 
-              <div className="bg-white rounded-xl p-6 border border-gray-200">
-                <h3 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
-                  <HelpCircle className="w-5 h-5 text-amber-500" />
-                  Why Isn't It Available?
+            <div className="space-y-6 mb-12">
+              {[
+                {
+                  step: 1,
+                  title: "Check Your Eligibility",
+                  description:
+                    "Confirm you're 55+, own a fully-paid residential property in Klang Valley, JB, or Penang Island.",
+                  icon: CheckCircle,
+                },
+                {
+                  step: 2,
+                  title: "Apply to Cagamas",
+                  description:
+                    "Contact Cagamas directly or through their website. Submit IC, property documents, and proof of ownership.",
+                  icon: FileText,
+                },
+                {
+                  step: 3,
+                  title: "Property Valuation",
+                  description:
+                    "Cagamas will arrange for your property to be valued. This determines your monthly payout amount.",
+                  icon: Home,
+                },
+                {
+                  step: 4,
+                  title: "Receive Monthly Income",
+                  description:
+                    "Once approved, you'll receive tax-free monthly payments directly to your bank account. Choose conventional or SSB-i (Islamic).",
+                  icon: Banknote,
+                },
+                {
+                  step: 5,
+                  title: "Continue Living in Your Home",
+                  description:
+                    "You retain ownership and can live in your home for life. No monthly repayments required.",
+                  icon: Shield,
+                },
+              ].map((item) => (
+                <div
+                  key={item.step}
+                  className="flex gap-4 bg-gray-50 rounded-xl p-6"
+                >
+                  <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0">
+                    <span className="text-xl font-bold text-primary-600">
+                      {item.step}
+                    </span>
+                  </div>
+                  <div className="flex-1">
+                    <h3 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                      <item.icon className="w-5 h-5 text-primary-600" />
+                      {item.title}
+                    </h3>
+                    <p className="text-gray-600">{item.description}</p>
+                  </div>
+                </div>
+              ))}
+            </div>
+
+            <div className="bg-amber-50 border border-amber-200 rounded-xl p-6">
+              <h3 className="font-semibold text-amber-800 mb-3 flex items-center gap-2">
+                <HelpCircle className="w-5 h-5" />
+                Important Considerations
+              </h3>
+              <ul className="space-y-2 text-amber-700 text-sm">
+                <li>
+                  • <strong>Limited coverage:</strong> Only properties in Klang
+                  Valley, Johor Bahru, and Penang Island are eligible
+                </li>
+                <li>
+                  • <strong>Fully paid only:</strong> Property must have no
+                  existing mortgage or loan
+                </li>
+                <li>
+                  • <strong>Equity reduction:</strong> Interest accumulates over
+                  time, reducing the equity left for heirs
+                </li>
+                <li>
+                  • <strong>Monthly payments only:</strong> SSB provides monthly
+                  income, not lump sum payouts
+                </li>
+              </ul>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* SSB vs Cash-Out Comparison */}
+      <section className="py-16 bg-gray-50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="text-center mb-12">
+            <h2 className="text-3xl font-bold text-gray-900 mb-4">
+              SSB vs Cash-Out Refinancing: Which is Right for You?
+            </h2>
+            <p className="text-xl text-gray-600 max-w-3xl mx-auto">
+              Both options let you access your home equity, but they work
+              differently. Compare to find the best fit for your situation.
+            </p>
+          </div>
+
+          <div className="max-w-5xl mx-auto">
+            {/* Comparison Table */}
+            <div className="overflow-x-auto mb-8">
+              <table className="w-full border-collapse bg-white rounded-xl overflow-hidden shadow-sm">
+                <thead>
+                  <tr className="bg-gray-100">
+                    <th className="border border-gray-200 px-4 py-3 text-left font-semibold">
+                      Feature
+                    </th>
+                    <th className="border border-gray-200 px-4 py-3 text-left font-semibold bg-primary-50">
+                      SSB (Skim Saraan Bercagar)
+                    </th>
+                    <th className="border border-gray-200 px-4 py-3 text-left font-semibold bg-secondary-50">
+                      Cash-Out Refinancing
+                    </th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr>
+                    <td className="border border-gray-200 px-4 py-3 font-medium">
+                      Provider
+                    </td>
+                    <td className="border border-gray-200 px-4 py-3 bg-primary-50">
+                      Cagamas only
+                    </td>
+                    <td className="border border-gray-200 px-4 py-3 bg-secondary-50">
+                      All major banks
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border border-gray-200 px-4 py-3 font-medium">
+                      Age Requirement
+                    </td>
+                    <td className="border border-gray-200 px-4 py-3 bg-primary-50">
+                      55+ years
+                    </td>
+                    <td className="border border-gray-200 px-4 py-3 bg-secondary-50">
+                      18-70 years
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border border-gray-200 px-4 py-3 font-medium">
+                      Property Requirement
+                    </td>
+                    <td className="border border-gray-200 px-4 py-3 bg-primary-50">
+                      Must be fully paid
+                    </td>
+                    <td className="border border-gray-200 px-4 py-3 bg-secondary-50">
+                      Can have existing loan
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border border-gray-200 px-4 py-3 font-medium">
+                      Coverage Area
+                    </td>
+                    <td className="border border-gray-200 px-4 py-3 bg-primary-50">
+                      KL, JB, Penang only
+                    </td>
+                    <td className="border border-gray-200 px-4 py-3 bg-secondary-50 text-green-700 font-medium">
+                      Nationwide
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border border-gray-200 px-4 py-3 font-medium">
+                      Payout Type
+                    </td>
+                    <td className="border border-gray-200 px-4 py-3 bg-primary-50">
+                      Monthly income
+                    </td>
+                    <td className="border border-gray-200 px-4 py-3 bg-secondary-50">
+                      Lump sum
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border border-gray-200 px-4 py-3 font-medium">
+                      Repayment
+                    </td>
+                    <td className="border border-gray-200 px-4 py-3 bg-primary-50">
+                      When you pass/sell
+                    </td>
+                    <td className="border border-gray-200 px-4 py-3 bg-secondary-50">
+                      Monthly installments
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border border-gray-200 px-4 py-3 font-medium">
+                      Max Amount
+                    </td>
+                    <td className="border border-gray-200 px-4 py-3 bg-primary-50">
+                      Based on age/property
+                    </td>
+                    <td className="border border-gray-200 px-4 py-3 bg-secondary-50 text-green-700 font-medium">
+                      Up to 90% LTV
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border border-gray-200 px-4 py-3 font-medium">
+                      Islamic Option
+                    </td>
+                    <td className="border border-gray-200 px-4 py-3 bg-primary-50">
+                      Yes (SSB-i)
+                    </td>
+                    <td className="border border-gray-200 px-4 py-3 bg-secondary-50">
+                      Yes (at Islamic banks)
+                    </td>
+                  </tr>
+                  <tr>
+                    <td className="border border-gray-200 px-4 py-3 font-medium">
+                      Best For
+                    </td>
+                    <td className="border border-gray-200 px-4 py-3 bg-primary-50">
+                      Seniors wanting monthly income
+                    </td>
+                    <td className="border border-gray-200 px-4 py-3 bg-secondary-50">
+                      Anyone needing lump sum cash
+                    </td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            {/* When to Choose Each */}
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="bg-primary-50 rounded-xl p-6 border border-primary-200">
+                <h3 className="font-bold text-primary-800 mb-4 flex items-center gap-2">
+                  <CheckCircle className="w-5 h-5" />
+                  Choose SSB If You:
                 </h3>
-                <ul className="text-gray-600 space-y-2">
-                  <li>
-                    • <strong>Syariah concerns:</strong> Traditional reverse
-                    mortgages have interest accumulation issues that conflict
-                    with Islamic banking principles
+                <ul className="space-y-2 text-primary-700">
+                  <li className="flex items-start gap-2">
+                    <ArrowRight className="w-4 h-4 mt-1 flex-shrink-0" />
+                    <span>Are 55 years or older</span>
                   </li>
-                  <li>
-                    • <strong>Property market differences:</strong> Malaysia's
-                    property market dynamics differ from Western markets
+                  <li className="flex items-start gap-2">
+                    <ArrowRight className="w-4 h-4 mt-1 flex-shrink-0" />
+                    <span>Have a fully-paid home in KL, JB, or Penang</span>
                   </li>
-                  <li>
-                    • <strong>Regulatory framework:</strong> No specific
-                    regulations governing reverse mortgages in Malaysia
+                  <li className="flex items-start gap-2">
+                    <ArrowRight className="w-4 h-4 mt-1 flex-shrink-0" />
+                    <span>Want regular monthly income for retirement</span>
                   </li>
-                  <li>
-                    • <strong>Cultural factors:</strong> Strong tradition of
-                    passing property to children
+                  <li className="flex items-start gap-2">
+                    <ArrowRight className="w-4 h-4 mt-1 flex-shrink-0" />
+                    <span>Don't want to make monthly loan payments</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <ArrowRight className="w-4 h-4 mt-1 flex-shrink-0" />
+                    <span>Plan to stay in your home for life</span>
                   </li>
                 </ul>
               </div>
-            </div>
 
-            <div className="bg-green-50 border border-green-200 rounded-xl p-6">
-              <h3 className="text-xl font-semibold text-green-800 mb-2">
-                Good News: There's a Better Alternative
-              </h3>
-              <p className="text-green-700">
-                While reverse mortgages aren't available, Malaysian homeowners
-                can access their home equity through{" "}
-                <strong>cash-out refinancing</strong> - which is widely
-                available at all major banks and often provides better terms.
-              </p>
+              <div className="bg-secondary-50 rounded-xl p-6 border border-secondary-200">
+                <h3 className="font-bold text-secondary-800 mb-4 flex items-center gap-2">
+                  <CheckCircle className="w-5 h-5" />
+                  Choose Cash-Out Refinancing If You:
+                </h3>
+                <ul className="space-y-2 text-secondary-700">
+                  <li className="flex items-start gap-2">
+                    <ArrowRight className="w-4 h-4 mt-1 flex-shrink-0" />
+                    <span>Are under 55 years old</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <ArrowRight className="w-4 h-4 mt-1 flex-shrink-0" />
+                    <span>Property is outside KL, JB, or Penang</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <ArrowRight className="w-4 h-4 mt-1 flex-shrink-0" />
+                    <span>Need a large lump sum (not monthly payments)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <ArrowRight className="w-4 h-4 mt-1 flex-shrink-0" />
+                    <span>Still have an existing mortgage to pay off</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <ArrowRight className="w-4 h-4 mt-1 flex-shrink-0" />
+                    <span>Can afford monthly repayments from income</span>
+                  </li>
+                </ul>
+              </div>
             </div>
           </div>
         </div>
@@ -265,387 +592,99 @@ export default function ReverseMortgagePage() {
       <section className="py-16 bg-white">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <div className="inline-flex items-center gap-2 bg-green-100 px-4 py-2 rounded-full text-green-700 text-sm font-medium mb-4">
-              <CheckCircle className="w-4 h-4" />
-              Recommended Alternative
+            <div className="inline-flex items-center gap-2 bg-secondary-100 px-4 py-2 rounded-full text-secondary-700 text-sm font-medium mb-4">
+              <TrendingUp className="w-4 h-4" />
+              Alternative Option
             </div>
             <h2 className="text-3xl md:text-4xl font-bold text-gray-900 mb-4">
-              Better Alternative: Cash-Out Refinancing
+              Cash-Out Refinancing: The Flexible Alternative
             </h2>
             <p className="text-xl text-gray-600 max-w-3xl mx-auto">
-              Cash-out refinancing lets you unlock your home equity while
-              keeping ownership of your home - and it's available at all major
-              Malaysian banks.
+              If you don't qualify for SSB or prefer a lump sum payment,
+              cash-out refinancing is available at all major Malaysian banks.
             </p>
           </div>
 
           <div className="max-w-4xl mx-auto">
-            <div className="bg-gradient-to-r from-primary-50 to-secondary-50 rounded-2xl p-6 md:p-8 mb-8">
-              <h3 className="text-xl font-semibold text-gray-900 mb-4">
-                How Cash-Out Refinancing Works
-              </h3>
-              <div className="grid md:grid-cols-4 gap-4">
-                <div className="bg-white rounded-xl p-4 text-center">
-                  <div className="text-2xl font-bold text-primary-600 mb-2">
-                    1
-                  </div>
-                  <p className="text-sm text-gray-600">
-                    Get your property valued
-                  </p>
-                </div>
-                <div className="bg-white rounded-xl p-4 text-center">
-                  <div className="text-2xl font-bold text-primary-600 mb-2">
-                    2
-                  </div>
-                  <p className="text-sm text-gray-600">
-                    Refinance for higher amount (up to 90% LTV)
-                  </p>
-                </div>
-                <div className="bg-white rounded-xl p-4 text-center">
-                  <div className="text-2xl font-bold text-primary-600 mb-2">
-                    3
-                  </div>
-                  <p className="text-sm text-gray-600">
-                    Pay off existing loan
-                  </p>
-                </div>
-                <div className="bg-white rounded-xl p-4 text-center">
-                  <div className="text-2xl font-bold text-primary-600 mb-2">
-                    4
-                  </div>
-                  <p className="text-sm text-gray-600">
-                    Receive the cash difference
-                  </p>
-                </div>
-              </div>
-            </div>
-
-            {/* Comparison Table */}
-            <h3 className="text-xl font-semibold text-gray-900 mb-4">
-              Reverse Mortgage vs Cash-Out Refinancing
-            </h3>
-            <div className="overflow-x-auto mb-8">
-              <table className="w-full border-collapse">
-                <thead>
-                  <tr className="bg-gray-100">
-                    <th className="border border-gray-200 px-4 py-3 text-left font-semibold">
-                      Feature
-                    </th>
-                    <th className="border border-gray-200 px-4 py-3 text-left font-semibold">
-                      Reverse Mortgage
-                    </th>
-                    <th className="border border-gray-200 px-4 py-3 text-left font-semibold bg-green-50">
-                      Cash-Out Refinance
-                    </th>
-                  </tr>
-                </thead>
-                <tbody>
-                  <tr>
-                    <td className="border border-gray-200 px-4 py-3">
-                      Availability in MY
-                    </td>
-                    <td className="border border-gray-200 px-4 py-3 text-red-600">
-                      Very Limited
-                    </td>
-                    <td className="border border-gray-200 px-4 py-3 text-green-600 bg-green-50 font-medium">
-                      All Major Banks
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border border-gray-200 px-4 py-3">
-                      Age Requirement
-                    </td>
-                    <td className="border border-gray-200 px-4 py-3">60+</td>
-                    <td className="border border-gray-200 px-4 py-3 bg-green-50">
-                      18-70
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border border-gray-200 px-4 py-3">
-                      Monthly Payments
-                    </td>
-                    <td className="border border-gray-200 px-4 py-3">No</td>
-                    <td className="border border-gray-200 px-4 py-3 bg-green-50">
-                      Yes (can be affordable)
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border border-gray-200 px-4 py-3">
-                      Interest Rate
-                    </td>
-                    <td className="border border-gray-200 px-4 py-3">
-                      Higher (5-7%)
-                    </td>
-                    <td className="border border-gray-200 px-4 py-3 text-green-600 bg-green-50 font-medium">
-                      Lower (3.5-4.5%)
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border border-gray-200 px-4 py-3">
-                      Max Cash Access
-                    </td>
-                    <td className="border border-gray-200 px-4 py-3">
-                      Up to 50% equity
-                    </td>
-                    <td className="border border-gray-200 px-4 py-3 text-green-600 bg-green-50 font-medium">
-                      Up to 90% LTV
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border border-gray-200 px-4 py-3">
-                      Keep Home Ownership
-                    </td>
-                    <td className="border border-gray-200 px-4 py-3">Yes</td>
-                    <td className="border border-gray-200 px-4 py-3 bg-green-50">
-                      Yes
-                    </td>
-                  </tr>
-                  <tr>
-                    <td className="border border-gray-200 px-4 py-3">
-                      Islamic Option
-                    </td>
-                    <td className="border border-gray-200 px-4 py-3 text-red-600">
-                      Limited
-                    </td>
-                    <td className="border border-gray-200 px-4 py-3 text-green-600 bg-green-50 font-medium">
-                      Available
-                    </td>
-                  </tr>
-                </tbody>
-              </table>
-            </div>
-
-            <div className="text-center">
-              <Link
-                href="/cash-out-refinance-malaysia"
-                className="inline-flex items-center gap-2 bg-secondary-500 hover:bg-secondary-600 text-white font-semibold px-8 py-4 rounded-lg transition-colors"
-              >
-                Learn More About Cash-Out Refinancing
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Who Should Consider */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
-            Who Should Consider Cash-Out Refinancing?
-          </h2>
-
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6 max-w-5xl mx-auto">
-            {[
-              {
-                icon: Users,
-                title: "Retirees",
-                description:
-                  "Supplement your pension or EPF withdrawals with a lump sum or monthly income from your home equity",
-              },
-              {
-                icon: Home,
-                title: "Home Renovations",
-                description:
-                  "Fund major repairs, upgrades, or accessibility modifications to your home",
-              },
-              {
-                icon: Shield,
-                title: "Medical Expenses",
-                description:
-                  "Cover unexpected healthcare costs or long-term medical treatments",
-              },
-              {
-                icon: FileText,
-                title: "Children's Education",
-                description:
-                  "Fund university fees or overseas education for children or grandchildren",
-              },
-              {
-                icon: DollarSign,
-                title: "Debt Consolidation",
-                description:
-                  "Pay off high-interest credit cards and personal loans at lower mortgage rates",
-              },
-              {
-                icon: TrendingUp,
-                title: "Investment Capital",
-                description:
-                  "Access capital for business opportunities or investment diversification",
-              },
-            ].map((item, index) => (
-              <div
-                key={index}
-                className="bg-white rounded-xl p-6 shadow-sm border border-gray-100"
-              >
-                <item.icon className="w-10 h-10 text-secondary-500 mb-4" />
-                <h3 className="text-lg font-semibold text-gray-900 mb-2">
-                  {item.title}
-                </h3>
-                <p className="text-gray-600 text-sm">{item.description}</p>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
-      {/* Eligibility */}
-      <section className="py-16 bg-white">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 mb-8">
-              Eligibility for Cash-Out Refinancing
-            </h2>
-
             <div className="grid md:grid-cols-2 gap-6 mb-8">
-              <div className="bg-green-50 rounded-xl p-6">
-                <h3 className="font-semibold text-green-800 mb-4 flex items-center gap-2">
-                  <CheckCircle className="w-5 h-5" />
-                  Basic Requirements
+              <div className="bg-gray-50 rounded-xl p-6">
+                <h3 className="font-semibold text-gray-900 mb-4">
+                  Benefits of Cash-Out Refinancing:
                 </h3>
-                <ul className="space-y-3 text-green-700">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 mt-1 flex-shrink-0" />
-                    <span>
-                      Property with equity (ideally 30%+ already paid off)
-                    </span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 mt-1 flex-shrink-0" />
-                    <span>Age 18-70 (varies by bank)</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 mt-1 flex-shrink-0" />
-                    <span>Good credit history (CCRIS/CTOS)</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 mt-1 flex-shrink-0" />
-                    <span>Proof of income to service new loan</span>
-                  </li>
+                <ul className="space-y-3">
+                  {[
+                    "Available at Maybank, CIMB, Public Bank, RHB, Hong Leong, and more",
+                    "Works nationwide - not limited to specific areas",
+                    "Get up to 90% of property value as lump sum",
+                    "Can refinance properties with existing loans",
+                    "Lower interest rates (3.5-4.5%) than personal loans",
+                    "Flexible use - renovation, education, debt payoff, investment",
+                  ].map((benefit, index) => (
+                    <li key={index} className="flex items-start gap-2">
+                      <CheckCircle className="w-5 h-5 text-green-500 flex-shrink-0 mt-0.5" />
+                      <span className="text-gray-600">{benefit}</span>
+                    </li>
+                  ))}
                 </ul>
               </div>
 
-              <div className="bg-blue-50 rounded-xl p-6">
-                <h3 className="font-semibold text-blue-800 mb-4 flex items-center gap-2">
-                  <DollarSign className="w-5 h-5" />
-                  Accepted Income (For Retirees)
+              <div className="bg-gradient-to-br from-secondary-50 to-primary-50 rounded-xl p-6">
+                <h3 className="font-semibold text-gray-900 mb-4">
+                  Example Cash-Out Calculation:
                 </h3>
-                <ul className="space-y-3 text-blue-700">
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 mt-1 flex-shrink-0" />
-                    <span>Government or private pension</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 mt-1 flex-shrink-0" />
-                    <span>EPF monthly withdrawals</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 mt-1 flex-shrink-0" />
-                    <span>Rental income from properties</span>
-                  </li>
-                  <li className="flex items-start gap-2">
-                    <CheckCircle className="w-4 h-4 mt-1 flex-shrink-0" />
-                    <span>Fixed deposit / dividend income</span>
-                  </li>
-                </ul>
+                <div className="space-y-3">
+                  <div className="flex justify-between py-2 border-b border-gray-200">
+                    <span className="text-gray-600">Property Value</span>
+                    <span className="font-semibold">RM 500,000</span>
+                  </div>
+                  <div className="flex justify-between py-2 border-b border-gray-200">
+                    <span className="text-gray-600">Outstanding Loan</span>
+                    <span className="font-semibold">RM 150,000</span>
+                  </div>
+                  <div className="flex justify-between py-2 border-b border-gray-200">
+                    <span className="text-gray-600">Max New Loan (90%)</span>
+                    <span className="font-semibold">RM 450,000</span>
+                  </div>
+                  <div className="flex justify-between py-2 bg-green-100 rounded-lg px-3">
+                    <span className="font-medium text-green-800">
+                      Potential Cash Out
+                    </span>
+                    <span className="font-bold text-green-600">RM 300,000</span>
+                  </div>
+                </div>
               </div>
             </div>
 
             <div className="flex flex-wrap gap-4 justify-center">
               <Link
-                href="/dsr-calculator"
-                className="inline-flex items-center gap-2 bg-primary-600 hover:bg-primary-700 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
+                href="/cash-out-refinance-malaysia"
+                className="inline-flex items-center gap-2 bg-secondary-500 hover:bg-secondary-600 text-white font-semibold px-6 py-3 rounded-lg transition-colors"
               >
-                <Calculator className="w-5 h-5" />
-                Check Your DSR Eligibility
+                Learn About Cash-Out Refinancing
+                <ArrowRight className="w-5 h-5" />
               </Link>
-              <Link
-                href="/en/documents-required"
-                className="inline-flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold px-6 py-3 rounded-lg transition-colors"
-              >
-                <FileText className="w-5 h-5" />
-                Documents Required
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* How Much Can You Get */}
-      <section className="py-16 bg-gradient-to-br from-secondary-50 to-primary-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-3xl font-bold text-gray-900 text-center mb-8">
-              How Much Cash Can You Get?
-            </h2>
-
-            <div className="bg-white rounded-2xl shadow-lg p-6 md:p-8 mb-8">
-              <h3 className="text-lg font-semibold text-gray-900 mb-6">
-                Example Calculation
-              </h3>
-
-              <div className="space-y-4">
-                <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                  <span className="text-gray-600">Property Market Value</span>
-                  <span className="font-semibold text-gray-900">
-                    RM 500,000
-                  </span>
-                </div>
-                <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                  <span className="text-gray-600">Outstanding Loan</span>
-                  <span className="font-semibold text-gray-900">
-                    RM 200,000
-                  </span>
-                </div>
-                <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                  <span className="text-gray-600">
-                    Your Equity (Value - Loan)
-                  </span>
-                  <span className="font-semibold text-secondary-600">
-                    RM 300,000
-                  </span>
-                </div>
-                <div className="flex justify-between items-center py-3 border-b border-gray-100">
-                  <span className="text-gray-600">Max New Loan (90% LTV)</span>
-                  <span className="font-semibold text-gray-900">
-                    RM 450,000
-                  </span>
-                </div>
-                <div className="flex justify-between items-center py-3 bg-green-50 rounded-lg px-4">
-                  <span className="text-green-800 font-medium">
-                    Potential Cash Out
-                  </span>
-                  <span className="font-bold text-2xl text-green-600">
-                    RM 250,000
-                  </span>
-                </div>
-              </div>
-
-              <p className="text-sm text-gray-500 mt-4">
-                * Actual amount depends on bank approval, DSR, and other
-                factors. This is an illustrative example only.
-              </p>
-            </div>
-
-            <div className="text-center">
               <Link
                 href="/cash-out-calculator"
-                className="inline-flex items-center gap-2 bg-secondary-500 hover:bg-secondary-600 text-white font-semibold px-8 py-4 rounded-lg transition-colors"
+                className="inline-flex items-center gap-2 bg-gray-100 hover:bg-gray-200 text-gray-800 font-semibold px-6 py-3 rounded-lg transition-colors"
               >
                 <Calculator className="w-5 h-5" />
-                Calculate Your Cash-Out Amount
+                Calculate Your Cash-Out
               </Link>
             </div>
           </div>
         </div>
       </section>
 
-      {/* Banks That Offer */}
-      <section className="py-16 bg-white">
+      {/* Banks That Offer Cash-Out */}
+      <section className="py-16 bg-gray-50">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
+          <h2 className="text-3xl font-bold text-gray-900 text-center mb-4">
             Banks That Offer Cash-Out Refinancing
           </h2>
+          <p className="text-gray-600 text-center mb-12 max-w-2xl mx-auto">
+            If SSB doesn't fit your needs, these banks offer cash-out
+            refinancing nationwide
+          </p>
 
           <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6 max-w-5xl mx-auto">
             {[
@@ -673,7 +712,7 @@ export default function ReverseMortgagePage() {
               <Link
                 key={index}
                 href={bank.link}
-                className="bg-gray-50 hover:bg-gray-100 rounded-xl p-6 text-center transition-colors group"
+                className="bg-white hover:bg-gray-50 rounded-xl p-6 text-center transition-colors group shadow-sm"
               >
                 <Building2 className="w-10 h-10 text-primary-600 mx-auto mb-4" />
                 <h3 className="font-semibold text-gray-900 mb-2">
@@ -697,88 +736,6 @@ export default function ReverseMortgagePage() {
               Compare All Banks
               <ArrowRight className="w-4 h-4" />
             </Link>
-          </div>
-        </div>
-      </section>
-
-      {/* Step by Step */}
-      <section className="py-16 bg-gray-50">
-        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
-          <h2 className="text-3xl font-bold text-gray-900 text-center mb-12">
-            Step-by-Step: How to Get Cash from Your Home Equity
-          </h2>
-
-          <div className="max-w-4xl mx-auto">
-            <div className="space-y-6">
-              {[
-                {
-                  step: 1,
-                  title: "Check Your Home Equity",
-                  description:
-                    "Get an estimate of your property's current market value minus your outstanding loan. You need at least 20-30% equity to qualify.",
-                  link: null,
-                },
-                {
-                  step: 2,
-                  title: "Calculate Your DSR",
-                  description:
-                    "Ensure your Debt Service Ratio is below 70%. Include all existing loans and the new monthly payment.",
-                  link: "/dsr-calculator",
-                  linkText: "Use DSR Calculator",
-                },
-                {
-                  step: 3,
-                  title: "Gather Required Documents",
-                  description:
-                    "Prepare IC, income proof (pension/EPF statements), property documents, and existing loan statements.",
-                  link: "/en/documents-required",
-                  linkText: "See Document Checklist",
-                },
-                {
-                  step: 4,
-                  title: "Compare Bank Offers",
-                  description:
-                    "Different banks have different rates and terms. Some are more flexible with retirees or certain property types.",
-                  link: "/en/best-refinance-banks",
-                  linkText: "Compare Banks",
-                },
-                {
-                  step: 5,
-                  title: "Apply with the Right Bank",
-                  description:
-                    "Submit your application with complete documents. We can help match you with the best bank for your profile.",
-                  link: null,
-                },
-              ].map((item) => (
-                <div
-                  key={item.step}
-                  className="flex gap-4 bg-white rounded-xl p-6 shadow-sm"
-                >
-                  <div className="w-12 h-12 bg-primary-100 rounded-full flex items-center justify-center flex-shrink-0">
-                    <span className="text-xl font-bold text-primary-600">
-                      {item.step}
-                    </span>
-                  </div>
-                  <div className="flex-1">
-                    <h3 className="font-semibold text-gray-900 mb-2">
-                      {item.title}
-                    </h3>
-                    <p className="text-gray-600 text-sm mb-2">
-                      {item.description}
-                    </p>
-                    {item.link && (
-                      <Link
-                        href={item.link}
-                        className="text-sm text-primary-600 hover:text-primary-700 font-medium inline-flex items-center gap-1"
-                      >
-                        {item.linkText}
-                        <ArrowRight className="w-4 h-4" />
-                      </Link>
-                    )}
-                  </div>
-                </div>
-              ))}
-            </div>
           </div>
         </div>
       </section>
@@ -834,19 +791,19 @@ export default function ReverseMortgagePage() {
           <div className="grid md:grid-cols-2 gap-8 items-center">
             <div className="text-white">
               <h2 className="text-3xl font-bold mb-4">
-                Want to Unlock Your Home Equity?
+                Need Help Choosing the Right Option?
               </h2>
               <p className="text-gray-300 mb-6">
-                Get expert advice on the best option for your situation. Our
-                specialists will help you understand your options and find the
-                right bank for your profile.
+                Whether SSB or cash-out refinancing is better for you depends on
+                your age, location, property status, and financial goals. Get
+                free expert advice to find the right solution.
               </p>
               <ul className="space-y-3">
                 {[
                   "Free consultation with refinancing expert",
-                  "Compare offers from 15+ banks",
+                  "Compare SSB vs cash-out options",
+                  "Help with eligibility assessment",
                   "No obligation to proceed",
-                  "Help with document preparation",
                 ].map((item, index) => (
                   <li key={index} className="flex items-center gap-3">
                     <CheckCircle className="w-5 h-5 text-secondary-400" />
@@ -878,7 +835,8 @@ export default function ReverseMortgagePage() {
             {[
               {
                 title: "Cash-Out Refinancing Guide",
-                description: "Complete guide to cash-out refinancing in Malaysia",
+                description:
+                  "Complete guide to cash-out refinancing in Malaysia",
                 link: "/cash-out-refinance-malaysia",
               },
               {

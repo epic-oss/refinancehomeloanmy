@@ -3,11 +3,12 @@ import type { Metadata } from "next";
 const currentYear = new Date().getFullYear();
 
 export const metadata: Metadata = {
-  title: `Reverse Mortgage Malaysia ${currentYear} | Is It Available? + Alternatives`,
-  description: `Looking for reverse mortgage in Malaysia? Learn what it is, which banks offer it, and discover better alternatives like cash-out refinancing to unlock your home equity.`,
+  title: `Reverse Mortgage Malaysia ${currentYear} | Skim Saraan Bercagar (SSB) Guide`,
+  description: `Reverse mortgage in Malaysia via Skim Saraan Bercagar (SSB) by Cagamas. Learn eligibility, how it works, SSB vs cash-out refinance, and which option is better for you.`,
+  keywords: "reverse mortgage Malaysia, Skim Saraan Bercagar, SSB Cagamas, SSB Malaysia, reverse mortgage for elderly, SSB-i Islamic, Cagamas reverse mortgage",
   openGraph: {
-    title: `Reverse Mortgage Malaysia ${currentYear} | Is It Available? + Alternatives`,
-    description: `Looking for reverse mortgage in Malaysia? Learn what it is, which banks offer it, and discover better alternatives like cash-out refinancing to unlock your home equity.`,
+    title: `Reverse Mortgage Malaysia ${currentYear} | Skim Saraan Bercagar (SSB) Guide`,
+    description: `Reverse mortgage in Malaysia via Skim Saraan Bercagar (SSB) by Cagamas. Learn eligibility, how it works, SSB vs cash-out refinance, and which option is better for you.`,
     type: "article",
     locale: "en_MY",
   },

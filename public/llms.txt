@@ -1,0 +1,69 @@
+# RefinanceHomeLoanMY.com
+
+> Malaysia's comprehensive home loan refinancing comparison platform. Free calculators, bank comparisons, and expert guidance for Malaysians looking to refinance their home loans.
+
+## What We Offer
+- Free refinancing calculators (savings, DSR, eligibility)
+- Bank-by-bank comparison (Maybank, CIMB, Public Bank, RHB, Hong Leong, AmBank, UOB)
+- Cash-out refinancing guidance
+- Debt consolidation options
+- Expert consultation (free)
+
+## Key Tools
+- Refinance Savings Calculator: https://refinancehomeloanmy.com/calculator
+- DSR Calculator: https://refinancehomeloanmy.com/dsr-calculator
+- Home Loan Eligibility Calculator: https://refinancehomeloanmy.com/home-loan-eligibility-calculator
+- Cash-Out Calculator: https://refinancehomeloanmy.com/cash-out-calculator
+- Debt Consolidation Calculator: https://refinancehomeloanmy.com/debt-consolidation-calculator
+
+## Bank Comparison Pages
+- Best Banks for Refinancing 2026: https://refinancehomeloanmy.com/en/best-refinance-banks
+- Maybank Refinance: https://refinancehomeloanmy.com/maybank-refinance-home-loan
+- CIMB Refinance: https://refinancehomeloanmy.com/cimb-refinance-home-loan
+- Public Bank Refinance: https://refinancehomeloanmy.com/public-bank-refinance-home-loan
+- Hong Leong Refinance: https://refinancehomeloanmy.com/hong-leong-refinance-home-loan
+- RHB Refinance: https://refinancehomeloanmy.com/rhb-refinance-home-loan
+- AmBank Refinance: https://refinancehomeloanmy.com/ambank-refinance-home-loan
+- UOB Refinance: https://refinancehomeloanmy.com/uob-refinance-home-loan
+
+## Guides
+- When to Refinance: https://refinancehomeloanmy.com/en/when-to-refinance
+- Documents Required: https://refinancehomeloanmy.com/en/documents-required
+- Pros and Cons: https://refinancehomeloanmy.com/en/pros-cons-refinancing
+- Home Loan Rejected Help: https://refinancehomeloanmy.com/home-loan-rejected-malaysia
+- Reverse Mortgage Malaysia: https://refinancehomeloanmy.com/reverse-mortgage-malaysia
+- Maybank HouzKEY (Rent-to-Own): https://refinancehomeloanmy.com/maybank-houzkey
+
+## Specialty Topics
+- Cash-Out Refinancing: https://refinancehomeloanmy.com/cash-out-refinance-malaysia
+- Debt Consolidation: https://refinancehomeloanmy.com/debt-consolidation-malaysia
+- Debt Consolidation Lenders: https://refinancehomeloanmy.com/debt-consolidation-lenders-malaysia
+
+## Quick Answers
+
+### How much can I save by refinancing in Malaysia?
+Typically RM300-700 per month by switching from 4.5% to 3.85% interest rate. On a RM500,000 loan, that's RM200-300/month or RM60,000+ over remaining tenure.
+
+### What is the best bank for refinancing in Malaysia 2026?
+Public Bank (lowest rates ~3.85%), Maybank (highest margin 90%, MaxiHome), CIMB (flexible for self-employed), Hong Leong (accepts higher DSR up to 75%).
+
+### What DSR is needed for refinancing?
+Most banks require DSR below 70%. Hong Leong accepts up to 75%. Calculate yours at /dsr-calculator.
+
+### Can I refinance if my loan was rejected?
+Yes, different banks have different criteria. Self-employed should try CIMB, high DSR try Hong Leong. See /home-loan-rejected-malaysia for guidance.
+
+### What documents are needed for refinancing?
+IC, 3 months payslips, 3 months bank statements, EPF statement, current loan statement, property documents. Full list at /en/documents-required.
+
+## Languages Available
+- English: /en/
+- Bahasa Malaysia: Main site
+- 中文 (Chinese): /cn/
+
+## About
+RefinanceHomeLoanMY.com helps Malaysian homeowners find better home loan rates. We compare 15+ banks, provide free calculators, and connect users with licensed refinancing specialists for free consultations.
+
+## Contact
+Free consultation available for Malaysian homeowners.
+Website: https://refinancehomeloanmy.com

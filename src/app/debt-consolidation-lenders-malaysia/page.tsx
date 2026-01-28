@@ -74,6 +74,38 @@ const bankLenders = [
     features: ["Fast turnaround", "Good communication", "Efficient processing"],
     href: "/ambank-refinance-home-loan",
   },
+  {
+    bank: "UOB",
+    products: "Cash-out, Personal Loan",
+    ratesFrom: "4.61%",
+    bestFor: "Higher margin needs (up to 95%)",
+    features: ["Highest margin in market", "Intelligent Home Loan", "Flexi Mortgage option"],
+    href: "/uob-refinance-home-loan",
+  },
+  {
+    bank: "Standard Chartered",
+    products: "Cash-out, Personal Loan",
+    ratesFrom: "4.25%",
+    bestFor: "Premium/high-income customers",
+    features: ["Priority banking perks", "International bank", "Premium service"],
+    href: null,
+  },
+  {
+    bank: "Bank Rakyat",
+    products: "Islamic Financing",
+    ratesFrom: "4.50%",
+    bestFor: "Government servants, Bumiputera",
+    features: ["Cooperative bank", "Good for civil servants", "Shariah-compliant"],
+    href: null,
+  },
+  {
+    bank: "BSN",
+    products: "Cash-out, Personal Loan",
+    ratesFrom: "4.75%",
+    bestFor: "Lower income brackets",
+    features: ["Government-backed schemes", "Lower income friendly", "Wide branch network"],
+    href: null,
+  },
 ];
 
 const lenderTypes = [
@@ -103,6 +135,50 @@ const lenderTypes = [
   },
 ];
 
+const ratesComparison = [
+  { lender: "Public Bank", type: "Home Loan", rate: "3.85%", minAmount: "RM100k", maxTenure: "35 years", bestFor: "Lowest rate" },
+  { lender: "Maybank", type: "Home Loan", rate: "3.88%", minAmount: "RM100k", maxTenure: "35 years", bestFor: "Flexibility" },
+  { lender: "CIMB", type: "Home Loan", rate: "3.95%", minAmount: "RM100k", maxTenure: "35 years", bestFor: "Self-employed" },
+  { lender: "Hong Leong", type: "Home Loan", rate: "3.98%", minAmount: "RM100k", maxTenure: "35 years", bestFor: "High DSR" },
+  { lender: "RHB", type: "Home Loan", rate: "3.95%", minAmount: "RM100k", maxTenure: "35 years", bestFor: "Fast approval" },
+  { lender: "AmBank", type: "Home Loan", rate: "3.95%", minAmount: "RM100k", maxTenure: "35 years", bestFor: "Promotions" },
+  { lender: "UOB", type: "Home Loan", rate: "4.61%", minAmount: "RM100k", maxTenure: "35 years", bestFor: "High margin" },
+  { lender: "Maybank", type: "Personal Loan", rate: "7-12%", minAmount: "RM5k", maxTenure: "7 years", bestFor: "No property" },
+  { lender: "CIMB", type: "Personal Loan", rate: "7-11%", minAmount: "RM5k", maxTenure: "7 years", bestFor: "Quick cash" },
+  { lender: "Public Bank", type: "Personal Loan", rate: "6-10%", minAmount: "RM5k", maxTenure: "7 years", bestFor: "Low rate" },
+  { lender: "AKPK", type: "Debt Management", rate: "0%", minAmount: "Any", maxTenure: "Flexible", bestFor: "Free govt help" },
+];
+
+const akpkServices = [
+  "Free financial counseling",
+  "Debt Management Programme (DMP)",
+  "Negotiate lower payments with banks",
+  "Stop legal action from creditors",
+];
+
+const akpkWhoShouldUse = [
+  "Cannot afford minimum payments",
+  "Multiple creditors chasing you",
+  "Need breathing room to recover",
+  "Do not qualify for bank loans",
+];
+
+const akpkComparison = [
+  { feature: "Cost", akpk: "Free", bank: "Interest applies" },
+  { feature: "Credit Score", akpk: "Affected", bank: "Not affected" },
+  { feature: "New Credit", akpk: "Restricted", bank: "Available" },
+  { feature: "Best For", akpk: "Cannot pay", bank: "Can pay, want lower rate" },
+];
+
+const homeLoanVsPersonalLoan = [
+  { factor: "Interest Rate", homeLoan: "3.85-4.5%", personalLoan: "6-12%" },
+  { factor: "Max Amount", homeLoan: "Up to 90% of property value", personalLoan: "RM100k-200k" },
+  { factor: "Tenure", homeLoan: "Up to 35 years", personalLoan: "Up to 7 years" },
+  { factor: "Requirement", homeLoan: "Must own property", personalLoan: "No property needed" },
+  { factor: "Processing Time", homeLoan: "4-8 weeks", personalLoan: "1-2 weeks" },
+  { factor: "Best For", homeLoan: "Large debts, homeowners", personalLoan: "Small debts, quick need" },
+];
+
 const faqs = [
   {
     question: "Which bank is best for debt consolidation in Malaysia?",
@@ -123,6 +199,34 @@ const faqs = [
   {
     question: "Is it safe to use online debt consolidation services?",
     answer: "Be cautious. Legitimate services like bank websites and AKPK are safe. However, beware of scams claiming to offer debt consolidation. Never pay upfront fees, never give out your banking passwords, and verify any company is registered with BNM. When in doubt, go directly to your bank or AKPK.",
+  },
+  {
+    question: "What is the best debt consolidation company in Malaysia?",
+    answer: "Malaysia does not have dedicated debt consolidation companies like the US. Instead, debt consolidation is done through banks (via cash-out refinance or personal loans) or AKPK (government program). The best option depends on your situation: Public Bank and Maybank for lowest rates, AKPK if you cannot afford payments.",
+  },
+  {
+    question: "Can I consolidate debt without owning a house?",
+    answer: "Yes, you can use a personal loan for debt consolidation without property. Banks like Maybank, CIMB, and Public Bank offer personal loans from RM5,000 to RM200,000. Interest rates are higher (6-12%) compared to home loan refinancing (3.85-4.5%), but approval is faster and no collateral is needed.",
+  },
+  {
+    question: "Is AKPK better than debt consolidation loan?",
+    answer: "It depends on your situation. AKPK is better if you cannot afford your current payments - they negotiate with creditors and freeze interest at 0%. However, AKPK affects your credit score and restricts new credit. A debt consolidation loan is better if you can afford payments but want a lower interest rate.",
+  },
+  {
+    question: "How much debt can I consolidate with refinancing?",
+    answer: "With cash-out refinancing, you can consolidate up to 90% of your property value minus existing loan. For example, if your property is worth RM500,000 and you owe RM200,000, you can potentially access up to RM250,000 (90% of RM500k - RM200k) for debt consolidation.",
+  },
+  {
+    question: "Will debt consolidation affect my credit score?",
+    answer: "Bank debt consolidation (refinancing or personal loan) does not negatively affect your credit score - it may even improve it by showing better debt management. However, AKPK Debt Management Programme does affect your credit report, showing you are under debt management for 5+ years.",
+  },
+  {
+    question: "What debts can be consolidated in Malaysia?",
+    answer: "You can consolidate most unsecured debts including credit cards, personal loans, overdrafts, and hire purchase. For cash-out refinancing, some banks also allow consolidation of car loans. Medical bills and education loans can also be consolidated. However, secured debts like your existing home loan cannot be combined with other debts.",
+  },
+  {
+    question: "How long does debt consolidation take?",
+    answer: "Processing time varies by method: Personal loans take 1-2 weeks for approval and disbursement. Cash-out refinancing takes 4-8 weeks due to property valuation and legal processes. AKPK Debt Management Programme can be set up within 2-4 weeks after counseling sessions.",
   },
 ];
 
@@ -283,12 +387,16 @@ export default function DebtConsolidationLendersPage() {
                     <div className="text-right flex-shrink-0">
                       <p className="text-sm text-gray-500">Rates from</p>
                       <p className="text-2xl font-bold text-purple-600">{bank.ratesFrom}</p>
-                      <Link
-                        href={bank.href}
-                        className="inline-flex items-center gap-1 text-purple-600 hover:underline text-sm mt-2"
-                      >
-                        View Details <ExternalLink className="w-3 h-3" />
-                      </Link>
+                      {bank.href ? (
+                        <Link
+                          href={bank.href}
+                          className="inline-flex items-center gap-1 text-purple-600 hover:underline text-sm mt-2"
+                        >
+                          View Details <ExternalLink className="w-3 h-3" />
+                        </Link>
+                      ) : (
+                        <span className="text-gray-400 text-sm mt-2 block">Coming soon</span>
+                      )}
                     </div>
                   </div>
                 </div>
@@ -298,6 +406,310 @@ export default function DebtConsolidationLendersPage() {
             <p className="text-xs text-gray-500 mt-4">
               * Rates shown are for cash-out refinance. Personal loan rates are typically 6-12%. Actual rates depend on credit profile.
             </p>
+          </section>
+
+          {/* Rates Comparison Table */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              Debt Consolidation Rates Comparison {currentYear}
+            </h2>
+            <p className="text-gray-700 mb-6">
+              Compare all debt consolidation options side by side. Home loan rates are lowest, but require property ownership.
+            </p>
+
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse bg-white rounded-lg overflow-hidden shadow-sm">
+                <thead>
+                  <tr className="bg-gray-100">
+                    <th className="text-left p-3 font-semibold text-gray-900 border-b">Lender</th>
+                    <th className="text-left p-3 font-semibold text-gray-900 border-b">Type</th>
+                    <th className="text-center p-3 font-semibold text-gray-900 border-b">Rate</th>
+                    <th className="text-center p-3 font-semibold text-gray-900 border-b">Min Amount</th>
+                    <th className="text-center p-3 font-semibold text-gray-900 border-b">Max Tenure</th>
+                    <th className="text-left p-3 font-semibold text-gray-900 border-b">Best For</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {ratesComparison.map((row, index) => (
+                    <tr
+                      key={index}
+                      className={`border-b ${row.lender === "AKPK" ? "bg-green-50" : "hover:bg-gray-50"}`}
+                    >
+                      <td className="p-3 font-medium text-gray-900">{row.lender}</td>
+                      <td className="p-3 text-gray-600">
+                        <span className={`px-2 py-1 rounded text-xs font-medium ${
+                          row.type === "Home Loan" ? "bg-blue-100 text-blue-700" :
+                          row.type === "Personal Loan" ? "bg-orange-100 text-orange-700" :
+                          "bg-green-100 text-green-700"
+                        }`}>
+                          {row.type}
+                        </span>
+                      </td>
+                      <td className={`p-3 text-center font-semibold ${row.rate === "0%" ? "text-green-600" : "text-purple-600"}`}>
+                        {row.rate}
+                      </td>
+                      <td className="p-3 text-center text-gray-600">{row.minAmount}</td>
+                      <td className="p-3 text-center text-gray-600">{row.maxTenure}</td>
+                      <td className="p-3 text-gray-600">{row.bestFor}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <div className="mt-4 flex flex-wrap gap-4">
+              <Link
+                href="/debt-consolidation-calculator"
+                className="text-purple-600 hover:underline text-sm flex items-center gap-1"
+              >
+                <ArrowRight className="w-4 h-4" />
+                Calculate your savings with our calculator
+              </Link>
+              <Link
+                href="/dsr-calculator"
+                className="text-purple-600 hover:underline text-sm flex items-center gap-1"
+              >
+                <ArrowRight className="w-4 h-4" />
+                Check your DSR eligibility
+              </Link>
+            </div>
+          </section>
+
+          {/* AKPK Section */}
+          <section className="mb-12">
+            <div className="bg-green-50 border border-green-200 rounded-xl p-6">
+              <div className="flex items-center gap-3 mb-4">
+                <div className="w-12 h-12 bg-green-600 rounded-full flex items-center justify-center">
+                  <Shield className="w-6 h-6 text-white" />
+                </div>
+                <div>
+                  <h2 className="text-2xl font-bold text-gray-900">AKPK - Free Government Debt Help</h2>
+                  <p className="text-green-700">Agensi Kaunseling dan Pengurusan Kredit</p>
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6 mb-6">
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-3">What is AKPK?</h3>
+                  <ul className="space-y-2 text-gray-700 text-sm">
+                    <li className="flex items-start gap-2">
+                      <Check className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+                      Free government service under Bank Negara Malaysia
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Check className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+                      NOT a loan - they negotiate with your creditors
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <Check className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+                      Can freeze interest at 0% during programme
+                    </li>
+                  </ul>
+                </div>
+
+                <div>
+                  <h3 className="font-semibold text-gray-900 mb-3">AKPK Services</h3>
+                  <ul className="space-y-2 text-gray-700 text-sm">
+                    {akpkServices.map((service) => (
+                      <li key={service} className="flex items-start gap-2">
+                        <CheckCircle className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+                        {service}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+              </div>
+
+              <div className="grid md:grid-cols-2 gap-6 mb-6">
+                <div className="bg-white rounded-lg p-4">
+                  <h3 className="font-semibold text-gray-900 mb-3">Who Should Use AKPK?</h3>
+                  <ul className="space-y-2 text-gray-700 text-sm">
+                    {akpkWhoShouldUse.map((item) => (
+                      <li key={item} className="flex items-start gap-2">
+                        <Users className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+                        {item}
+                      </li>
+                    ))}
+                  </ul>
+                </div>
+
+                <div className="bg-white rounded-lg p-4">
+                  <h3 className="font-semibold text-gray-900 mb-3">How to Apply</h3>
+                  <ul className="space-y-2 text-gray-700 text-sm">
+                    <li className="flex items-start gap-2">
+                      <ArrowRight className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+                      Visit{" "}
+                      <a href="https://www.akpk.org.my" target="_blank" rel="noopener noreferrer" className="text-green-600 hover:underline">
+                        akpk.org.my
+                      </a>
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <ArrowRight className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+                      Call 1800-88-2575 (toll-free)
+                    </li>
+                    <li className="flex items-start gap-2">
+                      <ArrowRight className="w-4 h-4 text-green-600 mt-0.5 flex-shrink-0" />
+                      Walk into any AKPK branch nationwide
+                    </li>
+                  </ul>
+                </div>
+              </div>
+
+              {/* AKPK vs Bank Comparison */}
+              <h3 className="font-semibold text-gray-900 mb-3">AKPK vs Bank Consolidation</h3>
+              <div className="overflow-x-auto">
+                <table className="w-full border-collapse bg-white rounded-lg overflow-hidden">
+                  <thead>
+                    <tr className="bg-gray-100">
+                      <th className="text-left p-3 font-semibold text-gray-900 border-b">Feature</th>
+                      <th className="text-center p-3 font-semibold text-green-700 border-b">AKPK</th>
+                      <th className="text-center p-3 font-semibold text-purple-700 border-b">Bank Consolidation</th>
+                    </tr>
+                  </thead>
+                  <tbody>
+                    {akpkComparison.map((row) => (
+                      <tr key={row.feature} className="border-b">
+                        <td className="p-3 font-medium text-gray-900">{row.feature}</td>
+                        <td className="p-3 text-center text-gray-700">{row.akpk}</td>
+                        <td className="p-3 text-center text-gray-700">{row.bank}</td>
+                      </tr>
+                    ))}
+                  </tbody>
+                </table>
+              </div>
+            </div>
+          </section>
+
+          {/* Home Loan vs Personal Loan */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              Home Loan vs Personal Loan for Debt Consolidation
+            </h2>
+
+            <div className="overflow-x-auto mb-6">
+              <table className="w-full border-collapse bg-white rounded-lg overflow-hidden shadow-sm">
+                <thead>
+                  <tr className="bg-gray-100">
+                    <th className="text-left p-3 font-semibold text-gray-900 border-b">Factor</th>
+                    <th className="text-center p-3 font-semibold text-blue-700 border-b">Home Loan Refinance</th>
+                    <th className="text-center p-3 font-semibold text-orange-700 border-b">Personal Loan</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {homeLoanVsPersonalLoan.map((row) => (
+                    <tr key={row.factor} className="border-b hover:bg-gray-50">
+                      <td className="p-3 font-medium text-gray-900">{row.factor}</td>
+                      <td className="p-3 text-center text-gray-700">{row.homeLoan}</td>
+                      <td className="p-3 text-center text-gray-700">{row.personalLoan}</td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+
+            <div className="bg-blue-50 border border-blue-200 rounded-lg p-4">
+              <p className="text-blue-800 font-medium">
+                If you own property, home loan refinancing almost always saves more money due to significantly lower interest rates.
+              </p>
+              <Link
+                href="/debt-consolidation-calculator"
+                className="inline-flex items-center gap-2 text-blue-600 hover:underline text-sm mt-2"
+              >
+                Calculate your potential savings <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
+          </section>
+
+          {/* Real Example */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              Real Example: Debt Consolidation Savings
+            </h2>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="bg-red-50 border border-red-200 rounded-xl p-6">
+                <h3 className="font-bold text-red-800 mb-4 flex items-center gap-2">
+                  <XCircle className="w-5 h-5" />
+                  Before: Ahmad&apos;s Debt Situation
+                </h3>
+                <ul className="space-y-3 text-gray-700">
+                  <li className="flex justify-between">
+                    <span>Credit Card 1 (18%)</span>
+                    <span className="font-medium">RM30,000 → RM450/mo</span>
+                  </li>
+                  <li className="flex justify-between">
+                    <span>Credit Card 2 (18%)</span>
+                    <span className="font-medium">RM20,000 → RM300/mo</span>
+                  </li>
+                  <li className="flex justify-between">
+                    <span>Personal Loan (10%)</span>
+                    <span className="font-medium">RM50,000 → RM1,060/mo</span>
+                  </li>
+                  <li className="flex justify-between">
+                    <span>Car Loan (4%)</span>
+                    <span className="font-medium">RM40,000 → RM740/mo</span>
+                  </li>
+                </ul>
+                <div className="border-t border-red-300 mt-4 pt-4">
+                  <div className="flex justify-between font-bold text-red-800">
+                    <span>Total Debt</span>
+                    <span>RM140,000</span>
+                  </div>
+                  <div className="flex justify-between font-bold text-red-800">
+                    <span>Total Monthly</span>
+                    <span>RM2,550/mo</span>
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-green-50 border border-green-200 rounded-xl p-6">
+                <h3 className="font-bold text-green-800 mb-4 flex items-center gap-2">
+                  <CheckCircle className="w-5 h-5" />
+                  After: Debt Consolidation Refinance
+                </h3>
+                <ul className="space-y-3 text-gray-700">
+                  <li className="flex justify-between">
+                    <span>All debts rolled into home loan</span>
+                    <span className="font-medium">RM140,000</span>
+                  </li>
+                  <li className="flex justify-between">
+                    <span>New interest rate</span>
+                    <span className="font-medium text-green-600">4% p.a.</span>
+                  </li>
+                  <li className="flex justify-between">
+                    <span>Tenure</span>
+                    <span className="font-medium">20 years</span>
+                  </li>
+                </ul>
+                <div className="border-t border-green-300 mt-4 pt-4">
+                  <div className="flex justify-between font-bold text-green-800">
+                    <span>New Monthly Payment</span>
+                    <span>RM1,400/mo</span>
+                  </div>
+                  <div className="flex justify-between font-bold text-green-800 text-lg mt-2">
+                    <span>Monthly Savings</span>
+                    <span>RM1,150/mo</span>
+                  </div>
+                  <div className="flex justify-between text-green-700 mt-1">
+                    <span>Annual Savings</span>
+                    <span>RM13,800/year</span>
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            <div className="mt-6 bg-purple-50 border border-purple-200 rounded-lg p-4 text-center">
+              <p className="text-purple-800 font-medium mb-2">
+                Want to see your potential savings?
+              </p>
+              <Link
+                href="/debt-consolidation-calculator"
+                className="inline-flex items-center gap-2 bg-purple-600 text-white px-6 py-2 rounded-lg font-semibold hover:bg-purple-700 transition-colors"
+              >
+                Calculate Your Savings
+                <ArrowRight className="w-4 h-4" />
+              </Link>
+            </div>
           </section>
 
           {/* Mid-page CTA */}
@@ -383,7 +795,10 @@ export default function DebtConsolidationLendersPage() {
                   Large Debt (RM200k+)
                 </h3>
                 <p className="text-gray-700 text-sm mb-2">
-                  Banks with strong cash-out refinance products: <strong>Maybank, Public Bank, CIMB</strong>.
+                  Banks with strong cash-out refinance products:{" "}
+                  <Link href="/maybank-refinance-home-loan" className="text-purple-600 hover:underline">Maybank</Link>,{" "}
+                  <Link href="/public-bank-refinance-home-loan" className="text-purple-600 hover:underline">Public Bank</Link>,{" "}
+                  <Link href="/cimb-refinance-home-loan" className="text-purple-600 hover:underline">CIMB</Link>.
                   Cash-out allows you to access property equity at the lowest rates.
                 </p>
                 <Link href="/cash-out-refinance-malaysia" className="text-purple-600 hover:underline text-sm">
@@ -397,11 +812,14 @@ export default function DebtConsolidationLendersPage() {
                   Small Debt (Under RM100k), No Property
                 </h3>
                 <p className="text-gray-700 text-sm mb-2">
-                  Personal loan specialists: <strong>Hong Leong, Maybank, Public Bank</strong>.
+                  Personal loan specialists:{" "}
+                  <Link href="/hong-leong-refinance-home-loan" className="text-purple-600 hover:underline">Hong Leong</Link>,{" "}
+                  <Link href="/maybank-refinance-home-loan" className="text-purple-600 hover:underline">Maybank</Link>,{" "}
+                  <Link href="/public-bank-refinance-home-loan" className="text-purple-600 hover:underline">Public Bank</Link>.
                   Fast approval, no collateral needed.
                 </p>
-                <Link href="/personal-loan-debt-consolidation" className="text-purple-600 hover:underline text-sm">
-                  Learn about personal loans →
+                <Link href="/debt-consolidation-calculator" className="text-purple-600 hover:underline text-sm">
+                  Calculate your consolidation savings →
                 </Link>
               </div>
 
@@ -411,11 +829,14 @@ export default function DebtConsolidationLendersPage() {
                   Bad Credit History
                 </h3>
                 <p className="text-gray-700 text-sm mb-2">
-                  More flexible banks: <strong>RHB, AmBank</strong>. If you have property, focus on equity value.
-                  If credit is very poor, consider <strong>AKPK</strong>.
+                  More flexible banks:{" "}
+                  <Link href="/rhb-refinance-home-loan" className="text-purple-600 hover:underline">RHB</Link>,{" "}
+                  <Link href="/ambank-refinance-home-loan" className="text-purple-600 hover:underline">AmBank</Link>.
+                  If you have property, focus on equity value.
+                  If credit is very poor, consider AKPK (see section above).
                 </p>
-                <Link href="/debt-consolidation-options#akpk" className="text-purple-600 hover:underline text-sm">
-                  Learn about AKPK →
+                <Link href="/home-loan-rejected-malaysia" className="text-purple-600 hover:underline text-sm">
+                  Help for rejected applications →
                 </Link>
               </div>
 
@@ -425,9 +846,32 @@ export default function DebtConsolidationLendersPage() {
                   Self-Employed / Commission Income
                 </h3>
                 <p className="text-gray-700 text-sm mb-2">
-                  Banks that accept varied income: <strong>RHB, Hong Leong, AmBank</strong>.
+                  Banks that accept varied income:{" "}
+                  <Link href="/rhb-refinance-home-loan" className="text-purple-600 hover:underline">RHB</Link>,{" "}
+                  <Link href="/hong-leong-refinance-home-loan" className="text-purple-600 hover:underline">Hong Leong</Link>,{" "}
+                  <Link href="/ambank-refinance-home-loan" className="text-purple-600 hover:underline">AmBank</Link>.
                   Provide 2 years of tax returns and consistent bank statements.
                 </p>
+                <Link href="/dsr-calculator" className="text-purple-600 hover:underline text-sm">
+                  Check your DSR eligibility →
+                </Link>
+              </div>
+
+              <div className="border border-gray-200 rounded-lg p-5 hover:border-purple-300 transition-colors">
+                <h3 className="font-semibold text-gray-900 mb-2 flex items-center gap-2">
+                  <BadgeCheck className="w-5 h-5 text-purple-600" />
+                  High DSR (Above 60%)
+                </h3>
+                <p className="text-gray-700 text-sm mb-2">
+                  Banks with flexible DSR limits:{" "}
+                  <Link href="/hong-leong-refinance-home-loan" className="text-purple-600 hover:underline">Hong Leong</Link> (up to 75%),{" "}
+                  <Link href="/cimb-refinance-home-loan" className="text-purple-600 hover:underline">CIMB</Link>,{" "}
+                  <Link href="/rhb-refinance-home-loan" className="text-purple-600 hover:underline">RHB</Link>.
+                  Debt consolidation can actually help reduce your DSR.
+                </p>
+                <Link href="/can-i-refinance-with-high-dsr" className="text-purple-600 hover:underline text-sm">
+                  Guide for high DSR refinancing →
+                </Link>
               </div>
             </div>
           </section>
@@ -561,11 +1005,11 @@ export default function DebtConsolidationLendersPage() {
             </h2>
             <div className="grid md:grid-cols-2 gap-4">
               <Link
-                href="/debt-consolidation-options"
-                className="block p-4 bg-emerald-50 rounded-lg hover:bg-emerald-100 transition-colors"
+                href="/debt-consolidation-calculator"
+                className="block p-4 bg-purple-50 rounded-lg hover:bg-purple-100 transition-colors"
               >
-                <h3 className="font-semibold text-emerald-900">Compare All Debt Consolidation Options</h3>
-                <p className="text-sm text-emerald-700">Cash-out vs personal loan vs balance transfer vs AKPK</p>
+                <h3 className="font-semibold text-purple-900">Debt Consolidation Calculator</h3>
+                <p className="text-sm text-purple-700">Calculate your potential savings</p>
               </Link>
               <Link
                 href="/cash-out-refinance-malaysia"
@@ -575,18 +1019,32 @@ export default function DebtConsolidationLendersPage() {
                 <p className="text-sm text-green-700">Lowest rates for property owners</p>
               </Link>
               <Link
-                href="/personal-loan-debt-consolidation"
-                className="block p-4 bg-orange-50 rounded-lg hover:bg-orange-100 transition-colors"
-              >
-                <h3 className="font-semibold text-orange-900">Personal Loan for Debt Consolidation</h3>
-                <p className="text-sm text-orange-700">Fast option, no property required</p>
-              </Link>
-              <Link
-                href="/debt-consolidation-calculator"
+                href="/dsr-calculator"
                 className="block p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
               >
-                <h3 className="font-semibold text-blue-900">Debt Consolidation Calculator</h3>
-                <p className="text-sm text-blue-700">Calculate your potential savings</p>
+                <h3 className="font-semibold text-blue-900">DSR Calculator</h3>
+                <p className="text-sm text-blue-700">Check your debt service ratio eligibility</p>
+              </Link>
+              <Link
+                href="/can-i-refinance-with-high-dsr"
+                className="block p-4 bg-orange-50 rounded-lg hover:bg-orange-100 transition-colors"
+              >
+                <h3 className="font-semibold text-orange-900">High DSR Refinancing Guide</h3>
+                <p className="text-sm text-orange-700">Options for 70%+ DSR applicants</p>
+              </Link>
+              <Link
+                href="/home-loan-rejected-malaysia"
+                className="block p-4 bg-red-50 rounded-lg hover:bg-red-100 transition-colors"
+              >
+                <h3 className="font-semibold text-red-900">Loan Rejected? Here is What to Do</h3>
+                <p className="text-sm text-red-700">Steps after rejection, alternative options</p>
+              </Link>
+              <Link
+                href="/en/best-refinance-banks"
+                className="block p-4 bg-emerald-50 rounded-lg hover:bg-emerald-100 transition-colors"
+              >
+                <h3 className="font-semibold text-emerald-900">Best Refinance Banks 2026</h3>
+                <p className="text-sm text-emerald-700">Full bank comparison with rates</p>
               </Link>
             </div>
           </section>

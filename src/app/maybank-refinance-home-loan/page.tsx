@@ -39,6 +39,14 @@ const faqs = [
     question: "Does Maybank offer cash-out refinancing?",
     answer: "Yes, Maybank offers cash-out refinancing through their MaxiHome loan. You can withdraw up to 90% of your property's current market value (minus existing loan), subject to eligibility. This is useful for renovations, debt consolidation, or other financial needs.",
   },
+  {
+    question: "Is it better to apply direct to Maybank or use a broker?",
+    answer: "Using a broker is free and gives you access to multiple bank offers simultaneously. While applying direct to Maybank works, a broker can compare Maybank's offer against 15+ other banks, potentially finding you a better rate. If Maybank is truly the best option, a broker will confirm that — and handle the paperwork for you.",
+  },
+  {
+    question: "Does Maybank have a refinance calculator?",
+    answer: "Maybank offers a basic loan calculator on their website, but it only shows Maybank's own rates. For a comprehensive comparison, use our refinance calculator which shows your monthly savings, total savings over tenure, break-even period, and includes all refinancing costs — giving you the full picture before deciding.",
+  },
 ];
 
 export default function MaybankRefinancePage() {
@@ -141,15 +149,18 @@ export default function MaybankRefinancePage() {
             <div className="bg-primary-50 rounded-xl p-6">
               <p className="text-gray-700 mb-4">
                 Use our free calculator to estimate how much you could save by refinancing with Maybank.
-                Enter your current loan details and compare with Maybank&apos;s rates.
+                Enter your current loan details and compare with Maybank&apos;s rates starting from {bank.rateFrom}.
               </p>
               <Link
                 href="/calculator"
                 className="inline-flex items-center gap-2 bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors"
               >
-                Open Refinance Calculator
+                Calculate Your Savings with Maybank
                 <ArrowRight className="w-5 h-5" />
               </Link>
+              <p className="text-sm text-gray-500 mt-3">
+                Pre-filled with Maybank&apos;s current rate of {bank.rateFrom}
+              </p>
             </div>
           </section>
 
@@ -585,6 +596,42 @@ export default function MaybankRefinancePage() {
           </section>
         </div>
       </article>
+
+      {/* Why Use a Broker */}
+      <section className="py-12 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">
+            Why Use a Broker Instead of Applying Direct?
+          </h2>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse bg-white rounded-lg overflow-hidden shadow-sm">
+              <thead>
+                <tr className="bg-gray-50">
+                  <th className="text-left p-3 font-semibold text-gray-900 border-b">Direct to Maybank</th>
+                  <th className="text-left p-3 font-semibold text-gray-900 border-b">Through Our Specialists</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b"><td className="p-3 text-gray-600">One bank only</td><td className="p-3 text-gray-700 font-medium">Compare 15+ banks</td></tr>
+                <tr className="border-b"><td className="p-3 text-gray-600">Standard approval process</td><td className="p-3 text-gray-700 font-medium">Higher approval rate</td></tr>
+                <tr className="border-b"><td className="p-3 text-gray-600">You handle all paperwork</td><td className="p-3 text-gray-700 font-medium">We manage everything</td></tr>
+                <tr className="border-b"><td className="p-3 text-gray-600">Limited rate negotiation</td><td className="p-3 text-gray-700 font-medium">Access to special rates</td></tr>
+                <tr><td className="p-3 text-gray-600">If rejected, start over</td><td className="p-3 text-gray-700 font-medium">We match you to right bank</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-4 text-sm text-gray-600">
+            <strong>Our service is 100% free</strong> — banks pay us, not you.
+          </p>
+          <button
+            onClick={() => setShowForm(true)}
+            className="mt-4 inline-flex items-center gap-2 bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors"
+          >
+            Get Free Multi-Bank Comparison
+            <ArrowRight className="w-5 h-5" />
+          </button>
+        </div>
+      </section>
 
       {/* Bottom CTA */}
       <section className="py-16 bg-yellow-600">

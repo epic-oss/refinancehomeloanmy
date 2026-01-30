@@ -39,6 +39,14 @@ const faqs = [
     question: "Is AmBank good for refinancing with cashback?",
     answer: "AmBank is one of the better options if you're looking for cashback incentives. Their promotions often include upfront cash rebates that can significantly offset legal fees and other refinancing costs.",
   },
+  {
+    question: "Is it better to apply direct to AmBank or use a broker?",
+    answer: "Using a broker is free and lets you compare AmBank's cashback package against 15+ other banks. A broker ensures you're getting the best overall deal — sometimes another bank's lower rate outweighs AmBank's cashback, and vice versa. We handle all paperwork for free.",
+  },
+  {
+    question: "Does AmBank have a refinance calculator?",
+    answer: "AmBank offers a basic calculator on their website, but it only covers AmBank products and doesn't factor in cashback savings against total costs. Our refinance calculator shows monthly savings, total savings, break-even period, and all refinancing costs for a comprehensive comparison.",
+  },
 ];
 
 export default function AmBankRefinancePage() {
@@ -141,15 +149,18 @@ export default function AmBankRefinancePage() {
             <div className="bg-primary-50 rounded-xl p-6">
               <p className="text-gray-700 mb-4">
                 Use our free calculator to estimate your potential savings with AmBank refinancing.
-                Factor in their cashback offers for a complete picture of your savings.
+                Compare rates starting from {bank.rateFrom} and factor in their cashback offers for a complete picture.
               </p>
               <Link
                 href="/calculator"
                 className="inline-flex items-center gap-2 bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors"
               >
-                Open Refinance Calculator
+                Calculate Your Savings with AmBank
                 <ArrowRight className="w-5 h-5" />
               </Link>
+              <p className="text-sm text-gray-500 mt-3">
+                Pre-filled with AmBank&apos;s current rate of {bank.rateFrom}
+              </p>
             </div>
           </section>
 
@@ -584,6 +595,42 @@ export default function AmBankRefinancePage() {
           </section>
         </div>
       </article>
+
+      {/* Why Use a Broker */}
+      <section className="py-12 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">
+            Why Use a Broker Instead of Applying Direct?
+          </h2>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse bg-white rounded-lg overflow-hidden shadow-sm">
+              <thead>
+                <tr className="bg-gray-50">
+                  <th className="text-left p-3 font-semibold text-gray-900 border-b">Direct to AmBank</th>
+                  <th className="text-left p-3 font-semibold text-gray-900 border-b">Through Our Specialists</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b"><td className="p-3 text-gray-600">One bank only</td><td className="p-3 text-gray-700 font-medium">Compare 15+ banks</td></tr>
+                <tr className="border-b"><td className="p-3 text-gray-600">Standard approval process</td><td className="p-3 text-gray-700 font-medium">Higher approval rate</td></tr>
+                <tr className="border-b"><td className="p-3 text-gray-600">You handle all paperwork</td><td className="p-3 text-gray-700 font-medium">We manage everything</td></tr>
+                <tr className="border-b"><td className="p-3 text-gray-600">Limited rate negotiation</td><td className="p-3 text-gray-700 font-medium">Access to special rates</td></tr>
+                <tr><td className="p-3 text-gray-600">If rejected, start over</td><td className="p-3 text-gray-700 font-medium">We match you to right bank</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-4 text-sm text-gray-600">
+            <strong>Our service is 100% free</strong> — banks pay us, not you.
+          </p>
+          <button
+            onClick={() => setShowForm(true)}
+            className="mt-4 inline-flex items-center gap-2 bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors"
+          >
+            Get Free Multi-Bank Comparison
+            <ArrowRight className="w-5 h-5" />
+          </button>
+        </div>
+      </section>
 
       {/* Bottom CTA */}
       <section className="py-16 bg-orange-600">

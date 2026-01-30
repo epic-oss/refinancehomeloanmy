@@ -39,6 +39,14 @@ const faqs = [
     question: "Can I refinance to CIMB if I have an existing CIMB loan?",
     answer: "Yes, existing CIMB customers can do internal refinancing (repricing). This is often faster and may have lower costs as it doesn't require new legal documentation. Contact CIMB to discuss your repricing options.",
   },
+  {
+    question: "Is it better to apply direct to CIMB or use a broker?",
+    answer: "Using a broker is free and gives you access to multiple bank offers at once. A broker can compare CIMB's offer against 15+ other banks, potentially finding you a better rate or higher approval chance. If CIMB is the best option for your profile, a broker will confirm that — and handle all the paperwork.",
+  },
+  {
+    question: "Does CIMB have a refinance calculator?",
+    answer: "CIMB offers a basic loan calculator on their website, but it only covers CIMB products. Our refinance calculator shows monthly savings, total savings over tenure, break-even period, and includes all refinancing costs — giving you the complete picture to make an informed decision.",
+  },
 ];
 
 export default function CIMBRefinancePage() {
@@ -141,15 +149,18 @@ export default function CIMBRefinancePage() {
             <div className="bg-primary-50 rounded-xl p-6">
               <p className="text-gray-700 mb-4">
                 Use our free calculator to estimate how much you could save by refinancing with CIMB.
-                Enter your current loan details and compare with CIMB&apos;s competitive rates.
+                Enter your current loan details and compare with CIMB&apos;s competitive rates starting from {bank.rateFrom}.
               </p>
               <Link
                 href="/calculator"
                 className="inline-flex items-center gap-2 bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors"
               >
-                Open Refinance Calculator
+                Calculate Your Savings with CIMB
                 <ArrowRight className="w-5 h-5" />
               </Link>
+              <p className="text-sm text-gray-500 mt-3">
+                Pre-filled with CIMB&apos;s current rate of {bank.rateFrom}
+              </p>
             </div>
           </section>
 
@@ -583,6 +594,42 @@ export default function CIMBRefinancePage() {
           </section>
         </div>
       </article>
+
+      {/* Why Use a Broker */}
+      <section className="py-12 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">
+            Why Use a Broker Instead of Applying Direct?
+          </h2>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse bg-white rounded-lg overflow-hidden shadow-sm">
+              <thead>
+                <tr className="bg-gray-50">
+                  <th className="text-left p-3 font-semibold text-gray-900 border-b">Direct to CIMB</th>
+                  <th className="text-left p-3 font-semibold text-gray-900 border-b">Through Our Specialists</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b"><td className="p-3 text-gray-600">One bank only</td><td className="p-3 text-gray-700 font-medium">Compare 15+ banks</td></tr>
+                <tr className="border-b"><td className="p-3 text-gray-600">Standard approval process</td><td className="p-3 text-gray-700 font-medium">Higher approval rate</td></tr>
+                <tr className="border-b"><td className="p-3 text-gray-600">You handle all paperwork</td><td className="p-3 text-gray-700 font-medium">We manage everything</td></tr>
+                <tr className="border-b"><td className="p-3 text-gray-600">Limited rate negotiation</td><td className="p-3 text-gray-700 font-medium">Access to special rates</td></tr>
+                <tr><td className="p-3 text-gray-600">If rejected, start over</td><td className="p-3 text-gray-700 font-medium">We match you to right bank</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-4 text-sm text-gray-600">
+            <strong>Our service is 100% free</strong> — banks pay us, not you.
+          </p>
+          <button
+            onClick={() => setShowForm(true)}
+            className="mt-4 inline-flex items-center gap-2 bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors"
+          >
+            Get Free Multi-Bank Comparison
+            <ArrowRight className="w-5 h-5" />
+          </button>
+        </div>
+      </section>
 
       {/* Bottom CTA */}
       <section className="py-16 bg-red-700">

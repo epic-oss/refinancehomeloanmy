@@ -39,6 +39,14 @@ const faqs = [
     question: "Does Public Bank require minimum loan amount?",
     answer: `Yes, Public Bank requires a minimum loan amount of RM${bank.minLoan.toLocaleString()}. This is slightly higher than some competitors but their competitive rates often make up for it.`,
   },
+  {
+    question: "Is it better to apply direct to Public Bank or use a broker?",
+    answer: "Using a broker is free and lets you compare Public Bank against 15+ other banks. Public Bank often has the lowest rates, so a broker can confirm if they're truly the best option for you — and handle all the paperwork regardless of which bank you choose.",
+  },
+  {
+    question: "Does Public Bank have a refinance calculator?",
+    answer: "Public Bank offers a basic calculator on their website for their own products. Our refinance calculator provides a more complete analysis — showing monthly savings, total savings over tenure, break-even period, and all refinancing costs so you can make a fully informed decision.",
+  },
 ];
 
 export default function PublicBankRefinancePage() {
@@ -141,15 +149,18 @@ export default function PublicBankRefinancePage() {
             <div className="bg-primary-50 rounded-xl p-6">
               <p className="text-gray-700 mb-4">
                 Use our free calculator to estimate how much you could save by refinancing with Public Bank.
-                Their competitive rates can lead to significant monthly savings.
+                Their competitive rates starting from {bank.rateFrom} can lead to significant monthly savings.
               </p>
               <Link
                 href="/calculator"
                 className="inline-flex items-center gap-2 bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors"
               >
-                Open Refinance Calculator
+                Calculate Your Savings with Public Bank
                 <ArrowRight className="w-5 h-5" />
               </Link>
+              <p className="text-sm text-gray-500 mt-3">
+                Pre-filled with Public Bank&apos;s current rate of {bank.rateFrom}
+              </p>
             </div>
           </section>
 
@@ -626,6 +637,42 @@ export default function PublicBankRefinancePage() {
           </section>
         </div>
       </article>
+
+      {/* Why Use a Broker */}
+      <section className="py-12 bg-gray-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <h2 className="text-2xl font-bold text-gray-900 mb-6">
+            Why Use a Broker Instead of Applying Direct?
+          </h2>
+          <div className="overflow-x-auto">
+            <table className="w-full border-collapse bg-white rounded-lg overflow-hidden shadow-sm">
+              <thead>
+                <tr className="bg-gray-50">
+                  <th className="text-left p-3 font-semibold text-gray-900 border-b">Direct to Public Bank</th>
+                  <th className="text-left p-3 font-semibold text-gray-900 border-b">Through Our Specialists</th>
+                </tr>
+              </thead>
+              <tbody>
+                <tr className="border-b"><td className="p-3 text-gray-600">One bank only</td><td className="p-3 text-gray-700 font-medium">Compare 15+ banks</td></tr>
+                <tr className="border-b"><td className="p-3 text-gray-600">Standard approval process</td><td className="p-3 text-gray-700 font-medium">Higher approval rate</td></tr>
+                <tr className="border-b"><td className="p-3 text-gray-600">You handle all paperwork</td><td className="p-3 text-gray-700 font-medium">We manage everything</td></tr>
+                <tr className="border-b"><td className="p-3 text-gray-600">Limited rate negotiation</td><td className="p-3 text-gray-700 font-medium">Access to special rates</td></tr>
+                <tr><td className="p-3 text-gray-600">If rejected, start over</td><td className="p-3 text-gray-700 font-medium">We match you to right bank</td></tr>
+              </tbody>
+            </table>
+          </div>
+          <p className="mt-4 text-sm text-gray-600">
+            <strong>Our service is 100% free</strong> — banks pay us, not you.
+          </p>
+          <button
+            onClick={() => setShowForm(true)}
+            className="mt-4 inline-flex items-center gap-2 bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors"
+          >
+            Get Free Multi-Bank Comparison
+            <ArrowRight className="w-5 h-5" />
+          </button>
+        </div>
+      </section>
 
       {/* Bottom CTA */}
       <section className="py-16 bg-blue-700">

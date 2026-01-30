@@ -11,7 +11,7 @@ const { currentYear, costs } = SITE_CONFIG;
 
 // Note: Metadata must be in a separate layout.tsx or use generateMetadata for server components
 // For client components, we set document title directly
-const pageTitle = `Home Loan Refinancing Calculator Malaysia ${currentYear} - Calculate Your Savings`;
+const pageTitle = `Refinance Home Loan Calculator Malaysia ${currentYear} | Calculate Your Savings`;
 
 const calculatorFaqs = [
   {
@@ -144,7 +144,7 @@ export default function CalculatorPage() {
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="max-w-3xl">
             <h1 className="text-4xl md:text-5xl font-bold mb-6">
-              Home Loan Refinancing Calculator Malaysia {currentYear}
+              Refinance Home Loan Calculator Malaysia {currentYear}
             </h1>
             <p className="text-xl text-gray-300">
               Calculate your potential savings by refinancing your home loan. See how much you could save monthly and over your loan tenure.

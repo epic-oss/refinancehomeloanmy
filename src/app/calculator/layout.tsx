@@ -3,12 +3,12 @@ import type { Metadata } from "next";
 const currentYear = new Date().getFullYear();
 
 export const metadata: Metadata = {
-  title: `Home Loan Refinancing Calculator Malaysia ${currentYear} - Calculate Savings`,
-  description: `Calculate how much you can save by refinancing your home loan in Malaysia ${currentYear}. Compare rates from Maybank, CIMB, Public Bank & more. Free calculator.`,
-  keywords: "home loan calculator Malaysia, refinancing calculator, mortgage calculator, housing loan calculator, refinance savings calculator",
+  title: `Refinance Home Loan Calculator Malaysia ${currentYear} | Calculate Your Savings`,
+  description: `Free refinance home loan calculator Malaysia. Calculate how much you can save by refinancing your house loan. Compare rates and see monthly savings instantly.`,
+  keywords: "refinance home loan calculator, refinance house loan calculator, home loan calculator Malaysia, refinancing calculator, mortgage calculator, housing loan calculator, refinance savings calculator",
   openGraph: {
-    title: `Home Loan Refinancing Calculator Malaysia ${currentYear}`,
-    description: "Calculate your potential savings from refinancing your home loan. Free calculator for Malaysian homeowners.",
+    title: `Refinance Home Loan Calculator Malaysia ${currentYear} | Calculate Your Savings`,
+    description: "Free refinance home loan calculator Malaysia. Calculate how much you can save by refinancing your house loan. Compare rates and see monthly savings instantly.",
     type: "website",
     locale: "en_MY",
   },

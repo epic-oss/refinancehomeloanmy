@@ -182,6 +182,17 @@ export default function DebtConsolidationLeadForm({
 
       if (response.ok) {
         setIsSubmitted(true);
+
+        // GA4 event tracking
+        if (typeof window !== "undefined" && typeof (window as /* gtag */ any).gtag === "function") { // eslint-disable-line
+          const gtag = (window as /* gtag */ any).gtag; // eslint-disable-line
+          gtag("event", "generate_lead", {
+            lead_type: source,
+            source_page: window.location.pathname,
+            loan_amount: formData.TotalDebt ? parseFloat(stripCommas(formData.TotalDebt)) : 0,
+            current_bank: formData.CurrentBank || "not_specified",
+          });
+        }
       } else {
         const errorText = await response.text();
         console.error("Webhook error:", errorText);

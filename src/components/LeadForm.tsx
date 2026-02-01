@@ -158,8 +158,36 @@ export default function LeadForm({
 
   // Bot protection: track when form was loaded
   const formLoadTime = useRef(Date.now());
+
+  // Traffic tracking: capture referrer, landing page, UTM params on mount
+  const trafficRef = useRef({
+    referrer: "",
+    landing_page: "",
+    utm_source: "",
+    utm_medium: "",
+    utm_campaign: "",
+  });
+
   useEffect(() => {
     formLoadTime.current = Date.now();
+
+    // Capture referrer (snapshot on mount since it can change during SPA navigation)
+    trafficRef.current.referrer = document.referrer || "";
+
+    // Track landing page via sessionStorage (first page of the session)
+    const storedLanding = sessionStorage.getItem("landing_page");
+    if (!storedLanding) {
+      sessionStorage.setItem("landing_page", window.location.href);
+      trafficRef.current.landing_page = window.location.href;
+    } else {
+      trafficRef.current.landing_page = storedLanding;
+    }
+
+    // Capture UTM parameters from URL
+    const params = new URLSearchParams(window.location.search);
+    trafficRef.current.utm_source = params.get("utm_source") || "";
+    trafficRef.current.utm_medium = params.get("utm_medium") || "";
+    trafficRef.current.utm_campaign = params.get("utm_campaign") || "";
   }, []);
 
   const hasCalculatorValues = calculatorValues && calculatorValues.monthlySavings && calculatorValues.monthlySavings > 0;
@@ -246,6 +274,13 @@ export default function LeadForm({
         is_recommended: calculatorValues?.isRecommended ? "true" : "false",
         include_cash_out: calculatorValues?.includeCashOut ? "true" : "false",
         cash_out_amount: calculatorValues?.cashOutAmount ? stripCommas(calculatorValues.cashOutAmount) : "",
+
+        // Traffic attribution
+        traffic_source: trafficRef.current.referrer,
+        landing_page: trafficRef.current.landing_page,
+        utm_source: trafficRef.current.utm_source,
+        utm_medium: trafficRef.current.utm_medium,
+        utm_campaign: trafficRef.current.utm_campaign,
       };
 
       console.log("Submitting payload:", JSON.stringify(payload, null, 2));
@@ -273,6 +308,17 @@ export default function LeadForm({
 
       if (response.ok) {
         setIsSubmitted(true);
+
+        // GA4 event tracking
+        if (typeof window !== "undefined" && typeof (window as /* gtag */ any).gtag === "function") { // eslint-disable-line
+          const gtag = (window as /* gtag */ any).gtag; // eslint-disable-line
+          gtag("event", "generate_lead", {
+            lead_type: source,
+            source_page: window.location.pathname,
+            loan_amount: outstandingLoanValue ? parseFloat(outstandingLoanValue) : 0,
+            current_bank: formData.CurrentBank || "not_specified",
+          });
+        }
       } else {
         const errorText = await response.text();
         console.error("Webhook error:", errorText);

@@ -5,9 +5,7 @@ import Link from "next/link";
 import { SITE_CONFIG, getBanksSortedByRate } from "@/lib/constants";
 import CashOutLeadForm, { CashOutLeadFormInitialValues } from "@/components/CashOutLeadForm";
 import CashOutCalculatorWidget, { CashOutCalculatorValues } from "@/components/CashOutCalculatorWidget";
-import CashOutSocialProof from "@/components/CashOutSocialProof";
 import MidPageCTA from "@/components/MidPageCTA";
-import BackToTop from "@/components/BackToTop";
 import { StickyMobileCTA } from "@/components/StickyMobileCTA";
 import {
   ArrowRight,
@@ -86,9 +84,6 @@ export default function CashOutRefinancePage() {
 
   return (
     <>
-      {/* Social Proof Notification */}
-      <CashOutSocialProof />
-
       {/* Hero Section - Conversion Focused */}
       <section className="bg-gradient-to-br from-secondary-800 via-secondary-900 to-secondary-800 text-white py-16 md:py-24">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
@@ -962,7 +957,6 @@ export default function CashOutRefinancePage() {
         }}
       />
 
-      <BackToTop />
       <StickyMobileCTA
         onCtaClick={handleRegularQuote}
         text="Get cash from your equity"

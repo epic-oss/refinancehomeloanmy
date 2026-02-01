@@ -5,9 +5,7 @@ import Link from "next/link";
 import { SITE_CONFIG, getBanksSortedByRate } from "@/lib/constants";
 import CashOutLeadForm, { CashOutLeadFormInitialValues } from "@/components/CashOutLeadForm";
 import CashOutCalculatorWidget, { CashOutCalculatorValues } from "@/components/CashOutCalculatorWidget";
-import CashOutSocialProof from "@/components/CashOutSocialProof";
 import MidPageCTA from "@/components/MidPageCTA";
-import BackToTop from "@/components/BackToTop";
 import { StickyMobileCTA } from "@/components/StickyMobileCTA";
 import {
   ArrowRight,
@@ -176,9 +174,6 @@ export default function CaraCashOutRumahPage() {
         type="application/ld+json"
         dangerouslySetInnerHTML={{ __html: JSON.stringify(schemaData) }}
       />
-
-      {/* Social Proof Notification */}
-      <CashOutSocialProof />
 
       {/* Hero Section - Conversion Focused */}
       <section className="bg-gradient-to-br from-secondary-800 via-secondary-900 to-secondary-800 text-white py-16 md:py-24">
@@ -670,7 +665,6 @@ export default function CaraCashOutRumahPage() {
         </div>
       )}
 
-      <BackToTop />
       <StickyMobileCTA
         onCtaClick={handleRegularQuote}
         text="Dapatkan tunai dari ekuiti rumah"

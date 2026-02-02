@@ -600,7 +600,7 @@ export default function BestRefinanceCalculatorPage() {
             </p>
           </div>
           <div className="max-w-xl mx-auto">
-            <LeadForm source="best-calculator-comparison" />
+            <LeadForm source="best-calculator-comparison" showAllFields={true} />
           </div>
         </div>
       </section>

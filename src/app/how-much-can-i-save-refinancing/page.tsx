@@ -283,7 +283,7 @@ export default function HowMuchCanISavePage() {
             </p>
           </div>
           <div className="max-w-xl mx-auto">
-            <LeadForm source="savings-calculator-page" />
+            <LeadForm source="savings-calculator-page" showAllFields={true} />
           </div>
         </div>
       </section>

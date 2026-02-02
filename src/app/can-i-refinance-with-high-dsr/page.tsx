@@ -257,7 +257,7 @@ export default function HighDSRRefinancePage() {
             </p>
           </div>
           <div className="max-w-xl mx-auto">
-            <LeadForm source="high-dsr-help" />
+            <LeadForm source="high-dsr-help" showAllFields={true} />
           </div>
         </div>
       </section>

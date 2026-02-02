@@ -219,5 +219,30 @@ export default function sitemap() {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    // LPPSA refinance
+    {
+      url: `${baseUrl}/lppsa-refinance-malaysia`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/bank-islam-refinance-home-loan`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/ocbc-refinance-home-loan`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
+    {
+      url: `${baseUrl}/bank-muamalat-refinance-home-loan`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.8,
+    },
   ];
 }

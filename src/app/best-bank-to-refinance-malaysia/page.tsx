@@ -297,7 +297,7 @@ export default function BestBankRefinancePage() {
             </p>
           </div>
           <div className="max-w-xl mx-auto">
-            <LeadForm source="best-bank-question" />
+            <LeadForm source="best-bank-question" showAllFields={true} />
           </div>
         </div>
       </section>

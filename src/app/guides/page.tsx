@@ -264,6 +264,12 @@ const guidesData = {
         href: "/bank-muamalat-refinance-home-loan",
         readTime: "7 min",
       },
+      {
+        title: "HSBC Refinance",
+        description: "HomeSmart package, up to RM50k costs waived",
+        href: "/hsbc-refinance-home-loan",
+        readTime: "7 min",
+      },
     ],
   },
   lppsa: {
@@ -453,7 +459,7 @@ export default function GuidesPage() {
                   <div className="text-blue-200 text-sm">Languages</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold">12</div>
+                  <div className="text-3xl font-bold">13</div>
                   <div className="text-blue-200 text-sm">Banks Covered</div>
                 </div>
               </div>

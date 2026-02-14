@@ -63,6 +63,12 @@ const guidesData = {
         readTime: "10 min",
       },
       {
+        title: "Best Refinance Home Loan Malaysia",
+        description: "Compare top refinancing packages — rates, features & deals",
+        href: "/best-refinance-home-loan-malaysia",
+        readTime: "10 min",
+      },
+      {
         title: "Best Refinance Banks in Malaysia",
         description: "Compare top banks for home loan refinancing",
         href: "/en/best-refinance-banks",

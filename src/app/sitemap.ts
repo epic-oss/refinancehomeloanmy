@@ -96,6 +96,13 @@ export default function sitemap() {
       changeFrequency: 'monthly',
       priority: 0.8,
     },
+    // Best refinance home loan packages
+    {
+      url: `${baseUrl}/best-refinance-home-loan-malaysia`,
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
     // English pages
     {
       url: `${baseUrl}/en/best-refinance-banks`,

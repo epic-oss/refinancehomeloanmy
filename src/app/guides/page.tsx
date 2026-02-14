@@ -3,7 +3,7 @@
 import Link from "next/link";
 import { useState } from "react";
 import LeadForm from "@/components/LeadForm";
-import { ArrowRight, Search, BookOpen, Calculator, Building2, Landmark, Globe, X } from "lucide-react";
+import { ArrowRight, Search, BookOpen, Calculator, Building2, Landmark, Globe, X, Shield, TrendingDown } from "lucide-react";
 
 const currentYear = new Date().getFullYear();
 
@@ -50,6 +50,12 @@ const guidesData = {
     icon: BookOpen,
     color: "indigo",
     items: [
+      {
+        title: "Refinance Home Loan Rates Malaysia",
+        description: "Compare latest rates from 15+ banks — updated monthly",
+        href: "/refinance-home-loan-rates-malaysia",
+        readTime: "10 min",
+      },
       {
         title: "Best Refinance Banks in Malaysia",
         description: "Compare top banks for home loan refinancing",
@@ -216,6 +222,80 @@ const guidesData = {
         href: "/ambank-refinance-home-loan",
         readTime: "7 min",
       },
+      {
+        title: "UOB Refinance",
+        description: "Highest margin up to 95% including MRTA",
+        href: "/uob-refinance-home-loan",
+        readTime: "7 min",
+      },
+      {
+        title: "Standard Chartered Refinance",
+        description: "MortgageOne & zero-cost refinancing options",
+        href: "/standard-chartered-refinance-home-loan",
+        readTime: "7 min",
+      },
+      {
+        title: "Bank Rakyat Refinance",
+        description: "Best rates for government servants",
+        href: "/bank-rakyat-refinance-home-loan",
+        readTime: "7 min",
+      },
+      {
+        title: "Bank Islam Refinance",
+        description: "Lowest standard Islamic refinancing rate at 3.80%",
+        href: "/bank-islam-refinance-home-loan",
+        readTime: "7 min",
+      },
+      {
+        title: "OCBC Refinance",
+        description: "Competitive rates & flexible packages",
+        href: "/ocbc-refinance-home-loan",
+        readTime: "7 min",
+      },
+      {
+        title: "Bank Muamalat Refinance",
+        description: "Shariah-compliant home financing options",
+        href: "/bank-muamalat-refinance-home-loan",
+        readTime: "7 min",
+      },
+    ],
+  },
+  lppsa: {
+    title: "LPPSA & Government Loans",
+    icon: Shield,
+    color: "teal",
+    items: [
+      {
+        title: "LPPSA Refinance Guide",
+        description: "Complete guide to LPPSA refinancing for government servants",
+        href: "/lppsa-refinance-malaysia",
+        readTime: "8 min",
+      },
+    ],
+  },
+  specialty: {
+    title: "Specialty Guides",
+    icon: TrendingDown,
+    color: "rose",
+    items: [
+      {
+        title: "Maybank HouzKEY (Rent-to-Own)",
+        description: "Lowest rate at 2.88% — how the rent-to-own program works",
+        href: "/maybank-houzkey",
+        readTime: "6 min",
+      },
+      {
+        title: "Home Loan Rejected — What Next?",
+        description: "Steps to take if your refinancing application was declined",
+        href: "/home-loan-rejected-malaysia",
+        readTime: "7 min",
+      },
+      {
+        title: "Reverse Mortgage Malaysia",
+        description: "How retirees can unlock home equity without selling",
+        href: "/reverse-mortgage-malaysia",
+        readTime: "8 min",
+      },
     ],
   },
 };
@@ -262,6 +342,20 @@ const colorClasses: Record<string, { bg: string; border: string; text: string; h
     text: "text-amber-700",
     hover: "hover:border-amber-400",
     icon: "text-amber-600",
+  },
+  teal: {
+    bg: "bg-teal-50",
+    border: "border-teal-200",
+    text: "text-teal-700",
+    hover: "hover:border-teal-400",
+    icon: "text-teal-600",
+  },
+  rose: {
+    bg: "bg-rose-50",
+    border: "border-rose-200",
+    text: "text-rose-700",
+    hover: "hover:border-rose-400",
+    icon: "text-rose-600",
   },
 };
 
@@ -353,7 +447,7 @@ export default function GuidesPage() {
                   <div className="text-blue-200 text-sm">Languages</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold">6</div>
+                  <div className="text-3xl font-bold">12</div>
                   <div className="text-blue-200 text-sm">Banks Covered</div>
                 </div>
               </div>
@@ -409,6 +503,22 @@ export default function GuidesPage() {
               <GuideCategory
                 data={guidesData.banks}
                 filteredItems={filterGuides(guidesData.banks.items)}
+              />
+            )}
+
+            {/* LPPSA & Government Loans */}
+            {hasResults(guidesData.lppsa.items) && (
+              <GuideCategory
+                data={guidesData.lppsa}
+                filteredItems={filterGuides(guidesData.lppsa.items)}
+              />
+            )}
+
+            {/* Specialty Guides */}
+            {hasResults(guidesData.specialty.items) && (
+              <GuideCategory
+                data={guidesData.specialty}
+                filteredItems={filterGuides(guidesData.specialty.items)}
               />
             )}
 

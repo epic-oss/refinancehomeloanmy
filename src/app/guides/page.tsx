@@ -43,6 +43,12 @@ const guidesData = {
         href: "/berapa-tahun-boleh-refinance-rumah",
         readTime: "5 min",
       },
+      {
+        title: "Refinance Rumah Habis Bayar",
+        description: "Cara keluarkan wang tunai dari rumah yang sudah habis bayar",
+        href: "/refinance-rumah-habis-bayar",
+        readTime: "8 min",
+      },
     ],
   },
   refinanceEN: {

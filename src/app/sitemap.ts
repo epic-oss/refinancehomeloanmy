@@ -46,6 +46,13 @@ export default function sitemap() {
       changeFrequency: 'weekly',
       priority: 0.9,
     },
+    // Refinance rumah habis bayar (cash-out fully paid)
+    {
+      url: `${baseUrl}/refinance-rumah-habis-bayar`,
+      lastModified,
+      changeFrequency: 'monthly',
+      priority: 0.9,
+    },
     // Bahasa Malaysia pages
     {
       url: `${baseUrl}/cara-refinance-rumah`,

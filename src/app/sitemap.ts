@@ -39,6 +39,13 @@ export default function sitemap() {
       changeFrequency: 'weekly',
       priority: 0.9,
     },
+    // Refinance rates comparison
+    {
+      url: `${baseUrl}/refinance-home-loan-rates-malaysia`,
+      lastModified,
+      changeFrequency: 'weekly',
+      priority: 0.9,
+    },
     // Bahasa Malaysia pages
     {
       url: `${baseUrl}/cara-refinance-rumah`,

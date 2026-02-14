@@ -1,11 +1,11 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "6 Best Banks for Refinancing Home Loan Malaysia 2026 | Compared",
-  description: "Compare the 6 best banks for home loan refinancing in Malaysia 2026. Maybank, CIMB, Public Bank, RHB, Hong Leong & AmBank - rates, pros, cons & which is best for you.",
+  title: "Best Banks for Refinancing Home Loan Malaysia 2026 | 15+ Banks Compared",
+  description: "Compare 15+ best banks for home loan refinancing in Malaysia 2026. Maybank, CIMB, Public Bank, RHB, Hong Leong, AmBank, UOB, Standard Chartered, HSBC, Bank Islam & more - rates, pros, cons.",
   openGraph: {
-    title: "6 Best Banks for Refinancing Home Loan Malaysia 2026 | Compared",
-    description: "Compare the 6 best banks for home loan refinancing in Malaysia 2026. Maybank, CIMB, Public Bank, RHB, Hong Leong & AmBank - rates, pros, cons & which is best for you.",
+    title: "Best Banks for Refinancing Home Loan Malaysia 2026 | 15+ Banks Compared",
+    description: "Compare 15+ best banks for home loan refinancing in Malaysia 2026. Maybank, CIMB, Public Bank, RHB, Hong Leong, AmBank, UOB, Standard Chartered, HSBC, Bank Islam & more - rates, pros, cons.",
     type: "article",
   },
 };

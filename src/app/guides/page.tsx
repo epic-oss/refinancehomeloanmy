@@ -270,6 +270,12 @@ const guidesData = {
         href: "/hsbc-refinance-home-loan",
         readTime: "7 min",
       },
+      {
+        title: "LPPSA Refinance",
+        description: "Fixed 4% rate for government servants, no lock-in penalty",
+        href: "/lppsa-refinance-malaysia",
+        readTime: "8 min",
+      },
     ],
   },
   lppsa: {
@@ -459,7 +465,7 @@ export default function GuidesPage() {
                   <div className="text-blue-200 text-sm">Languages</div>
                 </div>
                 <div className="text-center">
-                  <div className="text-3xl font-bold">13</div>
+                  <div className="text-3xl font-bold">14</div>
                   <div className="text-blue-200 text-sm">Banks Covered</div>
                 </div>
               </div>

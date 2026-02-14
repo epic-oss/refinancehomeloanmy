@@ -237,6 +237,151 @@ const bankHighlights = [
     ],
     bestFor: "Those seeking promotional rates and cashback offers",
   },
+  {
+    rank: 7,
+    name: "Standard Chartered",
+    slug: "standard-chartered",
+    rate: "3.90%",
+    pros: [
+      "MortgageOne offset account saves interest daily",
+      "Up to RM30,000 upfront costs waived for large loans",
+      "Competitive rates for loans above RM500k",
+      "Strong international banking network",
+    ],
+    cons: [
+      "Higher minimum loan amount (RM300k preferred)",
+      "Limited branch network in Malaysia",
+      "Stricter income requirements (RM8k minimum)",
+    ],
+    bestFor: "High-income borrowers with large loan amounts seeking offset account features",
+  },
+  {
+    rank: 8,
+    name: "UOB",
+    slug: "uob",
+    rate: "4.61%",
+    pros: [
+      "Highest margin up to 95% including MRTA",
+      "Foreigner-friendly with competitive packages",
+      "Flexible repayment options with partial prepayment",
+      "Good digital banking platform",
+    ],
+    cons: [
+      "Higher base rate than local banks",
+      "Smaller branch network than local banks",
+      "Higher minimum income requirement",
+    ],
+    bestFor: "Foreigners and those needing highest loan margin (up to 95%)",
+  },
+  {
+    rank: 9,
+    name: "HSBC",
+    slug: "hsbc",
+    rate: "4.30%",
+    pros: [
+      "HomeSmart package with up to RM50,000 upfront costs waived",
+      "SmartMortgage with flexible redraw facility",
+      "Amanah Home-i Islamic financing option",
+      "Excellent for expats and international professionals",
+    ],
+    cons: [
+      "Higher base rates than local banks",
+      "Minimum income RM10,000/month",
+      "Limited to urban areas",
+    ],
+    bestFor: "Expats, international professionals, and those wanting costs waived upfront",
+  },
+  {
+    rank: 10,
+    name: "Bank Islam",
+    slug: "bank-islam",
+    rate: "3.80%",
+    pros: [
+      "Lowest standard Islamic refinancing rate at 3.80%",
+      "Fully Shariah-compliant Baiti Home Financing",
+      "Good for those who prefer Islamic banking principles",
+      "No compounding interest structure",
+    ],
+    cons: [
+      "Longer approval process",
+      "Stricter property requirements",
+      "Limited flexi-loan options",
+    ],
+    bestFor: "Those seeking the lowest Islamic refinancing rate with Shariah compliance",
+  },
+  {
+    rank: 11,
+    name: "Bank Rakyat",
+    slug: "bank-rakyat",
+    rate: "4.20%",
+    pros: [
+      "Excellent rates for government servants and cooperative members",
+      "100% Islamic financing (Shariah-compliant)",
+      "Lower processing fees than commercial banks",
+      "Flexible for civil servants with lower income",
+    ],
+    cons: [
+      "Primarily for cooperative members and government servants",
+      "Slower processing times",
+      "Limited product options compared to commercial banks",
+    ],
+    bestFor: "Government servants and cooperative members seeking Islamic financing",
+  },
+  {
+    rank: 12,
+    name: "OCBC",
+    slug: "ocbc",
+    rate: "4.05%",
+    pros: [
+      "Competitive rates from international bank",
+      "Good flexi-loan with offset account features",
+      "Efficient online application process",
+      "Attractive cashback promotions periodically",
+    ],
+    cons: [
+      "Smaller branch network",
+      "Less flexible for self-employed applicants",
+      "Higher minimum loan amount for best rates",
+    ],
+    bestFor: "Those seeking competitive rates from an international bank with flexi features",
+  },
+  {
+    rank: 13,
+    name: "Bank Muamalat",
+    slug: "bank-muamalat",
+    rate: "4.25%",
+    pros: [
+      "100% Islamic financing with Musharakah Mutanaqisah concept",
+      "Transparent pricing structure",
+      "Good for smaller loan amounts",
+      "Flexible for first-time homebuyers refinancing",
+    ],
+    cons: [
+      "Higher profit rates than competitors",
+      "Limited branch network",
+      "Slower processing times",
+    ],
+    bestFor: "Those prioritizing Islamic banking with Musharakah Mutanaqisah structure",
+  },
+  {
+    rank: 14,
+    name: "LPPSA",
+    slug: "lppsa",
+    link: "/lppsa-refinance-malaysia",
+    rate: "4.00%",
+    pros: [
+      "Fixed rate throughout loan tenure (no OPR fluctuation)",
+      "Up to 100% financing for government servants",
+      "No lock-in period or early settlement penalty",
+      "Lower monthly instalments with longer tenure options",
+    ],
+    cons: [
+      "Only available to government servants",
+      "Fixed rate may be higher than variable rates during low OPR",
+      "Longer processing time (2-3 months)",
+    ],
+    bestFor: "Government servants who want rate certainty with no lock-in penalty",
+  },
 ];
 
 export default function BestRefinanceBanks() {
@@ -249,10 +394,10 @@ export default function BestRefinanceBanks() {
       <section className="bg-gradient-to-br from-primary-800 to-primary-900 text-white py-12 md:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            6 Best Banks for Refinancing Home Loan Malaysia {currentYear}
+            Best Banks for Refinancing Home Loan Malaysia {currentYear}
           </h1>
           <p className="text-lg text-gray-300">
-            Compare the 6 best banks for home loan refinancing in Malaysia.
+            Compare 15+ banks for home loan refinancing in Malaysia.
             Find the best rates, pros, cons & which bank is right for you.
           </p>
           <LastUpdated lang="en" variant="hero" />
@@ -291,7 +436,7 @@ export default function BestRefinanceBanks() {
               the most important financial decisions you can make. With interest
               rates varying by up to 1% between banks, the right choice could
               save you tens of thousands of ringgit over your loan tenure. In
-              Malaysia, more than 10 major banks offer refinancing packages,
+              Malaysia, more than 15 banks and financial institutions offer refinancing packages,
               each with different rates, terms, and benefits.
             </p>
             <p className="text-lg text-gray-700">
@@ -439,11 +584,11 @@ export default function BestRefinanceBanks() {
           {/* Top 6 Banks */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Top 6 Banks for Refinancing {currentYear}
+              Top Banks for Refinancing {currentYear}
             </h2>
             <p className="text-gray-700 mb-6">
               Based on our analysis of rates, terms, and customer feedback, here
-              are the top 6 banks for home loan refinancing this year:
+              are the top banks for home loan refinancing this year:
             </p>
 
             <div className="space-y-6">
@@ -530,7 +675,7 @@ export default function BestRefinanceBanks() {
                         <span className="text-gray-600">{bank.bestFor}</span>
                       </p>
                       <Link
-                        href={`/${bank.slug}-refinance-home-loan`}
+                        href={bank.link || `/${bank.slug}-refinance-home-loan`}
                         className="text-sm text-primary-600 hover:underline font-medium flex items-center gap-1"
                       >
                         Compare {bank.name} rates
@@ -662,6 +807,41 @@ export default function BestRefinanceBanks() {
                       <Link href="/ambank-refinance-home-loan" className="text-primary-600 hover:underline font-medium">AmBank</Link>
                     </td>
                     <td className="p-4 text-sm text-gray-600">Frequent promotional offers and upfront cash rebates</td>
+                  </tr>
+                  <tr className="border-b hover:bg-gray-50">
+                    <td className="p-4 font-medium">Government servants</td>
+                    <td className="p-4">
+                      <Link href="/bank-rakyat-refinance-home-loan" className="text-primary-600 hover:underline font-medium">Bank Rakyat</Link> / <Link href="/lppsa-refinance-malaysia" className="text-primary-600 hover:underline font-medium">LPPSA</Link>
+                    </td>
+                    <td className="p-4 text-sm text-gray-600">Special rates and up to 100% financing for civil servants</td>
+                  </tr>
+                  <tr className="border-b hover:bg-gray-50 bg-gray-50">
+                    <td className="p-4 font-medium">Islamic financing</td>
+                    <td className="p-4">
+                      <Link href="/bank-islam-refinance-home-loan" className="text-primary-600 hover:underline font-medium">Bank Islam</Link>
+                    </td>
+                    <td className="p-4 text-sm text-gray-600">Fully Shariah-compliant with Baiti Home Financing</td>
+                  </tr>
+                  <tr className="border-b hover:bg-gray-50">
+                    <td className="p-4 font-medium">Large loan (RM500k+)</td>
+                    <td className="p-4">
+                      <Link href="/standard-chartered-refinance-home-loan" className="text-primary-600 hover:underline font-medium">Standard Chartered</Link>
+                    </td>
+                    <td className="p-4 text-sm text-gray-600">Premium packages, offset account, up to RM30k costs waived</td>
+                  </tr>
+                  <tr className="border-b hover:bg-gray-50 bg-gray-50">
+                    <td className="p-4 font-medium">Expats & foreigners</td>
+                    <td className="p-4">
+                      <Link href="/hsbc-refinance-home-loan" className="text-primary-600 hover:underline font-medium">HSBC</Link>
+                    </td>
+                    <td className="p-4 text-sm text-gray-600">International network, expat-friendly packages, costs waived</td>
+                  </tr>
+                  <tr className="hover:bg-gray-50">
+                    <td className="p-4 font-medium">Fixed rate (no OPR risk)</td>
+                    <td className="p-4">
+                      <Link href="/lppsa-refinance-malaysia" className="text-primary-600 hover:underline font-medium">LPPSA</Link>
+                    </td>
+                    <td className="p-4 text-sm text-gray-600">Fixed 4% throughout tenure, no lock-in penalty</td>
                   </tr>
                 </tbody>
               </table>
@@ -967,9 +1147,9 @@ export default function BestRefinanceBanks() {
           __html: JSON.stringify({
             "@context": "https://schema.org",
             "@type": "Article",
-            headline: `6 Best Banks for Refinancing Home Loan Malaysia ${currentYear}`,
+            headline: `Best Banks for Refinancing Home Loan Malaysia ${currentYear}`,
             description:
-              "Compare the 6 best banks for home loan refinancing in Malaysia. Maybank, CIMB, Public Bank, RHB, Hong Leong & AmBank - rates, pros, cons & which is best for you.",
+              "Compare 15+ best banks for home loan refinancing in Malaysia. Maybank, CIMB, Public Bank, RHB, Hong Leong, AmBank, UOB, Standard Chartered, HSBC, Bank Islam & more.",
             datePublished: "2025-12-01",
             dateModified: "2026-01-21",
             author: {

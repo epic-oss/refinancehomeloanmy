@@ -2,15 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { SITE_CONFIG } from "@/lib/constants";
 import LeadForm from "@/components/LeadForm";
 import MidPageCTA from "@/components/MidPageCTA";
 import { StickyMobileCTA } from "@/components/StickyMobileCTA";
 import { ArrowRight, Check, X, Clock, FileText, AlertTriangle } from "lucide-react";
-
-const bank = SITE_CONFIG.bankRates.maybank;
-const { currentYear } = SITE_CONFIG;
 
 const faqs = [
   {
@@ -69,74 +64,87 @@ export default function MaybankRefinancePage() {
 
   return (
     <>
+      {/* Schema Markup */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: "Maybank Refinance Home Loan Malaysia 2026 - Rates, Review & Calculator",
+            description: "Complete guide to Maybank home loan refinancing. Current rates from 4.35%, honest review, HouzKey rent-to-own, eligibility requirements, and comparison with other banks.",
+            datePublished: "2025-12-01",
+            dateModified: "2026-02-15",
+            author: { "@type": "Organization", name: "RefinanceHomeLoanMY" },
+            publisher: { "@type": "Organization", name: "RefinanceHomeLoanMY", url: "https://refinancehomeloanmy.com" },
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map((faq) => ({
+              "@type": "Question",
+              name: faq.question,
+              acceptedAnswer: { "@type": "Answer", text: faq.answer },
+            })),
+          }),
+        }}
+      />
+
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-yellow-600 to-yellow-700 text-white py-12 md:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-4 mb-6">
-            {bank.logo && (
-              <div className="bg-white rounded-lg p-2">
-                <Image
-                  src={bank.logo}
-                  alt="Maybank logo"
-                  width={120}
-                  height={40}
-                  className="h-10 w-auto"
-                />
-              </div>
-            )}
+          <div className="inline-block bg-white/20 text-white text-sm px-4 py-1 rounded-full mb-4">
+            Maybank Malaysia — Largest Bank
           </div>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            Maybank Refinance Home Loan Malaysia {currentYear}
+            Maybank Refinance Home Loan Malaysia 2026
           </h1>
           <p className="text-lg text-yellow-100 mb-2">
-            Complete guide to Maybank home loan refinancing with current rates, honest review, and comparison with other banks.
+            Complete guide to Maybank home loan refinancing — MaxiHome, Islamic, HouzKey rent-to-own, cash-out & calculator.
           </p>
-          <p className="text-sm text-yellow-200">
-            Updated: {SITE_CONFIG.lastUpdatedEn}
-          </p>
+          <p className="text-sm text-yellow-200 mb-6">Updated: February 2026</p>
           <button
             onClick={() => setShowForm(true)}
-            className="mt-6 inline-flex items-center gap-2 bg-white text-yellow-700 font-semibold px-6 py-3 rounded-full hover:bg-yellow-50 transition-all hover:scale-105"
+            className="inline-flex items-center gap-2 bg-white text-yellow-700 font-semibold px-8 py-4 rounded-lg hover:bg-yellow-50 transition-colors text-lg"
           >
-            Get Free Quote
-            <ArrowRight className="w-5 h-5" />
+            Get Free Quote <ArrowRight className="w-5 h-5" />
           </button>
         </div>
       </section>
 
       {/* Quick Summary Box */}
-      <section className="py-8 bg-yellow-50 border-b border-yellow-100">
+      <section className="py-8 bg-yellow-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-yellow-200">
-            <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-              <svg className="w-5 h-5 text-yellow-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              Maybank Refinance at a Glance
-            </h2>
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            <h2 className="text-lg font-bold text-gray-900 text-center mb-4">Maybank Refinance at a Glance</h2>
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
               <div className="text-center p-3 bg-yellow-50 rounded-lg">
                 <p className="text-2xl font-bold text-yellow-700">4.35%</p>
                 <p className="text-xs text-gray-600">Conv. Rate From</p>
               </div>
-              <div className="text-center p-3 bg-gray-50 rounded-lg">
-                <p className="text-2xl font-bold text-gray-900">90%</p>
+              <div className="text-center p-3 bg-yellow-50 rounded-lg">
+                <p className="text-2xl font-bold text-yellow-700">90%</p>
                 <p className="text-xs text-gray-600">Max LTV (1st 2 props)</p>
               </div>
-              <div className="text-center p-3 bg-gray-50 rounded-lg">
-                <p className="text-2xl font-bold text-gray-900">35 Yrs</p>
+              <div className="text-center p-3 bg-yellow-50 rounded-lg">
+                <p className="text-2xl font-bold text-yellow-700">35 Yrs</p>
                 <p className="text-xs text-gray-600">Max Tenure</p>
               </div>
-              <div className="text-center p-3 bg-gray-50 rounded-lg">
-                <p className="text-2xl font-bold text-gray-900">RM3k</p>
+              <div className="text-center p-3 bg-yellow-50 rounded-lg">
+                <p className="text-2xl font-bold text-yellow-700">RM3k</p>
                 <p className="text-xs text-gray-600">Min Income/Month</p>
               </div>
-              <div className="text-center p-3 bg-gray-50 rounded-lg">
-                <p className="text-2xl font-bold text-gray-900">3-5 Yrs</p>
+              <div className="text-center p-3 bg-yellow-50 rounded-lg">
+                <p className="text-2xl font-bold text-yellow-700">3-5 Yrs</p>
                 <p className="text-xs text-gray-600">Lock-in Period</p>
               </div>
-              <div className="text-center p-3 bg-yellow-50 rounded-lg border border-yellow-200">
-                <p className="text-lg font-bold text-yellow-700">HouzKey</p>
+              <div className="text-center p-3 bg-green-50 rounded-lg border border-green-200">
+                <p className="text-lg font-bold text-green-700">HouzKey</p>
                 <p className="text-xs text-gray-600">Rent-to-Own Available</p>
               </div>
             </div>
@@ -151,25 +159,25 @@ export default function MaybankRefinancePage() {
           {/* Current Rates Section */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Maybank Refinance Interest Rates {currentYear}
+              Maybank Refinance Interest Rates 2026
             </h2>
 
             <div className="bg-gradient-to-r from-yellow-50 to-yellow-100 rounded-xl p-6 mb-6">
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="text-center">
                   <p className="text-sm text-gray-600 mb-1">Rate From</p>
-                  <p className="text-3xl font-bold text-yellow-700">{bank.rateFrom}</p>
+                  <p className="text-3xl font-bold text-yellow-700">4.35%</p>
                   <p className="text-xs text-gray-500">p.a.</p>
                 </div>
                 <div className="text-center">
-                  <p className="text-sm text-gray-600 mb-1">Base Rate (BLR)</p>
-                  <p className="text-3xl font-bold text-gray-700">{bank.rateBLR}</p>
+                  <p className="text-sm text-gray-600 mb-1">Base Rate (BR)</p>
+                  <p className="text-3xl font-bold text-gray-700">5.81%</p>
                   <p className="text-xs text-gray-500">Current</p>
                 </div>
                 <div className="text-center">
                   <p className="text-sm text-gray-600 mb-1">Spread</p>
-                  <p className="text-3xl font-bold text-green-600">{bank.spreadFrom}</p>
-                  <p className="text-xs text-gray-500">to {bank.spreadTo}</p>
+                  <p className="text-3xl font-bold text-green-600">-2.16%</p>
+                  <p className="text-xs text-gray-500">to -1.46%</p>
                 </div>
               </div>
             </div>
@@ -178,18 +186,18 @@ export default function MaybankRefinancePage() {
               <div className="bg-gray-50 rounded-lg p-4">
                 <p className="font-semibold text-gray-900 mb-2">Loan Details</p>
                 <ul className="space-y-2 text-gray-600">
-                  <li>Min Loan: RM{bank.minLoan.toLocaleString()}</li>
-                  <li>Max Loan: RM{bank.maxLoan.toLocaleString()}</li>
-                  <li>Max Tenure: {bank.maxTenure} years</li>
-                  <li>Max LTV: {bank.maxLTV}%</li>
+                  <li>Min Loan: RM100,000</li>
+                  <li>Max Loan: RM10,000,000</li>
+                  <li>Max Tenure: 35 years</li>
+                  <li>Max LTV: 90%</li>
                 </ul>
               </div>
               <div className="bg-gray-50 rounded-lg p-4">
                 <p className="font-semibold text-gray-900 mb-2">Fees & Penalties</p>
                 <ul className="space-y-2 text-gray-600">
-                  <li>Processing Fee: {bank.processingFee}</li>
-                  <li>Lock-in Period: {bank.lockIn} years</li>
-                  <li>Early Settlement: {bank.earlySettlement}</li>
+                  <li>Processing Fee: 0%</li>
+                  <li>Lock-in Period: 3-5 years</li>
+                  <li>Early Settlement: 2-3%</li>
                 </ul>
               </div>
             </div>
@@ -209,61 +217,36 @@ export default function MaybankRefinancePage() {
               RM500k property, RM300k outstanding, 30 years remaining
             </p>
 
-            <div className="bg-white border border-gray-200 rounded-xl p-6 mb-8">
-              <div className="grid md:grid-cols-2 gap-8 mb-6">
-                <div>
-                  <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
-                    <X className="w-5 h-5 text-red-500" />
-                    Current Bank (4.80%)
-                  </h4>
-                  <div className="space-y-3">
-                    <div className="flex justify-between bg-gray-50 rounded-lg p-3">
-                      <span className="text-gray-600">Outstanding Loan</span>
-                      <span className="font-semibold">RM300,000</span>
-                    </div>
-                    <div className="flex justify-between bg-gray-50 rounded-lg p-3">
-                      <span className="text-gray-600">Interest Rate</span>
-                      <span className="font-semibold text-red-600">4.80%</span>
-                    </div>
-                    <div className="flex justify-between bg-red-50 rounded-lg p-3">
-                      <span className="text-red-700">Monthly Payment</span>
-                      <span className="font-bold text-red-700">RM1,576</span>
-                    </div>
-                  </div>
+            <div className="grid md:grid-cols-2 gap-6 mb-6">
+              <div className="bg-red-50 border border-red-200 rounded-xl p-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <X className="w-5 h-5 text-red-500" />
+                  <h4 className="font-bold text-red-800">Current Bank (4.80%)</h4>
                 </div>
-
-                <div>
-                  <h4 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
-                    <Check className="w-5 h-5 text-green-500" />
-                    Maybank (4.35%)
-                  </h4>
-                  <div className="space-y-3">
-                    <div className="flex justify-between bg-gray-50 rounded-lg p-3">
-                      <span className="text-gray-600">Refinanced Loan</span>
-                      <span className="font-semibold">RM300,000</span>
-                    </div>
-                    <div className="flex justify-between bg-gray-50 rounded-lg p-3">
-                      <span className="text-gray-600">Interest Rate</span>
-                      <span className="font-semibold text-green-600">4.35%</span>
-                    </div>
-                    <div className="flex justify-between bg-green-50 rounded-lg p-3">
-                      <span className="text-green-700">Monthly Payment</span>
-                      <span className="font-bold text-green-700">RM1,490</span>
-                    </div>
-                  </div>
+                <div className="space-y-3 text-sm">
+                  <div className="flex justify-between"><span className="text-gray-600">Outstanding Loan</span><span className="font-semibold">RM300,000</span></div>
+                  <div className="flex justify-between"><span className="text-gray-600">Interest Rate</span><span className="font-semibold text-red-600">4.80%</span></div>
+                  <div className="flex justify-between"><span className="text-gray-600">Monthly Payment</span><span className="font-bold text-red-700">RM1,576</span></div>
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4">
-                <div className="bg-green-50 rounded-xl p-5 text-center border border-green-200">
-                  <p className="text-sm text-green-700 mb-1">Monthly Savings</p>
-                  <p className="text-3xl font-bold text-green-600">RM86</p>
+              <div className="bg-green-50 border border-green-200 rounded-xl p-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <Check className="w-5 h-5 text-green-500" />
+                  <h4 className="font-bold text-green-800">Maybank (4.35%)</h4>
                 </div>
-                <div className="bg-green-50 rounded-xl p-5 text-center border border-green-200">
-                  <p className="text-sm text-green-700 mb-1">Total Savings (30 Years)</p>
-                  <p className="text-3xl font-bold text-green-600">RM30,960</p>
+                <div className="space-y-3 text-sm">
+                  <div className="flex justify-between"><span className="text-gray-600">Refinanced Loan</span><span className="font-semibold">RM300,000</span></div>
+                  <div className="flex justify-between"><span className="text-gray-600">Interest Rate</span><span className="font-semibold text-green-600">4.35%</span></div>
+                  <div className="flex justify-between"><span className="text-gray-600">Monthly Payment</span><span className="font-bold text-green-700">RM1,490</span></div>
                 </div>
               </div>
+            </div>
+
+            <div className="bg-green-100 border border-green-300 rounded-xl p-6 text-center mb-8">
+              <p className="text-sm text-green-800 mb-1">Your Estimated Savings</p>
+              <p className="text-3xl font-bold text-green-700 mb-2">RM86/month</p>
+              <p className="text-lg font-semibold text-green-700">RM30,960 total over 30 years</p>
             </div>
 
             {/* Scenario 2: Cash-Out Refinance */}
@@ -304,13 +287,12 @@ export default function MaybankRefinancePage() {
               </div>
             </div>
 
-            <div className="flex flex-wrap justify-center gap-4">
+            <div className="flex flex-wrap gap-4 justify-center">
               <Link
                 href="/calculator"
                 className="inline-flex items-center gap-2 bg-yellow-600 hover:bg-yellow-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
               >
-                Calculate Your Exact Savings
-                <ArrowRight className="w-5 h-5" />
+                Calculate Your Exact Savings <ArrowRight className="w-5 h-5" />
               </Link>
               <Link
                 href="/dsr-calculator"
@@ -346,19 +328,23 @@ export default function MaybankRefinancePage() {
                 <ul className="space-y-3 text-gray-700">
                   <li className="flex items-start gap-2">
                     <Check className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
-                    <span><strong>Competitive rates</strong> - Among the lowest in market at {bank.rateFrom}</span>
+                    <span><strong>Competitive rates</strong> — among the lowest in market at 4.35%</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <Check className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
-                    <span><strong>MaxiHome flexibility</strong> - <Link href="/cash-out-calculator" className="text-primary-600 hover:underline">Cash-out</Link>, top-up, and flexi features available</span>
+                    <span><strong>MaxiHome flexibility</strong> — <Link href="/cash-out-calculator" className="text-primary-600 hover:underline">cash-out</Link>, top-up, and flexi features available</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <Check className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
-                    <span><strong>Largest branch network</strong> - Convenient for document submission</span>
+                    <span><strong>Largest branch network</strong> — convenient for document submission</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <Check className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
-                    <span><strong>Existing customer benefits</strong> - Better rates for current Maybank customers</span>
+                    <span><strong>Existing customer benefits</strong> — better rates for current Maybank customers</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
+                    <span><strong>HouzKey / M2Own</strong> — unique rent-to-own alternatives for new purchases</span>
                   </li>
                 </ul>
               </div>
@@ -370,19 +356,19 @@ export default function MaybankRefinancePage() {
                 <ul className="space-y-3 text-gray-700">
                   <li className="flex items-start gap-2">
                     <X className="w-4 h-4 text-red-600 mt-1 flex-shrink-0" />
-                    <span><strong>Processing can be slow</strong> - Large volume means longer queues</span>
+                    <span><strong>Processing can be slow</strong> — large volume means longer queues</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <X className="w-4 h-4 text-red-600 mt-1 flex-shrink-0" />
-                    <span><strong>Stricter approval criteria</strong> - Higher income requirements for best rates</span>
+                    <span><strong>Stricter approval criteria</strong> — higher income requirements for best rates</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <X className="w-4 h-4 text-red-600 mt-1 flex-shrink-0" />
-                    <span><strong>{bank.lockIn}-year lock-in</strong> - Standard penalty if you refinance early</span>
+                    <span><strong>3-5 year lock-in</strong> — longer lock-in than most competitors (3 years)</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <X className="w-4 h-4 text-red-600 mt-1 flex-shrink-0" />
-                    <span><strong>Variable service quality</strong> - Experience varies by branch</span>
+                    <span><strong>Variable service quality</strong> — experience varies by branch</span>
                   </li>
                 </ul>
               </div>
@@ -391,9 +377,9 @@ export default function MaybankRefinancePage() {
             <div className="bg-yellow-50 border-l-4 border-yellow-500 p-4 rounded-r-lg">
               <p className="font-semibold text-yellow-800 mb-1">Best For:</p>
               <p className="text-gray-700">
-                {bank.bestFor}. Also ideal for those who value brand stability, need cash-out options,
-                or prefer dealing with Malaysia&apos;s largest bank. If you&apos;re already a Maybank customer
-                with salary crediting, you may get preferential rates.
+                Existing Maybank customers with salary crediting. Also ideal for those who value brand stability, need cash-out options,
+                or prefer dealing with Malaysia&apos;s largest bank. If you&apos;re already a Maybank customer,
+                you may get preferential rates. Maybank Premier and Privilege customers get priority processing.
               </p>
             </div>
           </section>
@@ -404,67 +390,55 @@ export default function MaybankRefinancePage() {
               Who Gets Approved? Maybank Refinance Eligibility
             </h2>
 
-            <div className="space-y-4">
-              <div className="bg-gray-50 rounded-lg p-5">
-                <h3 className="font-semibold text-gray-900 mb-3">Basic Requirements</h3>
-                <ul className="grid md:grid-cols-2 gap-3 text-gray-700">
-                  <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-green-600" />
-                    Malaysian citizens, PRs, and selected foreigners
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-green-600" />
-                    Age: 18 - 65 years old (at loan maturity)
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-green-600" />
-                    Minimum income: <strong>RM3,000/month</strong> (may vary by product)
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-green-600" />
-                    Clean CCRIS/CTOS record
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-green-600" />
-                    Both conventional and Islamic (Maybank Islamic) options
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-green-600" />
-                    Property: residential and selected commercial
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-green-600" />
-                    Max DSR: 70% (flexible for high-income applicants)
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-green-600" />
-                    <Link href="/dsr-calculator" className="text-primary-600 hover:underline">Check your DSR eligibility →</Link>
-                  </li>
-                </ul>
+            <div className="bg-gray-50 rounded-xl p-6">
+              <div className="grid md:grid-cols-2 gap-4">
+                {[
+                  { label: "Citizenship", value: "Malaysian citizens, PRs, and selected foreigners" },
+                  { label: "Age", value: "18 – 65 years old (at loan maturity)" },
+                  { label: "Min Income", value: "RM3,000/month (may vary by product)" },
+                  { label: "Loan Type", value: "Conventional & Islamic (Maybank Islamic)" },
+                  { label: "Property", value: "Residential and selected commercial" },
+                  { label: "Max DSR", value: "70% (flexible for high-income applicants)" },
+                  { label: "Max LTV", value: "Up to 90% (1st & 2nd property)" },
+                  { label: "Credit Record", value: "Clean CCRIS/CTOS record" },
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-3">
+                    <Check className="w-5 h-5 text-yellow-600 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-medium text-gray-900">{item.label}</p>
+                      <p className="text-sm text-gray-600">{item.value}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
+              <div className="mt-6 pt-4 border-t text-center">
+                <Link href="/dsr-calculator" className="text-yellow-600 hover:underline font-medium inline-flex items-center gap-1">
+                  Check your eligibility with our DSR Calculator <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
 
-              <div className="bg-green-50 rounded-lg p-5">
-                <h3 className="font-semibold text-green-800 mb-3">Higher Approval Chances</h3>
-                <ul className="space-y-2 text-gray-700">
-                  <li>- Income above RM5,000/month</li>
-                  <li>- Existing Maybank customer with salary crediting</li>
-                  <li>- Property in high-demand areas (Klang Valley, Penang, JB)</li>
-                  <li>- Low existing debt commitments (DSR below 50%)</li>
-                  <li>- Employed with established company or government</li>
-                  <li>- Maybank Premier or Maybank Privilege customer</li>
-                </ul>
-              </div>
+            <div className="mt-4 bg-green-50 rounded-lg p-5">
+              <h3 className="font-semibold text-green-800 mb-3">Higher Approval Chances</h3>
+              <ul className="space-y-2 text-gray-700">
+                <li>- Income above RM5,000/month</li>
+                <li>- Existing Maybank customer with salary crediting</li>
+                <li>- Property in high-demand areas (Klang Valley, Penang, JB)</li>
+                <li>- Low existing debt commitments (DSR below 50%)</li>
+                <li>- Employed with established company or government</li>
+                <li>- Maybank Premier or Maybank Privilege customer</li>
+              </ul>
+            </div>
 
-              <div className="bg-red-50 rounded-lg p-5">
-                <h3 className="font-semibold text-red-800 mb-3">May Face Challenges</h3>
-                <ul className="space-y-2 text-gray-700">
-                  <li>- Self-employed less than 2 years</li>
-                  <li>- Properties in less popular areas</li>
-                  <li>- DSR above 70%</li>
-                  <li>- Recent late payments on CCRIS</li>
-                  <li>- Foreigners without valid employment pass or PR</li>
-                </ul>
-              </div>
+            <div className="mt-4 bg-red-50 rounded-lg p-5">
+              <h3 className="font-semibold text-red-800 mb-3">May Face Challenges</h3>
+              <ul className="space-y-2 text-gray-700">
+                <li>- Self-employed less than 2 years</li>
+                <li>- Properties in less popular areas</li>
+                <li>- DSR above 70%</li>
+                <li>- Recent late payments on CCRIS</li>
+                <li>- Foreigners without valid employment pass or PR</li>
+              </ul>
             </div>
           </section>
 
@@ -474,76 +448,52 @@ export default function MaybankRefinancePage() {
           {/* Comparison Section */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Maybank vs Other Banks Comparison
+              Maybank vs Other Banks — Refinance Comparison 2026
             </h2>
 
             <div className="overflow-x-auto">
-              <table className="w-full border-collapse">
+              <table className="w-full border-collapse text-sm">
                 <thead>
-                  <tr className="bg-gray-100">
-                    <th className="text-left p-3 font-semibold">Bank</th>
-                    <th className="text-left p-3 font-semibold">Rate</th>
-                    <th className="text-left p-3 font-semibold">Lock-in</th>
-                    <th className="text-left p-3 font-semibold">Islamic</th>
-                    <th className="text-left p-3 font-semibold">Special</th>
+                  <tr className="bg-yellow-600 text-white">
+                    <th className="text-left p-3">Bank</th>
+                    <th className="text-center p-3">Rate (%)</th>
+                    <th className="text-center p-3">Lock-in</th>
+                    <th className="text-center p-3">Islamic</th>
+                    <th className="text-center p-3">Special</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="bg-yellow-50 border-b">
-                    <td className="p-3 font-semibold">
-                      <span className="text-yellow-600">★ </span>Maybank
-                    </td>
-                    <td className="p-3 text-yellow-700 font-semibold">4.35%</td>
-                    <td className="p-3">3-5 years</td>
-                    <td className="p-3"><Check className="w-4 h-4 text-green-600 inline" /> Yes</td>
-                    <td className="p-3 text-sm font-medium text-yellow-700">HouzKey / M2Own</td>
-                  </tr>
-                  <tr className="border-b hover:bg-gray-50">
-                    <td className="p-3">
-                      <Link href="/cimb-refinance-home-loan" className="text-primary-600 hover:underline">CIMB</Link>
-                    </td>
-                    <td className="p-3 font-semibold">4.35%</td>
-                    <td className="p-3">3 years</td>
-                    <td className="p-3"><Check className="w-4 h-4 text-green-600 inline" /> Yes</td>
-                    <td className="p-3 text-sm text-gray-500">—</td>
-                  </tr>
-                  <tr className="border-b hover:bg-gray-50">
-                    <td className="p-3">
-                      <Link href="/public-bank-refinance-home-loan" className="text-primary-600 hover:underline">Public Bank</Link>
-                    </td>
-                    <td className="p-3 font-semibold">4.22%</td>
-                    <td className="p-3">3 years</td>
-                    <td className="p-3"><Check className="w-4 h-4 text-green-600 inline" /> Yes</td>
-                    <td className="p-3 text-sm text-gray-500">—</td>
-                  </tr>
-                  <tr className="border-b hover:bg-gray-50">
-                    <td className="p-3">
-                      <Link href="/bank-islam-refinance-home-loan" className="text-primary-600 hover:underline">Bank Islam</Link>
-                    </td>
-                    <td className="p-3 font-semibold text-green-600">3.80%</td>
-                    <td className="p-3">3 years</td>
-                    <td className="p-3"><Check className="w-4 h-4 text-green-600 inline" /> Only</td>
-                    <td className="p-3 text-sm text-gray-500">—</td>
-                  </tr>
-                  <tr className="border-b hover:bg-gray-50">
-                    <td className="p-3">
-                      <Link href="/standard-chartered-refinance-home-loan" className="text-primary-600 hover:underline">StanChart</Link>
-                    </td>
-                    <td className="p-3 font-semibold">3.90%</td>
-                    <td className="p-3">3 years</td>
-                    <td className="p-3"><X className="w-4 h-4 text-gray-400 inline" /> No</td>
-                    <td className="p-3 text-sm font-medium text-teal-700">Cashback</td>
-                  </tr>
+                  {[
+                    { bank: "Maybank", rate: "4.35", lockin: "3-5 yrs", islamic: "Yes", special: "HouzKey / M2Own", highlight: true },
+                    { bank: "CIMB", rate: "4.35", lockin: "3 yrs", islamic: "Yes", special: "FlexiHome", link: "/cimb-refinance-home-loan" },
+                    { bank: "Public Bank", rate: "4.22", lockin: "3 yrs", islamic: "Yes", special: "—", link: "/public-bank-refinance-home-loan" },
+                    { bank: "Bank Islam", rate: "3.80", lockin: "3 yrs", islamic: "Only", special: "—", link: "/bank-islam-refinance-home-loan" },
+                    { bank: "StanChart", rate: "3.90", lockin: "3 yrs", islamic: "No", special: "Cashback", link: "/standard-chartered-refinance-home-loan" },
+                    { bank: "RHB", rate: "4.10", lockin: "3 yrs", islamic: "Yes", special: "My1 Loan", link: "/rhb-refinance-home-loan" },
+                  ].map((b, idx) => (
+                    <tr key={idx} className={`border-b ${b.highlight ? "bg-yellow-50 font-semibold" : "hover:bg-gray-50"}`}>
+                      <td className="p-3">
+                        {b.highlight ? (
+                          <span className="text-yellow-700">★ {b.bank}</span>
+                        ) : b.link ? (
+                          <Link href={b.link} className="text-primary-600 hover:underline">{b.bank}</Link>
+                        ) : (
+                          b.bank
+                        )}
+                      </td>
+                      <td className="text-center p-3">{b.rate}</td>
+                      <td className="text-center p-3">{b.lockin}</td>
+                      <td className="text-center p-3">{b.islamic}</td>
+                      <td className="text-center p-3 text-sm">{b.special}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
 
             <p className="text-sm text-gray-500 mt-4">
-              * Rates as of February {currentYear}. Subject to change based on credit profile.{" "}
-              <Link href="/refinance-home-loan-rates-malaysia" className="text-primary-600 hover:underline font-medium">Compare all 14 banks&apos; rates →</Link>{" "}
-              <Link href="/rhb-refinance-home-loan" className="text-primary-600 hover:underline">RHB</Link>, {" "}
-              <Link href="/hong-leong-refinance-home-loan" className="text-primary-600 hover:underline">Hong Leong</Link>, {" "}
-              <Link href="/ambank-refinance-home-loan" className="text-primary-600 hover:underline">AmBank</Link>
+              * Rates as of February 2026. Subject to change based on credit profile.{" "}
+              <Link href="/refinance-home-loan-rates-malaysia" className="text-primary-600 hover:underline font-medium">Compare all 14 banks&apos; rates →</Link>
             </p>
           </section>
 
@@ -577,7 +527,7 @@ export default function MaybankRefinancePage() {
                   <strong>Best for:</strong> First-time buyers who can&apos;t afford a large down payment or don&apos;t qualify for traditional financing.
                 </p>
                 <Link href="/maybank-houzkey" className="inline-flex items-center gap-1 text-sm text-yellow-700 font-medium hover:text-yellow-800">
-                  Full HouzKey Guide →
+                  Full HouzKey Guide <ArrowRight className="w-3 h-3" />
                 </Link>
               </div>
 
@@ -619,7 +569,7 @@ export default function MaybankRefinancePage() {
                 <div>
                   <h3 className="font-semibold text-gray-900">Early Settlement Penalty</h3>
                   <p className="text-gray-600">
-                    {bank.earlySettlement} of outstanding balance if settled within {bank.lockIn}-year lock-in period.
+                    2-3% of outstanding balance if settled within 3-5 year lock-in period.
                     On a RM400,000 loan, this could be RM8,000-12,000.
                   </p>
                 </div>
@@ -630,7 +580,7 @@ export default function MaybankRefinancePage() {
                 <div>
                   <h3 className="font-semibold text-gray-900">Legal Fees</h3>
                   <p className="text-gray-600">
-                    Typically {SITE_CONFIG.costs.legalFeesText}. Some promotional packages may absorb this cost.
+                    Typically RM2,000 - RM5,000. Some promotional packages may absorb this cost.
                     Always confirm with your loan officer.
                   </p>
                 </div>
@@ -641,7 +591,7 @@ export default function MaybankRefinancePage() {
                 <div>
                   <h3 className="font-semibold text-gray-900">Valuation Fee</h3>
                   <p className="text-gray-600">
-                    {SITE_CONFIG.costs.valuationFeesText} depending on property value.
+                    RM300 - RM1,000 depending on property value.
                     Required for bank to assess current market value.
                   </p>
                 </div>
@@ -652,7 +602,7 @@ export default function MaybankRefinancePage() {
                 <div>
                   <h3 className="font-semibold text-gray-900">Stamp Duty</h3>
                   <p className="text-gray-600">
-                    {SITE_CONFIG.costs.stampDutyText} of loan amount. {SITE_CONFIG.costs.stampDutyNote}.
+                    0.5% of loan amount. May be exempted for first-time buyers or under RM500k.
                   </p>
                 </div>
               </div>
@@ -776,10 +726,10 @@ export default function MaybankRefinancePage() {
           {/* FAQ Section */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Frequently Asked Questions
+              Maybank Refinance Home Loan — Frequently Asked Questions
             </h2>
 
-            <div className="space-y-4">
+            <div className="space-y-3">
               {faqs.map((faq, index) => (
                 <div
                   key={index}
@@ -791,11 +741,11 @@ export default function MaybankRefinancePage() {
                     }
                     className="w-full flex items-center justify-between p-4 text-left bg-white hover:bg-gray-50"
                   >
-                    <span className="font-semibold text-gray-900">
+                    <span className="font-semibold text-gray-900 pr-4">
                       {faq.question}
                     </span>
                     <svg
-                      className={`w-5 h-5 text-gray-500 transition-transform ${
+                      className={`w-5 h-5 text-gray-500 transition-transform flex-shrink-0 ${
                         openFaqIndex === index ? "rotate-180" : ""
                       }`}
                       fill="none"
@@ -820,42 +770,26 @@ export default function MaybankRefinancePage() {
             </div>
           </section>
 
-          {/* Related Links */}
+          {/* Compare Other Banks */}
           <section className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Compare Other Banks
-            </h2>
-            <div className="grid md:grid-cols-2 gap-4">
-              <Link
-                href="/cimb-refinance-home-loan"
-                className="block p-4 bg-red-50 rounded-lg hover:bg-red-100 transition-colors"
-              >
-                <h3 className="font-semibold text-red-900">CIMB Refinance</h3>
-                <p className="text-sm text-red-700">Compare CIMB rates and features</p>
-              </Link>
-              <Link
-                href="/public-bank-refinance-home-loan"
-                className="block p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
-              >
-                <h3 className="font-semibold text-blue-900">Public Bank Refinance</h3>
-                <p className="text-sm text-blue-700">Compare Public Bank rates and features</p>
-              </Link>
-              <Link
-                href="/rhb-refinance-home-loan"
-                className="block p-4 bg-purple-50 rounded-lg hover:bg-purple-100 transition-colors"
-              >
-                <h3 className="font-semibold text-purple-900">RHB Refinance</h3>
-                <p className="text-sm text-purple-700">Compare RHB rates and features</p>
-              </Link>
-              <Link
-                href="/calculator"
-                className="block p-4 bg-primary-50 rounded-lg hover:bg-primary-100 transition-colors"
-              >
-                <h3 className="font-semibold text-primary-900">Refinance Calculator</h3>
-                <p className="text-sm text-primary-700">Calculate your potential savings</p>
-              </Link>
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Compare Other Banks</h2>
+            <div className="grid md:grid-cols-3 gap-4">
+              {[
+                { name: "CIMB Refinance", href: "/cimb-refinance-home-loan", rate: "4.35%", note: "FlexiHome & Islamic" },
+                { name: "RHB Refinance", href: "/rhb-refinance-home-loan", rate: "4.10%", note: "My1 flexible loan" },
+                { name: "Public Bank Refinance", href: "/public-bank-refinance-home-loan", rate: "4.22%", note: "Lowest mainstream rate" },
+                { name: "Standard Chartered", href: "/standard-chartered-refinance-home-loan", rate: "3.90%", note: "Premium banking" },
+                { name: "UOB Refinance", href: "/uob-refinance-home-loan", rate: "4.61%", note: "95% margin, foreigners" },
+                { name: "All Bank Rates", href: "/refinance-home-loan-rates-malaysia", rate: "14 banks", note: "Full comparison" },
+              ].map((b, idx) => (
+                <Link key={idx} href={b.href} className="block p-4 bg-gray-50 rounded-lg hover:bg-yellow-50 transition-colors group">
+                  <h3 className="font-semibold text-gray-900 group-hover:text-yellow-700">{b.name}</h3>
+                  <p className="text-sm text-gray-600">From {b.rate} • {b.note}</p>
+                </Link>
+              ))}
             </div>
           </section>
+
         </div>
       </article>
 
@@ -896,7 +830,7 @@ export default function MaybankRefinancePage() {
       </section>
 
       {/* Bottom CTA */}
-      <section className="py-16 bg-yellow-600">
+      <section className="py-16 bg-yellow-700">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">
             Ready to Refinance with Maybank?
@@ -906,9 +840,9 @@ export default function MaybankRefinancePage() {
           </p>
           <button
             onClick={() => setShowForm(true)}
-            className="btn-primary inline-block text-lg px-8 py-4 bg-white text-yellow-700 hover:bg-yellow-50"
+            className="inline-flex items-center gap-2 bg-white text-yellow-700 font-semibold px-8 py-4 rounded-lg hover:bg-yellow-50 transition-colors text-lg"
           >
-            Get Free Quote
+            Get Free Quote <ArrowRight className="w-5 h-5" />
           </button>
         </div>
       </section>
@@ -932,48 +866,6 @@ export default function MaybankRefinancePage() {
           </div>
         </div>
       )}
-
-      {/* Schema Markup */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Article",
-            headline: `Maybank Refinance Home Loan ${currentYear} - Rates, Review & Calculator`,
-            description: `Complete guide to Maybank home loan refinancing. Current rates from ${bank.rateFrom}, honest review, eligibility requirements, and comparison with other banks.`,
-            datePublished: "2025-12-01",
-            dateModified: "2026-02-15",
-            author: {
-              "@type": "Organization",
-              name: "RefinanceHomeLoanMY",
-            },
-            publisher: {
-              "@type": "Organization",
-              name: "RefinanceHomeLoanMY",
-              url: "https://refinancehomeloanmy.com",
-            },
-          }),
-        }}
-      />
-
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: faqs.map((faq) => ({
-              "@type": "Question",
-              name: faq.question,
-              acceptedAnswer: {
-                "@type": "Answer",
-                text: faq.answer,
-              },
-            })),
-          }),
-        }}
-      />
 
       <StickyMobileCTA
         onCtaClick={() => setShowForm(true)}

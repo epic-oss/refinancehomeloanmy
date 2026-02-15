@@ -2,21 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { SITE_CONFIG, getBanksSortedByRate } from "@/lib/constants";
-import { BankRatesTable } from "@/components/content/BankRatesTable";
-import { CostsTable } from "@/components/content/CostsTable";
-import { EligibilityCard } from "@/components/content/EligibilityCard";
-import { DocumentsList } from "@/components/content/DocumentsList";
-import { LastUpdated } from "@/components/content/LastUpdated";
 import LeadForm from "@/components/LeadForm";
 import MidPageCTA from "@/components/MidPageCTA";
 import { StickyMobileCTA } from "@/components/StickyMobileCTA";
-import { ArrowRight } from "lucide-react";
-
-const { currentYear, lastUpdated } = SITE_CONFIG;
-
-// Get top 3 banks sorted by rate
-const topBanks = getBanksSortedByRate().slice(0, 3);
+import { ArrowRight, Check, X } from "lucide-react";
 
 const faqs = [
   {
@@ -59,24 +48,89 @@ export default function BankTerbaikRefinanceRumah() {
 
   return (
     <>
+      {/* Schema Markup */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: "Bank Terbaik Untuk Refinance Rumah Malaysia 2026",
+            description: "Bandingkan kadar refinance rumah dari 10+ bank di Malaysia. Ketahui bank mana yang menawarkan kadar terendah untuk refinance 2026.",
+            datePublished: "2025-11-15",
+            dateModified: "2026-02-15",
+            author: { "@type": "Organization", name: "RefinanceHomeLoanMY" },
+            publisher: { "@type": "Organization", name: "RefinanceHomeLoanMY", url: "https://refinancehomeloanmy.com" },
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map((faq) => ({
+              "@type": "Question",
+              name: faq.question,
+              acceptedAnswer: { "@type": "Answer", text: faq.answer },
+            })),
+          }),
+        }}
+      />
+
       {/* Hero */}
       <section className="bg-gradient-to-br from-primary-800 to-primary-900 text-white py-12 md:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="inline-block bg-white/20 text-white text-sm px-4 py-1 rounded-full mb-4">
+            Panduan Refinance Malaysia 2026
+          </div>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            Bank Terbaik untuk Refinance Rumah di Malaysia {currentYear}
+            Bank Terbaik untuk Refinance Rumah di Malaysia 2026
           </h1>
-          <p className="text-lg text-gray-300">
+          <p className="text-lg text-gray-300 mb-2">
             Panduan lengkap untuk memilih bank terbaik bagi refinance pinjaman
-            perumahan anda.
+            perumahan anda. Bandingkan 10 bank utama — kadar, lock-in, kos & kelayakan.
           </p>
-          <LastUpdated lang="ms" variant="hero" />
+          <p className="text-sm text-gray-400 mb-6">Dikemaskini: Februari 2026</p>
           <button
             onClick={() => setShowForm(true)}
-            className="mt-6 inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-full transition-all hover:scale-105"
+            className="inline-flex items-center gap-2 bg-green-500 hover:bg-green-600 text-white font-semibold px-6 py-3 rounded-full transition-all hover:scale-105"
           >
             Dapatkan Sebut Harga Percuma
             <ArrowRight className="w-5 h-5" />
           </button>
+        </div>
+      </section>
+
+      {/* Quick Summary Box */}
+      <section className="py-8 bg-primary-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            <h2 className="text-lg font-bold text-gray-900 text-center mb-4">Ringkasan Refinance Malaysia 2026</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
+              <div className="text-center p-3 bg-green-50 rounded-lg">
+                <p className="text-2xl font-bold text-green-700">3.80%</p>
+                <p className="text-xs text-gray-600">Kadar Terendah</p>
+              </div>
+              <div className="text-center p-3 bg-primary-50 rounded-lg">
+                <p className="text-2xl font-bold text-primary-700">10+</p>
+                <p className="text-xs text-gray-600">Bank Dibandingkan</p>
+              </div>
+              <div className="text-center p-3 bg-primary-50 rounded-lg">
+                <p className="text-2xl font-bold text-primary-700">35 Thn</p>
+                <p className="text-xs text-gray-600">Tempoh Maks</p>
+              </div>
+              <div className="text-center p-3 bg-primary-50 rounded-lg">
+                <p className="text-2xl font-bold text-primary-700">RM3k</p>
+                <p className="text-xs text-gray-600">Gaji Minimum</p>
+              </div>
+              <div className="text-center p-3 bg-primary-50 rounded-lg">
+                <p className="text-2xl font-bold text-primary-700">90%</p>
+                <p className="text-xs text-gray-600">LTV Maks</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -100,18 +154,13 @@ export default function BankTerbaikRefinanceRumah() {
             </p>
           </section>
 
-          {/* Bank Rates Table */}
-          <section className="mb-12">
-            <BankRatesTable showAll={true} lang="ms" />
-          </section>
-
           {/* Jadual Perbandingan Bank Refinance 2026 */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-4">
-              Jadual Perbandingan Bank Terbaik Refinance Rumah {currentYear}
+              Jadual Perbandingan Bank Terbaik Refinance Rumah 2026
             </h2>
             <p className="text-gray-700 mb-6">
-              Berikut ialah senarai lengkap bank terbaik untuk refinance rumah di Malaysia pada {currentYear}, disusun mengikut kadar faedah terendah. Pilih bank yang sesuai dengan keperluan dan profil kewangan anda.
+              Berikut ialah senarai lengkap bank terbaik untuk refinance rumah di Malaysia pada 2026, disusun mengikut kadar faedah terendah. Pilih bank yang sesuai dengan keperluan dan profil kewangan anda.
             </p>
 
             <div className="overflow-x-auto">
@@ -212,7 +261,7 @@ export default function BankTerbaikRefinanceRumah() {
             </div>
 
             <p className="text-xs text-gray-500 mt-3">
-              * Kadar setakat Februari {currentYear}. Tertakluk kepada perubahan mengikut profil kredit.{" "}
+              * Kadar setakat Februari 2026. Tertakluk kepada perubahan mengikut profil kredit.{" "}
               <Link href="/refinance-home-loan-rates-malaysia" className="text-primary-600 hover:underline">Lihat perbandingan kadar penuh (EN) →</Link>
             </p>
           </section>
@@ -285,85 +334,85 @@ export default function BankTerbaikRefinanceRumah() {
               Senario: Rumah RM400k, baki pinjaman RM250k, baki tempoh 25 tahun
             </p>
 
-            <div className="bg-white border border-gray-200 rounded-xl p-6">
-              <div className="grid md:grid-cols-2 gap-8 mb-6">
-                <div>
-                  <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
-                    <svg className="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
-                    </svg>
-                    Bank Semasa (4.80%)
-                  </h3>
-                  <div className="space-y-3">
-                    <div className="flex justify-between bg-gray-50 rounded-lg p-3">
-                      <span className="text-gray-600">Baki Pinjaman</span>
-                      <span className="font-semibold">RM250,000</span>
-                    </div>
-                    <div className="flex justify-between bg-gray-50 rounded-lg p-3">
-                      <span className="text-gray-600">Kadar Faedah</span>
-                      <span className="font-semibold text-red-600">4.80%</span>
-                    </div>
-                    <div className="flex justify-between bg-red-50 rounded-lg p-3">
-                      <span className="text-red-700">Bayaran Bulanan</span>
-                      <span className="font-bold text-red-700">RM1,461</span>
-                    </div>
-                  </div>
+            <div className="grid md:grid-cols-2 gap-6 mb-6">
+              <div className="bg-red-50 border border-red-200 rounded-xl p-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <X className="w-5 h-5 text-red-500" />
+                  <h3 className="font-bold text-red-800">Bank Semasa (4.80%)</h3>
                 </div>
-
-                <div>
-                  <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
-                    <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    Refinance (3.80% — Bank Islam)
-                  </h3>
-                  <div className="space-y-3">
-                    <div className="flex justify-between bg-gray-50 rounded-lg p-3">
-                      <span className="text-gray-600">Pinjaman Baru</span>
-                      <span className="font-semibold">RM250,000</span>
-                    </div>
-                    <div className="flex justify-between bg-gray-50 rounded-lg p-3">
-                      <span className="text-gray-600">Kadar Faedah</span>
-                      <span className="font-semibold text-green-600">3.80%</span>
-                    </div>
-                    <div className="flex justify-between bg-green-50 rounded-lg p-3">
-                      <span className="text-green-700">Bayaran Bulanan</span>
-                      <span className="font-bold text-green-700">RM1,283</span>
-                    </div>
+                <div className="space-y-3 text-sm">
+                  <div className="flex justify-between bg-white rounded-lg p-3">
+                    <span className="text-gray-600">Baki Pinjaman</span>
+                    <span className="font-semibold">RM250,000</span>
+                  </div>
+                  <div className="flex justify-between bg-white rounded-lg p-3">
+                    <span className="text-gray-600">Kadar Faedah</span>
+                    <span className="font-semibold text-red-600">4.80%</span>
+                  </div>
+                  <div className="flex justify-between bg-red-100 rounded-lg p-3">
+                    <span className="text-red-700">Bayaran Bulanan</span>
+                    <span className="font-bold text-red-700">RM1,461</span>
                   </div>
                 </div>
               </div>
 
-              <div className="grid grid-cols-3 gap-4 mb-6">
-                <div className="bg-green-50 rounded-xl p-4 text-center border border-green-200">
-                  <p className="text-xs text-green-700 mb-1">Jimat Sebulan</p>
-                  <p className="text-2xl font-bold text-green-600">RM178</p>
+              <div className="bg-green-50 border border-green-200 rounded-xl p-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <Check className="w-5 h-5 text-green-500" />
+                  <h3 className="font-bold text-green-800">Refinance (3.80% — Bank Islam)</h3>
                 </div>
-                <div className="bg-green-50 rounded-xl p-4 text-center border border-green-200">
-                  <p className="text-xs text-green-700 mb-1">Jimat Setahun</p>
-                  <p className="text-2xl font-bold text-green-600">RM2,136</p>
-                </div>
-                <div className="bg-green-50 rounded-xl p-4 text-center border border-green-200">
-                  <p className="text-xs text-green-700 mb-1">Jumlah Penjimatan</p>
-                  <p className="text-2xl font-bold text-green-600">RM53,400</p>
+                <div className="space-y-3 text-sm">
+                  <div className="flex justify-between bg-white rounded-lg p-3">
+                    <span className="text-gray-600">Pinjaman Baru</span>
+                    <span className="font-semibold">RM250,000</span>
+                  </div>
+                  <div className="flex justify-between bg-white rounded-lg p-3">
+                    <span className="text-gray-600">Kadar Faedah</span>
+                    <span className="font-semibold text-green-600">3.80%</span>
+                  </div>
+                  <div className="flex justify-between bg-green-100 rounded-lg p-3">
+                    <span className="text-green-700">Bayaran Bulanan</span>
+                    <span className="font-bold text-green-700">RM1,283</span>
+                  </div>
                 </div>
               </div>
+            </div>
 
-              <div className="flex flex-wrap justify-center gap-4">
-                <Link
-                  href="/calculator"
-                  className="inline-flex items-center gap-2 bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
-                >
-                  Kira Penjimatan Anda
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
-                <Link
-                  href="/dsr-calculator"
-                  className="inline-flex items-center gap-2 bg-white text-primary-700 border border-primary-300 px-6 py-3 rounded-lg font-medium hover:bg-primary-50 transition-colors"
-                >
-                  Kira DSR Anda
-                </Link>
+            <div className="bg-green-100 border border-green-300 rounded-xl p-6 text-center mb-6">
+              <p className="text-sm text-green-800 mb-1">Anggaran Penjimatan Anda</p>
+              <p className="text-3xl font-bold text-green-700 mb-2">RM178/bulan</p>
+              <div className="grid grid-cols-2 gap-4 mt-4">
+                <div>
+                  <p className="text-xs text-green-700">Jimat Setahun</p>
+                  <p className="text-xl font-bold text-green-600">RM2,136</p>
+                </div>
+                <div>
+                  <p className="text-xs text-green-700">Jumlah Penjimatan (25 thn)</p>
+                  <p className="text-xl font-bold text-green-600">RM53,400</p>
+                </div>
               </div>
+            </div>
+
+            <div className="flex flex-wrap justify-center gap-4">
+              <Link
+                href="/calculator"
+                className="inline-flex items-center gap-2 bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+              >
+                Kira Penjimatan Anda
+                <ArrowRight className="w-5 h-5" />
+              </Link>
+              <Link
+                href="/dsr-calculator"
+                className="inline-flex items-center gap-2 bg-white text-primary-700 border border-primary-300 px-6 py-3 rounded-lg font-medium hover:bg-primary-50 transition-colors"
+              >
+                Kira DSR Anda
+              </Link>
+              <Link
+                href="/cash-out-calculator"
+                className="inline-flex items-center gap-2 bg-white text-primary-700 border border-primary-300 px-6 py-3 rounded-lg font-medium hover:bg-primary-50 transition-colors"
+              >
+                Kira Cash Out
+              </Link>
             </div>
           </section>
 
@@ -429,110 +478,184 @@ export default function BankTerbaikRefinanceRumah() {
           {/* Top 3 Banks */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Top 3 Bank Untuk Refinance Rumah {currentYear}
+              Top 3 Bank Untuk Refinance Rumah 2026
             </h2>
 
             <div className="space-y-6">
-              {topBanks.map((bank, index) => (
-                <div
-                  key={bank.name}
-                  className="border-2 border-gray-200 rounded-xl p-6 hover:border-primary-300 transition-colors"
-                >
-                  <div className="flex items-start justify-between mb-4">
-                    <div>
-                      <span className="inline-block bg-primary-100 text-primary-800 text-sm font-semibold px-3 py-1 rounded-full mb-2">
-                        #{index + 1}
-                      </span>
-                      <h3 className="text-xl font-bold text-gray-900">
-                        {bank.nameFull}
-                      </h3>
-                    </div>
-                    <div className="text-right">
-                      <p className="text-sm text-gray-500">Kadar dari</p>
-                      <p className="text-2xl font-bold text-secondary-600">
-                        {bank.rateFrom}
-                      </p>
-                    </div>
+              {/* #1 Bank Islam */}
+              <div className="border-2 border-green-200 rounded-xl p-6 bg-green-50/30">
+                <div className="flex items-start justify-between mb-4">
+                  <div>
+                    <span className="inline-block bg-green-100 text-green-800 text-sm font-semibold px-3 py-1 rounded-full mb-2">
+                      #1 Kadar Terendah
+                    </span>
+                    <h3 className="text-xl font-bold text-gray-900">
+                      <Link href="/bank-islam-refinance-home-loan" className="hover:text-primary-600">Bank Islam Malaysia Berhad</Link>
+                    </h3>
                   </div>
-
-                  <div className="grid md:grid-cols-2 gap-4 mb-4">
-                    <div>
-                      <p className="text-sm font-semibold text-gray-700 mb-2">
-                        Kelebihan:
-                      </p>
-                      <ul className="text-sm text-gray-600 space-y-1">
-                        {bank.features.map((feature, i) => (
-                          <li key={i} className="flex items-center gap-2">
-                            <svg
-                              className="w-4 h-4 text-secondary-500"
-                              fill="none"
-                              stroke="currentColor"
-                              viewBox="0 0 24 24"
-                            >
-                              <path
-                                strokeLinecap="round"
-                                strokeLinejoin="round"
-                                strokeWidth={2}
-                                d="M5 13l4 4L19 7"
-                              />
-                            </svg>
-                            {feature}
-                          </li>
-                        ))}
-                        <li className="flex items-center gap-2">
-                          <svg
-                            className="w-4 h-4 text-secondary-500"
-                            fill="none"
-                            stroke="currentColor"
-                            viewBox="0 0 24 24"
-                          >
-                            <path
-                              strokeLinecap="round"
-                              strokeLinejoin="round"
-                              strokeWidth={2}
-                              d="M5 13l4 4L19 7"
-                            />
-                          </svg>
-                          Tempoh sehingga {bank.maxTenure} tahun
-                        </li>
-                      </ul>
-                    </div>
-                    <div>
-                      <p className="text-sm font-semibold text-gray-700 mb-2">
-                        Maklumat Penting:
-                      </p>
-                      <ul className="text-sm text-gray-600 space-y-1">
-                        <li>Lock-in: {bank.lockIn} tahun</li>
-                        <li>LTV maksimum: {bank.maxLTV}%</li>
-                        <li>
-                          Pinjaman minimum: RM
-                          {bank.minLoan.toLocaleString()}
-                        </li>
-                        <li>Terbaik untuk: {bank.bestFor}</li>
-                      </ul>
-                    </div>
+                  <div className="text-right">
+                    <p className="text-sm text-gray-500">Kadar dari</p>
+                    <p className="text-2xl font-bold text-green-600">3.80%</p>
                   </div>
                 </div>
-              ))}
+                <div className="grid md:grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <p className="text-sm font-semibold text-gray-700 mb-2">Kelebihan:</p>
+                    <ul className="text-sm text-gray-600 space-y-1">
+                      <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500 flex-shrink-0" /> Kadar terendah di pasaran (3.80%)</li>
+                      <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500 flex-shrink-0" /> Pembiayaan patuh Syariah penuh</li>
+                      <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500 flex-shrink-0" /> Kadar siling (ceiling rate) melindungi peminjam</li>
+                      <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500 flex-shrink-0" /> Tempoh sehingga 35 tahun</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-gray-700 mb-2">Maklumat Penting:</p>
+                    <ul className="text-sm text-gray-600 space-y-1">
+                      <li>Lock-in: 3 tahun</li>
+                      <li>LTV maksimum: 90%</li>
+                      <li>Pinjaman minimum: RM100,000</li>
+                      <li>Terbaik untuk: Kadar terendah (Islamik)</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* #2 Standard Chartered */}
+              <div className="border-2 border-gray-200 rounded-xl p-6 hover:border-primary-300 transition-colors">
+                <div className="flex items-start justify-between mb-4">
+                  <div>
+                    <span className="inline-block bg-primary-100 text-primary-800 text-sm font-semibold px-3 py-1 rounded-full mb-2">
+                      #2 Konvensional Terbaik
+                    </span>
+                    <h3 className="text-xl font-bold text-gray-900">
+                      <Link href="/standard-chartered-refinance-home-loan" className="hover:text-primary-600">Standard Chartered Bank</Link>
+                    </h3>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-sm text-gray-500">Kadar dari</p>
+                    <p className="text-2xl font-bold text-primary-600">3.90%</p>
+                  </div>
+                </div>
+                <div className="grid md:grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <p className="text-sm font-semibold text-gray-700 mb-2">Kelebihan:</p>
+                    <ul className="text-sm text-gray-600 space-y-1">
+                      <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500 flex-shrink-0" /> Kadar konvensional terendah (3.90%)</li>
+                      <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500 flex-shrink-0" /> Offset account mengurangkan faedah</li>
+                      <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500 flex-shrink-0" /> Perbankan premium &amp; perkhidmatan VIP</li>
+                      <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500 flex-shrink-0" /> Tempoh sehingga 35 tahun</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-gray-700 mb-2">Maklumat Penting:</p>
+                    <ul className="text-sm text-gray-600 space-y-1">
+                      <li>Lock-in: 3 tahun</li>
+                      <li>LTV maksimum: 90%</li>
+                      <li>Pendapatan minimum: RM5,000</li>
+                      <li>Terbaik untuk: Gaji tinggi, offset account</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
+
+              {/* #3 Al Rajhi */}
+              <div className="border-2 border-gray-200 rounded-xl p-6 hover:border-primary-300 transition-colors">
+                <div className="flex items-start justify-between mb-4">
+                  <div>
+                    <span className="inline-block bg-primary-100 text-primary-800 text-sm font-semibold px-3 py-1 rounded-full mb-2">
+                      #3 Islamik Terbaik
+                    </span>
+                    <h3 className="text-xl font-bold text-gray-900">
+                      Al Rajhi Bank
+                    </h3>
+                  </div>
+                  <div className="text-right">
+                    <p className="text-sm text-gray-500">Kadar dari</p>
+                    <p className="text-2xl font-bold text-primary-600">3.90%</p>
+                  </div>
+                </div>
+                <div className="grid md:grid-cols-2 gap-4 mb-4">
+                  <div>
+                    <p className="text-sm font-semibold text-gray-700 mb-2">Kelebihan:</p>
+                    <ul className="text-sm text-gray-600 space-y-1">
+                      <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500 flex-shrink-0" /> Kadar Islamik kedua terendah (3.90%)</li>
+                      <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500 flex-shrink-0" /> Pembiayaan Islamik tulen (full-fledged)</li>
+                      <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500 flex-shrink-0" /> Proses permohonan pantas</li>
+                      <li className="flex items-center gap-2"><Check className="w-4 h-4 text-green-500 flex-shrink-0" /> Tempoh sehingga 35 tahun</li>
+                    </ul>
+                  </div>
+                  <div>
+                    <p className="text-sm font-semibold text-gray-700 mb-2">Maklumat Penting:</p>
+                    <ul className="text-sm text-gray-600 space-y-1">
+                      <li>Lock-in: 3 tahun</li>
+                      <li>LTV maksimum: 90%</li>
+                      <li>Pinjaman minimum: RM100,000</li>
+                      <li>Terbaik untuk: Islamik murah</li>
+                    </ul>
+                  </div>
+                </div>
+              </div>
             </div>
           </section>
 
           {/* Mid Page CTA */}
           <MidPageCTA onOpenForm={() => setShowForm(true)} />
 
-          {/* Costs Table */}
+          {/* Kos Refinance */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Kos Refinance Rumah {currentYear}
+              Kos Refinance Rumah 2026
             </h2>
             <p className="text-gray-700 mb-4">
               Sebelum membuat keputusan, pastikan anda mengambil kira semua kos
               yang terlibat dalam proses refinancing:
             </p>
-            <CostsTable lang="ms" />
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse text-sm">
+                <thead>
+                  <tr className="bg-gray-100">
+                    <th className="text-left p-3 font-semibold">Jenis Kos</th>
+                    <th className="text-left p-3 font-semibold">Anggaran</th>
+                    <th className="text-left p-3 font-semibold">Catatan</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b">
+                    <td className="p-3 font-medium">Yuran Guaman</td>
+                    <td className="p-3">RM2,000 – RM5,000</td>
+                    <td className="p-3 text-gray-600">0.4-1% daripada jumlah pinjaman</td>
+                  </tr>
+                  <tr className="border-b">
+                    <td className="p-3 font-medium">Yuran Penilaian</td>
+                    <td className="p-3">RM300 – RM1,500</td>
+                    <td className="p-3 text-gray-600">Bergantung kepada nilai hartanah</td>
+                  </tr>
+                  <tr className="border-b">
+                    <td className="p-3 font-medium">Duti Setem</td>
+                    <td className="p-3">0.5%</td>
+                    <td className="p-3 text-gray-600">Mungkin dikecualikan untuk pinjaman ≤RM500k</td>
+                  </tr>
+                  <tr className="border-b">
+                    <td className="p-3 font-medium">MRTA / MLTA</td>
+                    <td className="p-3">Pilihan</td>
+                    <td className="p-3 text-gray-600">Insurans takaful pinjaman — disyorkan tetapi bukan wajib</td>
+                  </tr>
+                  <tr>
+                    <td className="p-3 font-medium">Penalti Penyelesaian Awal</td>
+                    <td className="p-3">2-3%</td>
+                    <td className="p-3 text-gray-600">Jika masih dalam tempoh lock-in</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+            <div className="bg-amber-50 border-l-4 border-amber-400 p-4 rounded-r-lg mt-4">
+              <p className="text-sm text-amber-800">
+                <strong>Petua:</strong> Jumlah kos tipikal refinance ialah RM5,000–RM15,000. Pastikan penjimatan bulanan anda melebihi kos ini dalam tempoh 2-3 tahun untuk memastikan refinance berbaloi.
+              </p>
+            </div>
           </section>
 
-          {/* Eligibility */}
+          {/* Syarat Kelayakan */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
               Syarat Kelayakan Refinance
@@ -541,14 +664,43 @@ export default function BankTerbaikRefinanceRumah() {
               Untuk layak refinance rumah di Malaysia, anda perlu memenuhi
               syarat-syarat asas berikut:
             </p>
-            <EligibilityCard lang="ms" />
+            <div className="bg-gray-50 rounded-xl p-6">
+              <div className="grid md:grid-cols-2 gap-4">
+                {[
+                  { label: "Umur", value: "21 – 65 tahun (70 tahun di sesetengah bank)" },
+                  { label: "Kewarganegaraan", value: "Warganegara Malaysia (PR di bank terpilih)" },
+                  { label: "Pendapatan Minimum", value: "RM3,000/bulan (RM5,000 untuk SCB, HSBC)" },
+                  { label: "DSR (Nisbah Hutang)", value: "Di bawah 70% (sehingga 80% di Bank Rakyat)" },
+                  { label: "Jenis Hartanah", value: "Kediaman — landed & non-landed" },
+                  { label: "LTV Maksimum", value: "Sehingga 90% (95% di UOB)" },
+                  { label: "Pinjaman Minimum", value: "RM100,000 (bergantung bank)" },
+                  { label: "CCRIS / CTOS", value: "Rekod kredit yang bersih diperlukan" },
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-3">
+                    <Check className="w-5 h-5 text-primary-600 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-medium text-gray-900">{item.label}</p>
+                      <p className="text-sm text-gray-600">{item.value}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 pt-4 border-t text-center">
+                <Link href="/dsr-calculator" className="text-primary-600 hover:underline font-medium inline-flex items-center gap-1">
+                  Semak kelayakan anda dengan Kalkulator DSR <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
           </section>
 
           {/* Process Steps */}
           <section className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">
               Proses Refinance Langkah Demi Langkah
             </h2>
+            <div className="bg-primary-50 rounded-lg p-3 text-center text-sm text-primary-800 font-medium mb-6">
+              Jangka masa biasa: 2–3 bulan dari permohonan hingga pengeluaran wang
+            </div>
 
             <div className="space-y-4">
               {[
@@ -604,7 +756,7 @@ export default function BankTerbaikRefinanceRumah() {
             </div>
           </section>
 
-          {/* Documents */}
+          {/* Dokumen Diperlukan */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
               Dokumen Diperlukan Untuk Refinance
@@ -613,7 +765,46 @@ export default function BankTerbaikRefinanceRumah() {
               Pastikan anda menyediakan semua dokumen berikut untuk mempercepatkan
               proses permohonan:
             </p>
-            <DocumentsList type="both" lang="ms" />
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="bg-gray-50 rounded-xl p-6">
+                <h3 className="font-semibold text-gray-900 mb-4">Pekerja Bergaji</h3>
+                <ul className="space-y-2">
+                  {[
+                    "MyKad (salinan depan & belakang)",
+                    "Slip gaji 3 bulan terkini",
+                    "Penyata bank 6 bulan",
+                    "Borang EA / Penyata Cukai Pendapatan",
+                    "Penyata EPF terkini",
+                    "Penyata pinjaman semasa",
+                    "Dokumen hartanah (S&P, geran hakmilik)",
+                  ].map((doc, idx) => (
+                    <li key={idx} className="flex items-start gap-2 text-sm text-gray-700">
+                      <Check className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                      <span>{doc}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+              <div className="bg-gray-50 rounded-xl p-6">
+                <h3 className="font-semibold text-gray-900 mb-4">Bekerja Sendiri</h3>
+                <ul className="space-y-2">
+                  {[
+                    "MyKad (salinan depan & belakang)",
+                    "Pendaftaran SSM / Lesen Perniagaan",
+                    "Penyata cukai 2 tahun (Borang B/BE)",
+                    "Penyata bank perniagaan 6 bulan",
+                    "Penyata bank peribadi 6 bulan",
+                    "Penyata pinjaman semasa",
+                    "Dokumen hartanah (S&P, geran hakmilik)",
+                  ].map((doc, idx) => (
+                    <li key={idx} className="flex items-start gap-2 text-sm text-gray-700">
+                      <Check className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                      <span>{doc}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
+            </div>
           </section>
 
           {/* FAQ */}
@@ -622,7 +813,7 @@ export default function BankTerbaikRefinanceRumah() {
               Soalan Lazim (FAQ)
             </h2>
 
-            <div className="space-y-4">
+            <div className="space-y-3">
               {faqs.map((faq, index) => (
                 <div
                   key={index}
@@ -634,11 +825,11 @@ export default function BankTerbaikRefinanceRumah() {
                     }
                     className="w-full flex items-center justify-between p-4 text-left bg-white hover:bg-gray-50"
                   >
-                    <span className="font-semibold text-gray-900">
+                    <span className="font-semibold text-gray-900 pr-4">
                       {faq.question}
                     </span>
                     <svg
-                      className={`w-5 h-5 text-gray-500 transition-transform ${
+                      className={`w-5 h-5 text-gray-500 transition-transform flex-shrink-0 ${
                         openFaqIndex === index ? "rotate-180" : ""
                       }`}
                       fill="none"
@@ -715,6 +906,26 @@ export default function BankTerbaikRefinanceRumah() {
               </Link>
             </div>
           </section>
+
+          {/* Compare Banks */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Bandingkan Bank Lain</h2>
+            <div className="grid md:grid-cols-3 gap-4">
+              {[
+                { name: "Bank Islam Refinance", href: "/bank-islam-refinance-home-loan", rate: "3.80%", note: "Kadar terendah" },
+                { name: "Maybank Refinance", href: "/maybank-refinance-home-loan", rate: "4.35%", note: "Bank terbesar" },
+                { name: "CIMB Refinance", href: "/cimb-refinance-home-loan", rate: "4.35%", note: "Islamik & konvensional" },
+                { name: "RHB Refinance", href: "/rhb-refinance-home-loan", rate: "4.10%", note: "Proses cepat" },
+                { name: "Public Bank Refinance", href: "/public-bank-refinance-home-loan", rate: "4.22%", note: "Servis terbaik" },
+                { name: "Semua Kadar Bank", href: "/refinance-home-loan-rates-malaysia", rate: "14 bank", note: "Perbandingan penuh" },
+              ].map((b, idx) => (
+                <Link key={idx} href={b.href} className="block p-4 bg-gray-50 rounded-lg hover:bg-primary-50 transition-colors group">
+                  <h3 className="font-semibold text-gray-900 group-hover:text-primary-600">{b.name}</h3>
+                  <p className="text-sm text-gray-600">Dari {b.rate} • {b.note}</p>
+                </Link>
+              ))}
+            </div>
+          </section>
         </div>
       </article>
 
@@ -730,9 +941,9 @@ export default function BankTerbaikRefinanceRumah() {
           </p>
           <button
             onClick={() => setShowForm(true)}
-            className="btn-primary inline-block text-lg px-8 py-4"
+            className="inline-flex items-center gap-2 bg-white text-primary-800 font-semibold px-8 py-4 rounded-lg hover:bg-primary-50 transition-colors text-lg"
           >
-            Dapatkan Sebut Harga Percuma
+            Dapatkan Sebut Harga Percuma <ArrowRight className="w-5 h-5" />
           </button>
         </div>
       </section>
@@ -748,19 +959,7 @@ export default function BankTerbaikRefinanceRumah() {
                   onClick={() => setShowForm(false)}
                   className="text-gray-500 hover:text-gray-700"
                 >
-                  <svg
-                    className="w-6 h-6"
-                    fill="none"
-                    stroke="currentColor"
-                    viewBox="0 0 24 24"
-                  >
-                    <path
-                      strokeLinecap="round"
-                      strokeLinejoin="round"
-                      strokeWidth={2}
-                      d="M6 18L18 6M6 6l12 12"
-                    />
-                  </svg>
+                  <X className="w-6 h-6" />
                 </button>
               </div>
               <LeadForm variant="modal" source="bank-terbaik-refinance" showAllFields={true} />
@@ -768,49 +967,6 @@ export default function BankTerbaikRefinanceRumah() {
           </div>
         </div>
       )}
-
-      {/* FAQ Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: faqs.map((faq) => ({
-              "@type": "Question",
-              name: faq.question,
-              acceptedAnswer: {
-                "@type": "Answer",
-                text: faq.answer,
-              },
-            })),
-          }),
-        }}
-      />
-
-      {/* Article Schema */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Article",
-            headline: `Bank Terbaik Untuk Refinance Rumah Malaysia ${currentYear}`,
-            description: `Bandingkan kadar refinance rumah dari 10+ bank di Malaysia. Ketahui bank mana yang menawarkan kadar terendah untuk refinance ${currentYear}.`,
-            datePublished: "2025-11-15",
-            dateModified: "2026-02-15",
-            author: {
-              "@type": "Organization",
-              name: "RefinanceHomeLoanMY",
-            },
-            publisher: {
-              "@type": "Organization",
-              name: "RefinanceHomeLoanMY",
-              url: "https://refinancehomeloanmy.com",
-            },
-          }),
-        }}
-      />
 
       <StickyMobileCTA onCtaClick={() => setShowForm(true)} />
     </>

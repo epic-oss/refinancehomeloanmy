@@ -2,15 +2,10 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import Image from "next/image";
-import { SITE_CONFIG } from "@/lib/constants";
 import LeadForm from "@/components/LeadForm";
 import MidPageCTA from "@/components/MidPageCTA";
 import { StickyMobileCTA } from "@/components/StickyMobileCTA";
 import { ArrowRight, Check, X, Clock, FileText, AlertTriangle } from "lucide-react";
-
-const bank = SITE_CONFIG.bankRates.cimb;
-const { currentYear } = SITE_CONFIG;
 
 const faqs = [
   {
@@ -61,70 +56,83 @@ export default function CIMBRefinancePage() {
 
   return (
     <>
+      {/* Schema Markup */}
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: "CIMB Refinance Home Loan Malaysia 2026 - Rates, Review & Calculator",
+            description: "Complete guide to CIMB home loan refinancing. Current rates from 4.35%, honest review, eligibility requirements, and comparison with other banks.",
+            datePublished: "2025-12-01",
+            dateModified: "2026-02-15",
+            author: { "@type": "Organization", name: "RefinanceHomeLoanMY" },
+            publisher: { "@type": "Organization", name: "RefinanceHomeLoanMY", url: "https://refinancehomeloanmy.com" },
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map((faq) => ({
+              "@type": "Question",
+              name: faq.question,
+              acceptedAnswer: { "@type": "Answer", text: faq.answer },
+            })),
+          }),
+        }}
+      />
+
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-red-700 to-red-800 text-white py-12 md:py-16">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="flex items-center gap-4 mb-6">
-            {bank.logo && (
-              <div className="bg-white rounded-lg p-2">
-                <Image
-                  src={bank.logo}
-                  alt="CIMB logo"
-                  width={120}
-                  height={40}
-                  className="h-10 w-auto"
-                />
-              </div>
-            )}
+          <div className="inline-block bg-white/20 text-white text-sm px-4 py-1 rounded-full mb-4">
+            CIMB Bank Malaysia
           </div>
           <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-            CIMB Refinance Home Loan Malaysia {currentYear}
+            CIMB Refinance Home Loan Malaysia 2026
           </h1>
           <p className="text-lg text-red-100 mb-2">
             Complete guide to CIMB home loan refinancing with current rates, honest review, and comparison with other banks.
           </p>
-          <p className="text-sm text-red-200">
-            Updated: {SITE_CONFIG.lastUpdatedEn}
-          </p>
+          <p className="text-sm text-red-200 mb-6">Updated: February 2026</p>
           <button
             onClick={() => setShowForm(true)}
-            className="mt-6 inline-flex items-center gap-2 bg-white text-red-700 font-semibold px-6 py-3 rounded-full hover:bg-red-50 transition-all hover:scale-105"
+            className="inline-flex items-center gap-2 bg-white text-red-700 font-semibold px-8 py-4 rounded-lg hover:bg-red-50 transition-colors text-lg"
           >
-            Get Free Quote
-            <ArrowRight className="w-5 h-5" />
+            Get Free Quote <ArrowRight className="w-5 h-5" />
           </button>
         </div>
       </section>
 
       {/* Quick Summary Box */}
-      <section className="py-8 bg-red-50 border-b border-red-100">
+      <section className="py-8 bg-red-50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
-          <div className="bg-white rounded-xl p-6 shadow-sm border border-red-200">
-            <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
-              <svg className="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
-              </svg>
-              CIMB Refinance at a Glance
-            </h2>
-            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            <h2 className="text-lg font-bold text-gray-900 text-center mb-4">CIMB Refinance at a Glance</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4">
               <div className="text-center p-3 bg-red-50 rounded-lg">
                 <p className="text-2xl font-bold text-red-700">4.35%</p>
                 <p className="text-xs text-gray-600">From Rate (Conv. & Islamic)</p>
               </div>
-              <div className="text-center p-3 bg-gray-50 rounded-lg">
-                <p className="text-2xl font-bold text-gray-900">RM200k</p>
+              <div className="text-center p-3 bg-red-50 rounded-lg">
+                <p className="text-2xl font-bold text-red-700">RM200k</p>
                 <p className="text-xs text-gray-600">Min Property Value</p>
               </div>
-              <div className="text-center p-3 bg-gray-50 rounded-lg">
-                <p className="text-2xl font-bold text-gray-900">35 Yrs</p>
+              <div className="text-center p-3 bg-red-50 rounded-lg">
+                <p className="text-2xl font-bold text-red-700">35 Yrs</p>
                 <p className="text-xs text-gray-600">Max Tenure</p>
               </div>
-              <div className="text-center p-3 bg-gray-50 rounded-lg">
-                <p className="text-2xl font-bold text-gray-900">RM3k</p>
+              <div className="text-center p-3 bg-red-50 rounded-lg">
+                <p className="text-2xl font-bold text-red-700">RM3k</p>
                 <p className="text-xs text-gray-600">Min Income/Month</p>
               </div>
-              <div className="text-center p-3 bg-gray-50 rounded-lg">
-                <p className="text-2xl font-bold text-gray-900">3 Yrs</p>
+              <div className="text-center p-3 bg-red-50 rounded-lg">
+                <p className="text-2xl font-bold text-red-700">3 Yrs</p>
                 <p className="text-xs text-gray-600">Lock-in Period</p>
               </div>
             </div>
@@ -139,25 +147,25 @@ export default function CIMBRefinancePage() {
           {/* Current Rates Section */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              CIMB Refinance Interest Rates {currentYear}
+              CIMB Refinance Interest Rates 2026
             </h2>
 
             <div className="bg-gradient-to-r from-red-50 to-red-100 rounded-xl p-6 mb-6">
               <div className="grid md:grid-cols-3 gap-6">
                 <div className="text-center">
                   <p className="text-sm text-gray-600 mb-1">Rate From</p>
-                  <p className="text-3xl font-bold text-red-700">{bank.rateFrom}</p>
+                  <p className="text-3xl font-bold text-red-700">4.35%</p>
                   <p className="text-xs text-gray-500">p.a.</p>
                 </div>
                 <div className="text-center">
                   <p className="text-sm text-gray-600 mb-1">Base Rate (BR)</p>
-                  <p className="text-3xl font-bold text-gray-700">{bank.rateBLR}</p>
+                  <p className="text-3xl font-bold text-gray-700">5.86%</p>
                   <p className="text-xs text-gray-500">Current</p>
                 </div>
                 <div className="text-center">
                   <p className="text-sm text-gray-600 mb-1">Spread</p>
-                  <p className="text-3xl font-bold text-green-600">{bank.spreadFrom}</p>
-                  <p className="text-xs text-gray-500">to {bank.spreadTo}</p>
+                  <p className="text-3xl font-bold text-green-600">-2.16%</p>
+                  <p className="text-xs text-gray-500">to -1.46%</p>
                 </div>
               </div>
             </div>
@@ -166,18 +174,18 @@ export default function CIMBRefinancePage() {
               <div className="bg-gray-50 rounded-lg p-4">
                 <p className="font-semibold text-gray-900 mb-2">Loan Details</p>
                 <ul className="space-y-2 text-gray-600">
-                  <li>Min Loan: RM{bank.minLoan.toLocaleString()}</li>
-                  <li>Max Loan: RM{bank.maxLoan.toLocaleString()}</li>
-                  <li>Max Tenure: {bank.maxTenure} years</li>
-                  <li>Max LTV: {bank.maxLTV}%</li>
+                  <li>Min Loan: RM100,000</li>
+                  <li>Max Loan: RM10,000,000</li>
+                  <li>Max Tenure: 35 years</li>
+                  <li>Max LTV: 90%</li>
                 </ul>
               </div>
               <div className="bg-gray-50 rounded-lg p-4">
                 <p className="font-semibold text-gray-900 mb-2">Fees & Penalties</p>
                 <ul className="space-y-2 text-gray-600">
-                  <li>Processing Fee: {bank.processingFee}</li>
-                  <li>Lock-in Period: {bank.lockIn} years</li>
-                  <li>Early Settlement: {bank.earlySettlement}</li>
+                  <li>Processing Fee: 0%</li>
+                  <li>Lock-in Period: 3 years</li>
+                  <li>Early Settlement: 2-3%</li>
                 </ul>
               </div>
             </div>
@@ -185,84 +193,64 @@ export default function CIMBRefinancePage() {
 
           {/* Savings Comparison Section */}
           <section className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
               How Much Can You Save with CIMB Refinancing?
             </h2>
             <p className="text-gray-600 mb-6">
               Example: RM400k property, RM250k outstanding, 25 years remaining
             </p>
 
-            <div className="bg-white border border-gray-200 rounded-xl p-6">
-              <div className="grid md:grid-cols-2 gap-8 mb-6">
-                <div>
-                  <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
-                    <X className="w-5 h-5 text-red-500" />
-                    Current Bank (5.00%)
-                  </h3>
-                  <div className="space-y-3">
-                    <div className="flex justify-between bg-gray-50 rounded-lg p-3">
-                      <span className="text-gray-600">Outstanding Loan</span>
-                      <span className="font-semibold">RM250,000</span>
-                    </div>
-                    <div className="flex justify-between bg-gray-50 rounded-lg p-3">
-                      <span className="text-gray-600">Interest Rate</span>
-                      <span className="font-semibold text-red-600">5.00%</span>
-                    </div>
-                    <div className="flex justify-between bg-red-50 rounded-lg p-3">
-                      <span className="text-red-700">Monthly Payment</span>
-                      <span className="font-bold text-red-700">RM1,461</span>
-                    </div>
-                  </div>
+            <div className="grid md:grid-cols-2 gap-6 mb-6">
+              <div className="bg-red-50 border border-red-200 rounded-xl p-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <X className="w-5 h-5 text-red-500" />
+                  <h3 className="font-bold text-red-800">Current Bank (5.00%)</h3>
                 </div>
-
-                <div>
-                  <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
-                    <Check className="w-5 h-5 text-green-500" />
-                    CIMB (4.35%)
-                  </h3>
-                  <div className="space-y-3">
-                    <div className="flex justify-between bg-gray-50 rounded-lg p-3">
-                      <span className="text-gray-600">Refinanced Loan</span>
-                      <span className="font-semibold">RM250,000</span>
-                    </div>
-                    <div className="flex justify-between bg-gray-50 rounded-lg p-3">
-                      <span className="text-gray-600">Interest Rate</span>
-                      <span className="font-semibold text-green-600">4.35%</span>
-                    </div>
-                    <div className="flex justify-between bg-green-50 rounded-lg p-3">
-                      <span className="text-green-700">Monthly Payment</span>
-                      <span className="font-bold text-green-700">RM1,363</span>
-                    </div>
-                  </div>
+                <div className="space-y-3 text-sm">
+                  <div className="flex justify-between"><span className="text-gray-600">Outstanding Loan</span><span className="font-semibold">RM250,000</span></div>
+                  <div className="flex justify-between"><span className="text-gray-600">Interest Rate</span><span className="font-semibold text-red-600">5.00%</span></div>
+                  <div className="flex justify-between"><span className="text-gray-600">Monthly Payment</span><span className="font-bold text-red-700">RM1,461</span></div>
                 </div>
               </div>
 
-              <div className="grid grid-cols-2 gap-4 mb-6">
-                <div className="bg-green-50 rounded-xl p-5 text-center border border-green-200">
-                  <p className="text-sm text-green-700 mb-1">Monthly Savings</p>
-                  <p className="text-3xl font-bold text-green-600">RM98</p>
+              <div className="bg-green-50 border border-green-200 rounded-xl p-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <Check className="w-5 h-5 text-green-500" />
+                  <h3 className="font-bold text-green-800">Refinance with CIMB (4.35%)</h3>
                 </div>
-                <div className="bg-green-50 rounded-xl p-5 text-center border border-green-200">
-                  <p className="text-sm text-green-700 mb-1">Total Savings (25 Years)</p>
-                  <p className="text-3xl font-bold text-green-600">RM29,400</p>
+                <div className="space-y-3 text-sm">
+                  <div className="flex justify-between"><span className="text-gray-600">Refinanced Loan</span><span className="font-semibold">RM250,000</span></div>
+                  <div className="flex justify-between"><span className="text-gray-600">Interest Rate</span><span className="font-semibold text-green-600">4.35%</span></div>
+                  <div className="flex justify-between"><span className="text-gray-600">Monthly Payment</span><span className="font-bold text-green-700">RM1,363</span></div>
                 </div>
               </div>
+            </div>
 
-              <div className="flex flex-wrap justify-center gap-4">
-                <Link
-                  href="/calculator"
-                  className="inline-flex items-center gap-2 bg-red-700 hover:bg-red-800 text-white px-6 py-3 rounded-lg font-medium transition-colors"
-                >
-                  Calculate Your Exact Savings
-                  <ArrowRight className="w-5 h-5" />
-                </Link>
-                <Link
-                  href="/dsr-calculator"
-                  className="inline-flex items-center gap-2 bg-white text-red-700 border border-red-300 px-6 py-3 rounded-lg font-medium hover:bg-red-50 transition-colors"
-                >
-                  Check Your Eligibility (DSR)
-                </Link>
-              </div>
+            <div className="bg-green-100 border border-green-300 rounded-xl p-6 text-center mb-6">
+              <p className="text-sm text-green-800 mb-1">Your Estimated Savings</p>
+              <p className="text-3xl font-bold text-green-700 mb-2">RM98/month</p>
+              <p className="text-lg font-semibold text-green-700">RM29,400 total over 25 years</p>
+            </div>
+
+            <div className="flex flex-wrap gap-4 justify-center">
+              <Link
+                href="/calculator"
+                className="inline-flex items-center gap-2 bg-red-700 hover:bg-red-800 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+              >
+                Calculate Your Exact Savings <ArrowRight className="w-5 h-5" />
+              </Link>
+              <Link
+                href="/dsr-calculator"
+                className="inline-flex items-center gap-2 bg-white text-red-700 border border-red-300 px-6 py-3 rounded-lg font-medium hover:bg-red-50 transition-colors"
+              >
+                Check Your Eligibility (DSR)
+              </Link>
+              <Link
+                href="/cash-out-calculator"
+                className="inline-flex items-center gap-2 bg-white text-red-700 border border-red-300 px-6 py-3 rounded-lg font-medium hover:bg-red-50 transition-colors"
+              >
+                Calculate Cash-Out
+              </Link>
             </div>
           </section>
 
@@ -285,19 +273,19 @@ export default function CIMBRefinancePage() {
                 <ul className="space-y-3 text-gray-700">
                   <li className="flex items-start gap-2">
                     <Check className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
-                    <span><strong>High loan amounts</strong> - Willing to approve larger loans for qualified borrowers</span>
+                    <span><strong>High loan amounts</strong> — willing to approve larger loans for qualified borrowers</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <Check className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
-                    <span><strong>FlexiHome flexibility</strong> - <Link href="/cash-out-calculator" className="text-primary-600 hover:underline">Cash-out</Link>, redraw, and flexible payment features</span>
+                    <span><strong>FlexiHome flexibility</strong> — <Link href="/cash-out-calculator" className="text-primary-600 hover:underline">cash-out</Link>, redraw, and flexible payment features</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <Check className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
-                    <span><strong>Good digital banking</strong> - Easy online loan management via CIMB Clicks</span>
+                    <span><strong>Good digital banking</strong> — easy online loan management via CIMB Clicks</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <Check className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
-                    <span><strong>Islamic option available</strong> - Shariah-compliant home financing</span>
+                    <span><strong>Islamic option available</strong> — Shariah-compliant home financing through CIMB Islamic</span>
                   </li>
                 </ul>
               </div>
@@ -309,19 +297,19 @@ export default function CIMBRefinancePage() {
                 <ul className="space-y-3 text-gray-700">
                   <li className="flex items-start gap-2">
                     <X className="w-4 h-4 text-red-600 mt-1 flex-shrink-0" />
-                    <span><strong>Slightly higher rates</strong> - Not always the lowest rate in market</span>
+                    <span><strong>Slightly higher rates</strong> — not always the lowest rate in market</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <X className="w-4 h-4 text-red-600 mt-1 flex-shrink-0" />
-                    <span><strong>Stricter DSR requirements</strong> - May be harder for high-debt applicants</span>
+                    <span><strong>Stricter DSR requirements</strong> — may be harder for high-debt applicants</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <X className="w-4 h-4 text-red-600 mt-1 flex-shrink-0" />
-                    <span><strong>{bank.lockIn}-year lock-in</strong> - Standard penalty for early exit</span>
+                    <span><strong>3-year lock-in</strong> — standard penalty for early exit</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <X className="w-4 h-4 text-red-600 mt-1 flex-shrink-0" />
-                    <span><strong>Branch visits required</strong> - Some processes still need in-person visits</span>
+                    <span><strong>Branch visits required</strong> — some processes still need in-person visits</span>
                   </li>
                 </ul>
               </div>
@@ -330,7 +318,7 @@ export default function CIMBRefinancePage() {
             <div className="bg-red-50 border-l-4 border-red-500 p-4 rounded-r-lg">
               <p className="font-semibold text-red-800 mb-1">Best For:</p>
               <p className="text-gray-700">
-                {bank.bestFor}. Also ideal for borrowers seeking larger loan amounts, those who value
+                High loan amounts. Also ideal for borrowers seeking larger loan amounts, those who value
                 digital banking convenience, and applicants interested in Islamic financing options.
                 CIMB Preferred customers may get preferential rates.
               </p>
@@ -343,65 +331,53 @@ export default function CIMBRefinancePage() {
               Who Gets Approved? CIMB Refinance Eligibility
             </h2>
 
-            <div className="space-y-4">
-              <div className="bg-gray-50 rounded-lg p-5">
-                <h3 className="font-semibold text-gray-900 mb-3">Basic Requirements</h3>
-                <ul className="grid md:grid-cols-2 gap-3 text-gray-700">
-                  <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-green-600" />
-                    Malaysian citizens and PRs
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-green-600" />
-                    Age: 18 - 65 years old (at loan maturity)
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-green-600" />
-                    Minimum income: <strong>RM3,000/month</strong>
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-green-600" />
-                    Clean CCRIS/CTOS record
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-green-600" />
-                    Conventional & Islamic (CIMB Islamic) options
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-green-600" />
-                    Property: residential landed & non-landed
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-green-600" />
-                    Maximum DSR: 70% (varies by income bracket)
-                  </li>
-                  <li className="flex items-center gap-2">
-                    <Check className="w-4 h-4 text-green-600" />
-                    <Link href="/dsr-calculator" className="text-primary-600 hover:underline">Check your DSR eligibility →</Link>
-                  </li>
-                </ul>
+            <div className="bg-gray-50 rounded-xl p-6">
+              <div className="grid md:grid-cols-2 gap-4">
+                {[
+                  { label: "Citizenship", value: "Malaysian citizens and PRs" },
+                  { label: "Age", value: "18 – 65 years old (at loan maturity)" },
+                  { label: "Min Income", value: "RM3,000/month (salaried & self-employed)" },
+                  { label: "Loan Type", value: "Conventional & Islamic (CIMB Islamic)" },
+                  { label: "Property", value: "Residential — landed & non-landed" },
+                  { label: "Max DSR", value: "70% (varies by income bracket)" },
+                  { label: "Max LTV", value: "Up to 90%" },
+                  { label: "Credit Record", value: "Clean CCRIS/CTOS record" },
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-3">
+                    <Check className="w-5 h-5 text-red-600 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-medium text-gray-900">{item.label}</p>
+                      <p className="text-sm text-gray-600">{item.value}</p>
+                    </div>
+                  </div>
+                ))}
               </div>
+              <div className="mt-6 pt-4 border-t text-center">
+                <Link href="/dsr-calculator" className="text-red-600 hover:underline font-medium inline-flex items-center gap-1">
+                  Check your eligibility with our DSR Calculator <ArrowRight className="w-4 h-4" />
+                </Link>
+              </div>
+            </div>
 
-              <div className="bg-green-50 rounded-lg p-5">
-                <h3 className="font-semibold text-green-800 mb-3">Higher Approval Chances</h3>
-                <ul className="space-y-2 text-gray-700">
-                  <li>- Income above RM6,000/month</li>
-                  <li>- CIMB Preferred or Priority banking customer</li>
-                  <li>- Property in prime locations (Klang Valley, Penang, JB)</li>
-                  <li>- Low DSR (below 60%)</li>
-                  <li>- Stable employment with established company</li>
-                </ul>
-              </div>
+            <div className="mt-4 bg-green-50 rounded-lg p-5">
+              <h3 className="font-semibold text-green-800 mb-3">Higher Approval Chances</h3>
+              <ul className="space-y-2 text-gray-700">
+                <li>- Income above RM6,000/month</li>
+                <li>- CIMB Preferred or Priority banking customer</li>
+                <li>- Property in prime locations (Klang Valley, Penang, JB)</li>
+                <li>- Low DSR (below 60%)</li>
+                <li>- Stable employment with established company</li>
+              </ul>
+            </div>
 
-              <div className="bg-red-50 rounded-lg p-5">
-                <h3 className="font-semibold text-red-800 mb-3">May Face Challenges</h3>
-                <ul className="space-y-2 text-gray-700">
-                  <li>- Self-employed less than 2 years</li>
-                  <li>- Properties in less developed areas</li>
-                  <li>- DSR above 70%</li>
-                  <li>- Previous late payment records</li>
-                </ul>
-              </div>
+            <div className="mt-4 bg-red-50 rounded-lg p-5">
+              <h3 className="font-semibold text-red-800 mb-3">May Face Challenges</h3>
+              <ul className="space-y-2 text-gray-700">
+                <li>- Self-employed less than 2 years</li>
+                <li>- Properties in less developed areas</li>
+                <li>- DSR above 70%</li>
+                <li>- Previous late payment records</li>
+              </ul>
             </div>
           </section>
 
@@ -411,73 +387,53 @@ export default function CIMBRefinancePage() {
           {/* Comparison Section */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              CIMB vs Other Banks Comparison
+              CIMB vs Other Banks — Refinance Comparison 2026
             </h2>
 
             <div className="overflow-x-auto">
-              <table className="w-full border-collapse">
+              <table className="w-full border-collapse text-sm">
                 <thead>
-                  <tr className="bg-gray-100">
-                    <th className="text-left p-3 font-semibold">Bank</th>
-                    <th className="text-left p-3 font-semibold">Rate</th>
-                    <th className="text-left p-3 font-semibold">Islamic Option</th>
-                    <th className="text-left p-3 font-semibold">Lock-in</th>
-                    <th className="text-left p-3 font-semibold">Min Income</th>
-                    <th className="text-left p-3 font-semibold">Cash Out</th>
+                  <tr className="bg-red-800 text-white">
+                    <th className="text-left p-3">Bank</th>
+                    <th className="text-center p-3">Rate (%)</th>
+                    <th className="text-center p-3">Islamic</th>
+                    <th className="text-center p-3">Lock-in</th>
+                    <th className="text-center p-3">Min Income</th>
+                    <th className="text-center p-3">Cash Out</th>
                   </tr>
                 </thead>
                 <tbody>
-                  <tr className="bg-red-50 border-b">
-                    <td className="p-3 font-semibold">
-                      <span className="text-red-600">★ </span>CIMB
-                    </td>
-                    <td className="p-3 text-red-700 font-semibold">4.35%</td>
-                    <td className="p-3"><Check className="w-4 h-4 text-green-600 inline" /> Yes</td>
-                    <td className="p-3">3 years</td>
-                    <td className="p-3">RM3,000</td>
-                    <td className="p-3 text-sm">Up to 80% LTV</td>
-                  </tr>
-                  <tr className="border-b hover:bg-gray-50">
-                    <td className="p-3">
-                      <Link href="/maybank-refinance-home-loan" className="text-primary-600 hover:underline">Maybank</Link>
-                    </td>
-                    <td className="p-3 font-semibold">4.35%</td>
-                    <td className="p-3"><Check className="w-4 h-4 text-green-600 inline" /> Yes</td>
-                    <td className="p-3">3-5 years</td>
-                    <td className="p-3">RM3,000</td>
-                    <td className="p-3 text-sm">Up to 80% LTV</td>
-                  </tr>
-                  <tr className="border-b hover:bg-gray-50">
-                    <td className="p-3">
-                      <Link href="/public-bank-refinance-home-loan" className="text-primary-600 hover:underline">Public Bank</Link>
-                    </td>
-                    <td className="p-3 font-semibold">4.22%</td>
-                    <td className="p-3"><Check className="w-4 h-4 text-green-600 inline" /> Yes</td>
-                    <td className="p-3">3 years</td>
-                    <td className="p-3">RM3,000</td>
-                    <td className="p-3 text-sm">Up to 80% LTV</td>
-                  </tr>
-                  <tr className="border-b hover:bg-gray-50">
-                    <td className="p-3">
-                      <Link href="/bank-islam-refinance-home-loan" className="text-primary-600 hover:underline">Bank Islam</Link>
-                    </td>
-                    <td className="p-3 font-semibold text-green-600">3.80%</td>
-                    <td className="p-3"><Check className="w-4 h-4 text-green-600 inline" /> Yes (only)</td>
-                    <td className="p-3">3 years</td>
-                    <td className="p-3">RM3,000</td>
-                    <td className="p-3 text-sm">Up to 80% LTV</td>
-                  </tr>
+                  {[
+                    { bank: "CIMB", rate: "4.35", islamic: "Yes", lockin: "3 yrs", income: "RM3,000", cashout: "Up to 80% LTV", highlight: true },
+                    { bank: "Maybank", rate: "4.35", islamic: "Yes", lockin: "3-5 yrs", income: "RM3,000", cashout: "Up to 80% LTV", link: "/maybank-refinance-home-loan" },
+                    { bank: "Public Bank", rate: "4.22", islamic: "Yes", lockin: "3 yrs", income: "RM3,000", cashout: "Up to 80% LTV", link: "/public-bank-refinance-home-loan" },
+                    { bank: "Bank Islam", rate: "3.80", islamic: "Yes (only)", lockin: "3 yrs", income: "RM3,000", cashout: "Up to 80% LTV", link: "/bank-islam-refinance-home-loan" },
+                    { bank: "RHB", rate: "4.10", islamic: "Yes", lockin: "3 yrs", income: "RM3,000", cashout: "Up to 80% LTV", link: "/rhb-refinance-home-loan" },
+                  ].map((b, idx) => (
+                    <tr key={idx} className={`border-b ${b.highlight ? "bg-red-50 font-semibold" : "hover:bg-gray-50"}`}>
+                      <td className="p-3">
+                        {b.highlight ? (
+                          <span className="text-red-700">★ {b.bank}</span>
+                        ) : b.link ? (
+                          <Link href={b.link} className="text-primary-600 hover:underline">{b.bank}</Link>
+                        ) : (
+                          b.bank
+                        )}
+                      </td>
+                      <td className="text-center p-3">{b.rate}</td>
+                      <td className="text-center p-3">{b.islamic}</td>
+                      <td className="text-center p-3">{b.lockin}</td>
+                      <td className="text-center p-3">{b.income}</td>
+                      <td className="text-center p-3">{b.cashout}</td>
+                    </tr>
+                  ))}
                 </tbody>
               </table>
             </div>
 
             <p className="text-sm text-gray-500 mt-4">
-              * Rates as of February {currentYear}. Subject to change based on credit profile.{" "}
-              <Link href="/refinance-home-loan-rates-malaysia" className="text-primary-600 hover:underline font-medium">Compare all 14 banks&apos; rates →</Link>{" "}
-              <Link href="/rhb-refinance-home-loan" className="text-primary-600 hover:underline">RHB</Link>, {" "}
-              <Link href="/hong-leong-refinance-home-loan" className="text-primary-600 hover:underline">Hong Leong</Link>, {" "}
-              <Link href="/ambank-refinance-home-loan" className="text-primary-600 hover:underline">AmBank</Link>, {" "}
-              <Link href="/standard-chartered-refinance-home-loan" className="text-primary-600 hover:underline">Standard Chartered</Link>
+              * Rates as of February 2026. Subject to change based on credit profile.{" "}
+              <Link href="/refinance-home-loan-rates-malaysia" className="text-primary-600 hover:underline font-medium">Compare all 14 banks&apos; rates →</Link>
             </p>
           </section>
 
@@ -493,7 +449,7 @@ export default function CIMBRefinancePage() {
                 <div>
                   <h3 className="font-semibold text-gray-900">Early Settlement Penalty</h3>
                   <p className="text-gray-600">
-                    {bank.earlySettlement} of outstanding balance if settled within {bank.lockIn}-year lock-in period.
+                    2-3% of outstanding balance if settled within 3-year lock-in period.
                     On a RM500,000 loan, this could be RM10,000-15,000.
                   </p>
                 </div>
@@ -504,7 +460,7 @@ export default function CIMBRefinancePage() {
                 <div>
                   <h3 className="font-semibold text-gray-900">Legal Fees</h3>
                   <p className="text-gray-600">
-                    Typically {SITE_CONFIG.costs.legalFeesText}. CIMB occasionally offers zero legal fee packages during promotions.
+                    Typically RM2,000 - RM5,000. CIMB occasionally offers zero legal fee packages during promotions.
                   </p>
                 </div>
               </div>
@@ -514,7 +470,7 @@ export default function CIMBRefinancePage() {
                 <div>
                   <h3 className="font-semibold text-gray-900">Valuation Fee</h3>
                   <p className="text-gray-600">
-                    {SITE_CONFIG.costs.valuationFeesText} depending on property value and location.
+                    RM300 - RM1,000 depending on property value and location.
                   </p>
                 </div>
               </div>
@@ -524,7 +480,7 @@ export default function CIMBRefinancePage() {
                 <div>
                   <h3 className="font-semibold text-gray-900">Stamp Duty</h3>
                   <p className="text-gray-600">
-                    {SITE_CONFIG.costs.stampDutyText} of loan amount. {SITE_CONFIG.costs.stampDutyNote}.
+                    0.5% of loan amount. May be exempted for first-time buyers or under RM500k.
                   </p>
                 </div>
               </div>
@@ -648,10 +604,10 @@ export default function CIMBRefinancePage() {
           {/* FAQ Section */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Frequently Asked Questions
+              CIMB Refinance Home Loan — Frequently Asked Questions
             </h2>
 
-            <div className="space-y-4">
+            <div className="space-y-3">
               {faqs.map((faq, index) => (
                 <div
                   key={index}
@@ -663,11 +619,11 @@ export default function CIMBRefinancePage() {
                     }
                     className="w-full flex items-center justify-between p-4 text-left bg-white hover:bg-gray-50"
                   >
-                    <span className="font-semibold text-gray-900">
+                    <span className="font-semibold text-gray-900 pr-4">
                       {faq.question}
                     </span>
                     <svg
-                      className={`w-5 h-5 text-gray-500 transition-transform ${
+                      className={`w-5 h-5 text-gray-500 transition-transform flex-shrink-0 ${
                         openFaqIndex === index ? "rotate-180" : ""
                       }`}
                       fill="none"
@@ -692,42 +648,26 @@ export default function CIMBRefinancePage() {
             </div>
           </section>
 
-          {/* Related Links */}
+          {/* Compare Other Banks */}
           <section className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Compare Other Banks
-            </h2>
-            <div className="grid md:grid-cols-2 gap-4">
-              <Link
-                href="/maybank-refinance-home-loan"
-                className="block p-4 bg-yellow-50 rounded-lg hover:bg-yellow-100 transition-colors"
-              >
-                <h3 className="font-semibold text-yellow-900">Maybank Refinance</h3>
-                <p className="text-sm text-yellow-700">Compare Maybank rates and features</p>
-              </Link>
-              <Link
-                href="/public-bank-refinance-home-loan"
-                className="block p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
-              >
-                <h3 className="font-semibold text-blue-900">Public Bank Refinance</h3>
-                <p className="text-sm text-blue-700">Compare Public Bank rates and features</p>
-              </Link>
-              <Link
-                href="/hong-leong-refinance-home-loan"
-                className="block p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors"
-              >
-                <h3 className="font-semibold text-green-900">Hong Leong Refinance</h3>
-                <p className="text-sm text-green-700">Compare Hong Leong rates and features</p>
-              </Link>
-              <Link
-                href="/calculator"
-                className="block p-4 bg-primary-50 rounded-lg hover:bg-primary-100 transition-colors"
-              >
-                <h3 className="font-semibold text-primary-900">Refinance Calculator</h3>
-                <p className="text-sm text-primary-700">Calculate your potential savings</p>
-              </Link>
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Compare Other Banks</h2>
+            <div className="grid md:grid-cols-3 gap-4">
+              {[
+                { name: "Maybank Refinance", href: "/maybank-refinance-home-loan", rate: "4.35%", note: "HouzKey available" },
+                { name: "RHB Refinance", href: "/rhb-refinance-home-loan", rate: "4.10%", note: "My1 flexible loan" },
+                { name: "Public Bank Refinance", href: "/public-bank-refinance-home-loan", rate: "4.22%", note: "Lowest mainstream rate" },
+                { name: "Standard Chartered", href: "/standard-chartered-refinance-home-loan", rate: "3.90%", note: "Premium banking" },
+                { name: "UOB Refinance", href: "/uob-refinance-home-loan", rate: "4.61%", note: "95% margin, foreigners" },
+                { name: "All Bank Rates", href: "/refinance-home-loan-rates-malaysia", rate: "14 banks", note: "Full comparison" },
+              ].map((b, idx) => (
+                <Link key={idx} href={b.href} className="block p-4 bg-gray-50 rounded-lg hover:bg-red-50 transition-colors group">
+                  <h3 className="font-semibold text-gray-900 group-hover:text-red-600">{b.name}</h3>
+                  <p className="text-sm text-gray-600">From {b.rate} • {b.note}</p>
+                </Link>
+              ))}
             </div>
           </section>
+
         </div>
       </article>
 
@@ -768,7 +708,7 @@ export default function CIMBRefinancePage() {
       </section>
 
       {/* Bottom CTA */}
-      <section className="py-16 bg-red-700">
+      <section className="py-16 bg-red-800">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
           <h2 className="text-3xl font-bold text-white mb-4">
             Ready to Refinance with CIMB?
@@ -778,9 +718,9 @@ export default function CIMBRefinancePage() {
           </p>
           <button
             onClick={() => setShowForm(true)}
-            className="btn-primary inline-block text-lg px-8 py-4 bg-white text-red-700 hover:bg-red-50"
+            className="inline-flex items-center gap-2 bg-white text-red-800 font-semibold px-8 py-4 rounded-lg hover:bg-red-50 transition-colors text-lg"
           >
-            Get Free Quote
+            Get Free Quote <ArrowRight className="w-5 h-5" />
           </button>
         </div>
       </section>
@@ -804,48 +744,6 @@ export default function CIMBRefinancePage() {
           </div>
         </div>
       )}
-
-      {/* Schema Markup */}
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "Article",
-            headline: `CIMB Refinance Home Loan ${currentYear} - Rates, Review & Calculator`,
-            description: `Complete guide to CIMB home loan refinancing. Current rates from ${bank.rateFrom}, honest review, eligibility requirements, and comparison with other banks.`,
-            datePublished: "2025-12-01",
-            dateModified: "2026-02-15",
-            author: {
-              "@type": "Organization",
-              name: "RefinanceHomeLoanMY",
-            },
-            publisher: {
-              "@type": "Organization",
-              name: "RefinanceHomeLoanMY",
-              url: "https://refinancehomeloanmy.com",
-            },
-          }),
-        }}
-      />
-
-      <script
-        type="application/ld+json"
-        dangerouslySetInnerHTML={{
-          __html: JSON.stringify({
-            "@context": "https://schema.org",
-            "@type": "FAQPage",
-            mainEntity: faqs.map((faq) => ({
-              "@type": "Question",
-              name: faq.question,
-              acceptedAnswer: {
-                "@type": "Answer",
-                text: faq.answer,
-              },
-            })),
-          }),
-        }}
-      />
 
       <StickyMobileCTA
         onCtaClick={() => setShowForm(true)}

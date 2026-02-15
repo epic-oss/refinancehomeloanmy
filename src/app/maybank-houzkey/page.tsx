@@ -216,7 +216,7 @@ export default function MaybankHouzKeyPage() {
               Maybank Islamic
             </div>
             <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-              Maybank HouzKEY Malaysia {currentYear}
+              Maybank HouzKEY (M2Own) Malaysia {currentYear}
             </h1>
             <p className="text-lg md:text-xl text-yellow-100 mb-2">
               Rent-to-Own Guide
@@ -314,6 +314,67 @@ export default function MaybankHouzKeyPage() {
                     <span className="text-gray-700">Syariah compliant (Islamic financing)</span>
                   </div>
                 </div>
+              </div>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* What is M2Own Section */}
+      <section className="py-12 md:py-16 bg-yellow-50">
+        <div className="container mx-auto px-4">
+          <div className="max-w-4xl mx-auto">
+            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 text-center mb-8">
+              What is M2Own (Maybank2Own)?
+            </h2>
+
+            <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
+              <p className="text-gray-600 mb-4">
+                M2Own atau Maybank2Own adalah portal rasmi Maybank untuk skim HouzKEY. Di portal{" "}
+                <a href="https://www.maybank2own.com" target="_blank" rel="noopener noreferrer" className="text-yellow-600 hover:text-yellow-700 font-medium underline">
+                  maybank2own.com
+                </a>
+                , anda boleh:
+              </p>
+
+              <ul className="space-y-3 mb-6">
+                <li className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-yellow-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-gray-700">Browse hartanah yang layak untuk HouzKEY</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-yellow-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-gray-700">Semak kelayakan anda</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-yellow-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-gray-700">Mohon secara online</span>
+                </li>
+                <li className="flex items-start gap-3">
+                  <svg className="w-5 h-5 text-yellow-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                  </svg>
+                  <span className="text-gray-700">Track status permohonan</span>
+                </li>
+              </ul>
+
+              <div className="flex items-center gap-3 mb-4">
+                <span className="font-medium text-gray-900">Link:</span>
+                <a href="https://www.maybank2own.com" target="_blank" rel="noopener noreferrer" className="text-yellow-600 hover:text-yellow-700 font-medium underline">
+                  maybank2own.com
+                </a>
+              </div>
+
+              <div className="bg-yellow-100 rounded-lg p-4">
+                <p className="text-sm text-gray-700">
+                  <strong>Note:</strong> M2Own dan HouzKEY adalah produk yang sama — M2Own adalah nama portal, manakala HouzKEY adalah nama skim rent-to-own.
+                </p>
               </div>
             </div>
           </div>

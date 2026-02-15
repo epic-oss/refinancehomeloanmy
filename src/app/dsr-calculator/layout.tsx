@@ -1,11 +1,11 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "DSR Calculator Malaysia 2026 | Check Loan Eligibility Free",
-  description: "Calculate your Debt Service Ratio instantly. See if you qualify for refinancing with Malaysian banks. Free DSR calculator with bank-specific requirements.",
+  title: "DSR Calculator Malaysia 2026 | Can You Refinance? Check Now",
+  description: "Free DSR calculator with all bank limits (Maybank 70%, Hong Leong 75%, CIMB 70%). Enter salary & commitments → instant result. Most banks need DSR below 70%.",
   openGraph: {
-    title: "DSR Calculator Malaysia 2026 | Check Loan Eligibility Free",
-    description: "Calculate your Debt Service Ratio instantly. See if you qualify for refinancing with Malaysian banks. Free DSR calculator with bank-specific requirements.",
+    title: "DSR Calculator Malaysia 2026 | Can You Refinance? Check Now",
+    description: "Free DSR calculator with all bank limits (Maybank 70%, Hong Leong 75%, CIMB 70%). Enter salary & commitments → instant result. Most banks need DSR below 70%.",
     type: "website",
   },
 };

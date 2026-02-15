@@ -306,13 +306,22 @@ export default function BankRakyatRefinancePage() {
                 Use our free calculator to estimate how much you could save by refinancing with
                 Bank Rakyat. Compare your current rate against their Islamic financing offers.
               </p>
-              <Link
-                href="/calculator"
-                className="inline-flex items-center gap-2 bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors"
-              >
-                Open Refinance Calculator
-                <ArrowRight className="w-5 h-5" />
-              </Link>
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  href="/calculator"
+                  className="inline-flex items-center gap-2 bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors"
+                >
+                  Open Refinance Calculator
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+                <Link
+                  href="/cash-out-calculator"
+                  className="inline-flex items-center gap-2 bg-white text-primary-700 border border-primary-300 font-semibold px-6 py-3 rounded-lg hover:bg-primary-50 transition-colors"
+                >
+                  Calculate Cash-Out Amount
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+              </div>
             </div>
           </section>
 
@@ -455,7 +464,7 @@ export default function BankRakyatRefinancePage() {
                   <li>- Bank Rakyat cooperative members</li>
                   <li>- Existing Bank Rakyat customers</li>
                   <li>- Stable employment (2+ years)</li>
-                  <li>- Low debt-to-income ratio</li>
+                  <li>- Low debt-to-income ratio. <Link href="/dsr-calculator" className="text-primary-600 hover:underline">Check your DSR</Link></li>
                   <li>- Property in established areas</li>
                 </ul>
               </div>
@@ -544,7 +553,7 @@ export default function BankRakyatRefinancePage() {
             </div>
 
             <p className="text-sm text-gray-500 mt-4">
-              * Rates are indicative and subject to change. Compare with other banks:{" "}
+              * Rates are indicative and subject to change. <Link href="/refinance-home-loan-rates-malaysia" className="text-primary-600 hover:underline font-medium">Compare all 14 banks&apos; rates →</Link>{" "}
               <Link href="/maybank-refinance-home-loan" className="text-primary-600 hover:underline">
                 Maybank
               </Link>

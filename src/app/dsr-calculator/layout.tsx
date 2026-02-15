@@ -1,11 +1,11 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "DSR Calculator Malaysia 2026 | Can You Refinance? Check Now",
-  description: "Free DSR calculator with all bank limits (Maybank 70%, Hong Leong 75%, CIMB 70%). Enter salary & commitments → instant result. Most banks need DSR below 70%.",
+  title: "DSR Calculator Malaysia 2026 | Check If Banks Approve You",
+  description: "Free DSR calculator — enter salary & commitments, see your ratio instantly. Most banks approve below 70%. Check Maybank, CIMB, RHB limits.",
   openGraph: {
-    title: "DSR Calculator Malaysia 2026 | Can You Refinance? Check Now",
-    description: "Free DSR calculator with all bank limits (Maybank 70%, Hong Leong 75%, CIMB 70%). Enter salary & commitments → instant result. Most banks need DSR below 70%.",
+    title: "DSR Calculator Malaysia 2026 | Check If Banks Approve You",
+    description: "Free DSR calculator — enter salary & commitments, see your ratio instantly. Most banks approve below 70%. Check Maybank, CIMB, RHB limits.",
     type: "website",
   },
 };

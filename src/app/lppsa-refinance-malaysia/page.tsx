@@ -380,6 +380,9 @@ export default function LPPSARefinancePage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
               Bank Terbaik untuk Refinance LPPSA
             </h2>
+            <p className="text-sm text-gray-500 mb-4">
+              <Link href="/refinance-home-loan-rates-malaysia" className="text-primary-600 hover:underline font-medium">Bandingkan kadar semua 14 bank →</Link>
+            </p>
             <div className="grid grid-cols-1 sm:grid-cols-2 gap-4">
               {bankOptions.map((bank) => (
                 <Link
@@ -451,13 +454,22 @@ export default function LPPSARefinancePage() {
                   <strong>Nota:</strong> Penjimatan sebenar bergantung pada kadar bank semasa, baki pinjaman, dan tempoh. Kadar bank boleh berubah. Kiraan ini sebagai anggaran sahaja.
                 </p>
               </div>
-              <Link
-                href="/calculator"
-                className="inline-flex items-center gap-2 bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
-              >
-                <Calculator className="w-5 h-5" />
-                Kira Penjimatan Anda
-              </Link>
+              <div className="flex flex-wrap gap-3">
+                <Link
+                  href="/calculator"
+                  className="inline-flex items-center gap-2 bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors"
+                >
+                  <Calculator className="w-5 h-5" />
+                  Kira Penjimatan Anda
+                </Link>
+                <Link
+                  href="/cash-out-calculator"
+                  className="inline-flex items-center gap-2 bg-white text-blue-700 border border-blue-300 font-semibold px-6 py-3 rounded-lg hover:bg-blue-50 transition-colors"
+                >
+                  Kira Jumlah Cash Out
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+              </div>
             </div>
           </section>
 

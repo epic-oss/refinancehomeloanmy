@@ -221,7 +221,7 @@ export default function BankIslamRefinancePage() {
                   <li className="flex items-center gap-2"><Check className="w-4 h-4 text-teal-600" />Up to 80% of property value</li>
                   <li className="flex items-center gap-2"><Check className="w-4 h-4 text-teal-600" />For renovation, education, debt consolidation</li>
                   <li className="flex items-center gap-2"><Check className="w-4 h-4 text-teal-600" />Profit rate from 4.50% p.a.</li>
-                  <li className="flex items-center gap-2"><Check className="w-4 h-4 text-teal-600" />Syariah-compliant cash out option</li>
+                  <li className="flex items-center gap-2"><Check className="w-4 h-4 text-teal-600" />Syariah-compliant cash out option. <Link href="/cash-out-calculator" className="text-primary-600 hover:underline">Calculate amount</Link></li>
                 </ul>
               </div>
             </div>
@@ -398,7 +398,7 @@ export default function BankIslamRefinancePage() {
                   <li>- Income above RM5,000/month</li>
                   <li>- Existing Bank Islam customer with good track record</li>
                   <li>- Property in established residential areas</li>
-                  <li>- Low debt-to-income ratio (below 60%)</li>
+                  <li>- Low debt-to-income ratio (below 60%). <Link href="/dsr-calculator" className="text-primary-600 hover:underline">Check your DSR</Link></li>
                 </ul>
               </div>
 
@@ -447,7 +447,7 @@ export default function BankIslamRefinancePage() {
             </div>
 
             <p className="text-sm text-gray-500 mt-4">
-              * Rates are indicative and subject to change. Compare with other banks:{" "}
+              * Rates are indicative and subject to change. <Link href="/refinance-home-loan-rates-malaysia" className="text-primary-600 hover:underline font-medium">Compare all 14 banks&apos; rates →</Link>{" "}
               <Link href="/maybank-refinance-home-loan" className="text-primary-600 hover:underline">Maybank</Link>,{" "}
               <Link href="/cimb-refinance-home-loan" className="text-primary-600 hover:underline">CIMB</Link>,{" "}
               <Link href="/rhb-refinance-home-loan" className="text-primary-600 hover:underline">RHB</Link>,{" "}

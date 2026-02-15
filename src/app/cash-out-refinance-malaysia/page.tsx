@@ -2,7 +2,7 @@
 
 import { useState } from "react";
 import Link from "next/link";
-import { SITE_CONFIG, getBanksSortedByRate } from "@/lib/constants";
+import { SITE_CONFIG } from "@/lib/constants";
 import CashOutLeadForm, { CashOutLeadFormInitialValues } from "@/components/CashOutLeadForm";
 import CashOutCalculatorWidget, { CashOutCalculatorValues } from "@/components/CashOutCalculatorWidget";
 import MidPageCTA from "@/components/MidPageCTA";
@@ -27,16 +27,25 @@ import {
 
 const { currentYear } = SITE_CONFIG;
 
-// Banks that offer good cash-out options
-const cashOutBanks = getBanksSortedByRate().filter(b =>
-  ["Maybank", "CIMB", "Public Bank", "RHB", "Hong Leong", "AmBank", "OCBC", "UOB"].includes(b.name)
-);
+// All 14 banks for cash-out comparison
+const cashOutBanks = [
+  { name: "Bank Islam", rate: "3.80%", maxLTV: "80%", bestFor: "Lowest rate (Islamic)", link: "/bank-islam-refinance-home-loan" },
+  { name: "Standard Chartered", rate: "3.90%", maxLTV: "85%", bestFor: "Offset account", link: "/standard-chartered-refinance-home-loan" },
+  { name: "OCBC", rate: "4.05%", maxLTV: "80%", bestFor: "International bank", link: "/ocbc-refinance-home-loan" },
+  { name: "RHB", rate: "4.10%", maxLTV: "80%", bestFor: "Fast approval", link: "/rhb-refinance-home-loan" },
+  { name: "Bank Rakyat", rate: "4.20%", maxLTV: "80%", bestFor: "Government servants", link: "/bank-rakyat-refinance-home-loan" },
+  { name: "Public Bank", rate: "4.22%", maxLTV: "80%", bestFor: "Reliable & stable", link: "/public-bank-refinance-home-loan" },
+  { name: "Bank Muamalat", rate: "4.25%", maxLTV: "80%", bestFor: "Islamic financing", link: "/bank-muamalat-refinance-home-loan" },
+  { name: "HSBC", rate: "4.30%", maxLTV: "85%", bestFor: "RM50k costs waived", link: "/hsbc-refinance-home-loan" },
+  { name: "Maybank", rate: "4.35%", maxLTV: "90%", bestFor: "Highest LTV (90%)", link: "/maybank-refinance-home-loan" },
+  { name: "CIMB", rate: "4.35%", maxLTV: "85%", bestFor: "Self-employed friendly", link: "/cimb-refinance-home-loan" },
+  { name: "Hong Leong", rate: "4.38%", maxLTV: "85%", bestFor: "High DSR accepted", link: "/hong-leong-refinance-home-loan" },
+  { name: "AmBank", rate: "4.40%", maxLTV: "80%", bestFor: "Flexible terms", link: "/ambank-refinance-home-loan" },
+  { name: "UOB", rate: "4.61%", maxLTV: "85%", bestFor: "Foreigners welcome", link: "/uob-refinance-home-loan" },
+  { name: "LPPSA", rate: "N/A", maxLTV: "N/A", bestFor: "Cannot cash out", link: "/lppsa-refinance-malaysia" },
+];
 
 const faqs = [
-  {
-    question: "Is cash-out refinance a good idea?",
-    answer: "Cash-out refinance can be a good idea if you use the funds for value-adding purposes like home renovations, debt consolidation at lower rates, or investments with returns higher than your mortgage rate. However, it's not recommended for discretionary spending as you're converting equity into debt. Always calculate the total cost over the loan term before deciding.",
-  },
   {
     question: "Can I refinance and get cash out in Malaysia?",
     answer: "Yes, most Malaysian banks offer cash-out refinancing. You can access up to 90% of your property's current market value, minus your outstanding loan balance. For example, if your property is worth RM500,000 and you owe RM200,000, you could potentially access up to RM250,000 (RM450,000 at 90% LTV minus RM200,000 outstanding).",
@@ -50,12 +59,36 @@ const faqs = [
     answer: "Cash-out refinancing itself doesn't directly hurt your credit score. However, taking on more debt increases your debt-to-income ratio, which could affect future loan applications. Making timely payments on your new, larger loan can actually help maintain or improve your credit standing over time.",
   },
   {
-    question: "What is the BNM 10-year rule for cash-out refinance in 2025?",
+    question: "What is the BNM 10-year rule for cash-out refinance in 2026?",
     answer: "Bank Negara Malaysia (BNM) has guidelines that limit cash-out refinance tenure to a maximum of 10 years for the cash-out portion. This means while your property loan can extend to 35 years, the cash-out component may be structured differently. Some banks implement this as a shorter repayment period for the cash-out amount, affecting your monthly payment calculations.",
   },
   {
     question: "What can I use cash-out refinance money for?",
     answer: "You can use cash-out funds for almost any purpose: home renovations and improvements, debt consolidation (paying off high-interest credit cards or personal loans), education expenses, medical emergencies, business investment, or purchasing another property. However, banks may ask about your intended use during application.",
+  },
+  {
+    question: "What is the difference between cash out refinance and home equity loan?",
+    answer: "In Malaysia, cash out refinance replaces your existing loan with a larger one and gives you the difference as cash. Home equity loans (a separate second loan) are not commonly offered by Malaysian banks. Cash out refinance is the standard method to access home equity here.",
+  },
+  {
+    question: "Can I cash out refinance if my house is fully paid?",
+    answer: "Yes! If your property has no existing loan, you can get a new loan of up to 80% of the property value as cash. This is essentially a new mortgage on a fully-paid property. See our guide on refinancing a fully paid house for more details.",
+  },
+  {
+    question: "What is the maximum cash out I can get?",
+    answer: "Typically 80% of your property value for first property, 70% for second property. For a RM500,000 property with no existing loan, you could get up to RM400,000 cash. The exact amount depends on the bank, your income, and DSR ratio.",
+  },
+  {
+    question: "How long does cash out refinance take in Malaysia?",
+    answer: "The full process takes 6-10 weeks from application to disbursement. This includes bank approval (2-3 weeks), valuation (1 week), legal documentation (3-4 weeks), and disbursement.",
+  },
+  {
+    question: "Can I cash out refinance with bad credit?",
+    answer: "It's difficult but possible. Banks check your CCRIS/CTOS records. If you have late payments, try banks with more flexible criteria like Hong Leong. A co-borrower with good credit may help improve your chances of approval.",
+  },
+  {
+    question: "Is cash out refinance a good idea?",
+    answer: "It depends on your purpose. Good for: renovations that increase property value, debt consolidation at lower rates, business investment. Bad for: lifestyle spending, risky investments, or if you can't afford the higher monthly payments. Always calculate the total cost over the loan term before deciding.",
   },
 ];
 
@@ -91,10 +124,10 @@ export default function CashOutRefinancePage() {
             {/* Left Column - Headline & Trust Badges */}
             <div>
               <h1 className="text-4xl md:text-5xl lg:text-6xl font-bold leading-tight">
-                Get Up to <span className="text-green-400">RM500,000</span> Cash from Your Property
+                Cash Out Refinance Malaysia {currentYear} — Get Up to <span className="text-green-400">RM500,000</span> Cash
               </h1>
               <p className="text-xl text-gray-300 mt-6">
-                Turn your home equity into cash for renovations, debt consolidation, or investments. Rates from 3.65%.
+                Turn your home equity into cash for renovations, <Link href="/debt-consolidation-malaysia" className="text-green-400 hover:text-green-300 underline">debt consolidation</Link>, or investments. Rates from 3.80%.
               </p>
 
               {/* Trust Badges */}
@@ -404,6 +437,123 @@ export default function CashOutRefinancePage() {
             </div>
           </section>
 
+          {/* Cash Out Refinance vs Home Equity Loan */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              Cash Out Refinance vs Home Equity Loan — What&apos;s the Difference?
+            </h2>
+
+            <p className="text-gray-700 mb-6">
+              In Malaysia, &quot;home equity loan&quot; is not common like in the US. Here&apos;s how they compare:
+            </p>
+
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse bg-white">
+                <thead>
+                  <tr className="bg-gray-100">
+                    <th className="text-left p-4 font-semibold">Feature</th>
+                    <th className="text-left p-4 font-semibold text-secondary-700">Cash Out Refinance</th>
+                    <th className="text-left p-4 font-semibold text-gray-500">Home Equity Loan (US-style)</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="border-b">
+                    <td className="p-4 font-medium">Availability in Malaysia</td>
+                    <td className="p-4 text-green-600 font-semibold">Yes, all major banks</td>
+                    <td className="p-4 text-red-500">Very limited</td>
+                  </tr>
+                  <tr className="border-b bg-gray-50">
+                    <td className="p-4 font-medium">How it works</td>
+                    <td className="p-4">Replace existing loan + get cash</td>
+                    <td className="p-4">Second loan on top of existing</td>
+                  </tr>
+                  <tr className="border-b">
+                    <td className="p-4 font-medium">Number of loans</td>
+                    <td className="p-4">1 (new loan)</td>
+                    <td className="p-4">2 (original + equity loan)</td>
+                  </tr>
+                  <tr className="border-b bg-gray-50">
+                    <td className="p-4 font-medium">Interest rate</td>
+                    <td className="p-4">3.80% – 4.50%</td>
+                    <td className="p-4">Usually higher</td>
+                  </tr>
+                  <tr>
+                    <td className="p-4 font-medium">Best option in Malaysia</td>
+                    <td className="p-4 text-green-600 font-semibold">Recommended</td>
+                    <td className="p-4 text-red-500">Not common</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <div className="mt-6 bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
+              <p className="text-gray-700">
+                <strong>Bottom line:</strong> In Malaysia, cash out refinance is the standard way to access home equity. True &quot;home equity loans&quot; as separate products are rarely offered by local banks.
+              </p>
+            </div>
+          </section>
+
+          {/* Pros & Cons */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              Pros &amp; Cons of Cash Out Refinance
+            </h2>
+
+            <div className="grid md:grid-cols-2 gap-6">
+              <div className="bg-green-50 rounded-xl p-6">
+                <h3 className="font-semibold text-green-800 mb-4 text-lg">Pros</h3>
+                <ul className="space-y-3 text-gray-700">
+                  <li className="flex items-start gap-2">
+                    <Check className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                    <span>Access large sums (up to 80-90% of property value)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                    <span>Lower interest rate than personal loans (3.80% vs 6-18%)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                    <span>Longer tenure = lower monthly payments</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                    <span>Use funds for any purpose</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="w-5 h-5 text-green-600 mt-0.5 flex-shrink-0" />
+                    <span>May <Link href="/debt-consolidation-malaysia" className="text-primary-600 hover:underline">consolidate other debts</Link> at a lower rate</span>
+                  </li>
+                </ul>
+              </div>
+
+              <div className="bg-red-50 rounded-xl p-6">
+                <h3 className="font-semibold text-red-800 mb-4 text-lg">Cons</h3>
+                <ul className="space-y-3 text-gray-700">
+                  <li className="flex items-start gap-2">
+                    <X className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" />
+                    <span>Your home is collateral (risk of foreclosure)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <X className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" />
+                    <span>Refinancing costs (RM3k-8k in fees)</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <X className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" />
+                    <span>Longer to pay off your home</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <X className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" />
+                    <span>Takes 6-10 weeks to process</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <X className="w-5 h-5 text-red-500 mt-0.5 flex-shrink-0" />
+                    <span>Must meet <Link href="/dsr-calculator" className="text-primary-600 hover:underline">DSR requirements</Link></span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+          </section>
+
           {/* When Does Cash Out Make Sense */}
           <section className="mb-12">
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
@@ -437,11 +587,11 @@ export default function CashOutRefinancePage() {
                   <div className="w-12 h-12 bg-secondary-100 rounded-full flex items-center justify-center">
                     <CreditCard className="w-6 h-6 text-secondary-600" />
                   </div>
-                  <h3 className="font-semibold text-gray-900">Debt Consolidation</h3>
+                  <h3 className="font-semibold text-gray-900"><Link href="/debt-consolidation-malaysia" className="hover:text-primary-600">Debt Consolidation</Link></h3>
                 </div>
                 <p className="text-gray-600 text-sm mb-3">
                   Pay off high-interest credit cards (18-24%) or personal loans (6-12%) with your
-                  mortgage rate (3.5-4.5%). Can save thousands in interest annually.
+                  mortgage rate (3.80-4.50%). Can save thousands in interest annually.
                 </p>
                 <p className="text-green-600 text-sm font-semibold">
                   ✓ Often the best use case
@@ -527,23 +677,23 @@ export default function CashOutRefinancePage() {
                     <th className="text-left p-3 font-semibold">Bank</th>
                     <th className="text-left p-3 font-semibold">Rate From</th>
                     <th className="text-left p-3 font-semibold">Max LTV</th>
-                    <th className="text-left p-3 font-semibold">Cash Out Feature</th>
+                    <th className="text-left p-3 font-semibold">Best For</th>
                   </tr>
                 </thead>
                 <tbody>
-                  {cashOutBanks.slice(0, 6).map((bank, index) => (
-                    <tr key={bank.name} className={index % 2 === 0 ? "bg-white" : "bg-gray-50"}>
+                  {cashOutBanks.map((bank, index) => (
+                    <tr key={bank.name} className={`${index % 2 === 0 ? "bg-white" : "bg-gray-50"} ${bank.name === "LPPSA" ? "opacity-60" : ""}`}>
                       <td className="p-3">
                         <Link
-                          href={`/${bank.name.toLowerCase().replace(' ', '-')}-refinance-home-loan`}
+                          href={bank.link}
                           className="text-primary-600 hover:underline font-medium"
                         >
                           {bank.name}
                         </Link>
                       </td>
-                      <td className="p-3 font-semibold text-secondary-600">{bank.rateFrom}</td>
-                      <td className="p-3">{bank.maxLTV}%</td>
-                      <td className="p-3 text-sm">{bank.features.find(f => f.toLowerCase().includes('cash') || f.toLowerCase().includes('flexi')) || 'Available'}</td>
+                      <td className="p-3 font-semibold text-secondary-600">{bank.rate}</td>
+                      <td className="p-3">{bank.maxLTV}</td>
+                      <td className="p-3 text-sm">{bank.bestFor}</td>
                     </tr>
                   ))}
                 </tbody>
@@ -551,13 +701,7 @@ export default function CashOutRefinancePage() {
             </div>
 
             <p className="text-sm text-gray-500 mt-4">
-              Compare individual banks: {" "}
-              <Link href="/maybank-refinance-home-loan" className="text-primary-600 hover:underline">Maybank</Link>, {" "}
-              <Link href="/cimb-refinance-home-loan" className="text-primary-600 hover:underline">CIMB</Link>, {" "}
-              <Link href="/public-bank-refinance-home-loan" className="text-primary-600 hover:underline">Public Bank</Link>, {" "}
-              <Link href="/rhb-refinance-home-loan" className="text-primary-600 hover:underline">RHB</Link>, {" "}
-              <Link href="/hong-leong-refinance-home-loan" className="text-primary-600 hover:underline">Hong Leong</Link>, {" "}
-              <Link href="/ambank-refinance-home-loan" className="text-primary-600 hover:underline">AmBank</Link>
+              Rates as of {currentYear}. LPPSA does not offer cash-out refinancing.
             </p>
           </section>
 
@@ -588,7 +732,7 @@ export default function CashOutRefinancePage() {
                   </li>
                   <li className="flex items-start gap-2">
                     <Check className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
-                    <span>DSR below 70% (including new loan)</span>
+                    <span><Link href="/dsr-calculator" className="text-primary-600 hover:underline">DSR</Link> below 70% (including new loan)</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <Check className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
@@ -836,7 +980,7 @@ export default function CashOutRefinancePage() {
             <h2 className="text-2xl font-bold text-gray-900 mb-6">
               Related Guides
             </h2>
-            <div className="grid md:grid-cols-2 gap-4">
+            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-4">
               <Link
                 href="/calculator"
                 className="block p-4 bg-secondary-50 rounded-lg hover:bg-secondary-100 transition-colors"
@@ -852,11 +996,25 @@ export default function CashOutRefinancePage() {
                 <p className="text-sm text-primary-700">Compare banks with best cash-out terms</p>
               </Link>
               <Link
-                href="/en/refinance-calculation-examples"
+                href="/refinance-rumah-habis-bayar"
+                className="block p-4 bg-green-50 rounded-lg hover:bg-green-100 transition-colors"
+              >
+                <h3 className="font-semibold text-green-900">Refinance Rumah Habis Bayar</h3>
+                <p className="text-sm text-green-700">Cash out from fully paid property</p>
+              </Link>
+              <Link
+                href="/debt-consolidation-malaysia"
+                className="block p-4 bg-amber-50 rounded-lg hover:bg-amber-100 transition-colors"
+              >
+                <h3 className="font-semibold text-amber-900">Debt Consolidation</h3>
+                <p className="text-sm text-amber-700">Consolidate high-interest debts via refinance</p>
+              </Link>
+              <Link
+                href="/dsr-calculator"
                 className="block p-4 bg-blue-50 rounded-lg hover:bg-blue-100 transition-colors"
               >
-                <h3 className="font-semibold text-blue-900">Refinance Calculations</h3>
-                <p className="text-sm text-blue-700">Real examples with numbers explained</p>
+                <h3 className="font-semibold text-blue-900">DSR Calculator</h3>
+                <p className="text-sm text-blue-700">Check if you qualify for cash out refinance</p>
               </Link>
               <Link
                 href="/en/documents-required"
@@ -925,7 +1083,7 @@ export default function CashOutRefinancePage() {
             headline: `Cash Out Refinance Malaysia ${currentYear} - How to Get Cash from Your Property Equity`,
             description: "Complete guide to cash-out refinancing in Malaysia. Learn how much cash you can access from your property equity, bank comparisons, BNM 10-year rule, and step-by-step process.",
             datePublished: "2025-12-15",
-            dateModified: "2026-01-22",
+            dateModified: "2026-02-15",
             author: {
               "@type": "Organization",
               name: "RefinanceHomeLoanMY",

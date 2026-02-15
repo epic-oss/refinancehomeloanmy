@@ -556,6 +556,13 @@ export default function RefinanceRatesPage() {
               </div>
             </div>
           </div>
+
+          <p className="text-sm text-gray-600 mt-4">
+            Your DSR (Debt Service Ratio) is a key factor in qualifying for the best rates.{" "}
+            <Link href="/dsr-calculator" className="text-primary-600 hover:underline font-medium">
+              Check if you qualify with our DSR calculator →
+            </Link>
+          </p>
         </div>
       </section>
 

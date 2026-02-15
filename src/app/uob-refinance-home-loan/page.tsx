@@ -1,940 +1,518 @@
+"use client";
+
+import { useState } from "react";
 import Link from "next/link";
 import LeadForm from "@/components/LeadForm";
+import MidPageCTA from "@/components/MidPageCTA";
+import { StickyMobileCTA } from "@/components/StickyMobileCTA";
+import { ArrowRight, Check, X } from "lucide-react";
 
-const currentYear = new Date().getFullYear();
-
-// UOB Products data
-const uobProducts = [
-  {
-    name: "UOB Intelligent Home Loan",
-    features: [
-      "Flexible packages for refinancing",
-      "Lower interest rates",
-      "Extra cash access via redraw",
-      "No processing fees",
-      "Up to 95% financing margin",
-    ],
-    highlight: "Best for Refinancing",
-  },
-  {
-    name: "UOB Flexi Mortgage",
-    features: [
-      "Linked to current account",
-      "Fast-track repayments",
-      "Save on interest",
-      "Quick cash access when needed",
-      "Flexible repayment options",
-    ],
-    highlight: "Best for Flexibility",
-  },
-  {
-    name: "UOB Home Financing-i (Islamic)",
-    features: [
-      "Syariah-compliant financing",
-      "100% stamp duty waiver for conversion",
-      "Competitive profit rates",
-      "Available for refinancing",
-      "Tawarruq concept",
-    ],
-    highlight: "Islamic Option",
-  },
-];
-
-// UOB Rates table data
-const uobRates = [
-  {
-    product: "Intelligent Home Loan",
-    rate: "SBR - 3.00%",
-    effectiveRate: "~4.61%",
-    lockIn: "3 years",
-    margin: "Up to 95%",
-  },
-  {
-    product: "Flexi Mortgage",
-    rate: "SBR - 2.80%",
-    effectiveRate: "~4.81%",
-    lockIn: "3 years",
-    margin: "Up to 90%",
-  },
-  {
-    product: "Home Financing-i",
-    rate: "Based on BFR",
-    effectiveRate: "~4.65%",
-    lockIn: "3 years",
-    margin: "Up to 95%",
-  },
-];
-
-// Benefits data
-const benefits = [
-  {
-    title: "No Processing Fees",
-    description: "Save on upfront costs with waived processing fees for refinancing applications.",
-    icon: "M12 8c-1.657 0-3 .895-3 2s1.343 2 3 2 3 .895 3 2-1.343 2-3 2m0-8c1.11 0 2.08.402 2.599 1M12 8V7m0 1v8m0 0v1m0-1c-1.11 0-2.08-.402-2.599-1M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
-  },
-  {
-    title: "Higher Margin (95%)",
-    description: "Get up to 95% financing margin including MRTA - higher than most banks.",
-    icon: "M13 7h8m0 0v8m0-8l-8 8-4-4-6 6",
-  },
-  {
-    title: "Stamp Duty Waiver",
-    description: "100% stamp duty waiver when converting to Islamic Home Financing-i.",
-    icon: "M9 12l2 2 4-4m5.618-4.016A11.955 11.955 0 0112 2.944a11.955 11.955 0 01-8.618 3.04A12.02 12.02 0 003 9c0 5.591 3.824 10.29 9 11.622 5.176-1.332 9-6.03 9-11.622 0-1.042-.133-2.052-.382-3.016z",
-  },
-  {
-    title: "Redraw Facility",
-    description: "Access extra cash anytime through the redraw facility on your home loan.",
-    icon: "M17 9V7a2 2 0 00-2-2H5a2 2 0 00-2 2v6a2 2 0 002 2h2m2 4h10a2 2 0 002-2v-6a2 2 0 00-2-2H9a2 2 0 00-2 2v6a2 2 0 002 2zm7-5a2 2 0 11-4 0 2 2 0 014 0z",
-  },
-  {
-    title: "Flexible Payments",
-    description: "Choose weekly or fortnightly payment options to reduce interest faster.",
-    icon: "M8 7V3m8 4V3m-9 8h10M5 21h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v12a2 2 0 002 2z",
-  },
-  {
-    title: "Open to Foreigners",
-    description: "UOB welcomes applications from foreigners and permanent residents.",
-    icon: "M3.055 11H5a2 2 0 012 2v1a2 2 0 002 2 2 2 0 012 2v2.945M8 3.935V5.5A2.5 2.5 0 0010.5 8h.5a2 2 0 012 2 2 2 0 104 0 2 2 0 012-2h1.064M15 20.488V18a2 2 0 012-2h3.064M21 12a9 9 0 11-18 0 9 9 0 0118 0z",
-  },
-];
-
-// Bank comparison data
-const bankComparison = [
-  { bank: "UOB", rate: "4.61%", margin: "95%", lockIn: "3 years", fee: "Waived", foreigners: "Yes", link: "#" },
-  { bank: "Maybank", rate: "4.50%", margin: "90%", lockIn: "3 years", fee: "~RM200", foreigners: "Limited", link: "/maybank-refinance-home-loan" },
-  { bank: "CIMB", rate: "4.55%", margin: "90%", lockIn: "3 years", fee: "Waived", foreigners: "Yes", link: "/cimb-refinance-home-loan" },
-  { bank: "Public Bank", rate: "4.45%", margin: "90%", lockIn: "3 years", fee: "~RM200", foreigners: "No", link: "/public-bank-refinance-home-loan" },
-];
-
-// Documents data
-const salariedDocs = [
-  "IC (MyKad/Passport)",
-  "Latest 3 months payslips",
-  "Latest 3 months bank statements",
-  "EPF statement",
-  "Current loan statements",
-  "Property documents (S&P, title)",
-];
-
-const selfEmployedDocs = [
-  "Business registration (SSM)",
-  "2 years tax returns (Form B/BE)",
-  "6 months bank statements",
-  "Business profile",
-  "Current loan statements",
-  "Property documents",
-];
-
-// Application steps
-const applicationSteps = [
-  { step: 1, title: "Check Eligibility", description: "Use our DSR calculator to check if you qualify", link: "/dsr-calculator" },
-  { step: 2, title: "Gather Documents", description: "Prepare all required documents", link: "/en/documents-required" },
-  { step: 3, title: "Submit Application", description: "Apply online or through our panel" },
-  { step: 4, title: "Property Valuation", description: "UOB arranges property valuation" },
-  { step: 5, title: "Loan Approval", description: "Approval within 2-4 weeks" },
-  { step: 6, title: "Legal Documentation", description: "Sign loan agreement with lawyer" },
-  { step: 7, title: "Disbursement", description: "Loan disbursed to settle existing loan" },
-];
-
-// FAQs
 const faqs = [
   {
-    question: "What is UOB Intelligent Home Loan?",
-    answer: "UOB Intelligent Home Loan is a flexible home financing package designed for both new purchases and refinancing. It offers competitive rates starting from 4.61% (SBR-3.00%), up to 95% financing margin, no processing fees, and a redraw facility to access extra cash when needed.",
+    question: "What is UOB refinance home loan rate in 2026?",
+    answer: "UOB's Intelligent Home Loan offers a refinance rate from 4.61% p.a. (SBR - 3.00%) in 2026. The Flexi Mortgage starts from 4.81%, and the Islamic Home Financing-i starts from approximately 4.65%. Actual rates depend on your credit profile, loan amount, and property type. UOB uses the Standardised Base Rate (SBR) system set by Bank Negara Malaysia.",
   },
   {
-    question: "What is UOB Flexi Mortgage interest rate?",
-    answer: "UOB Flexi Mortgage offers rates from approximately 4.81% (SBR-2.80%). The Flexi Mortgage is linked to your current account, allowing you to save on interest by depositing extra funds and withdraw when needed, making it ideal for those with variable income.",
+    question: "Can foreigners apply for UOB housing loan in Malaysia?",
+    answer: "Yes, UOB is one of the few Malaysian banks that actively accepts home loan applications from foreigners and permanent residents (PR). Foreigners typically get up to 70-80% financing margin compared to 90-95% for Malaysian citizens. Additional documents like work permit, employment pass, and passport are required. UOB's Singapore heritage makes them more foreigner-friendly than most local banks.",
   },
   {
-    question: "Can foreigners apply for UOB housing loan?",
-    answer: "Yes, UOB accepts home loan applications from foreigners and permanent residents (PR) in Malaysia. However, the margin and requirements may differ. Foreigners typically get up to 70-80% margin compared to 90-95% for Malaysians. Additional documents like work permit and employment pass are required.",
+    question: "What is UOB's maximum loan margin for refinancing?",
+    answer: "UOB offers up to 95% financing margin including MRTA for the Intelligent Home Loan and Home Financing-i products — one of the highest in Malaysia. Most other banks cap at 90%. The Flexi Mortgage offers up to 90% margin. Actual margin depends on property type, location, borrower profile, and existing commitments.",
   },
   {
-    question: "What is UOB refinance lock-in period?",
-    answer: "UOB refinance loans typically have a 3-year lock-in period. If you fully settle or refinance to another bank within this period, you may incur an early settlement penalty of around 2-3% of the outstanding loan amount.",
+    question: "Does UOB charge processing fees for refinancing?",
+    answer: "No, UOB typically waives the processing fee for refinancing applications, saving you approximately RM200-500 compared to banks like Maybank or Public Bank that charge standard processing fees. However, you'll still need to budget for legal fees (0.4-1% of loan), stamp duty (0.5%), and valuation fee (RM200-RM1,500).",
   },
   {
     question: "How long does UOB refinance approval take?",
-    answer: "UOB refinance approval typically takes 2-4 weeks from complete document submission. The timeline includes credit assessment, property valuation, and internal approval. The entire process from application to disbursement usually takes 2-3 months.",
+    answer: "UOB refinance approval typically takes 2-4 weeks from complete document submission. The entire process from application to disbursement usually takes 2-3 months. This includes: document verification (3-5 days), credit assessment (1-2 weeks), property valuation (1-2 weeks), approval (1-2 weeks), legal documentation (3-5 weeks), and disbursement.",
   },
   {
-    question: "Can I refinance from Maybank to UOB?",
-    answer: "Yes, you can refinance from any bank including Maybank, CIMB, Public Bank, or others to UOB. The process involves UOB settling your existing loan and creating a new loan facility. You may benefit from UOB's higher margin (95%) and waived processing fees.",
+    question: "Does UOB offer Islamic home financing for refinancing?",
+    answer: "Yes, UOB offers Home Financing-i, a Syariah-compliant Islamic home loan based on the Tawarruq (Commodity Murabahah) concept. It offers competitive profit rates from approximately 4.65%, up to 95% margin, and a 100% stamp duty waiver when converting from conventional to Islamic financing — a significant saving that other banks rarely offer.",
   },
   {
-    question: "What is UOB housing loan processing fee?",
-    answer: "UOB typically waives the processing fee for refinancing applications, saving you approximately RM200-500 compared to other banks. However, you'll still need to pay legal fees, stamp duty, and valuation fees which are standard across all banks.",
+    question: "Can I refinance from Maybank or CIMB to UOB?",
+    answer: "Yes, you can refinance from any bank including Maybank, CIMB, Public Bank, RHB, or Hong Leong to UOB. UOB will settle your existing loan and create a new loan facility. Ensure your current lock-in period has ended to avoid early settlement penalties (typically 2-3% of outstanding balance). A broker can help calculate if switching to UOB saves money after all costs.",
   },
   {
-    question: "Does UOB offer Islamic home financing?",
-    answer: "Yes, UOB offers Home Financing-i which is a Syariah-compliant Islamic home loan based on the Tawarruq concept. It offers competitive profit rates (~4.65%), up to 95% margin, and 100% stamp duty waiver when converting from conventional to Islamic financing.",
-  },
-  {
-    question: "What is UOB maximum loan margin?",
-    answer: "UOB offers up to 95% financing margin including MRTA for the Intelligent Home Loan and Home Financing-i products. This is higher than most banks that cap at 90%. The Flexi Mortgage offers up to 90% margin. Actual margin depends on property type, location, and borrower profile.",
-  },
-  {
-    question: "How to check UOB loan eligibility?",
-    answer: "You can check your UOB loan eligibility by: 1) Using our DSR calculator to ensure your debt-to-income ratio is within 70%, 2) Confirming you meet the minimum income of RM5,000/month, 3) Ensuring you're aged 21-65, 4) Having a clean credit record (CCRIS/CTOS). Our advisors can do a free preliminary assessment.",
+    question: "What is UOB redraw facility and how does it work?",
+    answer: "UOB's redraw facility allows you to access extra payments you've made above your minimum monthly instalment. For example, if you paid RM500 extra per month for 12 months, you could redraw up to RM6,000 when needed — without applying for a new loan. This is available on the Intelligent Home Loan and provides flexibility for emergencies or opportunities.",
   },
 ];
 
 export default function UOBRefinanceHomeLoanPage() {
-  const faqSchema = {
-    "@context": "https://schema.org",
-    "@type": "FAQPage",
-    mainEntity: faqs.map((faq) => ({
-      "@type": "Question",
-      name: faq.question,
-      acceptedAnswer: {
-        "@type": "Answer",
-        text: faq.answer,
-      },
-    })),
-  };
+  const [showForm, setShowForm] = useState(false);
+  const [openFaqIndex, setOpenFaqIndex] = useState<number | null>(null);
 
   return (
     <>
+      {/* Schema Markup */}
       <script
         type="application/ld+json"
-        dangerouslySetInnerHTML={{ __html: JSON.stringify(faqSchema) }}
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "Article",
+            headline: "UOB Refinance Home Loan Malaysia 2026 – Rates, Review & Guide",
+            description: "Complete guide to UOB home loan refinancing. Rates from 4.61%, 95% margin, waived processing fees, Islamic financing available.",
+            datePublished: "2025-12-01",
+            dateModified: "2026-02-15",
+            author: { "@type": "Organization", name: "RefinanceHomeLoanMY" },
+            publisher: { "@type": "Organization", name: "RefinanceHomeLoanMY", url: "https://refinancehomeloanmy.com" },
+          }),
+        }}
+      />
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify({
+            "@context": "https://schema.org",
+            "@type": "FAQPage",
+            mainEntity: faqs.map((faq) => ({
+              "@type": "Question",
+              name: faq.question,
+              acceptedAnswer: { "@type": "Answer", text: faq.answer },
+            })),
+          }),
+        }}
       />
 
       {/* Hero Section */}
       <section className="bg-gradient-to-br from-blue-900 to-blue-700 text-white py-12 md:py-16">
-        <div className="container mx-auto px-4">
-          <div className="grid lg:grid-cols-2 gap-8 items-center">
-            <div>
-              <div className="inline-block bg-white/20 text-white text-sm px-4 py-1 rounded-full mb-4">
-                UOB Malaysia
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="inline-block bg-white/20 text-white text-sm px-4 py-1 rounded-full mb-4">
+            UOB Malaysia
+          </div>
+          <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
+            UOB Refinance Home Loan Malaysia 2026
+          </h1>
+          <p className="text-lg text-blue-100 mb-2">
+            Complete guide to UOB refinancing — 95% margin, waived processing fees, redraw facility & Islamic option.
+          </p>
+          <p className="text-sm text-blue-200 mb-6">Updated: February 2026</p>
+          <button
+            onClick={() => setShowForm(true)}
+            className="inline-flex items-center gap-2 bg-white text-blue-900 font-semibold px-8 py-4 rounded-lg hover:bg-blue-50 transition-colors text-lg"
+          >
+            Get Free Quote <ArrowRight className="w-5 h-5" />
+          </button>
+        </div>
+      </section>
+
+      {/* Quick Summary Box */}
+      <section className="py-8 bg-blue-50">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-xl shadow-lg p-6">
+            <h2 className="text-lg font-bold text-gray-900 text-center mb-4">UOB Refinance at a Glance</h2>
+            <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-6 gap-4">
+              <div className="text-center p-3 bg-blue-50 rounded-lg">
+                <p className="text-2xl font-bold text-blue-700">4.61%</p>
+                <p className="text-xs text-gray-600">Rate From</p>
               </div>
-              <h1 className="text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
-                UOB Refinance Home Loan Malaysia {currentYear}
-              </h1>
-              <p className="text-lg md:text-xl text-blue-100 mb-6">
-                Refinance with UOB - Intelligent Home Loan
-              </p>
-
-              {/* Key Stats */}
-              <div className="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
-                <div className="bg-white/10 rounded-lg p-4 text-center">
-                  <p className="text-2xl font-bold">4.61%</p>
-                  <p className="text-sm text-blue-200">From Rate</p>
-                </div>
-                <div className="bg-white/10 rounded-lg p-4 text-center">
-                  <p className="text-2xl font-bold">95%</p>
-                  <p className="text-sm text-blue-200">Max Margin</p>
-                </div>
-                <div className="bg-white/10 rounded-lg p-4 text-center">
-                  <p className="text-2xl font-bold">3 Yrs</p>
-                  <p className="text-sm text-blue-200">Lock-in</p>
-                </div>
-                <div className="bg-white/10 rounded-lg p-4 text-center">
-                  <p className="text-2xl font-bold">Waived</p>
-                  <p className="text-sm text-blue-200">Processing Fee</p>
-                </div>
+              <div className="text-center p-3 bg-blue-50 rounded-lg">
+                <p className="text-2xl font-bold text-blue-700">95%</p>
+                <p className="text-xs text-gray-600">Max Margin</p>
               </div>
-
-              <Link
-                href="#quote-form"
-                className="inline-block bg-white text-blue-900 hover:bg-blue-50 font-semibold px-8 py-4 rounded-lg transition-colors text-lg"
-              >
-                Get Free Quote
-              </Link>
-            </div>
-
-            <div className="hidden lg:block">
-              <div className="bg-white/10 backdrop-blur rounded-2xl p-8">
-                <h3 className="text-xl font-bold mb-4">UOB Highlights</h3>
-                <ul className="space-y-3">
-                  <li className="flex items-center gap-3">
-                    <svg className="w-5 h-5 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>No processing fees for refinancing</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <svg className="w-5 h-5 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Up to 95% margin including MRTA</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <svg className="w-5 h-5 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Redraw facility for cash access</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <svg className="w-5 h-5 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Open to foreigners & PR</span>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <svg className="w-5 h-5 text-green-400 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    <span>Islamic financing available</span>
-                  </li>
-                </ul>
+              <div className="text-center p-3 bg-blue-50 rounded-lg">
+                <p className="text-2xl font-bold text-blue-700">35 Yrs</p>
+                <p className="text-xs text-gray-600">Max Tenure</p>
+              </div>
+              <div className="text-center p-3 bg-blue-50 rounded-lg">
+                <p className="text-2xl font-bold text-blue-700">RM3k</p>
+                <p className="text-xs text-gray-600">Min Income</p>
+              </div>
+              <div className="text-center p-3 bg-blue-50 rounded-lg">
+                <p className="text-2xl font-bold text-blue-700">3 Yrs</p>
+                <p className="text-xs text-gray-600">Lock-in</p>
+              </div>
+              <div className="text-center p-3 bg-green-50 rounded-lg">
+                <p className="text-2xl font-bold text-green-700">Waived</p>
+                <p className="text-xs text-gray-600">Processing Fee</p>
               </div>
             </div>
           </div>
         </div>
       </section>
 
-      {/* UOB Products Section */}
-      <section className="py-12 md:py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 text-center mb-4">
-              UOB Home Loan Products
-            </h2>
-            <p className="text-gray-600 text-center mb-8">
-              Choose the right UOB home loan product for your refinancing needs
-            </p>
+      {/* Main Content */}
+      <article className="py-12 bg-white">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
 
+          {/* UOB Products Section */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              UOB Home Loan Products for Refinancing
+            </h2>
             <div className="grid md:grid-cols-3 gap-6">
-              {uobProducts.map((product, idx) => (
+              {[
+                {
+                  name: "Intelligent Home Loan",
+                  highlight: "Best for Refinancing",
+                  rate: "4.61%",
+                  features: ["Flexible refinancing packages", "Up to 95% margin incl. MRTA", "Redraw facility for cash access", "No processing fees"],
+                },
+                {
+                  name: "Flexi Mortgage",
+                  highlight: "Best for Flexibility",
+                  rate: "4.81%",
+                  features: ["Linked to current account", "Save on interest daily", "Quick cash access anytime", "Weekly/fortnightly payments"],
+                },
+                {
+                  name: "Home Financing-i",
+                  highlight: "Islamic Option",
+                  rate: "4.65%",
+                  features: ["Syariah-compliant (Tawarruq)", "100% stamp duty waiver", "Up to 95% margin", "Competitive profit rates"],
+                },
+              ].map((product, idx) => (
                 <div key={idx} className="bg-white rounded-xl shadow-lg p-6 border-2 border-transparent hover:border-blue-200 transition-colors">
-                  <div className="inline-block bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full mb-4">
+                  <div className="inline-block bg-blue-100 text-blue-800 text-xs font-medium px-3 py-1 rounded-full mb-3">
                     {product.highlight}
                   </div>
-                  <h3 className="text-lg font-bold text-gray-900 mb-4">{product.name}</h3>
-                  <ul className="space-y-3">
-                    {product.features.map((feature, fidx) => (
-                      <li key={fidx} className="flex items-start gap-2 text-sm text-gray-600">
-                        <svg className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                          <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                        </svg>
-                        <span>{feature}</span>
+                  <h3 className="text-lg font-bold text-gray-900 mb-1">{product.name}</h3>
+                  <p className="text-2xl font-bold text-blue-600 mb-3">From {product.rate}</p>
+                  <ul className="space-y-2">
+                    {product.features.map((f, i) => (
+                      <li key={i} className="flex items-start gap-2 text-sm text-gray-600">
+                        <Check className="w-4 h-4 text-green-500 mt-0.5 flex-shrink-0" />
+                        <span>{f}</span>
                       </li>
                     ))}
                   </ul>
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-      </section>
-
-      {/* UOB Rates Table Section */}
-      <section className="py-12 md:py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 text-center mb-4">
-              UOB Refinance Rates {currentYear}
-            </h2>
-            <p className="text-gray-600 text-center mb-8">
-              Compare rates across UOB home loan products
-            </p>
-
-            <div className="overflow-x-auto">
-              <table className="w-full bg-white rounded-xl shadow-lg overflow-hidden">
-                <thead className="bg-blue-900 text-white">
-                  <tr>
-                    <th className="px-6 py-4 text-left">Product</th>
-                    <th className="px-6 py-4 text-center">Rate</th>
-                    <th className="px-6 py-4 text-center">Effective Rate</th>
-                    <th className="px-6 py-4 text-center">Lock-in</th>
-                    <th className="px-6 py-4 text-center">Margin</th>
-                  </tr>
-                </thead>
-                <tbody className="divide-y divide-gray-100">
-                  {uobRates.map((rate, idx) => (
-                    <tr key={idx} className="hover:bg-gray-50">
-                      <td className="px-6 py-4 font-medium text-gray-900">{rate.product}</td>
-                      <td className="px-6 py-4 text-center">{rate.rate}</td>
-                      <td className="px-6 py-4 text-center font-semibold text-blue-600">{rate.effectiveRate}</td>
-                      <td className="px-6 py-4 text-center">{rate.lockIn}</td>
-                      <td className="px-6 py-4 text-center">{rate.margin}</td>
-                    </tr>
-                  ))}
-                </tbody>
-              </table>
-            </div>
             <p className="text-sm text-gray-500 text-center mt-4">
-              *SBR = Standardised Base Rate. Rates subject to change. Current SBR: 3.61% (as of {currentYear})
+              <Link href="/refinance-home-loan-rates-malaysia" className="text-primary-600 hover:underline font-medium">Compare all 14 banks&apos; rates →</Link>{" "}
+              *SBR = Standardised Base Rate (3.61% as of 2026). Rates subject to change.
             </p>
-          </div>
-        </div>
-      </section>
+          </section>
 
-      {/* Benefits Section */}
-      <section className="py-12 md:py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 text-center mb-4">
-              Why Refinance with UOB?
+          {/* Example Savings Calculation */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              How Much Can You Save with UOB Refinancing?
             </h2>
-            <p className="text-gray-600 text-center mb-8">
-              Key advantages of choosing UOB for your home loan refinancing
+            <p className="text-gray-600 mb-6">
+              Example: RM500,000 property, RM300,000 outstanding loan, 30 years remaining tenure.
             </p>
-
-            <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
-              {benefits.map((benefit, idx) => (
-                <div key={idx} className="bg-white rounded-xl shadow-lg p-6">
-                  <div className="w-12 h-12 bg-blue-100 rounded-lg flex items-center justify-center mb-4">
-                    <svg className="w-6 h-6 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d={benefit.icon} />
-                    </svg>
-                  </div>
-                  <h3 className="font-bold text-gray-900 mb-2">{benefit.title}</h3>
-                  <p className="text-sm text-gray-600">{benefit.description}</p>
+            <div className="grid md:grid-cols-2 gap-6 mb-6">
+              <div className="bg-red-50 border border-red-200 rounded-xl p-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <X className="w-5 h-5 text-red-500" />
+                  <h3 className="font-bold text-red-800">Your Current Loan</h3>
                 </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Eligibility Section */}
-      <section className="py-12 md:py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 text-center mb-4">
-              UOB Refinance Eligibility
-            </h2>
-            <p className="text-gray-600 text-center mb-8">
-              Check if you qualify for UOB home loan refinancing
-            </p>
-
-            <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
-              <div className="grid md:grid-cols-2 gap-6">
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                      <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="font-medium text-gray-900">Citizenship</p>
-                      <p className="text-sm text-gray-600">Malaysian citizens, PR, or foreigners</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                      <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="font-medium text-gray-900">Age</p>
-                      <p className="text-sm text-gray-600">21 - 65 years old</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                      <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="font-medium text-gray-900">Minimum Income</p>
-                      <p className="text-sm text-gray-600">RM5,000/month</p>
-                    </div>
-                  </div>
-                </div>
-
-                <div className="space-y-4">
-                  <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                      <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="font-medium text-gray-900">Property Type</p>
-                      <p className="text-sm text-gray-600">Residential properties only</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                      <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="font-medium text-gray-900">DSR Limit</p>
-                      <p className="text-sm text-gray-600">Up to 70% (check with <Link href="/dsr-calculator" className="text-blue-600 hover:underline">DSR calculator</Link>)</p>
-                    </div>
-                  </div>
-
-                  <div className="flex items-start gap-3">
-                    <div className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center flex-shrink-0">
-                      <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                    </div>
-                    <div>
-                      <p className="font-medium text-gray-900">Existing Loan</p>
-                      <p className="text-sm text-gray-600">Any bank can refinance to UOB</p>
-                    </div>
-                  </div>
+                <div className="space-y-3 text-sm">
+                  <div className="flex justify-between"><span className="text-gray-600">Interest Rate</span><span className="font-semibold">5.10%</span></div>
+                  <div className="flex justify-between"><span className="text-gray-600">Monthly Payment</span><span className="font-semibold">RM1,633</span></div>
+                  <div className="flex justify-between"><span className="text-gray-600">Total Interest (30yr)</span><span className="font-semibold">RM287,880</span></div>
                 </div>
               </div>
+              <div className="bg-green-50 border border-green-200 rounded-xl p-6">
+                <div className="flex items-center gap-2 mb-4">
+                  <Check className="w-5 h-5 text-green-500" />
+                  <h3 className="font-bold text-green-800">Refinance with UOB</h3>
+                </div>
+                <div className="space-y-3 text-sm">
+                  <div className="flex justify-between"><span className="text-gray-600">Interest Rate</span><span className="font-semibold text-green-700">4.61%</span></div>
+                  <div className="flex justify-between"><span className="text-gray-600">Monthly Payment</span><span className="font-semibold text-green-700">RM1,541</span></div>
+                  <div className="flex justify-between"><span className="text-gray-600">Total Interest (30yr)</span><span className="font-semibold text-green-700">RM254,760</span></div>
+                </div>
+              </div>
+            </div>
+            <div className="bg-green-100 border border-green-300 rounded-xl p-6 text-center">
+              <p className="text-sm text-green-800 mb-1">Your Estimated Savings</p>
+              <p className="text-3xl font-bold text-green-700 mb-2">RM92/month</p>
+              <p className="text-lg font-semibold text-green-700">RM33,120 total over 30 years</p>
+            </div>
+            <div className="flex flex-wrap gap-4 justify-center mt-6">
+              <Link href="/calculator" className="inline-flex items-center gap-2 bg-blue-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-blue-700 transition-colors">
+                Calculate Your Savings <ArrowRight className="w-4 h-4" />
+              </Link>
+              <Link href="/dsr-calculator" className="inline-flex items-center gap-2 bg-white border border-blue-300 text-blue-700 font-semibold px-6 py-3 rounded-lg hover:bg-blue-50 transition-colors">
+                Check Your DSR
+              </Link>
+              <Link href="/cash-out-calculator" className="inline-flex items-center gap-2 bg-white border border-blue-300 text-blue-700 font-semibold px-6 py-3 rounded-lg hover:bg-blue-50 transition-colors">
+                Calculate Cash-Out
+              </Link>
+            </div>
+          </section>
 
-              <div className="mt-6 pt-6 border-t text-center">
-                <Link
-                  href="/dsr-calculator"
-                  className="inline-flex items-center gap-2 text-blue-600 hover:text-blue-700 font-medium"
-                >
-                  Check your eligibility with our DSR Calculator
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
+          {/* Why UOB Section */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              Is UOB Good for Refinancing? Honest Review
+            </h2>
+            <div className="grid md:grid-cols-2 gap-6 mb-6">
+              <div className="bg-green-50 rounded-xl p-6">
+                <h3 className="font-semibold text-green-800 mb-4 flex items-center gap-2">
+                  <Check className="w-5 h-5" /> UOB Advantages
+                </h3>
+                <ul className="space-y-3 text-gray-700">
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
+                    <span><strong>95% financing margin</strong> — highest among major banks, including MRTA</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
+                    <span><strong>Waived processing fees</strong> — save RM200-500 upfront vs other banks</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
+                    <span><strong>Redraw facility</strong> — access extra payments anytime. <Link href="/cash-out-calculator" className="text-primary-600 hover:underline">Calculate cash-out</Link></span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <Check className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
+                    <span><strong>Open to foreigners</strong> — one of few banks welcoming foreign applicants &amp; PRs</span>
+                  </li>
+                </ul>
+              </div>
+              <div className="bg-red-50 rounded-xl p-6">
+                <h3 className="font-semibold text-red-800 mb-4 flex items-center gap-2">
+                  <X className="w-5 h-5" /> Things to Consider
+                </h3>
+                <ul className="space-y-3 text-gray-700">
+                  <li className="flex items-start gap-2">
+                    <X className="w-4 h-4 text-red-600 mt-1 flex-shrink-0" />
+                    <span><strong>Higher starting rate</strong> — 4.61% vs 3.80-4.35% at some competitors</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <X className="w-4 h-4 text-red-600 mt-1 flex-shrink-0" />
+                    <span><strong>3-year lock-in</strong> — standard early exit penalty of 2-3%</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <X className="w-4 h-4 text-red-600 mt-1 flex-shrink-0" />
+                    <span><strong>Smaller branch network</strong> — fewer branches than Maybank, CIMB, Public Bank</span>
+                  </li>
+                  <li className="flex items-start gap-2">
+                    <X className="w-4 h-4 text-red-600 mt-1 flex-shrink-0" />
+                    <span><strong>Niche positioning</strong> — best for high-margin or foreigner needs, not lowest rate</span>
+                  </li>
+                </ul>
+              </div>
+            </div>
+            <div className="bg-blue-50 border-l-4 border-blue-500 p-4 rounded-r-lg">
+              <p className="font-semibold text-blue-800 mb-1">Best For:</p>
+              <p className="text-gray-700">
+                Borrowers who need the highest financing margin (95%), foreigners/PRs looking for a welcoming bank, or those who value the redraw facility and waived processing fees. Ideal if margin and flexibility matter more than getting the absolute lowest interest rate.
+              </p>
+            </div>
+          </section>
+
+          {/* Eligibility Section */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              UOB Refinance Eligibility Requirements
+            </h2>
+            <div className="bg-gray-50 rounded-xl p-6">
+              <div className="grid md:grid-cols-2 gap-4">
+                {[
+                  { label: "Age", value: "21 – 65 years old" },
+                  { label: "Citizenship", value: "Malaysian citizens, PR, or foreigners" },
+                  { label: "Min Income", value: "RM3,000/month (salaried & self-employed)" },
+                  { label: "Loan Type", value: "Conventional & Islamic (Tawarruq)" },
+                  { label: "Property", value: "Residential — landed & non-landed" },
+                  { label: "DSR Limit", value: "Up to 70%" },
+                  { label: "Max Margin", value: "Up to 95% (incl. MRTA)" },
+                  { label: "Existing Loan", value: "Any bank can refinance to UOB" },
+                ].map((item, idx) => (
+                  <div key={idx} className="flex items-start gap-3">
+                    <Check className="w-5 h-5 text-blue-600 mt-0.5 flex-shrink-0" />
+                    <div>
+                      <p className="font-medium text-gray-900">{item.label}</p>
+                      <p className="text-sm text-gray-600">{item.value}</p>
+                    </div>
+                  </div>
+                ))}
+              </div>
+              <div className="mt-6 pt-4 border-t text-center">
+                <Link href="/dsr-calculator" className="text-blue-600 hover:underline font-medium inline-flex items-center gap-1">
+                  Check your eligibility with our DSR Calculator <ArrowRight className="w-4 h-4" />
                 </Link>
               </div>
             </div>
-          </div>
-        </div>
-      </section>
+          </section>
 
-      {/* Bank Comparison Section */}
-      <section className="py-12 md:py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-5xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 text-center mb-4">
-              UOB vs Other Banks
+          {/* Mid Page CTA */}
+          <MidPageCTA onOpenForm={() => setShowForm(true)} />
+
+          {/* Bank Comparison Section */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              UOB vs Other Banks — Refinance Comparison 2026
             </h2>
-            <p className="text-gray-600 text-center mb-8">
-              Compare UOB refinance rates with other major banks
-            </p>
-
             <div className="overflow-x-auto">
-              <table className="w-full bg-white rounded-xl shadow-lg overflow-hidden">
-                <thead className="bg-gray-100">
-                  <tr>
-                    <th className="px-4 py-4 text-left">Bank</th>
-                    <th className="px-4 py-4 text-center">Rate</th>
-                    <th className="px-4 py-4 text-center">Margin</th>
-                    <th className="px-4 py-4 text-center">Lock-in</th>
-                    <th className="px-4 py-4 text-center">Fee</th>
-                    <th className="px-4 py-4 text-center">Foreigners</th>
-                    <th className="px-4 py-4 text-center">Details</th>
+              <table className="w-full border-collapse text-sm">
+                <thead>
+                  <tr className="bg-blue-900 text-white">
+                    <th className="text-left p-3">Bank</th>
+                    <th className="text-center p-3">Rate (%)</th>
+                    <th className="text-center p-3">Islamic</th>
+                    <th className="text-center p-3">Lock-in</th>
+                    <th className="text-center p-3">Max Margin</th>
+                    <th className="text-center p-3">Foreigners</th>
                   </tr>
                 </thead>
-                <tbody className="divide-y divide-gray-100">
-                  {bankComparison.map((bank, idx) => (
-                    <tr key={idx} className={`hover:bg-gray-50 ${idx === 0 ? "bg-blue-50" : ""}`}>
-                      <td className="px-4 py-4 font-medium text-gray-900">
-                        {idx === 0 && <span className="text-blue-600">★ </span>}
-                        {bank.bank}
-                      </td>
-                      <td className="px-4 py-4 text-center">{bank.rate}</td>
-                      <td className="px-4 py-4 text-center">{bank.margin}</td>
-                      <td className="px-4 py-4 text-center">{bank.lockIn}</td>
-                      <td className="px-4 py-4 text-center">{bank.fee}</td>
-                      <td className="px-4 py-4 text-center">{bank.foreigners}</td>
-                      <td className="px-4 py-4 text-center">
-                        {bank.link !== "#" ? (
-                          <Link href={bank.link} className="text-blue-600 hover:text-blue-700 font-medium">
-                            View
-                          </Link>
+                <tbody>
+                  {[
+                    { bank: "UOB", rate: "4.61", islamic: "Yes", lockin: "3 yrs", margin: "95%", foreigners: "Yes", highlight: true },
+                    { bank: "RHB", rate: "4.10", islamic: "Yes", lockin: "3 yrs", margin: "90%", foreigners: "Limited", link: "/rhb-refinance-home-loan" },
+                    { bank: "Public Bank", rate: "4.22", islamic: "Yes", lockin: "3 yrs", margin: "90%", foreigners: "No", link: "/public-bank-refinance-home-loan" },
+                    { bank: "CIMB", rate: "4.35", islamic: "Yes", lockin: "3 yrs", margin: "90%", foreigners: "Yes", link: "/cimb-refinance-home-loan" },
+                    { bank: "Maybank", rate: "4.35", islamic: "Yes", lockin: "3-5 yrs", margin: "90%", foreigners: "Selected", link: "/maybank-refinance-home-loan" },
+                  ].map((b, idx) => (
+                    <tr key={idx} className={`border-b ${b.highlight ? "bg-blue-50 font-semibold" : "hover:bg-gray-50"}`}>
+                      <td className="p-3">
+                        {b.highlight ? (
+                          <span className="text-blue-700">★ {b.bank}</span>
+                        ) : b.link ? (
+                          <Link href={b.link} className="text-primary-600 hover:underline">{b.bank}</Link>
                         ) : (
-                          <span className="text-gray-400">Current</span>
+                          b.bank
                         )}
                       </td>
+                      <td className="text-center p-3">{b.rate}</td>
+                      <td className="text-center p-3">{b.islamic}</td>
+                      <td className="text-center p-3">{b.lockin}</td>
+                      <td className="text-center p-3">{b.margin}</td>
+                      <td className="text-center p-3">{b.foreigners}</td>
                     </tr>
                   ))}
                 </tbody>
               </table>
             </div>
-
-            <div className="text-center mt-6">
-              <Link
-                href="/en/best-refinance-banks"
-                className="text-blue-600 hover:text-blue-700 font-medium inline-flex items-center gap-2"
-              >
-                Compare all banks
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Documents Section */}
-      <section className="py-12 md:py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 text-center mb-4">
-              Documents Required for UOB Refinance
-            </h2>
-            <p className="text-gray-600 text-center mb-8">
-              Prepare these documents before applying
+            <p className="text-sm text-gray-500 mt-4">
+              Rates are indicative and subject to change.{" "}
+              <Link href="/refinance-home-loan-rates-malaysia" className="text-primary-600 hover:underline font-medium">Compare all 14 banks&apos; rates →</Link>
             </p>
+          </section>
 
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-white rounded-xl shadow-lg p-6">
-                <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
-                  <span className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                    <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M21 13.255A23.931 23.931 0 0112 15c-3.183 0-6.22-.62-9-1.745M16 6V4a2 2 0 00-2-2h-4a2 2 0 00-2 2v2m4 6h.01M5 20h14a2 2 0 002-2V8a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                  </span>
-                  For Salaried Employees
-                </h3>
-                <ul className="space-y-2">
-                  {salariedDocs.map((doc, idx) => (
-                    <li key={idx} className="flex items-center gap-2 text-sm text-gray-600">
-                      <svg className="w-4 h-4 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      {doc}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-
-              <div className="bg-white rounded-xl shadow-lg p-6">
-                <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
-                  <span className="w-8 h-8 bg-blue-100 rounded-full flex items-center justify-center">
-                    <svg className="w-4 h-4 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 21V5a2 2 0 00-2-2H7a2 2 0 00-2 2v16m14 0h2m-2 0h-5m-9 0H3m2 0h5M9 7h1m-1 4h1m4-4h1m-1 4h1m-5 10v-5a1 1 0 011-1h2a1 1 0 011 1v5m-4 0h4" />
-                    </svg>
-                  </span>
-                  For Self-Employed
-                </h3>
-                <ul className="space-y-2">
-                  {selfEmployedDocs.map((doc, idx) => (
-                    <li key={idx} className="flex items-center gap-2 text-sm text-gray-600">
-                      <svg className="w-4 h-4 text-green-500 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                        <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                      </svg>
-                      {doc}
-                    </li>
-                  ))}
-                </ul>
-              </div>
-            </div>
-
-            <div className="text-center mt-6">
-              <Link
-                href="/en/documents-required"
-                className="text-blue-600 hover:text-blue-700 font-medium inline-flex items-center gap-2"
-              >
-                View complete document checklist
-                <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                  <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                </svg>
-              </Link>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Application Steps Section */}
-      <section className="py-12 md:py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 text-center mb-4">
-              How to Apply for UOB Refinance
+          {/* Application Process */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              How to Apply for UOB Refinance — Step by Step
             </h2>
-            <p className="text-gray-600 text-center mb-8">
-              Simple step-by-step process to refinance your home loan
-            </p>
-
+            <div className="bg-blue-50 rounded-lg p-3 text-center text-sm text-blue-800 font-medium mb-6">
+              Typical timeline: 2–3 months from application to disbursement
+            </div>
             <div className="space-y-4">
-              {applicationSteps.map((step, idx) => (
-                <div key={idx} className="bg-white rounded-xl shadow-lg p-6 flex items-start gap-4">
-                  <div className="w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold flex-shrink-0">
-                    {step.step}
+              {[
+                { step: 1, title: "Check Eligibility & DSR", desc: "Use our DSR calculator to ensure you qualify. Minimum income RM3,000/month, DSR below 70%.", link: "/dsr-calculator" },
+                { step: 2, title: "Gather Documents", desc: "IC, latest 3 months payslips, 3 months bank statements, EPF statement, current loan statement, property documents (S&P, title)." },
+                { step: 3, title: "Submit Application", desc: "Apply through our panel for free multi-bank comparison, or apply directly to UOB online or at any branch." },
+                { step: 4, title: "Valuation & Approval", desc: "UOB arranges property valuation. Credit assessment and approval decision takes 2-4 weeks from complete submission." },
+                { step: 5, title: "Sign Loan Agreement", desc: "Review and sign the Letter of Offer. Complete legal documentation with UOB's appointed lawyer." },
+                { step: 6, title: "Disbursement", desc: "UOB settles your existing loan with your old bank. New loan begins with lower monthly payments." },
+              ].map((item) => (
+                <div key={item.step} className="flex gap-4 bg-gray-50 rounded-lg p-4">
+                  <div className="flex-shrink-0 w-10 h-10 bg-blue-600 text-white rounded-full flex items-center justify-center font-bold">
+                    {item.step}
                   </div>
                   <div className="flex-1">
-                    <h3 className="font-bold text-gray-900">{step.title}</h3>
-                    <p className="text-sm text-gray-600">{step.description}</p>
+                    <h3 className="font-semibold text-gray-900">{item.title}</h3>
+                    <p className="text-sm text-gray-600">{item.desc}</p>
                   </div>
-                  {step.link && (
-                    <Link
-                      href={step.link}
-                      className="text-blue-600 hover:text-blue-700 text-sm font-medium flex-shrink-0"
-                    >
-                      Learn more →
+                  {item.link && (
+                    <Link href={item.link} className="text-blue-600 hover:text-blue-700 text-sm font-medium flex-shrink-0 self-center">
+                      Use tool →
                     </Link>
                   )}
                 </div>
               ))}
             </div>
-          </div>
-        </div>
-      </section>
+          </section>
 
-      {/* Calculator Section */}
-      <section className="py-12 md:py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 text-center mb-4">
-              UOB Housing Loan Calculator
+          {/* FAQs */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              UOB Refinance Home Loan — Frequently Asked Questions
             </h2>
-            <p className="text-gray-600 text-center mb-8">
-              Estimate your monthly repayments with UOB rates
-            </p>
-
-            <div className="bg-white rounded-xl shadow-lg p-6 md:p-8">
-              <div className="text-center mb-6">
-                <h3 className="font-bold text-gray-900 mb-2">Example Calculation</h3>
-                <p className="text-sm text-gray-500">Based on UOB Intelligent Home Loan rate of 4.61%</p>
-              </div>
-
-              <div className="grid md:grid-cols-4 gap-4 mb-6">
-                <div className="bg-gray-50 rounded-lg p-4 text-center">
-                  <p className="text-sm text-gray-600 mb-1">Loan Amount</p>
-                  <p className="text-xl font-bold text-gray-900">RM500,000</p>
-                </div>
-                <div className="bg-gray-50 rounded-lg p-4 text-center">
-                  <p className="text-sm text-gray-600 mb-1">Interest Rate</p>
-                  <p className="text-xl font-bold text-gray-900">4.61%</p>
-                </div>
-                <div className="bg-gray-50 rounded-lg p-4 text-center">
-                  <p className="text-sm text-gray-600 mb-1">Tenure</p>
-                  <p className="text-xl font-bold text-gray-900">30 years</p>
-                </div>
-                <div className="bg-blue-50 rounded-lg p-4 text-center">
-                  <p className="text-sm text-blue-600 mb-1">Monthly Payment</p>
-                  <p className="text-xl font-bold text-blue-600">~RM2,570</p>
-                </div>
-              </div>
-
-              <div className="text-center">
-                <Link
-                  href="/calculator"
-                  className="inline-flex items-center gap-2 bg-blue-600 hover:bg-blue-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
-                >
-                  Use Full Calculator
-                  <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M9 5l7 7-7 7" />
-                  </svg>
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Section */}
-      <section className="py-12 md:py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 text-center mb-4">
-              UOB Contact for Housing Loan
-            </h2>
-            <p className="text-gray-600 text-center mb-8">
-              Get in touch with UOB or our panel of advisors
-            </p>
-
-            <div className="grid md:grid-cols-2 gap-6">
-              <div className="bg-white rounded-xl shadow-lg p-6">
-                <h3 className="font-bold text-gray-900 mb-4">Contact UOB Directly</h3>
-                <ul className="space-y-4">
-                  <li className="flex items-center gap-3">
-                    <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 5a2 2 0 012-2h3.28a1 1 0 01.948.684l1.498 4.493a1 1 0 01-.502 1.21l-2.257 1.13a11.042 11.042 0 005.516 5.516l1.13-2.257a1 1 0 011.21-.502l4.493 1.498a1 1 0 01.684.949V19a2 2 0 01-2 2h-1C9.716 21 3 14.284 3 6V5z" />
-                    </svg>
-                    <div>
-                      <p className="text-sm text-gray-500">Hotline</p>
-                      <p className="font-medium">1-800-88-8822</p>
-                    </div>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M3 8l7.89 5.26a2 2 0 002.22 0L21 8M5 19h14a2 2 0 002-2V7a2 2 0 00-2-2H5a2 2 0 00-2 2v10a2 2 0 002 2z" />
-                    </svg>
-                    <div>
-                      <p className="text-sm text-gray-500">Email</p>
-                      <p className="font-medium">UOBHome@uob.com.my</p>
-                    </div>
-                  </li>
-                  <li className="flex items-center gap-3">
-                    <svg className="w-5 h-5 text-blue-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M17.657 16.657L13.414 20.9a1.998 1.998 0 01-2.827 0l-4.244-4.243a8 8 0 1111.314 0z" />
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M15 11a3 3 0 11-6 0 3 3 0 016 0z" />
-                    </svg>
-                    <div>
-                      <p className="text-sm text-gray-500">Branches</p>
-                      <p className="font-medium">Find your nearest branch</p>
-                    </div>
-                  </li>
-                </ul>
-              </div>
-
-              <div className="bg-blue-50 rounded-xl p-6 border-2 border-blue-200">
-                <h3 className="font-bold text-gray-900 mb-2">Get Free Consultation</h3>
-                <p className="text-sm text-gray-600 mb-4">
-                  Our panel of advisors can help compare UOB with other banks and find the best rate for you.
-                </p>
-                <ul className="space-y-2 mb-4">
-                  <li className="flex items-center gap-2 text-sm">
-                    <svg className="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    Compare rates from 15+ banks
-                  </li>
-                  <li className="flex items-center gap-2 text-sm">
-                    <svg className="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    Free eligibility check
-                  </li>
-                  <li className="flex items-center gap-2 text-sm">
-                    <svg className="w-4 h-4 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
-                    </svg>
-                    No obligation quote
-                  </li>
-                </ul>
-                <Link
-                  href="#quote-form"
-                  className="inline-block w-full text-center bg-blue-600 hover:bg-blue-700 text-white font-medium py-3 rounded-lg transition-colors"
-                >
-                  Get Free Quote
-                </Link>
-              </div>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* FAQs Section */}
-      <section className="py-12 md:py-16 bg-gray-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 text-center mb-8">
-              UOB Refinance FAQs
-            </h2>
-
-            <div className="space-y-4">
-              {faqs.map((faq, idx) => (
-                <details key={idx} className="group bg-white rounded-xl shadow-lg">
-                  <summary className="flex items-center justify-between cursor-pointer p-6 font-medium text-gray-900">
-                    {faq.question}
-                    <svg
-                      className="w-5 h-5 text-gray-500 group-open:rotate-180 transition-transform"
-                      fill="none"
-                      stroke="currentColor"
-                      viewBox="0 0 24 24"
-                    >
+            <div className="space-y-3">
+              {faqs.map((faq, index) => (
+                <div key={index} className="border border-gray-200 rounded-lg overflow-hidden">
+                  <button
+                    onClick={() => setOpenFaqIndex(openFaqIndex === index ? null : index)}
+                    className="w-full flex items-center justify-between p-4 text-left bg-white hover:bg-gray-50"
+                  >
+                    <span className="font-semibold text-gray-900 pr-4">{faq.question}</span>
+                    <svg className={`w-5 h-5 text-gray-500 transition-transform flex-shrink-0 ${openFaqIndex === index ? "rotate-180" : ""}`} fill="none" stroke="currentColor" viewBox="0 0 24 24">
                       <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 9l-7 7-7-7" />
                     </svg>
-                  </summary>
-                  <div className="px-6 pb-6 text-gray-600">
-                    {faq.answer}
-                  </div>
-                </details>
+                  </button>
+                  {openFaqIndex === index && (
+                    <div className="p-4 bg-gray-50 border-t border-gray-200">
+                      <p className="text-gray-700">{faq.answer}</p>
+                    </div>
+                  )}
+                </div>
               ))}
             </div>
-          </div>
-        </div>
-      </section>
+          </section>
 
-      {/* Lead Form Section */}
-      <section id="quote-form" className="py-12 md:py-16 bg-blue-50">
-        <div className="container mx-auto px-4">
-          <div className="max-w-xl mx-auto">
-            <h2 className="text-2xl md:text-3xl font-bold text-gray-900 text-center mb-2">
-              Get UOB Refinance Quote
-            </h2>
-            <p className="text-gray-600 text-center mb-8">
-              Compare UOB with other banks - free assessment
-            </p>
-            <LeadForm variant="hero" source="uob-refinance" showAllFields={true} />
-          </div>
-        </div>
-      </section>
-
-      {/* Related Pages Section */}
-      <section className="py-12 md:py-16">
-        <div className="container mx-auto px-4">
-          <div className="max-w-4xl mx-auto">
-            <h2 className="text-2xl font-bold text-gray-900 text-center mb-8">
-              Compare Other Banks
-            </h2>
-
+          {/* Compare Other Banks */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">Compare Other Banks</h2>
             <div className="grid md:grid-cols-3 gap-4">
-              <Link
-                href="/maybank-refinance-home-loan"
-                className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow group"
-              >
-                <h3 className="font-bold text-gray-900 group-hover:text-blue-600 mb-2">
-                  Maybank Refinance
-                </h3>
-                <p className="text-sm text-gray-600">
-                  From 4.50% • Up to 90% margin
-                </p>
-              </Link>
+              {[
+                { name: "RHB Refinance", href: "/rhb-refinance-home-loan", rate: "4.10%", note: "My1 flexible loan" },
+                { name: "Maybank Refinance", href: "/maybank-refinance-home-loan", rate: "4.35%", note: "HouzKey available" },
+                { name: "CIMB Refinance", href: "/cimb-refinance-home-loan", rate: "4.35%", note: "Conventional & Islamic" },
+                { name: "Public Bank Refinance", href: "/public-bank-refinance-home-loan", rate: "4.22%", note: "Lowest mainstream rate" },
+                { name: "Standard Chartered", href: "/standard-chartered-refinance-home-loan", rate: "3.90%", note: "Premium banking" },
+                { name: "All Bank Rates", href: "/refinance-home-loan-rates-malaysia", rate: "14 banks", note: "Full comparison" },
+              ].map((b, idx) => (
+                <Link key={idx} href={b.href} className="block p-4 bg-gray-50 rounded-lg hover:bg-blue-50 transition-colors group">
+                  <h3 className="font-semibold text-gray-900 group-hover:text-blue-600">{b.name}</h3>
+                  <p className="text-sm text-gray-600">From {b.rate} • {b.note}</p>
+                </Link>
+              ))}
+            </div>
+          </section>
 
-              <Link
-                href="/cimb-refinance-home-loan"
-                className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow group"
-              >
-                <h3 className="font-bold text-gray-900 group-hover:text-blue-600 mb-2">
-                  CIMB Refinance
-                </h3>
-                <p className="text-sm text-gray-600">
-                  From 4.55% • No processing fee
-                </p>
-              </Link>
+        </div>
+      </article>
 
-              <Link
-                href="/public-bank-refinance-home-loan"
-                className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow group"
-              >
-                <h3 className="font-bold text-gray-900 group-hover:text-blue-600 mb-2">
-                  Public Bank Refinance
-                </h3>
-                <p className="text-sm text-gray-600">
-                  From 4.45% • Best rates
-                </p>
-              </Link>
+      {/* Bottom CTA */}
+      <section className="py-16 bg-blue-900">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8 text-center">
+          <h2 className="text-3xl font-bold text-white mb-4">
+            Ready to Refinance with UOB?
+          </h2>
+          <p className="text-xl text-blue-100 mb-8">
+            Get a free quote and compare UOB with other banks — takes 2 minutes.
+          </p>
+          <button
+            onClick={() => setShowForm(true)}
+            className="inline-flex items-center gap-2 bg-white text-blue-900 font-semibold px-8 py-4 rounded-lg hover:bg-blue-50 transition-colors text-lg"
+          >
+            Get Free Quote <ArrowRight className="w-5 h-5" />
+          </button>
+        </div>
+      </section>
 
-              <Link
-                href="/en/best-refinance-banks"
-                className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow group"
-              >
-                <h3 className="font-bold text-gray-900 group-hover:text-blue-600 mb-2">
-                  Best Refinance Banks
-                </h3>
-                <p className="text-sm text-gray-600">
-                  Compare all banks in Malaysia
-                </p>
-              </Link>
-
-              <Link
-                href="/dsr-calculator"
-                className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow group"
-              >
-                <h3 className="font-bold text-gray-900 group-hover:text-blue-600 mb-2">
-                  DSR Calculator
-                </h3>
-                <p className="text-sm text-gray-600">
-                  Check your loan eligibility
-                </p>
-              </Link>
-
-              <Link
-                href="/calculator"
-                className="bg-white rounded-xl shadow-lg p-6 hover:shadow-xl transition-shadow group"
-              >
-                <h3 className="font-bold text-gray-900 group-hover:text-blue-600 mb-2">
-                  Refinance Calculator
-                </h3>
-                <p className="text-sm text-gray-600">
-                  Calculate your savings
-                </p>
-              </Link>
+      {/* Lead Form Modal */}
+      {showForm && (
+        <div className="fixed inset-0 bg-black bg-opacity-50 z-50 flex items-center justify-center p-4">
+          <div className="bg-white rounded-2xl max-w-md w-full max-h-[90vh] overflow-y-auto">
+            <div className="p-6">
+              <div className="flex justify-between items-center mb-4">
+                <h3 className="text-xl font-bold">Get Your Free Quote</h3>
+                <button onClick={() => setShowForm(false)} className="text-gray-500 hover:text-gray-700">
+                  <X className="w-6 h-6" />
+                </button>
+              </div>
+              <LeadForm variant="modal" source="uob-refinance" lang="en" showAllFields={true} />
             </div>
           </div>
         </div>
-      </section>
+      )}
+
+      <StickyMobileCTA
+        onCtaClick={() => setShowForm(true)}
+        text="Compare UOB rates"
+        buttonText="Get Free Quote"
+      />
     </>
   );
 }

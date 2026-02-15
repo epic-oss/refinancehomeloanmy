@@ -215,7 +215,7 @@ export default function PublicBankRefinancePage() {
                   </li>
                   <li className="flex items-start gap-2">
                     <X className="w-4 h-4 text-red-600 mt-1 flex-shrink-0" />
-                    <span><strong>Limited flexi features</strong> - Fewer cash-out options than competitors</span>
+                    <span><strong>Limited flexi features</strong> - Fewer <Link href="/cash-out-calculator" className="text-primary-600 hover:underline">cash-out</Link> options than competitors</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <X className="w-4 h-4 text-red-600 mt-1 flex-shrink-0" />
@@ -271,7 +271,7 @@ export default function PublicBankRefinancePage() {
                   <li>- Government or GLC employee</li>
                   <li>- Income above RM5,000/month</li>
                   <li>- Property in urban areas (KL, Selangor, Penang, JB)</li>
-                  <li>- DSR below 60%</li>
+                  <li>- DSR below 60%. <Link href="/dsr-calculator" className="text-primary-600 hover:underline">Check your DSR</Link></li>
                 </ul>
               </div>
 
@@ -379,7 +379,7 @@ export default function PublicBankRefinancePage() {
             </div>
 
             <p className="text-sm text-gray-500 mt-4">
-              * Rates are indicative and subject to change. Compare with other banks: {" "}
+              * Rates are indicative and subject to change. <Link href="/refinance-home-loan-rates-malaysia" className="text-primary-600 hover:underline font-medium">Compare all 14 banks&apos; rates →</Link>{" "}
               <Link href="/maybank-refinance-home-loan" className="text-primary-600 hover:underline">Maybank</Link>, {" "}
               <Link href="/cimb-refinance-home-loan" className="text-primary-600 hover:underline">CIMB</Link>, {" "}
               <Link href="/rhb-refinance-home-loan" className="text-primary-600 hover:underline">RHB</Link>, {" "}

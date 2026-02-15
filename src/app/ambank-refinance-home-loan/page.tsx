@@ -187,7 +187,7 @@ export default function AmBankRefinancePage() {
                   </li>
                   <li className="flex items-start gap-2">
                     <Check className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
-                    <span><strong>HomeLink features</strong> - Flexible repayment options</span>
+                    <span><strong>HomeLink features</strong> - Flexible repayment options. <Link href="/cash-out-calculator" className="text-primary-600 hover:underline">Calculate cash-out</Link></span>
                   </li>
                   <li className="flex items-start gap-2">
                     <Check className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
@@ -281,7 +281,7 @@ export default function AmBankRefinancePage() {
                   <li>- Self-employed with irregular income</li>
                   <li>- Previous loan defaults</li>
                   <li>- Properties in less marketable areas</li>
-                  <li>- Very high DSR (above 70%)</li>
+                  <li>- Very high DSR (above 70%). <Link href="/dsr-calculator" className="text-primary-600 hover:underline">Check your DSR</Link></li>
                 </ul>
               </div>
             </div>
@@ -336,7 +336,7 @@ export default function AmBankRefinancePage() {
             </div>
 
             <p className="text-sm text-gray-500 mt-4">
-              * Rates are indicative and subject to change. Compare with other banks: {" "}
+              * Rates are indicative and subject to change. <Link href="/refinance-home-loan-rates-malaysia" className="text-primary-600 hover:underline font-medium">Compare all 14 banks&apos; rates →</Link>{" "}
               <Link href="/maybank-refinance-home-loan" className="text-primary-600 hover:underline">Maybank</Link>, {" "}
               <Link href="/cimb-refinance-home-loan" className="text-primary-600 hover:underline">CIMB</Link>, {" "}
               <Link href="/public-bank-refinance-home-loan" className="text-primary-600 hover:underline">Public Bank</Link>, {" "}

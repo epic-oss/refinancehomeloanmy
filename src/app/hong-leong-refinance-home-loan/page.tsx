@@ -183,7 +183,7 @@ export default function HongLeongRefinancePage() {
                 <ul className="space-y-3 text-gray-700">
                   <li className="flex items-start gap-2">
                     <Check className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
-                    <span><strong>HomeSmart features</strong> - Flexible repayment with step-up option</span>
+                    <span><strong>HomeSmart features</strong> - Flexible repayment with step-up option. <Link href="/cash-out-calculator" className="text-primary-600 hover:underline">Calculate cash-out</Link></span>
                   </li>
                   <li className="flex items-start gap-2">
                     <Check className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
@@ -271,7 +271,7 @@ export default function HongLeongRefinancePage() {
                   <li>- Existing Hong Leong customers</li>
                   <li>- Stable employment (1+ years)</li>
                   <li>- Properties in urban and suburban areas</li>
-                  <li>- Low to moderate DSR</li>
+                  <li>- Low to moderate DSR. <Link href="/dsr-calculator" className="text-primary-600 hover:underline">Check your DSR</Link></li>
                 </ul>
               </div>
 
@@ -336,7 +336,7 @@ export default function HongLeongRefinancePage() {
             </div>
 
             <p className="text-sm text-gray-500 mt-4">
-              * Rates are indicative and subject to change. Compare with other banks: {" "}
+              * Rates are indicative and subject to change. <Link href="/refinance-home-loan-rates-malaysia" className="text-primary-600 hover:underline font-medium">Compare all 14 banks&apos; rates →</Link>{" "}
               <Link href="/maybank-refinance-home-loan" className="text-primary-600 hover:underline">Maybank</Link>, {" "}
               <Link href="/cimb-refinance-home-loan" className="text-primary-600 hover:underline">CIMB</Link>, {" "}
               <Link href="/public-bank-refinance-home-loan" className="text-primary-600 hover:underline">Public Bank</Link>, {" "}

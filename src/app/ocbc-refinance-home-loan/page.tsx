@@ -315,7 +315,9 @@ export default function OCBCRefinanceHomeLoanPage() {
               </table>
             </div>
             <p className="text-sm text-gray-500 text-center mt-4">
-              *Rates are indicative and subject to change. Actual rates depend on borrower profile.
+              <Link href="/refinance-home-loan-rates-malaysia" className="text-primary-600 hover:underline font-medium">Compare all 14 banks&apos; rates →</Link>{" "}
+              *Rates are indicative and subject to change. Actual rates depend on borrower profile.{" "}
+              Need extra cash? <Link href="/cash-out-calculator" className="text-primary-600 hover:underline">Calculate your cash-out amount</Link>.
             </p>
           </div>
         </div>

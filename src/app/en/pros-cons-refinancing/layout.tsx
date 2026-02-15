@@ -1,11 +1,11 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Pros and Cons of Refinancing 2026 | Should You Refinance?",
-  description: "Discover the real pros and cons of refinancing your home loan in Malaysia. Lower rates vs costs, when it makes sense, and when to skip it. Honest guide.",
+  title: "Should You Refinance? 7 Pros vs 4 Cons (Malaysia 2026)",
+  description: "Refinancing saves RM200-800/month but costs 2-3% upfront. See the real math — when it's worth it, when it's not, and the break-even point.",
   openGraph: {
-    title: "Pros and Cons of Refinancing 2026 | Should You Refinance?",
-    description: "Discover the real pros and cons of refinancing your home loan in Malaysia. Lower rates vs costs, when it makes sense, and when to skip it.",
+    title: "Should You Refinance? 7 Pros vs 4 Cons (Malaysia 2026)",
+    description: "Refinancing saves RM200-800/month but costs 2-3% upfront. See the real math — when it's worth it, when it's not, and the break-even point.",
     type: "article",
   },
 };

@@ -1,11 +1,11 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Cash Out Refinance Calculator Malaysia 2026 | Calculate Your Equity",
-  description: "Free cash-out refinance calculator. Find out how much cash you can access from your property equity. Calculate max LTV and get quotes from Malaysian banks.",
+  title: "Cash Out Calculator Malaysia 2026 | How Much Can You Get?",
+  description: "See exactly how much cash you can unlock from your property. Enter property value → instant result. Up to 80% LTV. Most homeowners get RM100k-500k. Free tool.",
   openGraph: {
-    title: "Cash Out Refinance Calculator Malaysia 2026",
-    description: "Calculate how much cash you can access from your property equity. Free calculator with instant results.",
+    title: "Cash Out Calculator Malaysia 2026 | How Much Can You Get?",
+    description: "See exactly how much cash you can unlock from your property. Enter property value → instant result. Up to 80% LTV. Most homeowners get RM100k-500k. Free tool.",
     type: "website",
   },
 };

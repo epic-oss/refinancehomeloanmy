@@ -376,7 +376,9 @@ export default function HSBCRefinanceHomeLoanPage() {
               </table>
             </div>
             <p className="text-sm text-gray-500 text-center mt-4">
-              Rates as of February {currentYear}. Subject to change based on credit profile and loan amount.
+              <Link href="/refinance-home-loan-rates-malaysia" className="text-primary-600 hover:underline font-medium">Compare all 14 banks&apos; rates →</Link>{" "}
+              Rates as of February {currentYear}. Subject to change based on credit profile and loan amount.{" "}
+              Need extra cash? <Link href="/cash-out-calculator" className="text-primary-600 hover:underline">Calculate your cash-out amount</Link>.
             </p>
           </div>
         </div>

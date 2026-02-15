@@ -1,11 +1,11 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "Documents Required for Refinancing 2026 | Complete Checklist",
-  description: "Complete checklist of documents needed for home loan refinancing in Malaysia. IC, payslips, bank statements, title deed & more. Prepare everything in one go.",
+  title: "Refinance Documents Checklist Malaysia 2026 | Full List",
+  description: "12 documents you need to refinance. Salary slip, KWSP, CCRIS, bank statements & more. Missing one = weeks of delay. Prepare everything in 30 minutes.",
   openGraph: {
-    title: "Documents Required for Refinancing 2026 | Complete Checklist",
-    description: "Complete checklist of documents needed for home loan refinancing in Malaysia. IC, payslips, bank statements, title deed & more. Prepare everything in one go.",
+    title: "Refinance Documents Checklist Malaysia 2026 | Full List",
+    description: "12 documents you need to refinance. Salary slip, KWSP, CCRIS, bank statements & more. Missing one = weeks of delay. Prepare everything in 30 minutes.",
     type: "article",
   },
 };

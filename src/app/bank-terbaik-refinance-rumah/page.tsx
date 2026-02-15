@@ -20,36 +20,36 @@ const topBanks = getBanksSortedByRate().slice(0, 3);
 
 const faqs = [
   {
-    question: "Bank mana yang terbaik untuk refinance rumah?",
-    answer: `Berdasarkan kadar faedah terendah pada ${currentYear}, ${topBanks[0].name} menawarkan kadar serendah ${topBanks[0].rateFrom}, diikuti oleh ${topBanks[1].name} (${topBanks[1].rateFrom}) dan ${topBanks[2].name} (${topBanks[2].rateFrom}). Walau bagaimanapun, bank terbaik bergantung kepada profil kewangan anda, jumlah pinjaman, dan keperluan khusus anda.`,
+    question: "Bank mana yang terbaik untuk refinance rumah pada 2026?",
+    answer: "Berdasarkan kadar faedah terendah pada 2026, Bank Islam menawarkan kadar serendah 3.80% (Islamik sahaja), diikuti Standard Chartered (3.90%) dan Al Rajhi (3.90%, Islamik). Untuk bank konvensional besar, Public Bank (4.22%), Maybank (4.35%) dan CIMB (4.35%) adalah pilihan popular. Bank terbaik bergantung kepada profil kewangan anda — pendapatan, DSR, jenis hartanah, dan sama ada anda mahu pembiayaan Islamik atau konvensional.",
+  },
+  {
+    question: "Berapa kadar refinance terendah di Malaysia sekarang?",
+    answer: "Kadar refinance terendah di Malaysia pada Februari 2026 ialah 3.80% p.a. daripada Bank Islam (pembiayaan Islamik sahaja). Untuk konvensional, Standard Chartered menawarkan 3.90%. Walau bagaimanapun, kadar sebenar yang anda terima bergantung kepada profil kredit, nisbah pinjaman-ke-nilai (LTV), dan pendapatan anda. Sesetengah bank memerlukan pendapatan minimum RM5,000/bulan untuk kadar terendah mereka.",
+  },
+  {
+    question: "Bolehkah saya refinance jika DSR tinggi?",
+    answer: "Ya, sesetengah bank lebih fleksibel untuk pemohon dengan DSR tinggi. Bank Rakyat menerima DSR sehingga 80% untuk kes tertentu, dan LPPSA (untuk penjawat awam) mempunyai syarat DSR yang lebih longgar. Hong Leong juga dikenali dengan kelonggaran DSR untuk pemohon bergaji. Jika DSR anda melebihi 70%, pertimbangkan untuk mengurangkan hutang lain dahulu atau gunakan kalkulator DSR kami untuk menyemak kelayakan anda.",
+  },
+  {
+    question: "Apakah dokumen yang diperlukan untuk refinance rumah?",
+    answer: "Dokumen asas: MyKad, slip gaji 3 bulan terkini, penyata bank 6 bulan, borang EA/penyata cukai, penyata pinjaman semasa, dan dokumen hartanah (S&P, geran). Bagi yang bekerja sendiri: pendaftaran SSM, penyata cukai 2 tahun (Borang B), penyata bank perniagaan 6 bulan. Pastikan semua dokumen lengkap untuk mempercepatkan proses.",
   },
   {
     question: "Berapa lama proses refinance rumah?",
-    answer:
-      "Proses refinance rumah biasanya mengambil masa 1-3 bulan dari permohonan hingga pengeluaran wang. Ini termasuk penilaian hartanah (1-2 minggu), kelulusan bank (2-4 minggu), dan proses guaman (4-6 minggu). Tempoh sebenar bergantung kepada kelengkapan dokumen dan bank yang dipilih.",
+    answer: "Proses refinance rumah biasanya mengambil masa 2-3 bulan dari permohonan hingga pengeluaran wang. Pecahan: penyerahan dokumen dan semakan kredit (1-2 minggu), penilaian hartanah (1-2 minggu), kelulusan pinjaman (2-4 minggu), proses guaman (3-5 minggu), dan pengeluaran wang (1-2 minggu). Bank besar seperti Maybank mungkin lebih perlahan semasa waktu puncak.",
   },
   {
-    question: "Bolehkah refinance dengan bank yang sama?",
-    answer:
-      "Ya, anda boleh refinance dengan bank yang sama. Ini dipanggil 'repricing' atau 'internal refinancing'. Kelebihan refinance dengan bank sama termasuk proses lebih cepat dan kos guaman yang lebih rendah. Walau bagaimanapun, bank lain mungkin menawarkan kadar yang lebih kompetitif.",
+    question: "Bolehkah saya cash out semasa refinance?",
+    answer: "Ya, kebanyakan bank membenarkan cash out refinancing sehingga 80-90% LTV daripada nilai pasaran semasa hartanah anda. Contohnya: hartanah bernilai RM500,000 dengan baki RM300,000 — anda boleh refinance sehingga RM400,000 (80% LTV) dan cash out RM100,000. Wang tunai ini boleh digunakan untuk pengubahsuaian, penyatuan hutang, atau pelaburan. Gunakan kalkulator cash out kami untuk anggaran tepat.",
   },
   {
-    question: "Bila waktu terbaik untuk refinance rumah?",
-    answer:
-      "Waktu terbaik untuk refinance adalah apabila: (1) Tempoh lock-in telah tamat (biasanya 3-5 tahun), (2) Kadar faedah pasaran lebih rendah 0.5% atau lebih dari kadar semasa anda, (3) Baki pinjaman masih besar dan tempoh masih panjang, (4) Profil kewangan anda telah bertambah baik.",
+    question: "Apakah perbezaan antara refinance konvensional dan Islamik?",
+    answer: "Pinjaman konvensional menggunakan struktur kadar faedah (Base Rate + spread), manakala pembiayaan Islamik menggunakan konsep Syariah seperti Tawarruq atau Musharakah Mutanaqisah. Kedua-duanya menawarkan kadar dan ciri yang serupa. Kelebihan utama Islamik: kadar siling tetap (ceiling rate) yang melindungi anda daripada kenaikan kadar yang melampau. Bank yang menawarkan kedua-dua: Maybank, CIMB, Public Bank, RHB, Hong Leong.",
   },
   {
-    question: "Berapa kos refinance rumah?",
-    answer: `Kos refinance rumah termasuk: Yuran guaman (${SITE_CONFIG.costs.legalFeesText}), Yuran penilaian (${SITE_CONFIG.costs.valuationFeesText}), Duti setem (${SITE_CONFIG.costs.stampDutyText} dari jumlah pinjaman, mungkin dikecualikan), dan MRTA/MLTA (pilihan). Banyak bank menawarkan pakej yang menampung sebahagian atau semua kos ini.`,
-  },
-  {
-    question: "Apakah syarat kelayakan untuk refinance rumah?",
-    answer: `Syarat asas kelayakan refinance: Umur ${SITE_CONFIG.eligibility.minAge}-${SITE_CONFIG.eligibility.maxAge} tahun, pendapatan minimum RM${SITE_CONFIG.eligibility.minIncome.toLocaleString()}/bulan, DSR tidak melebihi ${SITE_CONFIG.eligibility.maxDSR}%, tempoh bekerja minimum ${SITE_CONFIG.eligibility.minEmploymentMonths} bulan (pekerja bergaji) atau ${SITE_CONFIG.eligibility.minBusinessYears} tahun (bekerja sendiri), dan tiada rekod CCRIS/CTOS yang buruk.`,
-  },
-  {
-    question: "Adakah refinance rumah sesuai untuk saya?",
-    answer:
-      "Refinance sesuai untuk anda jika: Beza kadar faedah sekurang-kurangnya 0.5%, baki pinjaman melebihi RM100,000, tempoh pinjaman masih 10+ tahun, anda merancang untuk kekal di rumah tersebut, dan penjimatan melebihi kos refinance. Gunakan kalkulator kami untuk kiraan tepat.",
+    question: "Berapa kos untuk refinance rumah?",
+    answer: "Kos refinance termasuk: yuran guaman (0.4-1% daripada jumlah pinjaman), yuran penilaian (RM200-RM1,500 bergantung nilai hartanah), duti setem (0.5% daripada jumlah pinjaman — mungkin dikecualikan untuk instrumen di bawah RM500,000), dan MRTA/MLTA (pilihan). Jumlah kos tipikal: RM5,000-RM15,000. Sesetengah bank menawarkan pakej 'zero cost' yang menampung sebahagian atau semua kos ini. Pastikan penjimatan bulanan melebihi kos ini dalam tempoh 2-3 tahun.",
   },
 ];
 
@@ -103,6 +103,268 @@ export default function BankTerbaikRefinanceRumah() {
           {/* Bank Rates Table */}
           <section className="mb-12">
             <BankRatesTable showAll={true} lang="ms" />
+          </section>
+
+          {/* Jadual Perbandingan Bank Refinance 2026 */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              Jadual Perbandingan Bank Terbaik Refinance Rumah {currentYear}
+            </h2>
+            <p className="text-gray-700 mb-6">
+              Berikut ialah senarai lengkap bank terbaik untuk refinance rumah di Malaysia pada {currentYear}, disusun mengikut kadar faedah terendah. Pilih bank yang sesuai dengan keperluan dan profil kewangan anda.
+            </p>
+
+            <div className="overflow-x-auto">
+              <table className="w-full border-collapse text-sm">
+                <thead>
+                  <tr className="bg-primary-800 text-white">
+                    <th className="text-left p-3 font-semibold">Bank</th>
+                    <th className="text-center p-3 font-semibold">Kadar (%)</th>
+                    <th className="text-center p-3 font-semibold">Jenis</th>
+                    <th className="text-center p-3 font-semibold">Lock-in</th>
+                    <th className="text-center p-3 font-semibold">Pendapatan Min</th>
+                    <th className="text-left p-3 font-semibold">Terbaik Untuk</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  <tr className="bg-green-50 border-b font-medium">
+                    <td className="p-3"><Link href="/bank-islam-refinance-home-loan" className="text-primary-600 hover:underline font-semibold">Bank Islam</Link></td>
+                    <td className="p-3 text-center text-green-700 font-bold">3.80%</td>
+                    <td className="p-3 text-center">Islamik</td>
+                    <td className="p-3 text-center">3 tahun</td>
+                    <td className="p-3 text-center">RM3,000</td>
+                    <td className="p-3">Kadar terendah</td>
+                  </tr>
+                  <tr className="bg-green-50 border-b">
+                    <td className="p-3"><Link href="/standard-chartered-refinance-home-loan" className="text-primary-600 hover:underline">Standard Chartered</Link></td>
+                    <td className="p-3 text-center text-green-700 font-semibold">3.90%</td>
+                    <td className="p-3 text-center">Konvensional</td>
+                    <td className="p-3 text-center">3 tahun</td>
+                    <td className="p-3 text-center">RM5,000</td>
+                    <td className="p-3">Gaji tinggi, offset account</td>
+                  </tr>
+                  <tr className="border-b hover:bg-gray-50">
+                    <td className="p-3">Al Rajhi</td>
+                    <td className="p-3 text-center font-semibold">3.90%</td>
+                    <td className="p-3 text-center">Islamik</td>
+                    <td className="p-3 text-center">3 tahun</td>
+                    <td className="p-3 text-center">RM3,000</td>
+                    <td className="p-3">Islamik murah</td>
+                  </tr>
+                  <tr className="border-b hover:bg-gray-50">
+                    <td className="p-3"><Link href="/rhb-refinance-home-loan" className="text-primary-600 hover:underline">RHB</Link></td>
+                    <td className="p-3 text-center font-semibold">4.10%</td>
+                    <td className="p-3 text-center">Konvensional</td>
+                    <td className="p-3 text-center">3 tahun</td>
+                    <td className="p-3 text-center">RM3,000</td>
+                    <td className="p-3">Proses cepat</td>
+                  </tr>
+                  <tr className="border-b hover:bg-gray-50">
+                    <td className="p-3"><Link href="/public-bank-refinance-home-loan" className="text-primary-600 hover:underline">Public Bank</Link></td>
+                    <td className="p-3 text-center font-semibold">4.22%</td>
+                    <td className="p-3 text-center">Konvensional</td>
+                    <td className="p-3 text-center">3 tahun</td>
+                    <td className="p-3 text-center">RM3,000</td>
+                    <td className="p-3">Servis terbaik</td>
+                  </tr>
+                  <tr className="border-b hover:bg-gray-50">
+                    <td className="p-3"><Link href="/hsbc-refinance-home-loan" className="text-primary-600 hover:underline">HSBC</Link></td>
+                    <td className="p-3 text-center font-semibold">4.30%</td>
+                    <td className="p-3 text-center">Konvensional</td>
+                    <td className="p-3 text-center">3 tahun</td>
+                    <td className="p-3 text-center">RM5,000</td>
+                    <td className="p-3">Expat / PR</td>
+                  </tr>
+                  <tr className="border-b hover:bg-gray-50">
+                    <td className="p-3"><Link href="/maybank-refinance-home-loan" className="text-primary-600 hover:underline">Maybank</Link></td>
+                    <td className="p-3 text-center font-semibold">4.35%</td>
+                    <td className="p-3 text-center">Kedua-dua</td>
+                    <td className="p-3 text-center">3-5 tahun</td>
+                    <td className="p-3 text-center">RM3,000</td>
+                    <td className="p-3">Bank terbesar Malaysia</td>
+                  </tr>
+                  <tr className="border-b hover:bg-gray-50">
+                    <td className="p-3"><Link href="/cimb-refinance-home-loan" className="text-primary-600 hover:underline">CIMB</Link></td>
+                    <td className="p-3 text-center font-semibold">4.35%</td>
+                    <td className="p-3 text-center">Kedua-dua</td>
+                    <td className="p-3 text-center">3 tahun</td>
+                    <td className="p-3 text-center">RM3,000</td>
+                    <td className="p-3">Islamik & konvensional</td>
+                  </tr>
+                  <tr className="border-b hover:bg-gray-50">
+                    <td className="p-3"><Link href="/hong-leong-refinance-home-loan" className="text-primary-600 hover:underline">Hong Leong</Link></td>
+                    <td className="p-3 text-center font-semibold">4.38%</td>
+                    <td className="p-3 text-center">Kedua-dua</td>
+                    <td className="p-3 text-center">3 tahun</td>
+                    <td className="p-3 text-center">RM3,000</td>
+                    <td className="p-3">Cashback promo</td>
+                  </tr>
+                  <tr className="hover:bg-gray-50">
+                    <td className="p-3"><Link href="/uob-refinance-home-loan" className="text-primary-600 hover:underline">UOB</Link></td>
+                    <td className="p-3 text-center font-semibold">4.61%</td>
+                    <td className="p-3 text-center">Kedua-dua</td>
+                    <td className="p-3 text-center">3 tahun</td>
+                    <td className="p-3 text-center">RM3,000</td>
+                    <td className="p-3">Fleksibel</td>
+                  </tr>
+                </tbody>
+              </table>
+            </div>
+
+            <p className="text-xs text-gray-500 mt-3">
+              * Kadar setakat Februari {currentYear}. Tertakluk kepada perubahan mengikut profil kredit.{" "}
+              <Link href="/refinance-home-loan-rates-malaysia" className="text-primary-600 hover:underline">Lihat perbandingan kadar penuh (EN) →</Link>
+            </p>
+          </section>
+
+          {/* Bank Terbaik Mengikut Keperluan */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-6">
+              Bank Terbaik Mengikut Keperluan Anda
+            </h2>
+            <p className="text-gray-700 mb-6">
+              Tidak semua bank sesuai untuk semua orang. Berikut ialah cadangan bank terbaik berdasarkan situasi kewangan dan keperluan anda:
+            </p>
+
+            <div className="grid md:grid-cols-2 gap-4">
+              <div className="bg-green-50 rounded-xl p-5 border border-green-200">
+                <h3 className="font-bold text-green-900 mb-2">Kadar Terendah</h3>
+                <p className="text-sm text-gray-700 mb-2">
+                  <strong>Bank Islam — 3.80%</strong> (Islamik sahaja). Pilihan terbaik jika anda mahu kadar paling rendah di pasaran dan tiada masalah dengan pembiayaan Islamik.
+                </p>
+                <Link href="/bank-islam-refinance-home-loan" className="text-sm text-primary-600 hover:underline font-medium">Lihat Bank Islam →</Link>
+              </div>
+
+              <div className="bg-blue-50 rounded-xl p-5 border border-blue-200">
+                <h3 className="font-bold text-blue-900 mb-2">Terbaik untuk Cash Out</h3>
+                <p className="text-sm text-gray-700 mb-2">
+                  Maybank, CIMB, dan Public Bank — semua menawarkan cash out sehingga 80-90% LTV. Sesuai untuk pengubahsuaian rumah atau penyatuan hutang.
+                </p>
+                <Link href="/cara-cash-out-rumah" className="text-sm text-primary-600 hover:underline font-medium">Panduan cash out rumah →</Link>
+              </div>
+
+              <div className="bg-amber-50 rounded-xl p-5 border border-amber-200">
+                <h3 className="font-bold text-amber-900 mb-2">DSR Tinggi</h3>
+                <p className="text-sm text-gray-700 mb-2">
+                  <strong>Bank Rakyat</strong> (DSR sehingga 80%) dan <strong>LPPSA</strong> (penjawat awam). Lebih fleksibel untuk pemohon yang mempunyai komitmen hutang tinggi.
+                </p>
+                <Link href="/can-i-refinance-with-high-dsr" className="text-sm text-primary-600 hover:underline font-medium">Panduan DSR tinggi →</Link>
+              </div>
+
+              <div className="bg-purple-50 rounded-xl p-5 border border-purple-200">
+                <h3 className="font-bold text-purple-900 mb-2">Penjawat Awam</h3>
+                <p className="text-sm text-gray-700 mb-2">
+                  <strong>LPPSA</strong> — kadar khas untuk kakitangan kerajaan dengan syarat DSR yang lebih longgar dan proses yang dipermudahkan.
+                </p>
+                <Link href="/lppsa-refinance-malaysia" className="text-sm text-primary-600 hover:underline font-medium">Panduan LPPSA →</Link>
+              </div>
+
+              <div className="bg-orange-50 rounded-xl p-5 border border-orange-200">
+                <h3 className="font-bold text-orange-900 mb-2">Gaji Rendah (RM3,000)</h3>
+                <p className="text-sm text-gray-700 mb-2">
+                  Kebanyakan bank menerima pendapatan minimum RM3,000/bulan: Maybank, CIMB, Public Bank, RHB, Hong Leong, Bank Islam. Standard Chartered dan HSBC memerlukan RM5,000+.
+                </p>
+              </div>
+
+              <div className="bg-teal-50 rounded-xl p-5 border border-teal-200">
+                <h3 className="font-bold text-teal-900 mb-2">Islamik Terbaik</h3>
+                <p className="text-sm text-gray-700 mb-2">
+                  <strong>Bank Islam (3.80%)</strong> dan <strong>Al Rajhi (3.90%)</strong> — bank yang pakar dalam pembiayaan Islamik dengan kadar paling kompetitif.
+                </p>
+                <Link href="/bank-islam-refinance-home-loan" className="text-sm text-primary-600 hover:underline font-medium">Lihat Bank Islam →</Link>
+              </div>
+            </div>
+          </section>
+
+          {/* Contoh Kiraan Penjimatan */}
+          <section className="mb-12">
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              Contoh Kiraan: Berapa Banyak Anda Boleh Jimat?
+            </h2>
+            <p className="text-gray-600 mb-6">
+              Senario: Rumah RM400k, baki pinjaman RM250k, baki tempoh 25 tahun
+            </p>
+
+            <div className="bg-white border border-gray-200 rounded-xl p-6">
+              <div className="grid md:grid-cols-2 gap-8 mb-6">
+                <div>
+                  <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <svg className="w-5 h-5 text-red-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M6 18L18 6M6 6l12 12" />
+                    </svg>
+                    Bank Semasa (4.80%)
+                  </h3>
+                  <div className="space-y-3">
+                    <div className="flex justify-between bg-gray-50 rounded-lg p-3">
+                      <span className="text-gray-600">Baki Pinjaman</span>
+                      <span className="font-semibold">RM250,000</span>
+                    </div>
+                    <div className="flex justify-between bg-gray-50 rounded-lg p-3">
+                      <span className="text-gray-600">Kadar Faedah</span>
+                      <span className="font-semibold text-red-600">4.80%</span>
+                    </div>
+                    <div className="flex justify-between bg-red-50 rounded-lg p-3">
+                      <span className="text-red-700">Bayaran Bulanan</span>
+                      <span className="font-bold text-red-700">RM1,461</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <svg className="w-5 h-5 text-green-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M5 13l4 4L19 7" />
+                    </svg>
+                    Refinance (3.80% — Bank Islam)
+                  </h3>
+                  <div className="space-y-3">
+                    <div className="flex justify-between bg-gray-50 rounded-lg p-3">
+                      <span className="text-gray-600">Pinjaman Baru</span>
+                      <span className="font-semibold">RM250,000</span>
+                    </div>
+                    <div className="flex justify-between bg-gray-50 rounded-lg p-3">
+                      <span className="text-gray-600">Kadar Faedah</span>
+                      <span className="font-semibold text-green-600">3.80%</span>
+                    </div>
+                    <div className="flex justify-between bg-green-50 rounded-lg p-3">
+                      <span className="text-green-700">Bayaran Bulanan</span>
+                      <span className="font-bold text-green-700">RM1,283</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-3 gap-4 mb-6">
+                <div className="bg-green-50 rounded-xl p-4 text-center border border-green-200">
+                  <p className="text-xs text-green-700 mb-1">Jimat Sebulan</p>
+                  <p className="text-2xl font-bold text-green-600">RM178</p>
+                </div>
+                <div className="bg-green-50 rounded-xl p-4 text-center border border-green-200">
+                  <p className="text-xs text-green-700 mb-1">Jimat Setahun</p>
+                  <p className="text-2xl font-bold text-green-600">RM2,136</p>
+                </div>
+                <div className="bg-green-50 rounded-xl p-4 text-center border border-green-200">
+                  <p className="text-xs text-green-700 mb-1">Jumlah Penjimatan</p>
+                  <p className="text-2xl font-bold text-green-600">RM53,400</p>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap justify-center gap-4">
+                <Link
+                  href="/calculator"
+                  className="inline-flex items-center gap-2 bg-primary-600 hover:bg-primary-700 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+                >
+                  Kira Penjimatan Anda
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+                <Link
+                  href="/dsr-calculator"
+                  className="inline-flex items-center gap-2 bg-white text-primary-700 border border-primary-300 px-6 py-3 rounded-lg font-medium hover:bg-primary-50 transition-colors"
+                >
+                  Kira DSR Anda
+                </Link>
+              </div>
+            </div>
           </section>
 
           {/* Faktor Pemilihan */}
@@ -536,7 +798,7 @@ export default function BankTerbaikRefinanceRumah() {
             headline: `Bank Terbaik Untuk Refinance Rumah Malaysia ${currentYear}`,
             description: `Bandingkan kadar refinance rumah dari 10+ bank di Malaysia. Ketahui bank mana yang menawarkan kadar terendah untuk refinance ${currentYear}.`,
             datePublished: "2025-11-15",
-            dateModified: "2026-01-21",
+            dateModified: "2026-02-15",
             author: {
               "@type": "Organization",
               name: "RefinanceHomeLoanMY",

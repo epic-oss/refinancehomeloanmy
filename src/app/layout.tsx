@@ -18,12 +18,12 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "./",
   },
-  title: `Refinance Home Loan Malaysia ${currentYear} - Compare Rates & Save`,
-  description: `Compare refinance home loan rates from Malaysia's top banks in ${currentYear}. Calculate your savings and get free quotes. Save RM500+/month on your mortgage.`,
+  title: "Refinance Home Loan Malaysia 2026 | Compare 14 Banks Free",
+  description: "Compare refinance rates from 14 Malaysian banks. Rates from 3.80%. Free DSR calculator, cash-out calculator & expert consultation. Save RM200-800/month.",
   keywords: "refinance home loan Malaysia, home loan refinancing, mortgage refinance, housing loan, Maybank home loan, CIMB home loan, Public Bank mortgage",
   openGraph: {
-    title: `Refinance Home Loan Malaysia ${currentYear} - Compare Rates & Save`,
-    description: `Compare refinance home loan rates from Malaysia's top banks in ${currentYear}. Calculate your savings and get free quotes. Save RM500+/month on your mortgage.`,
+    title: "Refinance Home Loan Malaysia 2026 | Compare 14 Banks Free",
+    description: "Compare refinance rates from 14 Malaysian banks. Rates from 3.80%. Free DSR calculator, cash-out calculator & expert consultation. Save RM200-800/month.",
     type: "website",
     locale: "en_MY",
     siteName: "RefinanceHomeLoanMY",

@@ -506,7 +506,8 @@ export default function DSRCalculatorPage() {
             </div>
 
             <p className="text-xs text-gray-500 mt-3">
-              * DSR limits are approximate and may vary based on individual credit profile and loan type. Hong Leong offers the highest DSR limit for employed applicants.
+              * DSR limits are approximate and may vary based on individual credit profile and loan type. Hong Leong offers the highest DSR limit for employed applicants.{" "}
+              <Link href="/best-refinance-home-loan-malaysia" className="text-primary-600 hover:underline">See which banks have the best rates →</Link>
             </p>
           </section>
 
@@ -621,6 +622,13 @@ export default function DSRCalculatorPage() {
                 </div>
               </div>
             </div>
+
+            <p className="text-sm text-gray-600 mt-6">
+              Still worried about a high DSR? Read our detailed guide on{" "}
+              <Link href="/can-i-refinance-with-high-dsr" className="text-primary-600 hover:underline font-medium">
+                how to refinance with high DSR
+              </Link>.
+            </p>
           </section>
 
           {/* DSR for Refinancing vs New Loan */}

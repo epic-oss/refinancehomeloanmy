@@ -404,11 +404,11 @@ export default function CashOutCalculatorPage() {
                 <p className="text-sm text-blue-700">Calculate monthly payments and interest savings</p>
               </Link>
               <Link
-                href="/en/best-refinance-banks"
-                className="block p-4 bg-purple-50 rounded-lg hover:bg-purple-100 transition-colors"
+                href="/cara-cash-out-rumah"
+                className="block p-4 bg-orange-50 rounded-lg hover:bg-orange-100 transition-colors"
               >
-                <h3 className="font-semibold text-purple-900">Best Refinance Banks</h3>
-                <p className="text-sm text-purple-700">Compare bank rates and cash-out features</p>
+                <h3 className="font-semibold text-orange-900">Panduan Cash Out Rumah (BM)</h3>
+                <p className="text-sm text-orange-700">Panduan lengkap cash out rumah dalam Bahasa Malaysia</p>
               </Link>
             </div>
           </section>

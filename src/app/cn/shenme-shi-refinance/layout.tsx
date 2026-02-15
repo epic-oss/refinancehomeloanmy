@@ -1,11 +1,11 @@
 import { Metadata } from "next";
 
 export const metadata: Metadata = {
-  title: "什么是Refinance房贷？2026马来西亚再融资完整指南",
-  description: "Refinance是什么意思？马来西亚房贷再融资完整解释，包括好处、条件、流程和计算方法。用简单中文了解refinance如何帮你省钱。",
+  title: "什么是Refinance？马来西亚房贷再融资完整指南 2026",
+  description: "用简单中文解释refinance。每月可省RM200-800，还能cash out套现。了解条件、流程、所需文件。附免费计算器。",
   openGraph: {
-    title: "什么是Refinance房贷？2026马来西亚再融资完整指南",
-    description: "Refinance是什么意思？马来西亚房贷再融资完整解释，包括好处、条件、流程和计算方法。用简单中文了解refinance如何帮你省钱。",
+    title: "什么是Refinance？马来西亚房贷再融资完整指南 2026",
+    description: "用简单中文解释refinance。每月可省RM200-800，还能cash out套现。了解条件、流程、所需文件。附免费计算器。",
     type: "article",
   },
 };

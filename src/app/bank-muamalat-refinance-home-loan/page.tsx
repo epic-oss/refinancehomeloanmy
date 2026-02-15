@@ -293,7 +293,8 @@ export default function BankMuamalatRefinancePage() {
                 <ArrowRight className="w-5 h-5" />
               </Link>
               <p className="text-sm text-gray-500 mt-3">
-                Compare Bank Muamalat&apos;s rate of {bank.rateFrom} against your current loan
+                Compare Bank Muamalat&apos;s rate of {bank.rateFrom} against your current loan.{" "}
+                Want to access your home equity? <Link href="/cash-out-calculator" className="text-primary-600 hover:underline">Calculate your cash-out amount</Link>.
               </p>
             </div>
           </section>
@@ -425,7 +426,7 @@ export default function BankMuamalatRefinancePage() {
                   <li>- Income above RM4,000/month</li>
                   <li>- Existing Bank Muamalat customer</li>
                   <li>- Property in established residential areas</li>
-                  <li>- Low debt-to-income ratio (below 60%)</li>
+                  <li>- Low debt-to-income ratio (below 60%). <Link href="/dsr-calculator" className="text-primary-600 hover:underline">Check your DSR</Link></li>
                 </ul>
               </div>
 
@@ -476,7 +477,7 @@ export default function BankMuamalatRefinancePage() {
             </div>
 
             <p className="text-sm text-gray-500 mt-4">
-              * Rates are indicative and subject to change. Compare with:{" "}
+              * Rates are indicative and subject to change. <Link href="/refinance-home-loan-rates-malaysia" className="text-primary-600 hover:underline font-medium">Compare all 14 banks&apos; rates →</Link>{" "}
               <Link href="/bank-islam-refinance-home-loan" className="text-primary-600 hover:underline">Bank Islam</Link>,{" "}
               <Link href="/maybank-refinance-home-loan" className="text-primary-600 hover:underline">Maybank</Link>,{" "}
               <Link href="/bank-rakyat-refinance-home-loan" className="text-primary-600 hover:underline">Bank Rakyat</Link>

@@ -154,6 +154,18 @@ const guidesData = {
         href: "/cash-out-calculator",
         readTime: "2 min",
       },
+      {
+        title: "Cara Cash Out Rumah (BM)",
+        description: "Panduan lengkap cash out rumah dalam Bahasa Malaysia",
+        href: "/cara-cash-out-rumah",
+        readTime: "8 min",
+      },
+      {
+        title: "Refinance Rumah Habis Bayar",
+        description: "Keluarkan tunai dari rumah yang sudah habis bayar",
+        href: "/refinance-rumah-habis-bayar",
+        readTime: "8 min",
+      },
     ],
   },
   debtConsolidation: {

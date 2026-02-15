@@ -3,7 +3,7 @@
 import { useState } from "react";
 import Link from "next/link";
 import Image from "next/image";
-import { SITE_CONFIG, getBanksSortedByRate } from "@/lib/constants";
+import { SITE_CONFIG } from "@/lib/constants";
 import LeadForm from "@/components/LeadForm";
 import MidPageCTA from "@/components/MidPageCTA";
 import { StickyMobileCTA } from "@/components/StickyMobileCTA";
@@ -12,40 +12,46 @@ import { ArrowRight, Check, X, Clock, FileText, AlertTriangle } from "lucide-rea
 const bank = SITE_CONFIG.bankRates.cimb;
 const { currentYear } = SITE_CONFIG;
 
-// Get competitor banks for comparison
-const allBanks = getBanksSortedByRate();
-const competitors = allBanks.filter(b =>
-  ["Maybank", "Public Bank", "Hong Leong"].includes(b.name)
-).slice(0, 3);
-
 const faqs = [
   {
-    question: "What is CIMB's lowest refinance rate in 2026?",
-    answer: `CIMB's refinance rates start from ${bank.rateFrom} p.a. for well-qualified borrowers. Your actual rate depends on credit profile, loan-to-value ratio, and income stability. CIMB uses a Base Rate (BR) system, currently at ${bank.rateBLR}.`,
+    question: "What is CIMB's refinance rate in 2026?",
+    answer: "CIMB's refinance rates start from 4.35% p.a. as of February 2026 for both conventional and Islamic (CIMB Islamic) home financing. The actual rate you receive depends on your credit profile, loan-to-value ratio, income stability, and whether you're an existing CIMB customer. CIMB uses a Base Rate (BR) system set by BNM.",
   },
   {
-    question: "How long does CIMB refinance take to approve?",
-    answer: "CIMB typically processes refinance applications within 2-3 weeks for approval. The complete process from application to disbursement takes 6-8 weeks. CIMB is known for relatively efficient processing compared to some competitors.",
+    question: "Does CIMB offer Islamic refinancing?",
+    answer: "Yes, CIMB offers Shariah-compliant home financing through CIMB Islamic. Their Islamic refinancing product is based on the Tawarruq (Commodity Murabahah) concept and offers the same competitive rates as conventional loans. Both CIMB conventional and CIMB Islamic products are available for refinancing at 4.35% p.a.",
   },
   {
-    question: "Does CIMB offer cash-out refinancing?",
-    answer: "Yes, CIMB offers cash-out refinancing through their FlexiHome product. You can access equity up to 90% of property value minus outstanding loan. This is popular for debt consolidation, renovations, or investment purposes.",
+    question: "Can I cash out with CIMB refinancing?",
+    answer: "Yes, CIMB allows cash-out refinancing up to 80% LTV (loan-to-value) of your property's current market value. The difference between the new loan and your outstanding balance is released as cash — useful for renovations, debt consolidation, education, or investments. Use our cash-out calculator to estimate your amount.",
   },
   {
-    question: "What is CIMB's lock-in period for home loans?",
-    answer: `CIMB's standard lock-in period is ${bank.lockIn} years. Early settlement within this period incurs a penalty of ${bank.earlySettlement} of the outstanding balance. Some promotional packages may have different lock-in terms.`,
+    question: "What is CIMB's minimum income for refinancing?",
+    answer: "CIMB requires a minimum gross income of RM3,000 per month for home loan refinancing. This applies to both salaried employees and self-employed applicants. Higher income (above RM5,000) may qualify you for better rates and higher loan amounts. CIMB Preferred customers may get preferential terms.",
   },
   {
-    question: "Can I refinance to CIMB if I have an existing CIMB loan?",
-    answer: "Yes, existing CIMB customers can do internal refinancing (repricing). This is often faster and may have lower costs as it doesn't require new legal documentation. Contact CIMB to discuss your repricing options.",
+    question: "How long does CIMB refinancing take?",
+    answer: "The entire CIMB refinancing process typically takes 2-3 months from application to disbursement. Breakdown: document submission and credit assessment (1-2 weeks), property valuation (1-2 weeks), loan approval (2-3 weeks), legal documentation (3-5 weeks), and final disbursement (1-2 weeks). CIMB is known for relatively efficient processing.",
   },
   {
-    question: "Is it better to apply direct to CIMB or use a broker?",
-    answer: "Using a broker is free and gives you access to multiple bank offers at once. A broker can compare CIMB's offer against 15+ other banks, potentially finding you a better rate or higher approval chance. If CIMB is the best option for your profile, a broker will confirm that — and handle all the paperwork.",
+    question: "What documents does CIMB need for refinancing?",
+    answer: "Salaried employees need: MyKad, latest 3 months payslips, latest 6 months bank statements, EA form/tax return, existing loan statement, and property documents (S&P, title). Self-employed applicants need: SSM registration, 2 years tax returns (Form B), 6 months business bank statements, and business profile. Submit complete documents to avoid delays.",
   },
   {
-    question: "Does CIMB have a refinance calculator?",
-    answer: "CIMB offers a basic loan calculator on their website, but it only covers CIMB products. Our refinance calculator shows monthly savings, total savings over tenure, break-even period, and includes all refinancing costs — giving you the complete picture to make an informed decision.",
+    question: "Can I refinance from Maybank to CIMB?",
+    answer: "Yes, you can refinance from Maybank (or any other Malaysian bank) to CIMB. CIMB will settle your existing Maybank loan and issue a new loan at CIMB's rates. This is a standard process that takes 2-3 months. Many borrowers switch to CIMB for their FlexiHome product features and competitive rates. A broker can help compare if switching makes financial sense after factoring in all costs.",
+  },
+  {
+    question: "What is CIMB's lock-in period?",
+    answer: "CIMB's standard lock-in period is 3 years. If you fully settle or refinance to another bank within this period, you'll incur an early settlement penalty of 2-3% of the outstanding loan amount. For example, on a RM300,000 balance, the penalty could be RM6,000-RM9,000. After the 3-year period, you can refinance freely without penalty.",
+  },
+  {
+    question: "Does CIMB charge a processing fee for refinancing?",
+    answer: "CIMB may waive the processing fee during promotional periods. Standard processing fees apply otherwise. However, you should budget for other refinancing costs: legal fees (0.4-1% of loan amount), valuation fee (RM200-RM1,500), stamp duty (0.5% of loan amount, exempt for instruments below RM500,000), and MRTA/MLTA insurance. Some costs may be absorbed into the loan.",
+  },
+  {
+    question: "Can I refinance my CIMB loan with CIMB (same bank)?",
+    answer: "Yes, existing CIMB customers can do internal refinancing, also called repricing. This is often faster (2-4 weeks) and cheaper than switching banks, as it may not require new legal documentation or valuation. Contact your CIMB branch or relationship manager to discuss repricing options — you may be offered a better rate to retain your business, especially if you have a good repayment record.",
   },
 ];
 
@@ -87,6 +93,42 @@ export default function CIMBRefinancePage() {
             Get Free Quote
             <ArrowRight className="w-5 h-5" />
           </button>
+        </div>
+      </section>
+
+      {/* Quick Summary Box */}
+      <section className="py-8 bg-red-50 border-b border-red-100">
+        <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="bg-white rounded-xl p-6 shadow-sm border border-red-200">
+            <h2 className="text-lg font-bold text-gray-900 mb-4 flex items-center gap-2">
+              <svg className="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M13 16h-1v-4h-1m1-4h.01M21 12a9 9 0 11-18 0 9 9 0 0118 0z" />
+              </svg>
+              CIMB Refinance at a Glance
+            </h2>
+            <div className="grid grid-cols-2 md:grid-cols-5 gap-4">
+              <div className="text-center p-3 bg-red-50 rounded-lg">
+                <p className="text-2xl font-bold text-red-700">4.35%</p>
+                <p className="text-xs text-gray-600">From Rate (Conv. & Islamic)</p>
+              </div>
+              <div className="text-center p-3 bg-gray-50 rounded-lg">
+                <p className="text-2xl font-bold text-gray-900">RM200k</p>
+                <p className="text-xs text-gray-600">Min Property Value</p>
+              </div>
+              <div className="text-center p-3 bg-gray-50 rounded-lg">
+                <p className="text-2xl font-bold text-gray-900">35 Yrs</p>
+                <p className="text-xs text-gray-600">Max Tenure</p>
+              </div>
+              <div className="text-center p-3 bg-gray-50 rounded-lg">
+                <p className="text-2xl font-bold text-gray-900">RM3k</p>
+                <p className="text-xs text-gray-600">Min Income/Month</p>
+              </div>
+              <div className="text-center p-3 bg-gray-50 rounded-lg">
+                <p className="text-2xl font-bold text-gray-900">3 Yrs</p>
+                <p className="text-xs text-gray-600">Lock-in Period</p>
+              </div>
+            </div>
+          </div>
         </div>
       </section>
 
@@ -141,26 +183,86 @@ export default function CIMBRefinancePage() {
             </div>
           </section>
 
-          {/* Calculator Link Section */}
+          {/* Savings Comparison Section */}
           <section className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              Calculator: Estimate Your CIMB Refinance Savings
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              How Much Can You Save with CIMB Refinancing?
             </h2>
-            <div className="bg-primary-50 rounded-xl p-6">
-              <p className="text-gray-700 mb-4">
-                Use our free calculator to estimate how much you could save by refinancing with CIMB.
-                Enter your current loan details and compare with CIMB&apos;s competitive rates starting from {bank.rateFrom}.
-              </p>
-              <Link
-                href="/calculator"
-                className="inline-flex items-center gap-2 bg-primary-600 text-white font-semibold px-6 py-3 rounded-lg hover:bg-primary-700 transition-colors"
-              >
-                Calculate Your Savings with CIMB
-                <ArrowRight className="w-5 h-5" />
-              </Link>
-              <p className="text-sm text-gray-500 mt-3">
-                Pre-filled with CIMB&apos;s current rate of {bank.rateFrom}
-              </p>
+            <p className="text-gray-600 mb-6">
+              Example: RM400k property, RM250k outstanding, 25 years remaining
+            </p>
+
+            <div className="bg-white border border-gray-200 rounded-xl p-6">
+              <div className="grid md:grid-cols-2 gap-8 mb-6">
+                <div>
+                  <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <X className="w-5 h-5 text-red-500" />
+                    Current Bank (5.00%)
+                  </h3>
+                  <div className="space-y-3">
+                    <div className="flex justify-between bg-gray-50 rounded-lg p-3">
+                      <span className="text-gray-600">Outstanding Loan</span>
+                      <span className="font-semibold">RM250,000</span>
+                    </div>
+                    <div className="flex justify-between bg-gray-50 rounded-lg p-3">
+                      <span className="text-gray-600">Interest Rate</span>
+                      <span className="font-semibold text-red-600">5.00%</span>
+                    </div>
+                    <div className="flex justify-between bg-red-50 rounded-lg p-3">
+                      <span className="text-red-700">Monthly Payment</span>
+                      <span className="font-bold text-red-700">RM1,461</span>
+                    </div>
+                  </div>
+                </div>
+
+                <div>
+                  <h3 className="font-bold text-gray-900 mb-4 flex items-center gap-2">
+                    <Check className="w-5 h-5 text-green-500" />
+                    CIMB (4.35%)
+                  </h3>
+                  <div className="space-y-3">
+                    <div className="flex justify-between bg-gray-50 rounded-lg p-3">
+                      <span className="text-gray-600">Refinanced Loan</span>
+                      <span className="font-semibold">RM250,000</span>
+                    </div>
+                    <div className="flex justify-between bg-gray-50 rounded-lg p-3">
+                      <span className="text-gray-600">Interest Rate</span>
+                      <span className="font-semibold text-green-600">4.35%</span>
+                    </div>
+                    <div className="flex justify-between bg-green-50 rounded-lg p-3">
+                      <span className="text-green-700">Monthly Payment</span>
+                      <span className="font-bold text-green-700">RM1,363</span>
+                    </div>
+                  </div>
+                </div>
+              </div>
+
+              <div className="grid grid-cols-2 gap-4 mb-6">
+                <div className="bg-green-50 rounded-xl p-5 text-center border border-green-200">
+                  <p className="text-sm text-green-700 mb-1">Monthly Savings</p>
+                  <p className="text-3xl font-bold text-green-600">RM98</p>
+                </div>
+                <div className="bg-green-50 rounded-xl p-5 text-center border border-green-200">
+                  <p className="text-sm text-green-700 mb-1">Total Savings (25 Years)</p>
+                  <p className="text-3xl font-bold text-green-600">RM29,400</p>
+                </div>
+              </div>
+
+              <div className="flex flex-wrap justify-center gap-4">
+                <Link
+                  href="/calculator"
+                  className="inline-flex items-center gap-2 bg-red-700 hover:bg-red-800 text-white px-6 py-3 rounded-lg font-medium transition-colors"
+                >
+                  Calculate Your Exact Savings
+                  <ArrowRight className="w-5 h-5" />
+                </Link>
+                <Link
+                  href="/dsr-calculator"
+                  className="inline-flex items-center gap-2 bg-white text-red-700 border border-red-300 px-6 py-3 rounded-lg font-medium hover:bg-red-50 transition-colors"
+                >
+                  Check Your Eligibility (DSR)
+                </Link>
+              </div>
             </div>
           </section>
 
@@ -187,7 +289,7 @@ export default function CIMBRefinancePage() {
                   </li>
                   <li className="flex items-start gap-2">
                     <Check className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
-                    <span><strong>FlexiHome flexibility</strong> - Cash-out, redraw, and flexible payment features</span>
+                    <span><strong>FlexiHome flexibility</strong> - <Link href="/cash-out-calculator" className="text-primary-600 hover:underline">Cash-out</Link>, redraw, and flexible payment features</span>
                   </li>
                   <li className="flex items-start gap-2">
                     <Check className="w-4 h-4 text-green-600 mt-1 flex-shrink-0" />
@@ -247,19 +349,35 @@ export default function CIMBRefinancePage() {
                 <ul className="grid md:grid-cols-2 gap-3 text-gray-700">
                   <li className="flex items-center gap-2">
                     <Check className="w-4 h-4 text-green-600" />
-                    Age: 21 - 65 years old
+                    Malaysian citizens and PRs
                   </li>
                   <li className="flex items-center gap-2">
                     <Check className="w-4 h-4 text-green-600" />
-                    Malaysian citizen or PR
+                    Age: 18 - 65 years old (at loan maturity)
                   </li>
                   <li className="flex items-center gap-2">
                     <Check className="w-4 h-4 text-green-600" />
-                    Minimum income: RM3,500/month
+                    Minimum income: <strong>RM3,000/month</strong>
                   </li>
                   <li className="flex items-center gap-2">
                     <Check className="w-4 h-4 text-green-600" />
                     Clean CCRIS/CTOS record
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="w-4 h-4 text-green-600" />
+                    Conventional & Islamic (CIMB Islamic) options
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="w-4 h-4 text-green-600" />
+                    Property: residential landed & non-landed
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="w-4 h-4 text-green-600" />
+                    Maximum DSR: 70% (varies by income bracket)
+                  </li>
+                  <li className="flex items-center gap-2">
+                    <Check className="w-4 h-4 text-green-600" />
+                    <Link href="/dsr-calculator" className="text-primary-600 hover:underline">Check your DSR eligibility →</Link>
                   </li>
                 </ul>
               </div>
@@ -269,7 +387,7 @@ export default function CIMBRefinancePage() {
                 <ul className="space-y-2 text-gray-700">
                   <li>- Income above RM6,000/month</li>
                   <li>- CIMB Preferred or Priority banking customer</li>
-                  <li>- Property in prime locations</li>
+                  <li>- Property in prime locations (Klang Valley, Penang, JB)</li>
                   <li>- Low DSR (below 60%)</li>
                   <li>- Stable employment with established company</li>
                 </ul>
@@ -301,47 +419,65 @@ export default function CIMBRefinancePage() {
                 <thead>
                   <tr className="bg-gray-100">
                     <th className="text-left p-3 font-semibold">Bank</th>
-                    <th className="text-left p-3 font-semibold">Rate From</th>
+                    <th className="text-left p-3 font-semibold">Rate</th>
+                    <th className="text-left p-3 font-semibold">Islamic Option</th>
                     <th className="text-left p-3 font-semibold">Lock-in</th>
-                    <th className="text-left p-3 font-semibold">Max Tenure</th>
-                    <th className="text-left p-3 font-semibold">Best For</th>
+                    <th className="text-left p-3 font-semibold">Min Income</th>
+                    <th className="text-left p-3 font-semibold">Cash Out</th>
                   </tr>
                 </thead>
                 <tbody>
                   <tr className="bg-red-50 border-b">
-                    <td className="p-3 font-semibold">CIMB</td>
-                    <td className="p-3 text-red-700 font-semibold">{bank.rateFrom}</td>
-                    <td className="p-3">{bank.lockIn} years</td>
-                    <td className="p-3">{bank.maxTenure} years</td>
-                    <td className="p-3 text-sm">{bank.bestFor}</td>
+                    <td className="p-3 font-semibold">
+                      <span className="text-red-600">★ </span>CIMB
+                    </td>
+                    <td className="p-3 text-red-700 font-semibold">4.35%</td>
+                    <td className="p-3"><Check className="w-4 h-4 text-green-600 inline" /> Yes</td>
+                    <td className="p-3">3 years</td>
+                    <td className="p-3">RM3,000</td>
+                    <td className="p-3 text-sm">Up to 80% LTV</td>
                   </tr>
-                  {competitors.map((comp) => (
-                    <tr key={comp.name} className="border-b hover:bg-gray-50">
-                      <td className="p-3">
-                        <Link
-                          href={`/${comp.name.toLowerCase().replace(' ', '-')}-refinance-home-loan`}
-                          className="text-primary-600 hover:underline"
-                        >
-                          {comp.name}
-                        </Link>
-                      </td>
-                      <td className="p-3 font-semibold">{comp.rateFrom}</td>
-                      <td className="p-3">{comp.lockIn} years</td>
-                      <td className="p-3">{comp.maxTenure} years</td>
-                      <td className="p-3 text-sm">{comp.bestFor}</td>
-                    </tr>
-                  ))}
+                  <tr className="border-b hover:bg-gray-50">
+                    <td className="p-3">
+                      <Link href="/maybank-refinance-home-loan" className="text-primary-600 hover:underline">Maybank</Link>
+                    </td>
+                    <td className="p-3 font-semibold">4.35%</td>
+                    <td className="p-3"><Check className="w-4 h-4 text-green-600 inline" /> Yes</td>
+                    <td className="p-3">3-5 years</td>
+                    <td className="p-3">RM3,000</td>
+                    <td className="p-3 text-sm">Up to 80% LTV</td>
+                  </tr>
+                  <tr className="border-b hover:bg-gray-50">
+                    <td className="p-3">
+                      <Link href="/public-bank-refinance-home-loan" className="text-primary-600 hover:underline">Public Bank</Link>
+                    </td>
+                    <td className="p-3 font-semibold">4.22%</td>
+                    <td className="p-3"><Check className="w-4 h-4 text-green-600 inline" /> Yes</td>
+                    <td className="p-3">3 years</td>
+                    <td className="p-3">RM3,000</td>
+                    <td className="p-3 text-sm">Up to 80% LTV</td>
+                  </tr>
+                  <tr className="border-b hover:bg-gray-50">
+                    <td className="p-3">
+                      <Link href="/bank-islam-refinance-home-loan" className="text-primary-600 hover:underline">Bank Islam</Link>
+                    </td>
+                    <td className="p-3 font-semibold text-green-600">3.80%</td>
+                    <td className="p-3"><Check className="w-4 h-4 text-green-600 inline" /> Yes (only)</td>
+                    <td className="p-3">3 years</td>
+                    <td className="p-3">RM3,000</td>
+                    <td className="p-3 text-sm">Up to 80% LTV</td>
+                  </tr>
                 </tbody>
               </table>
             </div>
 
             <p className="text-sm text-gray-500 mt-4">
-              * Rates are indicative and subject to change. Compare with other banks: {" "}
-              <Link href="/maybank-refinance-home-loan" className="text-primary-600 hover:underline">Maybank</Link>, {" "}
-              <Link href="/public-bank-refinance-home-loan" className="text-primary-600 hover:underline">Public Bank</Link>, {" "}
+              * Rates as of February {currentYear}. Subject to change based on credit profile.{" "}
+              <Link href="/refinance-home-loan-rates-malaysia" className="text-primary-600 hover:underline font-medium">Compare all 14 banks&apos; rates →</Link>{" "}
               <Link href="/rhb-refinance-home-loan" className="text-primary-600 hover:underline">RHB</Link>, {" "}
               <Link href="/hong-leong-refinance-home-loan" className="text-primary-600 hover:underline">Hong Leong</Link>, {" "}
-              <Link href="/ambank-refinance-home-loan" className="text-primary-600 hover:underline">AmBank</Link>
+              <Link href="/ambank-refinance-home-loan" className="text-primary-600 hover:underline">AmBank</Link>, {" "}
+              <Link href="/standard-chartered-refinance-home-loan" className="text-primary-600 hover:underline">Standard Chartered</Link>
             </p>
           </section>
 
@@ -452,48 +588,48 @@ export default function CIMBRefinancePage() {
             </div>
           </section>
 
-          {/* How to Apply Section */}
+          {/* CIMB Refinancing Process */}
           <section className="mb-12">
-            <h2 className="text-2xl font-bold text-gray-900 mb-6">
-              How to Apply for CIMB Refinance
+            <h2 className="text-2xl font-bold text-gray-900 mb-4">
+              CIMB Refinancing Process (6 Steps)
             </h2>
+            <div className="bg-red-50 rounded-lg p-3 text-center mb-6 border border-red-200">
+              <p className="text-sm text-red-800">
+                <strong>Timeline:</strong> Typically 2-3 months from application to disbursement
+              </p>
+            </div>
 
             <div className="space-y-4">
               {[
                 {
                   step: 1,
                   title: "Check Eligibility & Calculate Savings",
-                  desc: "Use our calculator to determine if refinancing with CIMB is beneficial for you."
+                  desc: "Use our DSR calculator and refinance calculator to determine if switching to CIMB saves you money.",
                 },
                 {
                   step: 2,
-                  title: "Prepare Documents",
-                  desc: "IC, salary slips (3 months), bank statements (6 months), EA form, existing loan statement, property documents."
+                  title: "Prepare & Submit Documents",
+                  desc: "IC, salary slips (3 months), bank statements (6 months), EA form, existing loan statement, and property documents. Apply at CIMB branch, via CIMB Clicks, or through our free comparison service.",
                 },
                 {
                   step: 3,
-                  title: "Submit Application",
-                  desc: "Apply at CIMB branch, online via CIMB Clicks, or through our comparison service."
+                  title: "Credit Assessment & Property Valuation",
+                  desc: "CIMB runs credit checks (CCRIS/CTOS) and arranges property valuation. Ensure property is accessible for the valuer. Takes 1-3 weeks.",
                 },
                 {
                   step: 4,
-                  title: "Property Valuation",
-                  desc: "CIMB arranges property valuation. Ensure property is accessible for inspection."
+                  title: "Loan Approval & Letter of Offer",
+                  desc: "CIMB issues Letter of Offer within 2-3 weeks. Carefully review the rates, lock-in period, fees, and all terms before accepting.",
                 },
                 {
                   step: 5,
-                  title: "Review & Accept Offer",
-                  desc: "Carefully review the Letter of Offer including rates, fees, and terms."
+                  title: "Legal Documentation",
+                  desc: "Appointed lawyer prepares loan agreement and handles mortgage documentation. This typically takes 3-5 weeks.",
                 },
                 {
                   step: 6,
-                  title: "Legal Process",
-                  desc: "Complete loan agreement and mortgage documentation with appointed lawyer."
-                },
-                {
-                  step: 7,
-                  title: "Disbursement",
-                  desc: "CIMB settles your existing loan. Cash-out amount (if any) credited to your account."
+                  title: "Disbursement & Settlement",
+                  desc: "CIMB settles your existing bank loan. Cash-out amount (if any) is credited to your CIMB account. Refinance complete!",
                 },
               ].map((item) => (
                 <div key={item.step} className="flex gap-4 bg-gray-50 rounded-lg p-4">
@@ -679,7 +815,7 @@ export default function CIMBRefinancePage() {
             headline: `CIMB Refinance Home Loan ${currentYear} - Rates, Review & Calculator`,
             description: `Complete guide to CIMB home loan refinancing. Current rates from ${bank.rateFrom}, honest review, eligibility requirements, and comparison with other banks.`,
             datePublished: "2025-12-01",
-            dateModified: "2026-01-22",
+            dateModified: "2026-02-15",
             author: {
               "@type": "Organization",
               name: "RefinanceHomeLoanMY",

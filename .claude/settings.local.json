@@ -6,7 +6,18 @@
       "Bash(git commit:*)",
       "Bash(npm run build:*)",
       "Bash(if exist .next rmdir /s /q .next)",
-      "Bash(npx tsc:*)"
+      "Bash(npx tsc:*)",
+      "Bash(npx next build)",
+      "Bash(ls:*)",
+      "Bash(echo:*)",
+      "Bash(hsbc)",
+      "Bash(maybank)",
+      "Bash(cimb:*)",
+      "Bash(rhb)",
+      "Bash(uob)",
+      "Bash(ocbc:*)",
+      "Bash(lppsa)",
+      "Bash(muamalat \")"
     ]
   }
 }
